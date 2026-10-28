@@ -1,0 +1,66 @@
+/* Reveals */
+.rv {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(24px);
+  transition: clip-path 1.1s var(--ease), transform 1.1s var(--ease);
+}
+
+.rv.in {
+  clip-path: inset(0);
+  transform: none;
+}
+
+.tx {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+
+.tx.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero reveal */
+@keyframes open {
+  to {
+    clip-path: inset(0);
+  }
+}
+
+/* Headline text reveal */
+@keyframes up {
+  to {
+    transform: none;
+  }
+}
+
+/* Fade in */
+@keyframes fi {
+  to {
+    opacity: 1;
+  }
+}
+
+.fadein {
+  opacity: 0;
+  animation: fi 1s ease forwards;
+}
+
+/* Scroll indicator */
+@keyframes sc {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Dialog entrance */
+@keyframes dg {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}

@@ -1,0 +1,37 @@
+:root {
+  --ivory: #F5F2EC;
+  --ink: #242522;
+  --olive: #777B61;
+  --sand: #D8C8B4;
+  --white: #ffffff;
+  --brown: #493B30;
+
+  /* Typography Design System */
+  --font-grotesk-365: '365 Grotesk', '365Grotesk', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-content: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Cormorant Garamond', 'Average', Georgia, serif;
+  --font-special: 'Baskervville SC', Georgia, serif;
+  --font-display: 'Bebas Neue', 'Average', -apple-system, sans-serif;
+  --font-architectural: var(--font-grotesk-365);
+
+  /* Core Aliases */
+  --sans: var(--font-content);
+  --serif: var(--font-heading);
+  --special: var(--font-special);
+  --font-label: var(--font-special);
+
+  --ease: cubic-bezier(.65, 0, .2, 1);
+  --pad: clamp(18px, 3.5vw, 48px);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}

@@ -1,0 +1,746 @@
+/* ==========================================================================
+   Before & After Interior Transformation Section
+   - Warm soft cream backdrop with organic pastel shapes
+   - Full desktop layout: spacious 1440px max-width with cinematic comparison stage
+   - Elegant editorial header with room/project metadata & interaction hints
+   - Refined diagonal split with drop-shadow line and 48px tactile center handle
+   - Frosted Before/After pills & active room stage badge
+   - Responsive thumbnail gallery strip with room tags, index numbers & navigation
+   ========================================================================== */
+
+.ba-section {
+  position: relative;
+  background-color: #FAF7F2;
+  color: var(--ink);
+  padding: clamp(40px, 5vw, 68px) var(--pad);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Subtle Pastel Peach Organic Shapes & Botanical Details */
+.ba-backdrop-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ba-decor-shape {
+  position: absolute;
+  opacity: 0.65;
+  transition: opacity 0.5s ease;
+}
+
+/* Top-Right Soft Peach Blob */
+.ba-decor-tr {
+  top: -8%;
+  right: -5%;
+  width: clamp(280px, 32vw, 560px);
+  height: clamp(280px, 32vw, 560px);
+}
+
+/* Top-Left Gentle Pastel Swell */
+.ba-decor-tl {
+  top: 4%;
+  left: -8%;
+  width: clamp(220px, 26vw, 440px);
+  height: clamp(220px, 26vw, 440px);
+}
+
+/* Bottom-Left Gentle Wave & Leaf Outline */
+.ba-decor-bl {
+  bottom: -6%;
+  left: -5%;
+  width: clamp(260px, 28vw, 480px);
+  height: clamp(260px, 28vw, 480px);
+}
+
+/* Bottom-Right Faint Pastel Accent */
+.ba-decor-br {
+  bottom: -10%;
+  right: -6%;
+  width: clamp(220px, 22vw, 380px);
+  height: clamp(220px, 22vw, 380px);
+}
+
+/* Botanical Minimalist Leaf Accent (Bottom Left) */
+.ba-decor-leaf {
+  position: absolute;
+  bottom: clamp(16px, 3vw, 40px);
+  left: clamp(20px, 3.5vw, 56px);
+  width: clamp(42px, 4.5vw, 72px);
+  height: auto;
+  opacity: 0.4;
+  color: #DFAAA0;
+  transform: rotate(-12deg);
+}
+
+/* ==========================================================================
+   Editorial Header
+   ========================================================================== */
+
+.ba-header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto clamp(24px, 3.5vh, 42px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(20px, 3vw, 40px);
+  flex-wrap: wrap;
+}
+
+.ba-header-lead {
+  max-width: 44rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ba-title {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.ba-intro {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 1.65;
+  color: #63615A;
+  max-width: 38rem;
+}
+
+.ba-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.ba-active-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  font-family: var(--font-content);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(223, 170, 160, 0.35);
+  box-shadow: 0 2px 10px rgba(36, 37, 34, 0.04);
+}
+
+.ba-meta-index {
+  font-family: var(--font-special);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #777B61;
+  font-weight: 600;
+}
+
+.ba-meta-room {
+  font-weight: 700;
+  color: #DE3B74;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.ba-meta-divider {
+  opacity: 0.35;
+  color: var(--ink);
+}
+
+.ba-meta-title {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.ba-drag-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: #8C887E;
+  letter-spacing: 0.02em;
+}
+
+.ba-drag-hint svg {
+  color: #DE3B74;
+  animation: ba-hint-drift 2.2s infinite ease-in-out;
+}
+
+@keyframes ba-hint-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+/* ==========================================================================
+   Main Comparison Stage (Expansive Full Desktop Space)
+   ========================================================================== */
+
+.ba-comparison-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.ba-stage-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: min(720px, 72vh);
+  min-height: 400px;
+  border-radius: clamp(16px, 1.8vw, 24px);
+  overflow: hidden;
+  background-color: var(--sand);
+  box-shadow: 
+    0 24px 64px rgba(36, 37, 34, 0.1),
+    0 4px 18px rgba(36, 37, 34, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  cursor: ew-resize;
+  transform: translateZ(0);
+}
+
+/* Base Image: Transformed After (Occupies 100% of frame) */
+.ba-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ba-layer-after {
+  z-index: 1;
+}
+
+/* Top Image: Raw Before (Clipped along diagonal line) */
+.ba-layer-before {
+  z-index: 2;
+  will-change: clip-path;
+}
+
+.ba-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Diagonal Split Line Overlay */
+.ba-divider-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Pill Labels */
+.ba-pill {
+  position: absolute;
+  top: clamp(14px, 1.8vw, 22px);
+  z-index: 10;
+  padding: clamp(6px, 0.7vw, 9px) clamp(14px, 1.4vw, 20px);
+  border-radius: 999px;
+  font-family: var(--font-content);
+  font-size: clamp(0.68rem, 0.78vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  pointer-events: none;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Upper-Left BEFORE Pill */
+.ba-pill-before {
+  left: clamp(14px, 1.8vw, 22px);
+  background: rgba(36, 37, 34, 0.76);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Upper-Right AFTER Pill */
+.ba-pill-after {
+  right: clamp(14px, 1.8vw, 22px);
+  background: #DE3B74;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(222, 59, 116, 0.36);
+}
+
+/* Sleek Stage Bottom Room Badge */
+.ba-stage-badge {
+  position: absolute;
+  bottom: clamp(14px, 1.8vw, 22px);
+  left: clamp(14px, 1.8vw, 22px);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(20, 21, 19, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FAF7F2;
+  font-size: clamp(0.72rem, 0.8vw, 0.82rem);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.24);
+  pointer-events: none;
+}
+
+.ba-stage-badge-room {
+  color: #FBD3C8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+.ba-stage-badge-sep {
+  opacity: 0.4;
+}
+
+.ba-stage-badge-title {
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   Interactive Center Handle
+   ========================================================================== */
+
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  cursor: ew-resize;
+  touch-action: none;
+  outline: none;
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ba-handle:focus-visible .ba-handle-disc {
+  box-shadow: 0 0 0 3px #DE3B74, 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.ba-handle-disc {
+  width: clamp(42px, 3.8vw, 52px);
+  height: clamp(42px, 3.8vw, 52px);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.ba-handle:hover .ba-handle-disc,
+.ba-stage-container.is-dragging .ba-handle-disc {
+  transform: scale(1.1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
+.ba-handle-chevrons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Thumbnail Gallery Strip
+   ========================================================================== */
+
+.ba-gallery-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: clamp(18px, 2.6vh, 32px) auto 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+/* Circular Pink Arrow Controls */
+.ba-nav-btn {
+  width: clamp(34px, 3.2vw, 42px);
+  height: clamp(34px, 3.2vw, 42px);
+  border-radius: 50%;
+  background: #DE3B74;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(222, 59, 116, 0.28);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+}
+
+.ba-nav-btn:hover {
+  background: #C92F64;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(222, 59, 116, 0.4);
+}
+
+.ba-nav-btn:active {
+  transform: scale(0.94);
+}
+
+.ba-nav-btn:focus-visible {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #DE3B74;
+}
+
+.ba-nav-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.4;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Horizontal Thumbnails Track */
+.ba-thumbnails-track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(10px, 1.2vw, 16px);
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 6px 2px;
+  scroll-behavior: smooth;
+}
+
+.ba-thumbnails-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thumbnail Card Item */
+.ba-thumb-item {
+  flex: 1 1 0;
+  min-width: 0;
+  background: #ffffff;
+  border-radius: clamp(10px, 1.1vw, 14px);
+  border: 2px solid transparent;
+  padding: 6px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  opacity: 0.75;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 2px 10px rgba(36, 37, 34, 0.04);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.ba-thumb-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: clamp(7px, 0.8vw, 10px);
+  overflow: hidden;
+  background-color: var(--sand);
+}
+
+.ba-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ba-thumb-index {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  background: rgba(20, 21, 19, 0.65);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-family: var(--font-special);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.ba-thumb-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px 4px 4px;
+}
+
+.ba-thumb-room {
+  font-family: var(--font-content);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #777B61;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+.ba-thumb-title {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  line-height: 1.25;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ba-thumb-item:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(36, 37, 34, 0.1);
+}
+
+.ba-thumb-item:hover .ba-thumb-img {
+  transform: scale(1.06);
+}
+
+.ba-thumb-item.is-active {
+  opacity: 1;
+  border-color: #DE3B74;
+  box-shadow: 0 6px 20px rgba(222, 59, 116, 0.22);
+  transform: translateY(-3px);
+}
+
+.ba-thumb-item.is-active .ba-thumb-room {
+  color: #DE3B74;
+}
+
+.ba-thumb-item:focus-visible {
+  border-color: #DE3B74;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #DE3B74;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Laptops & Tablets below 1100px */
+@media (max-width: 1100px) {
+  .ba-thumb-title {
+    display: none;
+  }
+}
+
+/* Tablet Layout (max-width: 900px) */
+@media (max-width: 900px) {
+  .ba-section {
+    padding: clamp(36px, 5vh, 60px) var(--pad);
+  }
+
+  .ba-header {
+    margin-bottom: 24px;
+  }
+
+  .ba-header-meta {
+    align-items: flex-start;
+  }
+
+  .ba-stage-container {
+    aspect-ratio: 16 / 10;
+    max-height: min(540px, 60vh);
+    min-height: 320px;
+  }
+
+  .ba-gallery-wrapper {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .ba-thumbnails-track {
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+  }
+
+  .ba-thumb-item {
+    flex: 0 0 clamp(120px, 24vw, 160px);
+    scroll-snap-align: center;
+  }
+
+  .ba-thumb-title {
+    display: block;
+    font-size: 0.78rem;
+  }
+}
+
+/* Mobile Layout (max-width: 600px) */
+@media (max-width: 600px) {
+  .ba-section {
+    padding: 32px 14px;
+  }
+
+  .ba-header {
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .ba-title {
+    font-size: 1.85rem;
+  }
+
+  .ba-intro {
+    font-size: 0.88rem;
+  }
+
+  .ba-active-indicator {
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+    border-radius: 12px;
+  }
+
+  .ba-meta-title {
+    display: none;
+  }
+
+  .ba-meta-divider {
+    display: none;
+  }
+
+  .ba-drag-hint {
+    font-size: 0.72rem;
+  }
+
+  .ba-stage-container {
+    aspect-ratio: 16 / 11;
+    max-height: 360px;
+    min-height: 220px;
+    border-radius: 16px;
+  }
+
+  .ba-pill {
+    top: 10px;
+    font-size: 0.6rem;
+    padding: 4px 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .ba-pill-before {
+    left: 10px;
+  }
+
+  .ba-pill-after {
+    right: 10px;
+  }
+
+  .ba-stage-badge {
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 0.68rem;
+  }
+
+  .ba-stage-badge-title {
+    display: none;
+  }
+
+  .ba-stage-badge-sep {
+    display: none;
+  }
+
+  .ba-handle-disc {
+    width: 38px;
+    height: 38px;
+  }
+
+  .ba-gallery-wrapper {
+    margin-top: 14px;
+    gap: 8px;
+  }
+
+  .ba-nav-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ba-nav-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ba-thumb-item {
+    flex: 0 0 110px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .ba-thumb-title {
+    display: none;
+  }
+
+  .ba-thumb-room {
+    font-size: 0.62rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .ba-handle,
+  .ba-handle-disc,
+  .ba-nav-btn,
+  .ba-thumb-item,
+  .ba-thumb-img,
+  .ba-layer-before,
+  .ba-drag-hint svg {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,79 @@
+/* Responsive Breakpoints matching original website */
+
+@media (max-width: 860px) {
+  .studio {
+    grid-template-columns: 1fr;
+  }
+
+
+  .exw {
+    grid-template-columns: 1fr;
+  }
+
+  .tl {
+    grid-template-columns: 1fr;
+    padding: 0 0 0 28px;
+    gap: 2.4rem;
+  }
+
+  .tl::before, .tl .bar {
+    width: 1px;
+    height: 100%;
+    top: 0;
+  }
+
+  .tl .bar {
+    height: calc(var(--p, 0) * 100%);
+  }
+
+  .ts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  footer .g {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .dg .cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rv, .tx {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .ln span {
+    transform: none;
+  }
+
+  .hero .plate {
+    clip-path: none;
+  }
+
+  .fadein {
+    opacity: 1;
+  }
+}

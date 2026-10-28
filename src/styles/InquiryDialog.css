@@ -1,0 +1,146 @@
+/* ==========================================================================
+   MITIJEN INTERIORS — LUXURY INQUIRY MODAL DIALOG
+   Compact, fits in 1 single screen without scrolling on desktop & tablet
+   ========================================================================== */
+
+#inquiry-dialog-modal.inquiry-modal {
+  border: none !important;
+  padding: 0;
+  max-width: min(840px, 94vw);
+  width: 100%;
+  max-height: 94vh;
+  background: transparent !important;
+  color: var(--ink);
+  overflow: visible;
+  border-radius: 8px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45);
+  margin: auto;
+  position: fixed;
+  inset: 0;
+}
+
+#inquiry-dialog-modal.inquiry-modal::backdrop {
+  background: rgba(20, 21, 19, 0.76);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: modalBackdropFadeIn 0.3s ease;
+}
+
+#inquiry-dialog-modal.inquiry-modal[open] {
+  animation: modalCardPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inquiry-modal-wrapper {
+  position: relative;
+  background-color: #FAF8F5;
+  border: 1px solid rgba(36, 37, 34, 0.14);
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 94vh;
+  padding: 16px 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar for modal (only active if viewport height is extremely small) */
+.inquiry-modal-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+.inquiry-modal-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.inquiry-modal-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(36, 37, 34, 0.2);
+  border-radius: 4px;
+}
+
+.inquiry-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(36, 37, 34, 0.18);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-architectural);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.inquiry-modal-close-btn:hover {
+  background: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.inquiry-modal-close-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.inquiry-modal-close-btn:hover svg {
+  transform: rotate(90deg);
+}
+
+.modal-enquiry-form {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 10px 6px 4px 6px !important;
+}
+
+@keyframes modalCardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modalBackdropFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  #inquiry-dialog-modal.inquiry-modal {
+    max-width: 96vw;
+    max-height: 96vh;
+  }
+
+  .inquiry-modal-wrapper {
+    padding-top: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 16px;
+  }
+
+  .inquiry-modal-close-btn {
+    top: 12px;
+    right: 14px;
+    padding: 5px 10px;
+  }
+
+  .inquiry-modal-close-btn .close-text {
+    display: none;
+  }
+
+  .modal-enquiry-form {
+    padding: 0 !important;
+  }
+}
