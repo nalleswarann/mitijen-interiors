@@ -320,9 +320,10 @@
    ========================================================================== */
 .about-phil-section {
   padding: clamp(80px, 11vw, 150px) var(--pad);
-  background-color: #EDE7DC;
-  border-top: 1px solid rgba(36, 37, 34, 0.08);
-  border-bottom: 1px solid rgba(36, 37, 34, 0.08);
+  background-color: var(--ink, #151614);
+  color: var(--ivory, #FAF8F5);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .about-phil-header {
@@ -336,11 +337,11 @@
 
 .about-phil-heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
-  font-weight: 350;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  color: var(--ink);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  color: #FAF8F5;
   margin: 16px 0 20px 0;
   text-transform: uppercase;
 }
@@ -350,7 +351,7 @@
   font-size: clamp(1rem, 1.25vw, 1.15rem);
   font-weight: 350;
   line-height: 1.7;
-  color: rgba(36, 37, 34, 0.76);
+  color: rgba(250, 248, 245, 0.72);
   margin: 0;
 }
 
@@ -374,19 +375,12 @@
 }
 
 .about-phil-card-reverse .about-phil-plate {
-  order: 2;
-}
-
-.about-phil-card-reverse .about-phil-body {
-  order: 1;
-}
-
-.about-phil-plate {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  background-color: #ded6c9;
-  box-shadow: 0 20px 48px rgba(36, 37, 34, 0.06);
+  border-radius: 6px;
+  background-color: #0d0f0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
 
 .about-phil-plate img {
@@ -424,28 +418,28 @@
   font-family: var(--font-architectural);
   font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--brown);
+  color: var(--sand, #D8C8B4);
   margin-bottom: 14px;
 }
 
 .about-phil-title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.2vw, 2.9rem);
-  font-weight: 380;
+  font-weight: 400;
   line-height: 1.16;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: #FAF8F5;
   margin: 0 0 20px 0;
 }
 
 .about-phil-desc {
   font-family: var(--font-content);
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
   font-weight: 350;
-  line-height: 1.82;
-  color: rgba(36, 37, 34, 0.82);
+  line-height: 1.76;
+  color: rgba(250, 248, 245, 0.75);
   margin: 0;
   max-width: 520px;
 }
@@ -999,6 +993,41 @@
   .about-btn-secondary {
     justify-content: center;
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-title {
+    font-size: clamp(2.0rem, 8.5vw, 2.7rem);
+  }
+
+  .about-hero-badge {
+    max-width: 100%;
+  }
+
+  .about-hero-tag {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .about-statement-title {
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem);
+  }
+
+  .about-cta-heading {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+  }
+
+  .about-cta-card {
+    padding: 36px 18px;
+  }
+
+  .credo-number {
+    font-size: 1.4rem;
+  }
+
+  .credo-label {
+    font-size: 0.88rem;
   }
 }
 

@@ -1,18 +1,71 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SEO } from '../components/common/SEO';
 import { SectionLabel } from '../components/common/SectionLabel';
 import { useInquiry } from '../context/useInquiry';
+import { MonographBanner } from '../components/common/MonographBanner';
 import '../styles/AboutPage.css';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+
+interface AccordionPanel {
+  id: string;
+  num: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  slug: string;
+}
+
+const ACCORDION_PANELS: AccordionPanel[] = [
+  {
+    id: 'interior-architecture',
+    num: '01',
+    title: 'Interior Architecture',
+    subtitle: 'Structural Planning & Spatial Order',
+    description: 'Transforming architectural volumes through daylight studies, monolithic stone accents, bespoke elevations, and enduring proportion.',
+    image: '/assets/mitijen/home1.jpeg',
+    slug: '/services/residential-interior-design'
+  },
+  {
+    id: 'residential-interiors',
+    num: '02',
+    title: 'Residential Interiors',
+    subtitle: 'Bespoke Living Sanctuaries',
+    description: 'Personalized homes shaped around everyday living, natural materials, considered furniture, and timeless aesthetics.',
+    image: '/assets/mitijen/hom2.jpeg',
+    slug: '/services/residential-interior-design'
+  },
+  {
+    id: 'kitchen-living',
+    num: '03',
+    title: 'Kitchen & Living Spaces',
+    subtitle: 'Culinary Sanctuaries & Gathering',
+    description: 'Seamless open-plan dining and culinary spaces featuring monolithic stone islands, fluted timber joinery, and concealed utilities.',
+    image: '/assets/mitijen/kitchen.jpeg',
+    slug: '/services/commercial-interior-design'
+  },
+  {
+    id: 'styling-materials',
+    num: '04',
+    title: 'Styling & Material Selection',
+    subtitle: 'Tactile Furnishings & Curation',
+    description: 'Curated artisanal furniture, tactile linen textiles, patinated bronze, and atmospheric illumination tailored to elevate everyday living.',
+    image: '/assets/mitijen/bedroom.jpeg',
+    slug: '/projects'
+  }
+];
+
 export const AboutPage: React.FC = () => {
   const { openInquiry } = useInquiry();
+  const [activeAccordionId, setActiveAccordionId] = useState<string>('residential-interiors');
+
   const pageRef = useRef<HTMLDivElement>(null);
 
   // GSAP Animations
@@ -22,50 +75,7 @@ export const AboutPage: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Text Reveal Animation
-      const heroHeadlineLines = gsap.utils.toArray('.about-hero-title .ln span');
-      gsap.fromTo(
-        heroHeadlineLines,
-        { yPercent: 110, opacity: 0 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 1.3,
-          stagger: 0.18,
-          ease: 'power3.out',
-          delay: 0.2
-        }
-      );
 
-      gsap.fromTo(
-        '.about-hero-sub',
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 0.9, duration: 1.1, ease: 'power2.out', delay: 0.6 }
-      );
-
-      gsap.fromTo(
-        '.about-hero-badge',
-        { y: -16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power2.out', delay: 0.1 }
-      );
-
-      gsap.fromTo(
-        '.about-hero-scroll-indicator',
-        { opacity: 0 },
-        { opacity: 1, duration: 1, delay: 0.9 }
-      );
-
-      // Hero Image subtle parallax scroll
-      gsap.to('.about-hero-bg-img', {
-        yPercent: 18,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.about-hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
 
       // 2. About Editorial Section Reveal
       gsap.fromTo(
@@ -202,43 +212,33 @@ export const AboutPage: React.FC = () => {
       />
 
       {/* =====================================================================
-          1. HERO SECTION — OUR STORY
+          1. HERO BANNER — ARCHITECTURAL MONOGRAPH PHILOSOPHY (REFERENCE DESIGN)
           ===================================================================== */}
-      <section className="about-hero" id="story" aria-label="Our Story">
-        <div className="about-hero-bg">
-          <img
-            src="/assets/mitijen/Banner1.jpg"
-            alt="Considered sunlit living space by Mitijen Interiors"
-            className="about-hero-bg-img"
-          />
-          <div className="about-hero-overlay" />
-        </div>
-
-        <div className="about-hero-content">
-          <div className="about-hero-badge">
-            <span className="about-hero-dot" />
-            <span className="about-hero-tag">ABOUT MITIJEN INTERIORS · STUDIO MONOGRAPH</span>
-          </div>
-
-          <h1 className="about-hero-title">
-            <span className="ln">
-              <span>WE DESIGN SPACES</span>
-            </span>
-            <span className="ln">
-              <span>THAT FEEL LIKE HOME.</span>
-            </span>
-          </h1>
-
-          <p className="about-hero-sub">
-            Thoughtfully crafted interiors that bring together beauty, comfort, and the way you live.
-          </p>
-
-          <div className="about-hero-scroll-indicator" aria-hidden="true">
-            <span className="scroll-label">Scroll to Explore</span>
-            <span className="scroll-line" />
-          </div>
-        </div>
-      </section>
+      <MonographBanner
+        id="philosophy"
+        sidebarKicker={['DESIGN', 'WITH', 'PURPOSE']}
+        sidebarNote="Our approach is centered on three key principles of spatial harmony, enduring craft, and authentic living."
+        sidebarYear="2026 · ARCHIVE"
+        heroImage="/assets/mitijen/Banner1.jpg"
+        heroImageAlt="Considered sunlit living space by Mitjen Interiors"
+        headlineLine1="DESIGN"
+        headlineLine2="PHILOSOPHY"
+        topBadge="ABOUT MITJEN INTERIORS · STUDIO MONOGRAPH"
+        pillars={[
+          {
+            title: 'Balance',
+            subtitle: 'between architectural form and function',
+          },
+          {
+            title: 'Comfort',
+            subtitle: 'creating an effortless sense of ease and flow',
+          },
+          {
+            title: 'Character',
+            subtitle: 'expressing the identity and lifestyle of the client',
+          },
+        ]}
+      />
 
       {/* =====================================================================
           2. ABOUT MITIJEN INTERIORS (EDITORIAL TWO-COLUMN)
@@ -452,7 +452,141 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          5. SIGNATURE INTERIOR GALLERY
+          5. RECENT TRANSFORMATIONS (INTERACTIVE EXPANDING ACCORDION SHOWCASE)
+          ===================================================================== */}
+      <section className="renova-transformations" id="transformations" aria-label="Recent Interior Transformations">
+        <div className="renova-trans-container">
+          <div className="renova-trans-header">
+            <div>
+              <SectionLabel style={{ color: 'var(--olive)' }}>
+                Portfolio Archive · Transformations
+              </SectionLabel>
+              <h2 className="renova-trans-title">
+                RECENT TRANSFORMATIONS
+              </h2>
+            </div>
+            <p className="renova-trans-subtitle">
+              A curated selection of our recently completed residential, commercial, and executive interior commissions.
+            </p>
+          </div>
+
+          <div
+            className="renova-expand-accordion"
+            role="tablist"
+            aria-label="Spatial Transformations Showcase"
+          >
+            {ACCORDION_PANELS.map((panel, idx) => {
+              const isActive = activeAccordionId === panel.id;
+
+              return (
+                <div
+                  key={panel.id}
+                  id={'acc-panel-' + panel.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={'acc-content-' + panel.id}
+                  tabIndex={0}
+                  className={'renova-acc-card ' + (isActive ? 'is-active' : '')}
+                  onClick={() => setActiveAccordionId(panel.id)}
+                  onMouseEnter={() => setActiveAccordionId(panel.id)}
+                  onFocus={() => setActiveAccordionId(panel.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveAccordionId(panel.id);
+                    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                      e.preventDefault();
+                      const next = ACCORDION_PANELS[(idx + 1) % ACCORDION_PANELS.length];
+                      setActiveAccordionId(next.id);
+                      document.getElementById('acc-panel-' + next.id)?.focus();
+                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                      e.preventDefault();
+                      const prev = ACCORDION_PANELS[(idx - 1 + ACCORDION_PANELS.length) % ACCORDION_PANELS.length];
+                      setActiveAccordionId(prev.id);
+                      document.getElementById('acc-panel-' + prev.id)?.focus();
+                    }
+                  }}
+                >
+                  {/* Accent Top Line */}
+                  <div className="renova-acc-accent-line" />
+
+                  {/* Background Imagery */}
+                  <img
+                    src={panel.image}
+                    alt={panel.title}
+                    className="renova-acc-bg"
+                    loading="lazy"
+                  />
+
+                  {/* Gradient & Vignette Overlays */}
+                  <div className="renova-acc-tint" />
+                  <div className="renova-acc-vignette" />
+
+                  {/* Collapsed State: Monograph Label (Rotated on Desktop, Horizontal on Mobile) */}
+                  <div className="renova-acc-collapsed-bar" aria-hidden={isActive}>
+                    <span className="renova-acc-collapsed-num">{panel.num}</span>
+                    <span className="renova-acc-collapsed-title">{panel.title}</span>
+                    <span className="renova-acc-mobile-cue" aria-hidden="true">+</span>
+                  </div>
+
+                  {/* Expanded Active Content */}
+                  <div
+                    id={'acc-content-' + panel.id}
+                    className="renova-acc-content"
+                    aria-hidden={!isActive}
+                  >
+                    <div className="renova-acc-kicker-wrap">
+                      <span className="renova-acc-num">{panel.num}</span>
+                      <span className="renova-acc-kicker-dot" />
+                      <span className="renova-acc-kicker-tag">{panel.subtitle}</span>
+                    </div>
+
+                    <h3 className="renova-acc-heading">
+                      {panel.title}
+                    </h3>
+
+                    <p className="renova-acc-desc">
+                      {panel.description}
+                    </p>
+
+                    <div className="renova-acc-actions">
+                      <button
+                        type="button"
+                        className="renova-acc-enquire-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openInquiry(panel.title + ' — Practice Inquiry');
+                        }}
+                      >
+                        <span>Enquire</span>
+                      </button>
+
+                      <Link
+                        to={panel.slug}
+                        className="renova-acc-spec-link"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <span>Explore Discipline</span>
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="renova-trans-footer-cta">
+            <Link to="/projects" className="renova-btn-outline">
+              <span>View Complete Portfolio Archive (24)</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          6. SIGNATURE INTERIOR GALLERY
           ===================================================================== */}
       <section className="about-gallery-section" id="gallery">
         <div className="about-gallery-header">

@@ -98,7 +98,7 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
   const targetMouseRef = useRef({ x: 0, y: 0 });
   const currentMouseRef = useRef({ x: 0, y: 0 });
   const slowZoomRef = useRef(1.0);
-  const zoomDirectionRef = useRef(1); // 1 for zoom in, -1 for zoom out
+  const zoomDirectionRef = useRef(1);
   const reqIdRef = useRef<number | null>(null);
 
   // Initialize Three.js scene once on mount
@@ -137,7 +137,7 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
       depth: false,
       preserveDrawingBuffer: true
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(width, height);
     rendererRef.current = renderer;
 
@@ -177,13 +177,20 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
     const quad = new THREE.Mesh(geometry, material);
     scene.add(quad);
 
-    // Continuous render loop (slow cinematic camera drift + smooth mouse lerp)
+    // Performance Optimization: Pause RAF loop when scrolled out of viewport
+    let isVisible = true;
     let lastTime = performance.now();
+
     const renderLoop = (time: number) => {
+      if (!isVisible) {
+        reqIdRef.current = null;
+        return;
+      }
+
       const delta = Math.min((time - lastTime) / 1000, 0.1);
       lastTime = time;
 
-      // 1. Slow cinematic camera zoom drift (cycles slowly between 1.00 and 1.04 over ~28 seconds)
+      // 1. Slow cinematic camera zoom drift
       if (!isPausedRef.current) {
         slowZoomRef.current += zoomDirectionRef.current * (delta * 0.0018);
         if (slowZoomRef.current >= 1.04) {
@@ -213,7 +220,19 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
 
     reqIdRef.current = requestAnimationFrame(renderLoop);
 
-    // Resize handler with threshold and synchronous render to prevent disappearing frames
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !reqIdRef.current) {
+          lastTime = performance.now();
+          reqIdRef.current = requestAnimationFrame(renderLoop);
+        }
+      },
+      { threshold: 0.02 }
+    );
+    intersectionObserver.observe(container);
+
+    // Resize handler
     let lastW = width;
     let lastH = height;
     const handleResize = () => {
@@ -251,6 +270,7 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
 
     return () => {
       if (reqIdRef.current) cancelAnimationFrame(reqIdRef.current);
+      intersectionObserver.disconnect();
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
       if (resizeObserver) resizeObserver.disconnect();
@@ -290,7 +310,6 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
         },
         undefined,
         () => {
-          // Fallback if texture fails
           const canvas = document.createElement('canvas');
           canvas.width = 1920;
           canvas.height = 1080;
@@ -300,58 +319,61 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
             ctx.fillRect(0, 0, 1920, 1080);
           }
           const fallbackTex = new THREE.CanvasTexture(canvas);
-          textureCacheRef.current.set(url, fallbackTex);
           resolve(fallbackTex);
         }
       );
     });
   };
 
-  // Preload all 3 banner images on mount for instantaneous transitions
+  // Sync textures when currentImage or nextImage changes
   useEffect(() => {
-    ['/assets/mitijen/Banner1.jpg', '/assets/mitijen/Banner2.jpg', '/assets/mitijen/Banner3.jpg'].forEach((url) => {
-      loadTexture(url);
-    });
-  }, []);
+    if (!materialRef.current) return;
 
-  // Update textures when currentImage or nextImage changes
-  useEffect(() => {
-    let isCurrent = true;
+    let isMounted = true;
 
-    Promise.all([loadTexture(currentImage), loadTexture(nextImage)]).then(([tex1, tex2]) => {
-      if (!isCurrent || !materialRef.current) return;
+    Promise.all([loadTexture(currentImage), loadTexture(nextImage)]).then(
+      ([tex1, tex2]) => {
+        if (!isMounted || !materialRef.current) return;
+        materialRef.current.uniforms.uTexture1.value = tex1;
+        materialRef.current.uniforms.uTexture2.value = tex2;
 
-      materialRef.current.uniforms.uTexture1.value = tex1;
-      materialRef.current.uniforms.uTexture2.value = tex2;
+        if (tex1.image && tex1.image.width && tex1.image.height) {
+          materialRef.current.uniforms.uTextureResolution.value.set(
+            tex1.image.width,
+            tex1.image.height
+          );
+        }
 
-      // Extract image resolution for proper aspect ratio cover calculation
-      const naturalWidth = tex1.image?.naturalWidth || tex1.image?.width || 1920;
-      const naturalHeight = tex1.image?.naturalHeight || tex1.image?.height || 1080;
-      materialRef.current.uniforms.uTextureResolution.value.set(naturalWidth, naturalHeight);
-    });
+        if (rendererRef.current && sceneRef.current) {
+          const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+          rendererRef.current.render(sceneRef.current, camera);
+        }
+      }
+    );
 
     return () => {
-      isCurrent = false;
+      isMounted = false;
     };
   }, [currentImage, nextImage]);
 
-  // Update transition progress (driven seamlessly by GSAP)
+  // Sync transition progress uniform
   useEffect(() => {
-    if (materialRef.current) {
-      materialRef.current.uniforms.uProgress.value = transitionProgress;
+    if (!materialRef.current) return;
+    materialRef.current.uniforms.uProgress.value = transitionProgress;
+
+    if (rendererRef.current && sceneRef.current) {
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      rendererRef.current.render(sceneRef.current, camera);
     }
   }, [transitionProgress]);
 
-  // CSS Fallback if WebGL is unsupported
   if (!webglSupported) {
     return (
-      <div className={`arch-canvas-fallback ${className}`} aria-hidden="true">
+      <div className={`arch-canvas-fallback ${className}`}>
         <img
           src={currentImage}
-          alt=""
+          alt="Mitjen Interiors Architecture"
           className="arch-fallback-img"
-          loading="eager"
-          decoding="async"
         />
       </div>
     );
@@ -368,7 +390,7 @@ export const ArchitecturalHeroCanvas: React.FC<ArchitecturalHeroCanvasProps> = (
         alt=""
         className="arch-canvas-underlay"
         loading="eager"
-        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );

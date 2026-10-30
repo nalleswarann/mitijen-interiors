@@ -165,7 +165,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             <Breadcrumbs
               items={[
                 { label: 'Home', path: '/' },
-                { label: 'Services', path: '/#services' },
+                { label: 'Services', path: '/services' },
                 { label: `${data.category} Interior Architecture` }
               ]}
             />
@@ -375,25 +375,28 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               </p>
 
               <div className="clinic-scope-list">
-                {data.servicesSection.cards.slice(0, 5).map((card) => (
-                  <div key={card.id} className="clinic-scope-item">
-                    <h3 className="clinic-scope-heading">{card.title}</h3>
-                    <p className="clinic-scope-text">{card.description}</p>
-                    <ul className="clinic-feature-bullets">
-                      {card.features.map((feat, fIdx) => (
-                        <li key={fIdx}>
-                          <span className="clinic-bullet-check">✓</span>
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                {data.servicesSection.cards.map((card) => {
+                  const anchorId = card.id.replace(/^(res|com|corp)-/, '');
+                  return (
+                    <div key={card.id} id={anchorId} className="clinic-scope-item">
+                      <h3 className="clinic-scope-heading">{card.title}</h3>
+                      <p className="clinic-scope-text">{card.description}</p>
+                      <ul className="clinic-feature-bullets">
+                        {card.features.map((feat, fIdx) => (
+                          <li key={fIdx}>
+                            <span className="clinic-bullet-check">✓</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
             {/* Section 5: Step-by-Step 4-Stage Process */}
-            <section className="clinic-content-section">
+            <section id="turnkey" className="clinic-content-section">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> Our Step-by-Step 4-Stage Process
               </h2>
@@ -472,42 +475,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
         </div>
       </div>
 
-      {/* ====================================================================
-          4. GRAND FINAL STUDIO CALL TO ACTION
-          ==================================================================== */}
-      <section className="arch-grand-cta" aria-label="Begin Your Project">
-        <div className="arch-grand-cta-inner">
-          <span className="arch-serv-pill">
-            <span className="arch-serv-pill-dot" />
-            <span>START YOUR PROJECT</span>
-          </span>
-
-          <h2 className="arch-grand-cta-title">
-            Ready to Shape a Space That Feels Like Home?
-          </h2>
-
-          <p className="arch-grand-cta-desc">
-            Whether embarking on a bare-shell villa transformation, luxury apartment renovation, or commercial venue, our studio provides complete architectural leadership from conception to white-glove handover.
-          </p>
-
-          <div className="arch-grand-cta-buttons">
-            <button
-              type="button"
-              onClick={() => openInquiry(`${data.category} — Grand CTA`)}
-              className="arch-serv-btn-primary"
-            >
-              <span>Schedule Design Consultation</span>
-              <svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor">
-                <path d="M0 5h13M9 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            <a href="tel:+919444328555" className="arch-serv-btn-ghost">
-              <span>Call +91 94443 28555</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      
 
     </article>
   );

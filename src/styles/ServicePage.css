@@ -17,15 +17,15 @@
 
 .arch-serv-hero {
   position: relative;
-  min-height: clamp(340px, 42vh, 460px);
+  min-height: clamp(540px, 64vh, 720px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: calc(96px + env(safe-area-inset-top, 0px));
-  padding-bottom: clamp(40px, 5vh, 56px);
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: calc(128px + env(safe-area-inset-top, 0px));
+  padding-bottom: clamp(64px, 8vh, 96px);
+  padding-left: clamp(24px, 5vw, 64px);
+  padding-right: clamp(24px, 5vw, 64px);
   color: #f5f2ec;
   background-color: #0e1216;
   overflow: hidden;
@@ -44,53 +44,55 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  filter: brightness(0.68) contrast(1.05);
-  transform: scale(1.03);
+  object-position: center 38%;
+  filter: brightness(0.66) contrast(1.06);
+  transform: scale(1.02);
 }
 
 .arch-serv-hero-scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(14, 18, 22, 0.72) 0%, rgba(14, 18, 22, 0.45) 45%, rgba(14, 18, 22, 0.92) 100%),
-    radial-gradient(ellipse 90% 80% at 50% 50%, transparent 40%, rgba(14, 18, 22, 0.6) 100%);
+    linear-gradient(180deg, rgba(14, 18, 22, 0.78) 0%, rgba(14, 18, 22, 0.38) 42%, rgba(14, 18, 22, 0.65) 75%, rgba(14, 18, 22, 0.96) 100%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, transparent 35%, rgba(14, 18, 22, 0.6) 100%);
+  pointer-events: none;
 }
 
 .arch-serv-hero-inner {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
+  max-width: 1120px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 20px;
+  gap: clamp(22px, 3.4vh, 36px);
 }
 
 .arch-serv-hero-top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: clamp(12px, 1.8vh, 18px);
 }
 
 .arch-serv-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   background: rgba(216, 200, 180, 0.12);
   border: 1px solid rgba(216, 200, 180, 0.3);
   border-radius: 9999px;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
+  font-size: clamp(0.68rem, 0.85vw, 0.76rem);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--sand, #d8c8b4);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .arch-serv-pill-dot {
@@ -111,13 +113,14 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 8px 12px;
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  line-height: 1.5;
 }
 
 .arch-serv-hero-inner .breadcrumbs-item {
@@ -147,15 +150,16 @@
 }
 
 .arch-serv-hero-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
-  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.1rem, 4.2vw, 3.8rem);
   font-weight: 500;
   color: #f5f2ec;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
   margin: 0;
-  max-width: 960px;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+  max-width: 1040px;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.55);
+  text-wrap: balance;
 }
 
 .arch-serv-hero-sub {
@@ -394,7 +398,7 @@
 }
 
 .arch-block-headline {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: clamp(1.9rem, 3.2vw, 2.6rem);
   font-weight: 500;
   color: #14171a;
@@ -442,7 +446,7 @@
 }
 
 .arch-manifesto-quote {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.15rem;
   font-style: italic;
   line-height: 1.6;
@@ -508,7 +512,7 @@
 }
 
 .arch-challenge-situation {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.15rem;
   font-weight: 600;
   color: #1a1e24;
@@ -622,7 +626,7 @@
 }
 
 .arch-scope-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.35rem;
   font-weight: 500;
   color: #14171a;
@@ -717,7 +721,7 @@
 }
 
 .arch-timeline-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.28rem;
   font-weight: 500;
   color: #14171a;
@@ -801,7 +805,7 @@
 }
 
 .arch-mat-name {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.15rem;
   color: #14171a;
   margin: 0 0 8px 0;
@@ -852,7 +856,7 @@
 }
 
 .arch-faq-q {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.08rem;
   font-weight: 500;
   color: #14171a;
@@ -920,7 +924,7 @@
 }
 
 .arch-inquiry-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.32rem;
   font-weight: 500;
   color: #f5f2ec;
@@ -1083,7 +1087,7 @@
 }
 
 .arch-grand-cta-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: clamp(2.1rem, 4.5vw, 3.2rem);
   font-weight: 500;
   color: #f5f2ec;
@@ -1111,6 +1115,19 @@
    ========================================================================== */
 
 @media (max-width: 1024px) {
+  .arch-serv-hero {
+    min-height: clamp(480px, 58vh, 620px);
+    padding-top: calc(115px + env(safe-area-inset-top, 0px));
+    padding-bottom: clamp(54px, 7vh, 80px);
+    padding-left: clamp(20px, 4vw, 40px);
+    padding-right: clamp(20px, 4vw, 40px);
+  }
+
+  .arch-serv-hero-title {
+    font-size: clamp(2.0rem, 4.4vw, 3.2rem);
+    line-height: 1.2;
+  }
+
   .arch-page-grid {
     grid-template-columns: 1fr;
   }
@@ -1123,8 +1140,24 @@
 
 @media (max-width: 768px) {
   .arch-serv-hero {
-    min-height: 440px;
-    padding-top: calc(96px + env(safe-area-inset-top, 0px));
+    min-height: clamp(440px, 56svh, 540px);
+    padding-top: calc(100px + env(safe-area-inset-top, 0px));
+    padding-bottom: clamp(46px, 6vh, 68px);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .arch-serv-hero-inner {
+    gap: 20px;
+  }
+
+  .arch-serv-hero-top {
+    gap: 12px;
+  }
+
+  .arch-serv-hero-title {
+    font-size: clamp(1.75rem, 5.8vw, 2.35rem);
+    line-height: 1.22;
   }
 
   .arch-serv-meta-ribbon {
@@ -1161,6 +1194,33 @@
 
   .arch-materials-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .arch-serv-hero {
+    min-height: clamp(400px, 52svh, 480px);
+    padding-top: calc(88px + env(safe-area-inset-top, 0px));
+    padding-bottom: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .arch-serv-pill {
+    padding: 5px 12px;
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+  }
+
+  .arch-serv-hero-inner .breadcrumbs-list {
+    font-size: 0.68rem;
+    gap: 4px 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .arch-serv-hero-title {
+    font-size: clamp(1.55rem, 5.4vw, 1.95rem);
+    line-height: 1.24;
   }
 }
 
@@ -1285,7 +1345,7 @@
 }
 
 .clinic-inquiry-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.35rem;
   font-weight: 600;
   color: #f7f5f0;
@@ -1385,7 +1445,7 @@
 }
 
 .clinic-section-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: clamp(1.65rem, 3.2vw, 2.3rem);
   font-weight: 600;
   color: #181c20;
@@ -1444,7 +1504,7 @@
 }
 
 .clinic-callout-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.22rem;
   font-weight: 600;
   color: #1a1e24;
@@ -1520,7 +1580,7 @@
 }
 
 .clinic-guidance-heading {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.12rem;
   font-weight: 600;
   color: #1e2329;
@@ -1581,7 +1641,7 @@
 }
 
 .clinic-scope-heading {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.25rem;
   font-weight: 600;
   color: #1a1e24;
@@ -1651,7 +1711,7 @@
 }
 
 .clinic-process-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.15rem;
   font-weight: 600;
   color: #1a1e24;
@@ -1704,7 +1764,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.08rem;
   font-weight: 600;
   color: #1a1e24;
@@ -1742,7 +1802,7 @@
 }
 
 .clinic-bottom-title {
-  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: clamp(1.4rem, 2.8vw, 1.9rem);
   font-weight: 600;
   color: #1a1e24;

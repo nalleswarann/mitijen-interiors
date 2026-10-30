@@ -1,0 +1,907 @@
+/* ==========================================================================
+   MITJEN INTERIORS — 360° IMMERSIVE ARCHITECTURE SHOWCASE
+   Minimalist Editorial Design · Cormorant Garamond Serif · Smooth Dissolve Animations
+   ========================================================================== */
+
+.arch-showcase-section {
+  background-color: var(--ivory, #FAF8F5);
+  color: var(--ink, #151614);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 10vh, 120px) clamp(24px, 5vw, 64px);
+  border-top: 1px solid rgba(21, 22, 20, 0.10);
+  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+.arch-showcase-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vh, 40px);
+}
+
+/* --------------------------------------------------------------------------
+   1. Section Header: Editorial & Minimalist
+   -------------------------------------------------------------------------- */
+.arch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 56px);
+  flex-wrap: wrap;
+}
+
+.arch-header-left {
+  max-width: 680px;
+}
+
+.arch-kicker {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.70rem, 0.85vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--olive, #777B61);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.arch-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', 'Average', Georgia, serif);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink, #151614);
+  margin: 0;
+}
+
+.arch-header-right {
+  max-width: 440px;
+  margin-bottom: 6px;
+}
+
+.arch-header-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(21, 22, 20, 0.72);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Unified Architectural Toolbar (Console Dock)
+   -------------------------------------------------------------------------- */
+.arch-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 18px;
+  background: rgba(247, 245, 240, 0.92);
+  border: 1px solid rgba(21, 22, 20, 0.12);
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  color: var(--ink, #151614);
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Scene Selector Tabs */
+.arch-scene-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.arch-scene-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.arch-scene-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: rgba(21, 22, 20, 0.65);
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.80rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-scene-btn:hover:not(.is-active) {
+  color: #FAF8F5;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.arch-scene-btn.is-active {
+  background: var(--ink, #151614);
+  color: #FAF8F5;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.arch-scene-num {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+.arch-scene-btn.is-active .arch-scene-num {
+  opacity: 0.9;
+  color: #121413;
+}
+
+/* Toolbar Right Group: Atmosphere & Controls */
+.arch-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Lighting Mode Pills */
+.arch-lighting-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.arch-light-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: rgba(250, 248, 245, 0.6);
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.arch-light-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.arch-light-btn:hover:not(.is-active) {
+  color: #FAF8F5;
+}
+
+.arch-light-btn.is-active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #FAF8F5;
+}
+
+.arch-light-btn.is-active svg {
+  transform: scale(1.1);
+  color: var(--sand, #D8C8B4);
+}
+
+/* Secondary Action Buttons (Orbit, Center) */
+.arch-tool-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arch-orbit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(250, 248, 245, 0.8);
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.arch-orbit-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FAF8F5;
+}
+
+.arch-orbit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arch-orbit-btn.is-active .arch-orbit-dot {
+  background: var(--sand, #D8C8B4);
+  box-shadow: 0 0 8px var(--sand, #D8C8B4);
+}
+
+.arch-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(250, 248, 245, 0.7);
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.arch-reset-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FAF8F5;
+}
+
+/* --------------------------------------------------------------------------
+   3. Main 360 Stage Viewport
+   -------------------------------------------------------------------------- */
+.arch-stage-wrap {
+  position: relative;
+  width: 100%;
+  height: min(72vh, 660px);
+  min-height: 480px;
+  background-color: #0d0f0e;
+  border: 1px solid rgba(21, 22, 20, 0.14);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.arch-stage-wrap.is-dragging {
+  cursor: grabbing;
+}
+
+.arch-stage-wrap.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none;
+  border-radius: 0;
+  border: none;
+  z-index: 99999;
+}
+
+/* Three.js 360 Canvas */
+.arch-canvas-360 {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.arch-canvas-360.is-dissolving {
+  opacity: 0.35;
+  filter: blur(10px);
+}
+
+/* Atmospheric Lighting Mood Layers */
+.arch-light-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.85s ease, background 0.85s ease;
+  z-index: 2;
+}
+
+.arch-light-layer.mode-daylight {
+  background: radial-gradient(circle at 60% 25%, rgba(255, 255, 255, 0.10) 0%, rgba(250, 246, 238, 0.02) 60%, transparent 85%);
+  mix-blend-mode: soft-light;
+}
+
+.arch-light-layer.mode-golden {
+  background: radial-gradient(circle at 70% 30%, rgba(255, 175, 80, 0.28) 0%, rgba(220, 115, 30, 0.12) 50%, rgba(40, 18, 8, 0.22) 100%);
+  mix-blend-mode: screen;
+  filter: saturate(1.15);
+}
+
+.arch-light-layer.mode-dusk {
+  background: radial-gradient(circle at 50% 15%, rgba(255, 215, 145, 0.24) 0%, rgba(18, 20, 26, 0.55) 85%);
+  mix-blend-mode: overlay;
+  box-shadow: inset 0 60px 80px -20px rgba(255, 200, 130, 0.25);
+}
+
+/* Restrained Photographic Vignette */
+.arch-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 45%, rgba(10, 12, 11, 0.45) 100%);
+  z-index: 3;
+}
+
+/* Calibrating Texture Loader */
+.arch-stage-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(14, 16, 15, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 20;
+  color: var(--sand, #D8C8B4);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.arch-loader-ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: var(--sand, #D8C8B4);
+  border-radius: 50%;
+  animation: archSpin 0.8s linear infinite;
+}
+
+@keyframes archSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Overlaid Viewport Elements (Clean & Minimalist)
+   -------------------------------------------------------------------------- */
+/* Top-Left Scene Identity Badge */
+.arch-location-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(18, 20, 18, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #FAF8F5;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.arch-location-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
+  box-shadow: 0 0 6px var(--sand, #D8C8B4);
+}
+
+/* Bottom-Left Interaction Hint */
+.arch-drag-cue {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(18, 20, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.72rem;
+  color: rgba(250, 248, 245, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.arch-drag-cue.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Bottom-Right Zoom & Fullscreen Controls */
+.arch-quick-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arch-control-circle {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(18, 20, 18, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  color: #FAF8F5;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.arch-control-circle:hover {
+  background: #FAF8F5;
+  color: #121413;
+  border-color: #FAF8F5;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Creative 3D Hotspot Pins & Material Specification Card
+   -------------------------------------------------------------------------- */
+.arch-hotspots-container {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.arch-hotspot-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  outline: none;
+  pointer-events: auto;
+  z-index: 7;
+}
+
+.arch-marker-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(216, 200, 180, 0.7);
+  animation: archMarkerPulse 2.4s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes archMarkerPulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.arch-marker-inner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(18, 20, 18, 0.88);
+  border: 1px solid var(--sand, #D8C8B4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand, #D8C8B4);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.70rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-hotspot-marker:hover .arch-marker-inner,
+.arch-hotspot-marker.is-active .arch-marker-inner {
+  background: var(--sand, #D8C8B4);
+  color: #121413;
+  transform: scale(1.15);
+  box-shadow: 0 0 16px rgba(216, 200, 180, 0.8);
+}
+
+/* Floating Hover Tooltip */
+.arch-marker-tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(14, 16, 15, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 10;
+}
+
+.arch-hotspot-marker:hover .arch-marker-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.arch-tip-title {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #FAF8F5;
+}
+
+.arch-tip-mat {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.68rem;
+  color: var(--sand, #D8C8B4);
+}
+
+/* Floating Architectural Material Specification Card */
+.arch-spec-card {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  max-width: 390px;
+  width: calc(100% - 48px);
+  background: rgba(18, 20, 18, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 22px 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  z-index: 25;
+  pointer-events: auto;
+  animation: archCardSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes archCardSlide {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.arch-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.arch-card-kicker {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  margin-bottom: 4px;
+}
+
+.arch-card-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #FAF8F5;
+  margin: 0;
+}
+
+.arch-card-close {
+  background: none;
+  border: none;
+  color: rgba(250, 248, 245, 0.6);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.arch-card-close:hover {
+  color: #FAF8F5;
+}
+
+.arch-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arch-card-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.arch-card-label {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.55);
+}
+
+.arch-card-val {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--sand, #D8C8B4);
+}
+
+.arch-card-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(250, 248, 245, 0.85);
+  margin: 0;
+}
+
+.arch-card-specs {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: rgba(250, 248, 245, 0.75);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-left: 2px solid var(--sand, #D8C8B4);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Scene Summary Narrative (Below Stage)
+   -------------------------------------------------------------------------- */
+.arch-summary-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 64px);
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.arch-summary-left {
+  max-width: 420px;
+}
+
+.arch-summary-badge {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.arch-summary-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FAF8F5;
+  margin: 0;
+}
+
+.arch-summary-right {
+  flex: 1 1 480px;
+  max-width: 680px;
+}
+
+.arch-summary-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.90rem;
+  line-height: 1.65;
+  color: rgba(250, 248, 245, 0.72);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUTS (ALL DEVICES)
+   ========================================================================== */
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .arch-showcase-section {
+    padding: clamp(60px, 8vh, 90px) 24px;
+  }
+
+  .arch-stage-wrap {
+    height: 520px;
+    min-height: 440px;
+  }
+
+  .arch-toolbar {
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+
+  .arch-spec-card {
+    max-width: 360px;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  .arch-showcase-section {
+    padding: clamp(50px, 7vh, 80px) 18px;
+  }
+
+  .arch-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .arch-stage-wrap {
+    height: 420px;
+    min-height: 380px;
+    border-radius: 8px;
+  }
+
+  .arch-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .arch-scene-tabs {
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 2px;
+  }
+
+  .arch-scene-btn {
+    padding: 7px 14px;
+    font-size: 0.76rem;
+  }
+
+  .arch-toolbar-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .arch-light-btn {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  /* Hotspot spec card becomes a clean bottom drawer */
+  .arch-spec-card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 14px 14px 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 18px 20px 24px 20px;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .arch-drag-cue {
+    bottom: 14px;
+    left: 14px;
+    font-size: 0.68rem;
+    padding: 5px 10px;
+  }
+
+  .arch-quick-controls {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .arch-control-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Compact Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .arch-stage-wrap {
+    height: 380px;
+    min-height: 340px;
+  }
+
+  .arch-title {
+    font-size: clamp(2rem, 8.5vw, 2.5rem);
+  }
+
+  .arch-header-desc {
+    font-size: 0.88rem;
+  }
+
+  .arch-location-badge {
+    top: 12px;
+    left: 12px;
+    font-size: 0.68rem;
+    padding: 4px 10px;
+  }
+
+  .arch-toolbar-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .arch-lighting-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .arch-light-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .arch-tool-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .arch-orbit-btn,
+  .arch-reset-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+

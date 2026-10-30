@@ -1,42 +1,32 @@
 /* ==========================================================================
-   MITJEN INTERIORS — PREMIUM ARCHITECTURAL HERO BANNER
-   WebGL Shader Transitions + GSAP Orchestration + 365 Grotesk Typography
+   MITJEN INTERIORS — LUXURY ARCHITECTURAL HERO BANNER
+   Minimalist Editorial Design · Cormorant Garamond Serif · Full Responsiveness
    ========================================================================== */
-
-/* 365 Grotesk Font Face Definition */
-@font-face {
-  font-family: '365 Grotesk';
-  src: local('365 Grotesk'),
-       local('365Grotesk'),
-       local('365-Grotesk'),
-       url('/fonts/365Grotesk.woff2') format('woff2'),
-       url('/fonts/365Grotesk.otf') format('opentype'),
-       url('/fonts/365Grotesk.ttf') format('truetype');
-  font-weight: 300 900;
-  font-style: normal;
-  font-display: swap;
-}
 
 .arch-hero {
   position: relative;
   width: 100%;
   height: 100vh;
   height: 100svh;
-  min-height: 540px;
-  background-color: #0d1115;
-  color: var(--ivory, #f5f2ec);
+  min-height: 600px;
+  background-color: #0b0d0f;
+  color: #FAF8F5;
   overflow: hidden;
   padding: 0;
-  padding-top: calc(84px + env(safe-area-inset-top, 0px));
+  padding-top: calc(88px + env(safe-area-inset-top, 0px));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   box-sizing: border-box;
   touch-action: pan-y pinch-zoom;
-  font-family: '365 Grotesk', '365Grotesk', var(--font-grotesk-365, 'Space Grotesk', sans-serif);
+  font-family: var(--font-content, 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 1. WebGL Three.js Canvas Layer */
+/* --------------------------------------------------------------------------
+   1. WebGL Three.js Canvas Layer & Photography Scrim
+   -------------------------------------------------------------------------- */
 .arch-hero-canvas {
   position: absolute;
   inset: 0;
@@ -53,10 +43,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 40%;
   z-index: 0;
   pointer-events: none;
-  filter: brightness(0.92) contrast(1.03);
+  filter: brightness(0.85) contrast(1.05);
 }
 
 .arch-hero-canvas canvas {
@@ -68,7 +58,6 @@
   z-index: 1;
 }
 
-/* Fallback when WebGL is unavailable */
 .arch-canvas-fallback {
   position: absolute;
   inset: 0;
@@ -82,64 +71,51 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
-  filter: brightness(0.9) contrast(1.04);
+  object-position: center 40%;
+  filter: brightness(0.85) contrast(1.05);
 }
 
-/* 2. Restrained High-Contrast Architectural Scrim */
-/* Deepens the text quadrant for razor-sharp legibility without dimming the interior */
+/* Restrained Atmospheric Photographic Scrim */
 .arch-hero-scrim {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
   background:
-    /* Focused radial dark vignette behind the lower-left text quadrant */
-    radial-gradient(ellipse 95% 85% at 15% 82%, rgba(10, 14, 18, 0.86) 0%, rgba(10, 14, 18, 0.58) 48%, transparent 80%),
-    /* Base vertical contrast gradient: keeps top navigation clear and anchors bottom */
+    /* Top subtle header shadow */
     linear-gradient(
       180deg,
-      rgba(10, 14, 18, 0.65) 0%,
-      rgba(10, 14, 18, 0.15) 30%,
-      rgba(10, 14, 18, 0.48) 65%,
-      rgba(10, 14, 18, 0.94) 100%
+      rgba(11, 13, 15, 0.70) 0%,
+      rgba(11, 13, 15, 0.15) 25%,
+      rgba(11, 13, 15, 0.40) 65%,
+      rgba(11, 13, 15, 0.92) 100%
     ),
-    /* Subtle horizontal gradient: left-side contrast, natural photographic glow on the right */
+    /* Soft directional vignette protecting left text reading quadrant */
     linear-gradient(
       90deg,
-      rgba(10, 14, 18, 0.85) 0%,
-      rgba(10, 14, 18, 0.52) 42%,
-      rgba(10, 14, 18, 0.14) 75%,
+      rgba(11, 13, 15, 0.78) 0%,
+      rgba(11, 13, 15, 0.45) 45%,
+      rgba(11, 13, 15, 0.12) 75%,
       transparent 100%
     );
 }
 
-/* Minimal Editorial Letterbox Framing */
-.arch-letterbox-top,
-.arch-letterbox-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(245, 242, 236, 0.1);
-  z-index: 3;
-  pointer-events: none;
-}
-.arch-letterbox-top { top: clamp(80px, 10vh, 94px); }
-.arch-letterbox-bottom { bottom: clamp(16px, 2.8vh, 32px); }
-
-/* 3. Hero Content Composition (Positioned towards bottom-left with generous breathing room) */
+/* --------------------------------------------------------------------------
+   2. Hero Content Composition (Minimalist, Balanced, Architectural)
+   -------------------------------------------------------------------------- */
 .arch-hero-content {
   position: relative;
   z-index: 5;
   width: 100%;
-  padding: 0 clamp(20px, 4.5vw, 56px);
-  margin-bottom: clamp(36px, 6vh, 68px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+  margin-bottom: clamp(36px, 6vh, 64px);
   display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 80px);
   box-sizing: border-box;
-  opacity: 1 !important;
   pointer-events: none;
 }
 
@@ -148,22 +124,23 @@
   pointer-events: auto;
 }
 
-/* Primary Left Zone: Architectural Monogram Badge & Bold Masked Headline */
+/* Left / Primary Zone: Architectural Studio Badge & Serif Headline */
 .arch-primary-zone {
-  max-width: 100%;
+  flex: 1 1 58%;
+  max-width: 780px;
 }
 
-/* Understated Architectural Studio Identifier */
 .arch-studio-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-special, serif);
-  font-size: clamp(0.72rem, 2.2vw, 0.82rem);
-  letter-spacing: 0.24em;
+  gap: 8px;
+  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+  font-size: clamp(0.70rem, 0.85vw, 0.78rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--sand, #d8c8b4);
-  margin-bottom: clamp(0.65rem, 1.4vh, 1.1rem);
+  color: var(--sand, #D8C8B4);
+  margin-bottom: clamp(12px, 1.8vh, 18px);
   will-change: transform, opacity;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
@@ -171,196 +148,73 @@
 .arch-badge-dot {
   width: 5px;
   height: 5px;
-  background: var(--sand, #d8c8b4);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(216, 200, 180, 0.9);
+  background: var(--sand, #D8C8B4);
+  box-shadow: 0 0 8px rgba(216, 200, 180, 0.85);
 }
 
-/* Bold Contemporary Architectural Display Headline in 365 Grotesk */
+/* Minimalist Headline in Cormorant Garamond Serif */
 .arch-headline {
-  font-family: '365 Grotesk', '365Grotesk', var(--font-grotesk-365, 'Space Grotesk', -apple-system, sans-serif);
-  font-size: clamp(2.2rem, 4.8vw, 4.8rem);
-  font-weight: 700;
-  line-height: 1.05;
+  font-family: var(--font-heading, 'Cormorant Garamond', 'Average', Georgia, serif);
+  font-size: clamp(2.8rem, 6.2vw, 5.6rem);
+  font-weight: 400;
+  line-height: 1.06;
   letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: var(--ivory, #f5f2ec);
+  color: #FAF8F5;
   margin: 0;
   text-rendering: optimizeLegibility;
   overflow: visible;
-  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
 }
 
-/* Masked Upward Reveal Wrappers (Generous padding guarantees zero glyph clipping) */
+/* Masked Upward Reveal Wrappers */
 .arch-line-mask {
   display: block;
   overflow: hidden;
-  padding-top: 0.14em;
-  padding-bottom: 0.22em;
-  margin-bottom: -0.18em;
+  padding-top: 0.08em;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.12em;
   box-sizing: border-box;
 }
 
 .arch-headline-line {
-  display: inline-flex;
-  align-items: baseline;
+  display: block;
   will-change: transform, opacity;
-  padding-right: 0.08em;
+  padding-right: 0.05em;
   font-family: inherit;
 }
 
-.arch-typed-chars {
-  display: inline;
-}
-
-.arch-typewriter-cursor {
-  display: inline-block;
-  width: 0.12em;
-  height: 0.84em;
-  background-color: var(--sand, #d8c8b4);
-  margin-left: 0.1em;
-  vertical-align: -0.04em;
-  border-radius: 1px;
-  animation: archTypewriterBlink 0.75s ease-in-out infinite;
-  box-shadow: 0 0 14px rgba(216, 200, 180, 0.85);
-}
-
-@keyframes archTypewriterBlink {
-  0%, 48% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
 .arch-line-accent {
-  color: var(--sand, #d8c8b4);
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6), 0 0 35px rgba(216, 200, 180, 0.2);
+  color: var(--sand, #D8C8B4);
 }
 
-/* Secondary Zone: Single Short Supporting Sentence & Refined CTA */
+/* Right / Secondary Zone: Short Supporting Narrative & Dual Clean CTAs */
 .arch-secondary-zone {
-  max-width: 32rem;
+  flex: 0 0 auto;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 6px;
   box-sizing: border-box;
 }
 
 .arch-supporting-text {
-  font-family: var(--font-content, sans-serif);
-  font-size: clamp(0.95rem, 2.6vw, 1.12rem);
-  font-weight: 350;
+  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+  font-size: clamp(0.96rem, 1.25vw, 1.12rem);
+  font-weight: 400;
   line-height: 1.6;
-  letter-spacing: 0.01em;
-  color: rgba(245, 242, 236, 0.92);
-  margin: 0 0 clamp(1.3rem, 2.6vh, 1.8rem) 0;
+  color: rgba(250, 248, 245, 0.85);
+  margin: 0;
   will-change: transform, opacity;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Interactive Discipline Concept Tabs (Quick Category Switcher) */
-.arch-concept-tabs {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-  padding: 4px;
-  background: rgba(14, 18, 22, 0.52);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(245, 242, 236, 0.12);
-  border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  overflow-x: auto;
-  max-width: 100%;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.arch-concept-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.arch-concept-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 6px 13px;
-  border-radius: 9999px;
-  border: none;
-  background: transparent;
-  color: rgba(245, 242, 236, 0.65);
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-.arch-concept-tab:hover,
-.arch-concept-tab.is-active {
-  background: rgba(245, 242, 236, 0.15);
-  color: var(--ivory, #f5f2ec);
-}
-
-.arch-concept-tab.is-active .arch-tab-dot {
-  background: var(--sand, #d8c8b4);
-  box-shadow: 0 0 6px rgba(216, 200, 180, 0.9);
-}
-
-.arch-tab-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: transparent;
-  transition: all 0.3s ease;
-}
-
-.arch-tab-index {
-  font-family: var(--font-special, serif);
-  opacity: 0.8;
-}
-
-/* Spatial Material & Atmosphere Highlight Tags */
-.arch-tags-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: clamp(0.75rem, 1.4vh, 1.1rem);
-  will-change: transform, opacity;
-}
-
-.arch-tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 4px 11px;
-  background: rgba(216, 200, 180, 0.08);
-  border: 1px solid rgba(216, 200, 180, 0.22);
-  border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: clamp(0.68rem, 2.2vw, 0.74rem);
-  font-weight: 450;
-  letter-spacing: 0.04em;
-  color: var(--sand, #d8c8b4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.arch-tag-dot {
-  width: 3.5px;
-  height: 3.5px;
-  border-radius: 50%;
-  background: var(--sand, #d8c8b4);
-}
-
-/* Refined Primary CTA Button: "Explore Our Work" */
+/* Minimalist Button Actions */
 .arch-actions {
   display: flex;
   align-items: center;
-  gap: 1.0rem;
+  gap: 14px;
   flex-wrap: wrap;
   will-change: transform, opacity;
 }
@@ -368,72 +222,71 @@
 .arch-btn-explore {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  background: var(--ivory, #f5f2ec);
-  color: var(--ink, #242522);
-  border: 1px solid var(--ivory, #f5f2ec);
-  padding: 0.92em 1.8em;
+  gap: 10px;
+  background: #FAF8F5;
+  color: #151614;
+  border: 1px solid #FAF8F5;
+  padding: 0.88em 1.85em;
   border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: clamp(0.82rem, 2.4vw, 0.88rem);
+  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: all 0.4s var(--ease, cubic-bezier(0.65, 0, 0.2, 1));
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
 .arch-btn-explore:hover {
   background: transparent;
-  color: var(--ivory, #f5f2ec);
-  border-color: rgba(245, 242, 236, 0.75);
+  color: #FAF8F5;
+  border-color: rgba(250, 248, 245, 0.8);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
 }
 
 .arch-btn-explore svg {
-  transition: transform 0.4s var(--ease, cubic-bezier(0.65, 0, 0.2, 1));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .arch-btn-explore:hover svg {
   transform: translateX(4px);
 }
 
-/* Secondary Interactive Button: "Consult Studio" */
 .arch-btn-consult {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(245, 242, 236, 0.08);
-  color: var(--ivory, #f5f2ec);
-  border: 1px solid rgba(245, 242, 236, 0.28);
-  padding: 0.92em 1.7em;
+  background: rgba(250, 248, 245, 0.06);
+  color: #FAF8F5;
+  border: 1px solid rgba(250, 248, 245, 0.28);
+  padding: 0.88em 1.8em;
   border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: clamp(0.82rem, 2.4vw, 0.88rem);
+  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: all 0.35s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
 .arch-btn-consult:hover {
-  background: rgba(245, 242, 236, 0.18);
-  border-color: rgba(245, 242, 236, 0.65);
+  background: rgba(250, 248, 245, 0.16);
+  border-color: rgba(250, 248, 245, 0.65);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
 }
 
 .arch-btn-consult:active,
@@ -441,84 +294,16 @@
   transform: scale(0.97);
 }
 
-/* Studio Credibility Metrics Strip */
-.arch-metrics-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 34rem;
-  padding: 12px 20px;
-  background: rgba(14, 18, 22, 0.58);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(245, 242, 236, 0.13);
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  margin-top: 0.4rem;
-  will-change: transform, opacity;
-}
-
-.arch-metric-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.arch-metric-num {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.05rem, 3.2vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ivory, #f5f2ec);
-  line-height: 1.1;
-}
-
-.arch-metric-label {
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(245, 242, 236, 0.62);
-}
-
-.arch-metric-divider {
-  width: 1px;
-  height: 24px;
-  background: rgba(245, 242, 236, 0.14);
-}
-
-/* Mobile Interactive Swipe Hint */
-.arch-swipe-hint {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(245, 242, 236, 0.55);
-  margin-top: 0.1rem;
-}
-
-.arch-swipe-arrow {
-  font-size: 0.8rem;
-  color: var(--sand, #d8c8b4);
-  animation: archSwipeNudge 2.2s ease-in-out infinite;
-}
-
-@keyframes archSwipeNudge {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(3px); }
-}
-
-/* 4. Minimal Hero Footer: Slide Indicators & Understated Scroll Cue */
+/* --------------------------------------------------------------------------
+   3. Minimal Hero Footer: Slide Indicators & Understated Scroll Cue
+   -------------------------------------------------------------------------- */
 .arch-hero-footer {
   position: relative;
   z-index: 6;
   width: 100%;
-  padding: 0 clamp(20px, 4.5vw, 56px) clamp(18px, 3vh, 28px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px) clamp(20px, 3.2vh, 32px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -528,37 +313,39 @@
 .arch-pagination {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 14px;
 }
 
 .arch-dot-btn {
   background: none;
   border: none;
-  padding: 6px 2px;
+  padding: 8px 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  color: rgba(245, 242, 236, 0.45);
+  gap: 8px;
+  color: rgba(250, 248, 245, 0.45);
   transition: color 0.3s ease;
+  touch-action: manipulation;
 }
 
 .arch-dot-btn:hover,
 .arch-dot-btn.is-active {
-  color: var(--ivory, #f5f2ec);
+  color: #FAF8F5;
 }
 
 .arch-dot-index {
-  font-family: var(--font-special, serif);
+  font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
+  font-weight: 500;
 }
 
 .arch-dot-bar {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 2px;
-  background: rgba(245, 242, 236, 0.22);
+  background: rgba(250, 248, 245, 0.22);
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -566,8 +353,8 @@
 }
 
 .arch-dot-btn.is-active .arch-dot-bar {
-  width: 36px;
-  background: rgba(245, 242, 236, 0.35);
+  width: 40px;
+  background: rgba(250, 248, 245, 0.35);
 }
 
 .arch-dot-progress {
@@ -576,7 +363,7 @@
   left: 0;
   height: 100%;
   width: 0%;
-  background: var(--ivory, #f5f2ec);
+  background: var(--sand, #D8C8B4);
 }
 
 .arch-dot-btn.is-active .arch-dot-progress {
@@ -585,29 +372,29 @@
 }
 
 .arch-slide-counter {
-  font-family: var(--font-special, serif);
-  font-size: 0.74rem;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
-  color: rgba(245, 242, 236, 0.6);
-  margin-left: 0.3rem;
+  color: rgba(250, 248, 245, 0.55);
+  margin-left: 4px;
 }
 
 /* Understated Scroll Indicator */
 .arch-scroll-cue {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  gap: 10px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.70rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(245, 242, 236, 0.65);
+  color: rgba(250, 248, 245, 0.65);
 }
 
 .arch-scroll-mouse {
   width: 15px;
   height: 24px;
-  border: 1.5px solid rgba(245, 242, 236, 0.4);
+  border: 1.5px solid rgba(250, 248, 245, 0.4);
   border-radius: 12px;
   position: relative;
   display: flex;
@@ -616,9 +403,9 @@
 }
 
 .arch-scroll-wheel {
-  width: 2.5px;
+  width: 2px;
   height: 4.5px;
-  background: var(--ivory, #f5f2ec);
+  background: #FAF8F5;
   border-radius: 2px;
   animation: archScrollWheel 2.2s cubic-bezier(0.65, 0, 0.2, 1) infinite;
 }
@@ -630,148 +417,81 @@
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* 5. Responsive Layouts & Mobile Optimizations */
-@media (min-width: 880px) {
-  .arch-concept-tabs,
-  .arch-metrics-strip,
-  .arch-swipe-hint {
-    display: none !important;
+/* ==========================================================================
+   RESPONSIVE LAYOUTS (ALL DEVICES)
+   ========================================================================== */
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .arch-hero {
+    min-height: 580px;
   }
 
   .arch-hero-content {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-    padding: 0 clamp(28px, 4.5vw, 64px);
-    margin-bottom: clamp(32px, 5vh, 56px);
-  }
-
-  .arch-primary-zone {
-    flex: 1 1 60%;
-    max-width: 62%;
-  }
-
-  .arch-headline-line {
-    white-space: nowrap;
-  }
-
-  .arch-secondary-zone {
-    flex: 0 0 auto;
-    max-width: 380px;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-/* Tablet & Mobile Screens (<= 879px) */
-@media (max-width: 879px) {
-  .arch-hero {
-    justify-content: space-between;
-    padding-top: clamp(80px, 13vh, 120px);
-    padding-bottom: max(env(safe-area-inset-bottom, 0px), 18px);
-    min-height: 580px;
-    touch-action: pan-y pinch-zoom;
-  }
-
-  .arch-hero-scrim {
-    background:
-      /* Top header darkener */
-      linear-gradient(
-        180deg,
-        rgba(10, 14, 18, 0.72) 0%,
-        rgba(10, 14, 18, 0.30) 15%,
-        rgba(10, 14, 18, 0.42) 42%,
-        rgba(10, 14, 18, 0.82) 74%,
-        rgba(10, 14, 18, 0.96) 100%
-      ),
-      /* Center-left soft vignette focused on text readability */
-      radial-gradient(
-        circle at 45% 55%,
-        rgba(10, 14, 18, 0.62) 0%,
-        rgba(10, 14, 18, 0.22) 70%,
-        transparent 100%
-      );
-  }
-
-  .arch-hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 clamp(20px, 5.5vw, 36px);
-    margin-bottom: 0;
-    gap: 1.1rem;
-  }
-
-  .arch-concept-tabs {
-    display: inline-flex;
-    margin-bottom: 0.2rem;
+    justify-content: flex-end;
+    gap: 24px;
+    margin-bottom: clamp(28px, 4.5vh, 48px);
   }
 
   .arch-primary-zone {
     max-width: 100%;
-  }
-
-  .arch-studio-badge {
-    font-size: clamp(0.70rem, 2.4vw, 0.78rem);
-    letter-spacing: 0.20em;
-    margin-bottom: 0.4rem;
   }
 
   .arch-headline {
-    font-size: clamp(2.1rem, 7.8vw, 3.2rem);
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-  }
-
-  .arch-tags-row {
-    margin-top: 0.65rem;
+    font-size: clamp(2.6rem, 5.8vw, 4.2rem);
   }
 
   .arch-secondary-zone {
-    max-width: 100%;
+    max-width: 520px;
+    gap: 20px;
+    margin-bottom: 0;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  .arch-hero {
+    min-height: 540px;
+    padding-top: clamp(80px, 12vh, 100px);
+  }
+
+  .arch-hero-content {
+    padding: 0 clamp(20px, 5.5vw, 36px);
+    margin-bottom: clamp(20px, 3vh, 32px);
+    gap: 20px;
+  }
+
+  .arch-studio-badge {
+    font-size: 0.70rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 10px;
+  }
+
+  .arch-headline {
+    font-size: clamp(2.2rem, 7.5vw, 3.2rem);
+    line-height: 1.08;
   }
 
   .arch-supporting-text {
-    font-size: clamp(0.90rem, 3.2vw, 1.02rem);
-    line-height: 1.52;
-    max-width: 30rem;
-    margin-bottom: 1.0rem;
-    color: rgba(245, 242, 236, 0.90);
+    font-size: 0.94rem;
+    line-height: 1.55;
   }
 
   .arch-actions {
-    gap: 0.75rem;
+    gap: 12px;
   }
 
   .arch-btn-explore,
   .arch-btn-consult {
     padding: 0.84em 1.55em;
-    font-size: 0.82rem;
+    font-size: 0.80rem;
     min-height: 46px;
-    touch-action: manipulation;
-  }
-
-  .arch-metrics-strip {
-    max-width: 100%;
-    margin-top: 0.35rem;
-    padding: 10px 16px;
-  }
-
-  .arch-swipe-hint {
-    display: flex;
   }
 
   .arch-hero-footer {
-    padding: 0 clamp(20px, 5.5vw, 36px) 0;
-    margin-top: 12px;
-  }
-
-  .arch-letterbox-top,
-  .arch-letterbox-bottom {
-    display: none;
+    padding: 0 clamp(20px, 5.5vw, 36px) clamp(16px, 2.5vh, 24px);
   }
 
   .arch-scroll-cue {
@@ -782,59 +502,34 @@
 /* Compact Mobile Devices (<= 480px) */
 @media (max-width: 480px) {
   .arch-hero {
-    min-height: 540px;
-    padding-top: clamp(74px, 11vh, 94px);
-    padding-bottom: max(env(safe-area-inset-bottom, 0px), 14px);
+    min-height: 520px;
+    padding-top: calc(72px + env(safe-area-inset-top, 0px));
   }
 
   .arch-hero-content {
     padding: 0 18px;
-    gap: 0.82rem;
-  }
-
-  .arch-concept-tab {
-    padding: 5px 10px;
-    font-size: 0.68rem;
+    gap: 16px;
+    margin-bottom: 18px;
   }
 
   .arch-studio-badge {
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    gap: 0.45rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .arch-badge-dot {
-    width: 4px;
-    height: 4px;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
   }
 
   .arch-headline {
-    font-size: clamp(1.85rem, 7.8vw, 2.35rem);
-    line-height: 1.09;
-    letter-spacing: -0.015em;
-  }
-
-  .arch-line-mask {
-    padding-top: 0.12em;
-    padding-bottom: 0.20em;
-    margin-bottom: -0.16em;
-  }
-
-  .arch-tag-pill {
-    padding: 3px 9px;
-    font-size: 0.66rem;
+    font-size: clamp(1.95rem, 8.5vw, 2.45rem);
+    line-height: 1.1;
   }
 
   .arch-supporting-text {
-    font-size: 0.86rem;
-    line-height: 1.45;
-    margin-bottom: 0.85rem;
-    color: rgba(245, 242, 236, 0.90);
+    font-size: 0.88rem;
+    line-height: 1.5;
   }
 
   .arch-actions {
-    gap: 0.6rem;
+    gap: 10px;
     width: 100%;
   }
 
@@ -842,56 +537,45 @@
   .arch-btn-consult {
     flex: 1 1 auto;
     justify-content: center;
-    padding: 0.80em 1.3em;
-    font-size: 0.78rem;
+    padding: 0.80em 1.25em;
+    font-size: 0.76rem;
     letter-spacing: 0.06em;
     min-height: 44px;
   }
 
-  .arch-metrics-strip {
-    padding: 8px 12px;
-  }
-
-  .arch-metric-num {
-    font-size: 1.05rem;
-  }
-
-  .arch-metric-label {
-    font-size: 0.62rem;
-  }
-
   .arch-hero-footer {
-    padding: 0 18px 0;
-    margin-top: 8px;
-  }
-
-  .arch-pagination {
-    gap: 0.5rem;
+    padding: 0 18px max(env(safe-area-inset-bottom, 0px), 14px);
   }
 
   .arch-dot-btn {
-    padding: 8px 4px;
-    min-height: 38px;
-    gap: 0.3rem;
-    touch-action: manipulation;
-  }
-
-  .arch-dot-index {
-    font-size: 0.66rem;
+    padding: 6px 2px;
+    gap: 6px;
   }
 
   .arch-dot-bar {
-    width: 16px;
+    width: 18px;
   }
 
   .arch-dot-btn.is-active .arch-dot-bar {
-    width: 26px;
+    width: 30px;
   }
 
+  .arch-dot-index,
   .arch-slide-counter {
     font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    margin-left: 0.1rem;
+  }
+}
+
+/* Ultra Compact Devices (<= 340px) */
+@media (max-width: 340px) {
+  .arch-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .arch-btn-explore,
+  .arch-btn-consult {
+    width: 100%;
   }
 }
 

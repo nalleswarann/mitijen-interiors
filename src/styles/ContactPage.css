@@ -715,141 +715,10 @@
 }
 
 /* ==========================================================================
-   3. INSPIRATION SECTION
-   ========================================================================== */
-.contact-insp-section {
-  padding: clamp(80px, 11vw, 150px) var(--pad);
-  background-color: #EDE7DC;
-  border-top: 1px solid rgba(36, 37, 34, 0.08);
-  border-bottom: 1px solid rgba(36, 37, 34, 0.08);
-}
-
-.contact-insp-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.contact-insp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 32px;
-  margin-bottom: clamp(48px, 6vw, 76px);
-}
-
-.contact-insp-heading {
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
-  font-weight: 350;
-  letter-spacing: -0.01em;
-  line-height: 1.12;
-  color: var(--ink);
-  margin: 14px 0 0 0;
-  text-transform: uppercase;
-}
-
-.contact-insp-explore-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-architectural);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(36, 37, 34, 0.35);
-  transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-.contact-insp-explore-btn:hover {
-  color: var(--olive);
-  border-color: var(--olive);
-  transform: translateX(4px);
-}
-
-.contact-insp-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr 0.9fr;
-  gap: clamp(24px, 3.5vw, 40px);
-}
-
-.contact-insp-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-insp-frame {
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  background-color: #ded6c9;
-}
-
-.aspect-16-10 { aspect-ratio: 16 / 10; }
-.aspect-4-5 { aspect-ratio: 4 / 5; }
-
-.contact-insp-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
-}
-
-.contact-insp-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 65%, rgba(22, 23, 21, 0.32) 100%);
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.contact-insp-item:hover .contact-insp-frame img {
-  transform: scale(1.04);
-}
-
-.contact-insp-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 18px;
-}
-
-.insp-tag {
-  font-family: var(--font-architectural);
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  color: var(--olive);
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.insp-title {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 450;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-.insp-desc {
-  font-family: var(--font-content);
-  font-size: 0.88rem;
-  line-height: 1.58;
-  color: rgba(36, 37, 34, 0.7);
-  margin: 0;
-  font-weight: 350;
-}
-
-/* ==========================================================================
    4. STUDIO LOCATION SECTION
    ========================================================================== */
 .contact-location-section {
-  padding: clamp(80px, 12vw, 150px) var(--pad);
+  padding: clamp(60px, 8vw, 100px) var(--pad) clamp(80px, 11vw, 140px);
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -1009,155 +878,12 @@
 }
 
 /* ==========================================================================
-   5. FINAL CALL TO ACTION
-   ========================================================================== */
-.contact-cta-section {
-  padding: clamp(80px, 12vw, 150px) var(--pad);
-  max-width: 1360px;
-  margin: 0 auto;
-}
-
-.contact-cta-card {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  padding: clamp(64px, 10vw, 120px) clamp(32px, 6vw, 84px);
-  background-color: var(--ink);
-  color: var(--ivory);
-  box-shadow: 0 32px 70px rgba(36, 37, 34, 0.12);
-}
-
-.contact-cta-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.contact-cta-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.68) contrast(1.05);
-}
-
-.contact-cta-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 35% 50%,
-    rgba(36, 37, 34, 0.78) 0%,
-    rgba(36, 37, 34, 0.94) 100%
-  );
-}
-
-.contact-cta-content {
-  position: relative;
-  z-index: 2;
-  max-width: 720px;
-}
-
-.contact-cta-heading {
-  font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 4.4vw, 3.8rem);
-  font-weight: 350;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: #FAF8F5;
-  margin: 18px 0 20px 0;
-  text-transform: uppercase;
-}
-
-.contact-cta-sub {
-  font-family: var(--font-content);
-  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
-  font-weight: 300;
-  line-height: 1.68;
-  color: rgba(245, 242, 236, 0.88);
-  margin: 0 0 clamp(32px, 4.5vw, 44px) 0;
-}
-
-.contact-cta-buttons {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.contact-cta-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background-color: var(--sand);
-  color: var(--ink);
-  font-family: var(--font-architectural);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 16px 32px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.35s var(--ease), background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-cta-btn-primary:hover {
-  background-color: #E6D8C7;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-}
-
-.contact-cta-btn-primary .arrow {
-  transition: transform 0.35s ease;
-}
-
-.contact-cta-btn-primary:hover .arrow {
-  transform: translateX(4px);
-}
-
-.contact-cta-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--ivory);
-  font-family: var(--font-architectural);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 16px 24px;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(245, 242, 236, 0.35);
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.contact-cta-btn-secondary:hover {
-  color: var(--sand);
-  border-color: var(--sand);
-  transform: translateX(3px);
-}
-
-.contact-cta-btn-secondary .arrow {
-  transition: transform 0.35s ease;
-}
-
-.contact-cta-btn-secondary:hover .arrow {
-  transform: translateX(4px);
-}
-
-/* ==========================================================================
    6. RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1024px) {
   .contact-main-grid {
     grid-template-columns: 1fr;
     gap: 56px;
-  }
-
-  .contact-insp-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
   }
 
   .contact-location-card {
@@ -1188,29 +914,31 @@
     padding: 32px 20px;
   }
 
-  .contact-insp-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
   .location-info-block {
     padding: 36px 24px;
   }
+}
 
-  .contact-cta-card {
-    padding: 48px 24px;
+@media (max-width: 480px) {
+  .contact-hero-title {
+    font-size: clamp(2.0rem, 8.5vw, 2.7rem);
   }
 
-  .contact-cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
+  .contact-hero-badge {
+    max-width: 100%;
   }
 
-  .contact-cta-btn-primary,
-  .contact-cta-btn-secondary {
-    justify-content: center;
-    width: 100%;
+  .contact-hero-tag {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-form-container {
+    padding: 24px 16px;
+  }
+
+  .location-info-block {
+    padding: 28px 18px;
   }
 }
 
@@ -1222,8 +950,7 @@
     scroll-behavior: auto !important;
   }
 
-  .contact-hero-bg-img,
-  .contact-insp-frame img {
+  .contact-hero-bg-img {
     transform: none !important;
   }
 }

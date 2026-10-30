@@ -114,7 +114,7 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
       newErrors.phone = 'Please provide your contact phone.';
       if (!firstInvalid) firstInvalid = 'phone';
     } else {
-      const cleaned = formData.phone.replace(/[\s\-\(\)\+]/g, '');
+      const cleaned = formData.phone.replace(/[\s\-()+]/g, '');
       if (cleaned.length < 10) {
         newErrors.phone = 'Enter a valid 10-digit number.';
         if (!firstInvalid) firstInvalid = 'phone';

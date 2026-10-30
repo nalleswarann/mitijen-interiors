@@ -7,7 +7,6 @@ import {
 } from '../data/portfolioData';
 import { ProjectsMaterialsPhilosophy } from '../components/ProjectsMaterialsPhilosophy';
 import { ProjectsBeforeAfter } from '../components/ProjectsBeforeAfter';
-import { SectionLabel } from '../components/common/SectionLabel';
 import { SEO } from '../components/common/SEO';
 import { useInquiry } from '../context/useInquiry';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -643,40 +642,7 @@ export const ProjectsPage: React.FC = () => {
           ===================================================================== */}
       <ProjectsMaterialsPhilosophy onSelectProjectByTitle={handleSelectByTitle} />
 
-      {/* =====================================================================
-          STUDIO INQUIRY CALL-TO-ACTION (ATMOSPHERIC DUSK FOOTER)
-          ===================================================================== */}
-      <section className="projects-cta-section" id="inquire">
-        <div className="projects-cta-bg">
-          <img src="/assets/mitijen/Banner3.jpg" alt="Atmospheric interior dusk ambiance" />
-          <div className="projects-cta-overlay" />
-        </div>
-
-        <div className="projects-cta-content" data-reveal="">
-          <SectionLabel style={{ color: 'var(--sand)' }}>Begin a Project</SectionLabel>
-          <h2 className="projects-cta-title">
-            Have an interior space in mind?
-            <br />
-            Let’s shape something timeless.
-          </h2>
-          <p className="projects-cta-desc">
-            From private residential villas to commercial flagship environments, we partner
-            with clients who value quiet proportions, tactile materials, and architectural craft.
-          </p>
-          <div className="projects-cta-actions">
-            <button
-              type="button"
-              className="projects-cta-btn"
-              onClick={() => openInquiry('New Project Consultation')}
-            >
-              Start a Conversation →
-            </button>
-            <span className="projects-cta-note">
-              Bespoke commissions currently open for 2026/2027
-            </span>
-          </div>
-        </div>
-      </section>
+      
     </main>
   );
 };

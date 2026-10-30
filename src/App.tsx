@@ -14,8 +14,10 @@ import { ContactPage } from './pages/ContactPage';
 import { ResidentialInteriorDesign } from './pages/ResidentialInteriorDesign';
 import { CommercialInteriorDesign } from './pages/CommercialInteriorDesign';
 import { CorporateInteriorDesign } from './pages/CorporateInteriorDesign';
+import { ServicesPage } from './pages/ServicesPage';
 
 import './styles/global.css';
+import './styles/responsive.css';
 
 const AppContent: React.FC = () => {
   const { isInquiryOpen, closeInquiry, contextTitle } = useInquiry();
@@ -29,6 +31,7 @@ const AppContent: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/project" element={<ProjectsPage />} />
         <Route

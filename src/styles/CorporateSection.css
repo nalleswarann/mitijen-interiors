@@ -4,9 +4,9 @@
    ========================================================================== */
 
 .corporate-human-section {
-  padding: clamp(44px, 5.5vw, 76px) var(--pad);
-  background: #F7F4EE; /* Warm architectural stone / linen cream */
-  color: var(--ink);
+  padding: clamp(60px, 8vw, 100px) var(--pad);
+  background: var(--ink, #151614);
+  color: var(--ivory, #FAF8F5);
   position: relative;
 }
 
@@ -26,7 +26,7 @@
   font-family: var(--font-special);
   font-size: 0.8rem;
   letter-spacing: 0.16em;
-  color: var(--olive);
+  color: var(--sand, #D8C8B4);
   text-transform: uppercase;
   margin-bottom: 0.8rem;
 }
@@ -35,7 +35,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2.4rem, 4.2vw, 3.8rem);
   font-weight: 400;
-  color: #242522;
+  color: #FAF8F5;
   line-height: 1.15;
   margin: 0 0 1.25rem;
   letter-spacing: -0.01em;
@@ -43,7 +43,7 @@
 
 .corporate-human-lead {
   font-size: clamp(1rem, 1.3vw, 1.15rem);
-  color: #615B52;
+  color: rgba(250, 248, 245, 0.75);
   line-height: 1.65;
   margin: 0;
   font-weight: 300;
@@ -66,7 +66,9 @@
 }
 
 .corporate-project-row {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #FAF8F5;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
   padding: clamp(20px, 2.5vw, 26px);
@@ -269,9 +271,11 @@
 
 /* Footer Banner */
 .corporate-footer-banner {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FAF8F5;
   border-radius: 14px;
-  padding: clamp(24px, 3.5vw, 36px) clamp(24px, 4vw, 44px);
+  padding: clamp(20px, 3.5vw, 36px) clamp(18px, 4vw, 44px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -279,59 +283,69 @@
   gap: 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.footer-banner-text {
+  flex: 1 1 280px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-banner-text h4 {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 3.5vw, 1.45rem);
   font-weight: 400;
   color: #242522;
   margin: 0 0 0.35rem;
+  word-break: break-word;
 }
 
 .footer-banner-text p {
   font-size: 0.95rem;
-  color: #7D756D;
+  color: rgba(250, 248, 245, 0.75);
   margin: 0;
   max-width: 560px;
   line-height: 1.5;
+  word-break: break-word;
+}
+
+.footer-banner-actions {
+  flex-shrink: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .corporate-inquiry-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 0.85rem 1.6rem;
-  background: #242522;
-  color: #F7F5F0;
+  background: var(--sand, #D8C8B4);
+  color: var(--ink, #151614);
+  font-weight: 600;
   border: none;
   font-family: var(--font-special);
   font-size: 0.8rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.25s ease;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .corporate-inquiry-btn:hover {
   background: var(--olive);
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
-
-/* --------------------------------------------------------------------------
-   RESPONSIVE ADAPTATIONS
-   -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .corporate-editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .corporate-main-photo-wrap {
-    aspect-ratio: 16 / 10;
-  }
 }
 
 @media (max-width: 640px) {
@@ -341,11 +355,24 @@
 
   .corporate-footer-banner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    padding: 22px 16px;
+    gap: 1.2rem;
+  }
+
+  .footer-banner-text {
+    width: 100%;
+  }
+
+  .footer-banner-actions {
+    width: 100%;
   }
 
   .corporate-inquiry-btn {
     width: 100%;
-    justify-content: center;
+    max-width: 100%;
+    padding: 12px 16px;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
   }
 }

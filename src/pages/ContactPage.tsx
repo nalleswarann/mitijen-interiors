@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SEO } from '../components/common/SEO';
 import { SectionLabel } from '../components/common/SectionLabel';
 import { ProjectEnquiryForm } from '../components/ProjectEnquiryForm';
+import { MonographBanner } from '../components/common/MonographBanner';
 import '../styles/ContactPage.css';
 
 if (typeof window !== 'undefined') {
@@ -20,44 +21,7 @@ export const ContactPage: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero headline masked reveal
-      const heroHeadlineLines = gsap.utils.toArray('.contact-hero-title .ln span');
-      gsap.fromTo(
-        heroHeadlineLines,
-        { yPercent: 110, opacity: 0 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 1.25,
-          stagger: 0.16,
-          ease: 'power3.out',
-          delay: 0.2
-        }
-      );
 
-      gsap.fromTo(
-        '.contact-hero-eyebrow',
-        { y: -16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power2.out', delay: 0.1 }
-      );
-
-      gsap.fromTo(
-        '.contact-hero-sub',
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 0.9, duration: 1.1, ease: 'power2.out', delay: 0.55 }
-      );
-
-      // Hero background subtle parallax
-      gsap.to('.contact-hero-bg-img', {
-        yPercent: 16,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.contact-hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
 
       // 2. Contact details & form columns entrance
       gsap.fromTo(
@@ -91,25 +55,7 @@ export const ContactPage: React.FC = () => {
         }
       );
 
-      // 3. Inspiration items reveal
-      const inspItems = gsap.utils.toArray('.contact-insp-item');
-      inspItems.forEach((item: any, i: number) => {
-        gsap.fromTo(
-          item,
-          { y: 40, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            delay: i * 0.15,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 85%'
-            }
-          }
-        );
-      });
+
 
       // 4. Studio location section reveal
       gsap.fromTo(
@@ -127,33 +73,13 @@ export const ContactPage: React.FC = () => {
         }
       );
 
-      // 5. Final CTA card reveal
-      gsap.fromTo(
-        '.contact-cta-content',
-        { y: 35, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.contact-cta-section',
-            start: 'top 80%'
-          }
-        }
-      );
+
     }, pageRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Scroll to Form helper for CTA buttons
-  const scrollToForm = () => {
-    const formElement = document.getElementById('enquiry-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+
 
   const whatsappMessage = encodeURIComponent(
     `Hello Mitijen Interiors, I'm interested in discussing an interior design project for my home.`
@@ -170,63 +96,36 @@ export const ContactPage: React.FC = () => {
       />
 
       {/* =====================================================================
-          1. HERO SECTION
+          1. HERO BANNER — STUDIO DIALOGUE & COMMISSIONS (REFERENCE DESIGN)
           ===================================================================== */}
-      <section className="contact-hero" aria-label="Contact Hero">
-        <div className="contact-hero-bg">
-          <img
-            src="/assets/mitijen/Banner3.jpg"
-            alt="Refined contemporary residential living room by Mitijen Interiors"
-            className="contact-hero-bg-img"
-          />
-          <div className="contact-hero-overlay" />
-        </div>
-
-        <div className="contact-hero-content">
-          <div className="contact-hero-eyebrow">
-            <span className="contact-hero-dot" />
-            <span className="contact-hero-tag">GET IN TOUCH</span>
-          </div>
-
-          <h1 className="contact-hero-title">
-            <span className="ln">
-              <span>LET'S CREATE</span>
-            </span>
-            <span className="ln">
-              <span>YOUR SPACE.</span>
-            </span>
-          </h1>
-
-          <p className="contact-hero-sub">
-            Have a vision for your home? Let's turn it into a space that feels uniquely yours.
-          </p>
-
-          <div className="contact-hero-actions">
-            <button
-              type="button"
-              className="contact-hero-scroll-btn"
-              onClick={scrollToForm}
-            >
-              <span>Begin Your Enquiry</span>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
-                <path d="M7 1v12M1 7l6 6 6-6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-hero-wa-btn"
-              aria-label="Direct WhatsApp Message"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.83a8.18 8.18 0 01-5.82 2.41c-1.46 0-2.9-.38-4.17-1.11l-.3-.18-3.1 0.81 0.83-3.02-.19-.31a8.196 8.196 0 01-1.25-4.43c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.49-1.39-1.74-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.9 2.42 1.02 2.59.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.17-.48-.29z" />
-              </svg>
-              <span>WhatsApp Us</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <MonographBanner
+        id="contact-hero"
+        sidebarKicker={['START', 'A STUDIO', 'DIALOGUE']}
+        sidebarNote="Our approach is centered on three core principles: direct communication, transparent schedules, and turnkey fidelity."
+        sidebarYear="COMMISSIONS · 2026 / 2027"
+        heroImage="/assets/mitijen/Banner3.jpg"
+        heroImageAlt="Refined atmospheric interior architecture by Mitjen Interiors"
+        headlineLine1="LET'S CREATE"
+        headlineLine2="YOUR SPACE"
+        topBadge="GET IN TOUCH · STUDIO ENQUIRY"
+        pillars={[
+          {
+            title: 'Direct Line',
+            subtitle: '+91 89405 55526 · instant consultation with design director',
+            link: 'tel:+918940555526',
+          },
+          {
+            title: 'WhatsApp Direct',
+            subtitle: 'collaborate & share architectural floor plans with our studio engineers',
+            link: whatsappUrl,
+          },
+          {
+            title: 'Studio Atelier',
+            subtitle: 'Coimbatore & Bangalore, Tamil Nadu · South India commissions',
+            link: '#enquiry-form',
+          },
+        ]}
+      />
 
       {/* =====================================================================
           2. CONTACT INFORMATION AND ENQUIRY FORM (TWO-COLUMN LAYOUT)
@@ -324,82 +223,7 @@ export const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =====================================================================
-          3. INTERIOR DESIGN INSPIRATION SECTION
-          ===================================================================== */}
-      <section className="contact-insp-section" aria-label="Design Inspiration Showcase">
-        <div className="contact-insp-container">
-          <div className="contact-insp-header">
-            <div>
-              <SectionLabel style={{ color: 'var(--brown)' }}>Spatial Monograph</SectionLabel>
-              <h2 className="contact-insp-heading">YOUR NEXT CHAPTER STARTS AT HOME.</h2>
-            </div>
-            <Link to="/projects" className="contact-insp-explore-btn">
-              <span>Explore Our Projects</span>
-              <span className="arrow">→</span>
-            </Link>
-          </div>
-
-          <div className="contact-insp-grid">
-            {/* 1. Warm Contemporary Living Room */}
-            <article className="contact-insp-item">
-              <div className="contact-insp-frame aspect-16-10">
-                <img
-                  src="/assets/mitijen/panaroma/panaroma1.png"
-                  alt="Warm contemporary living room featuring architectural timber portals and natural illumination"
-                  loading="lazy"
-                />
-                <div className="contact-insp-vignette" />
-              </div>
-              <div className="contact-insp-body">
-                <span className="insp-tag">LIVING ROOMS</span>
-                <h3 className="insp-title">Contemporary Living Spaces</h3>
-                <p className="insp-desc">
-                  Open layouts balancing tailored timber portals, natural stone, and comfortable daylight.
-                </p>
-              </div>
-            </article>
-
-            {/* 2. Elegant Modular Kitchen */}
-            <article className="contact-insp-item">
-              <div className="contact-insp-frame aspect-4-5">
-                <img
-                  src="/assets/mitijen/kitchen.jpeg"
-                  alt="Precision factory-crafted modular kitchen with fluted glass cabinetry"
-                  loading="lazy"
-                />
-                <div className="contact-insp-vignette" />
-              </div>
-              <div className="contact-insp-body">
-                <span className="insp-tag">MODULAR KITCHENS</span>
-                <h3 className="insp-title">Elegant Modular Kitchens</h3>
-                <p className="insp-desc">
-                  Fluted acoustic glass, soft-close hardware, and heat-resistant quartz surfaces.
-                </p>
-              </div>
-            </article>
-
-            {/* 3. Refined Master Bedroom */}
-            <article className="contact-insp-item">
-              <div className="contact-insp-frame aspect-4-5">
-                <img
-                  src="/assets/mitijen/bedroom.jpeg"
-                  alt="Refined master bedroom with calm ambient cove lighting and washed linens"
-                  loading="lazy"
-                />
-                <div className="contact-insp-vignette" />
-              </div>
-              <div className="contact-insp-body">
-                <span className="insp-tag">BEDROOM SUITES</span>
-                <h3 className="insp-title">Refined Master Bedrooms</h3>
-                <p className="insp-desc">
-                  Tactile headboards, integrated ambient cove lighting, and peaceful acoustic balance.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      
 
       {/* =====================================================================
           4. STUDIO LOCATION SECTION
@@ -474,49 +298,7 @@ export const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* =====================================================================
-          5. FINAL CALL TO ACTION SECTION
-          ===================================================================== */}
-      <section className="contact-cta-section" aria-label="Final Invitation">
-        <div className="contact-cta-card">
-          <div className="contact-cta-bg">
-            <img
-              src="/assets/mitijen/warm1.jpeg"
-              alt="Warm, inviting residential interior consultation ambience"
-              loading="lazy"
-            />
-            <div className="contact-cta-overlay" />
-          </div>
-
-          <div className="contact-cta-content">
-            <SectionLabel style={{ color: 'var(--sand)' }}>Start a Conversation</SectionLabel>
-            <h2 className="contact-cta-heading">
-              LET'S MAKE YOUR HOME
-              <br />
-              FEEL LIKE YOU.
-            </h2>
-            <p className="contact-cta-sub">
-              Tell us what you're imagining. We'll help you explore what's possible.
-            </p>
-
-            <div className="contact-cta-buttons">
-              <button
-                type="button"
-                className="contact-cta-btn-primary"
-                onClick={scrollToForm}
-              >
-                <span>Start Your Project</span>
-                <span className="arrow">→</span>
-              </button>
-
-              <Link to="/projects" className="contact-cta-btn-secondary">
-                <span>Explore Our Projects</span>
-                <span className="arrow">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 };

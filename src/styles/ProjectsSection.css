@@ -1,0 +1,392 @@
+/* ==========================================================================
+   MITJEN INTERIORS — ARCHITECTURAL PRACTICES & MONOGRAPH SECTION
+   Minimalist, quiet luxury editorial design with silky hover elevation
+   ========================================================================== */
+
+.arch-practices-section {
+  position: relative;
+  background-color: var(--ivory, #FAF8F5);
+  color: var(--ink, #151614);
+  padding: clamp(70px, 9vw, 130px) var(--pad, 32px);
+  overflow: hidden;
+}
+
+.arch-practices-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. Section Editorial Header
+   -------------------------------------------------------------------------- */
+.arch-practices-header {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vw, 20px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+  max-width: 880px;
+}
+
+.arch-practices-kicker {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--olive, #777B61);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arch-practices-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--olive, #777B61);
+}
+
+.arch-practices-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--ink, #151614);
+  margin: 0;
+}
+
+.arch-practices-intro {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+  line-height: 1.68;
+  color: rgba(21, 22, 20, 0.72);
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* --------------------------------------------------------------------------
+   2. 3-Practice Architectural Monograph Grid
+   -------------------------------------------------------------------------- */
+.arch-practices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 2.8vw, 36px);
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+
+/* Monograph Card */
+.arch-practice-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(21, 22, 20, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.arch-practice-card:hover,
+.arch-practice-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(21, 22, 20, 0.08);
+  border-color: rgba(21, 22, 20, 0.22);
+}
+
+.arch-practice-card:focus-visible {
+  outline: 2px solid var(--olive, #777B61);
+  outline-offset: 3px;
+}
+
+/* Image Viewport Frame */
+.arch-practice-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1a1b18;
+}
+
+.arch-practice-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.arch-practice-card:hover .arch-practice-img,
+.arch-practice-card:focus-visible .arch-practice-img {
+  transform: scale(1.06);
+}
+
+/* Scrim Gradient on Image */
+.arch-practice-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 18, 0.25) 0%,
+    rgba(18, 20, 18, 0.0) 45%,
+    rgba(18, 20, 18, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* Top Floating Glass Badge */
+.arch-practice-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(18, 20, 18, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #FAF8F5;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arch-practice-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
+}
+
+/* Bottom In-Image Metadata */
+.arch-practice-inmeta {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FAF8F5;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.70rem;
+  letter-spacing: 0.08em;
+  opacity: 0.95;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Body Content */
+.arch-practice-body {
+  padding: 20px 4px 6px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.arch-practice-category {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--olive, #777B61);
+  margin-bottom: 6px;
+}
+
+.arch-practice-name {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(1.4rem, 1.8vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.22;
+  color: var(--ink, #151614);
+  margin: 0 0 10px 0;
+  transition: color 0.3s ease;
+}
+
+.arch-practice-card:hover .arch-practice-name {
+  color: #000000;
+}
+
+.arch-practice-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: rgba(21, 22, 20, 0.72);
+  margin: 0 0 20px 0;
+  flex-grow: 1;
+}
+
+/* Card Action Row */
+.arch-practice-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(21, 22, 20, 0.08);
+}
+
+.arch-practice-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink, #151614);
+  transition: color 0.3s ease;
+}
+
+.arch-practice-cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  transform: translateX(0);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-practice-card:hover .arch-practice-cta-arrow {
+  transform: translateX(5px);
+}
+
+.arch-practice-casestudy-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.78rem;
+  color: rgba(21, 22, 20, 0.55);
+  cursor: pointer;
+  transition: color 0.25s ease;
+  border-radius: 4px;
+}
+
+.arch-practice-casestudy-btn:hover {
+  color: var(--ink, #151614);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   3. Bottom Archive Banner
+   -------------------------------------------------------------------------- */
+.arch-practices-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: clamp(10px, 2vw, 20px);
+}
+
+.arch-practices-archive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: var(--ink, #151614);
+  color: #FAF8F5;
+  border-radius: 999px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.arch-practices-archive-btn:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  color: #FAF8F5;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (ALL DEVICES)
+   ========================================================================== */
+
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .arch-practices-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .arch-practice-card:last-child {
+    grid-column: span 2;
+  }
+}
+
+/* Small Tablet / Large Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .arch-practices-section {
+    padding: clamp(50px, 8vh, 80px) 20px;
+  }
+
+  .arch-practices-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .arch-practice-card:last-child {
+    grid-column: auto;
+  }
+
+  .arch-practice-card {
+    padding: 14px;
+  }
+
+  .arch-practice-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .arch-practice-archive-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+}
+
+/* Compact Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .arch-practices-section {
+    padding: 44px 16px;
+  }
+
+  .arch-practices-title {
+    font-size: 2.1rem;
+  }
+
+  .arch-practice-name {
+    font-size: 1.35rem;
+  }
+
+  .arch-practice-desc {
+    font-size: 0.84rem;
+  }
+
+  .arch-practice-inmeta {
+    font-size: 0.65rem;
+  }
+}
+

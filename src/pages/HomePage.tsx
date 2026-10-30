@@ -7,7 +7,8 @@ import { ProjectDialog } from '../components/ProjectDialog';
 import { RoomExplorer } from '../components/RoomExplorer';
 import { DesignProcess } from '../components/DesignProcess';
 import { MaterialsGallery } from '../components/MaterialsGallery';
-import { InquirySection } from '../components/InquirySection';
+import { FaqSection } from '../components/FaqSection';
+
 import type { Project } from '../data/projects';
 import { useRevealObserver } from '../hooks/useRevealObserver';
 import { useInquiry } from '../context/useInquiry';
@@ -40,7 +41,8 @@ export const HomePage: React.FC = () => {
       <RoomExplorer />
       <DesignProcess />
       <MaterialsGallery />
-      <InquirySection onOpenInquiry={openInquiry} />
+      <FaqSection onOpenInquiry={openInquiry} />
+      
     </main>
   );
 };

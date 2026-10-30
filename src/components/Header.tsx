@@ -6,8 +6,6 @@ import '../styles/Header.css';
 export const Header: React.FC = () => {
   const [isSolid, setIsSolid] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const { openInquiry } = useInquiry();
@@ -17,17 +15,22 @@ export const Header: React.FC = () => {
   const isHome = location.pathname === '/';
 
   // Typewriting animation for Header Logo text
-  const [typedLogo, setTypedLogo] = useState('');
-  const [isLogoTyping, setIsLogoTyping] = useState(true);
   const FULL_LOGO_TEXT = 'Mitjen Interiors';
+  const [typedLogo, setTypedLogo] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return FULL_LOGO_TEXT;
+    }
+    return '';
+  });
+  const [isLogoTyping, setIsLogoTyping] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return false;
+    }
+    return true;
+  });
 
   useEffect(() => {
-    const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReducedMotion) {
-      setTypedLogo(FULL_LOGO_TEXT);
-      setIsLogoTyping(false);
-      return;
-    }
+    if (!isLogoTyping) return;
 
     let charIndex = 0;
     const interval = setInterval(() => {
@@ -40,7 +43,7 @@ export const Header: React.FC = () => {
     }, 75);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isLogoTyping]);
 
   // Scroll listener for solid navbar state
   useEffect(() => {
@@ -76,8 +79,6 @@ export const Header: React.FC = () => {
           setIsMenuOpen(false);
           burgerRef.current?.focus();
         }
-        setIsServicesDropdownOpen(false);
-        setIsMobileServicesOpen(false);
       }
     };
 
@@ -89,8 +90,6 @@ export const Header: React.FC = () => {
   /* oxlint-disable react/set-state-in-effect */
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsServicesDropdownOpen(false);
-    setIsMobileServicesOpen(false);
   }, [location.pathname]);
 
   const toggleMenu = () => {
@@ -106,8 +105,6 @@ export const Header: React.FC = () => {
       setIsMenuOpen(false);
       burgerRef.current?.focus();
     }
-    setIsServicesDropdownOpen(false);
-    setIsMobileServicesOpen(false);
   };
 
   return (
@@ -144,73 +141,13 @@ export const Header: React.FC = () => {
             Projects
           </Link>
 
-          {/* Desktop Services Dropdown */}
-          <div
-            className="header-dropdown-container"
-            onMouseEnter={() => setIsServicesDropdownOpen(true)}
-            onMouseLeave={() => setIsServicesDropdownOpen(false)}
+          <Link
+            to="/services"
+            className={`nav-desktop-link ${isServicesActive ? 'on' : ''}`}
+            onClick={closeMenu}
           >
-            <button
-              type="button"
-              className={`header-dropdown-toggle ${isServicesActive ? 'is-active' : ''}`}
-              aria-expanded={isServicesDropdownOpen}
-              aria-haspopup="true"
-              onClick={() => setIsServicesDropdownOpen((prev) => !prev)}
-            >
-              Services
-              <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
-                fill="none"
-                stroke="currentColor"
-                style={{
-                  marginLeft: '4px',
-                  transform: isServicesDropdownOpen ? 'rotate(180deg)' : 'none',
-                  transition: 'transform 0.25s ease'
-                }}
-                aria-hidden="true"
-              >
-                <path d="M1 1L5 5L9 1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            <div
-              className={`header-dropdown-menu ${isServicesDropdownOpen ? 'is-open' : ''}`}
-              role="menu"
-              aria-label="Service categories"
-            >
-              <Link
-                to="/services/residential-interior-design"
-                className={`header-dropdown-item ${location.pathname === '/services/residential-interior-design' ? 'is-active' : ''}`}
-                role="menuitem"
-                onClick={closeMenu}
-              >
-                <span className="dropdown-item-title">Residential</span>
-                <span className="dropdown-item-desc">Apartments, Villas & Private Residences</span>
-              </Link>
-
-              <Link
-                to="/services/commercial-interior-design"
-                className={`header-dropdown-item ${location.pathname === '/services/commercial-interior-design' ? 'is-active' : ''}`}
-                role="menuitem"
-                onClick={closeMenu}
-              >
-                <span className="dropdown-item-title">Commercial</span>
-                <span className="dropdown-item-desc">Retail, Showrooms & Hospitality</span>
-              </Link>
-
-              <Link
-                to="/services/corporate-interior-design"
-                className={`header-dropdown-item ${location.pathname === '/services/corporate-interior-design' ? 'is-active' : ''}`}
-                role="menuitem"
-                onClick={closeMenu}
-              >
-                <span className="dropdown-item-title">Corporate</span>
-                <span className="dropdown-item-desc">Modern Offices & Executive Workplaces</span>
-              </Link>
-            </div>
-          </div>
+            Services
+          </Link>
 
           <Link
             to="/about"
@@ -248,51 +185,14 @@ export const Header: React.FC = () => {
             <span style={{ fontSize: '1rem', opacity: 0.5 }}>02</span>
           </Link>
 
-          {/* Mobile Services Accordion */}
-          <div className="mobile-services-container">
-            <button
-              type="button"
-              className={`mobile-services-toggle ${isServicesActive ? 'is-active' : ''} ${isMobileServicesOpen ? 'is-expanded' : ''}`}
-              aria-expanded={isMobileServicesOpen}
-              onClick={() => setIsMobileServicesOpen((prev) => !prev)}
-            >
-              <span>Services</span>
-              <span className="mobile-services-arrow">
-                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" stroke="currentColor">
-                  <path d="M1 1l5 5 5-5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </button>
-
-            <div className={`mobile-services-drawer ${isMobileServicesOpen ? 'is-open' : ''}`}>
-              <Link
-                to="/services/residential-interior-design"
-                className={`mobile-sub-link ${location.pathname === '/services/residential-interior-design' ? 'is-active' : ''}`}
-                onClick={closeMenu}
-              >
-                <span className="mobile-sub-title">Residential Architecture</span>
-                <span className="mobile-sub-desc">Villas, Apartments, Duplexes & Penthouses</span>
-              </Link>
-
-              <Link
-                to="/services/commercial-interior-design"
-                className={`mobile-sub-link ${location.pathname === '/services/commercial-interior-design' ? 'is-active' : ''}`}
-                onClick={closeMenu}
-              >
-                <span className="mobile-sub-title">Commercial Venues</span>
-                <span className="mobile-sub-desc">Retail, Showrooms, Studios & Boutiques</span>
-              </Link>
-
-              <Link
-                to="/services/corporate-interior-design"
-                className={`mobile-sub-link ${location.pathname === '/services/corporate-interior-design' ? 'is-active' : ''}`}
-                onClick={closeMenu}
-              >
-                <span className="mobile-sub-title">Corporate Workplaces</span>
-                <span className="mobile-sub-desc">Modern Offices & Executive Suites</span>
-              </Link>
-            </div>
-          </div>
+          <Link
+            to="/services"
+            className={`mobile-nav-link ${isServicesActive ? 'on' : ''}`}
+            onClick={closeMenu}
+          >
+            <span>Services</span>
+            <span style={{ fontSize: '1rem', opacity: 0.5 }}>03</span>
+          </Link>
 
           <Link
             to="/about"
