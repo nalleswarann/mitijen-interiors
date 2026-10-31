@@ -11,6 +11,11 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="mitjen-footer" aria-label="Mitjen Interiors Footer">
+      {/* Seamless Ambient Transparent Interior Architectural Outlines */}
+      <div className="footer-interior-outlines-bg" aria-hidden="true">
+        <InteriorOutlines />
+      </div>
+
       <div className="footer-container">
         {/* 4-Column Architectural Navigation Grid */}
         <div className="footer-main-grid">
@@ -75,30 +80,25 @@ export const Footer: React.FC = () => {
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Panoramic Interior Architectural Outlines Banner */}
-      <div className="footer-interior-outlines-section" aria-hidden="true">
-        <InteriorOutlines />
-      </div>
-
-      {/* Footer Bottom Bar with Back to Top */}
-      <div className="footer-bottom-bar">
-        <small className="footer-copyright">
-          © 2026 Mitjen Interiors. All rights reserved.
-        </small>
-        <small className="footer-copyright">
-          Designed by <a href="https://indiafloats.in" target="_blank" rel="noopener noreferrer">IndiaFloats</a>
-        </small>
-        <button
-          type="button"
-          onClick={scrollToTop}
-          className="footer-back-to-top"
-          aria-label="Scroll to top of page"
-        >
-          <span>Back to top</span>
-          <span aria-hidden="true">↑</span>
-        </button>
+        {/* Footer Bottom Bar with Back to Top */}
+        <div className="footer-bottom-bar">
+          <small className="footer-copyright">
+            © 2026 Mitjen Interiors. All rights reserved.
+          </small>
+          <small className="footer-copyright">
+            Designed by <a href="https://indiafloats.in" target="_blank" rel="noopener noreferrer">IndiaFloats</a>
+          </small>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="footer-back-to-top"
+            aria-label="Scroll to top of page"
+          >
+            <span>Back to top</span>
+            <span aria-hidden="true">↑</span>
+          </button>
+        </div>
       </div>
     </footer>
   );
