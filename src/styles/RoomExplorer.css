@@ -1,0 +1,996 @@
+/* ==========================================================================
+   MITJEN INTERIORS — ROOM EXPLORER COMPONENT
+   Creative Interactive Spatial Architecture Showcase
+   Quiet Luxury Minimalist Design · Fluid Physics Animations · Multi-device Responsive
+   ========================================================================== */
+
+.room-explorer-section {
+  position: relative;
+  background-color: var(--ink, #151614);
+  color: var(--ivory, #FAF8F5);
+  padding: clamp(70px, 9vw, 130px) var(--pad, 32px);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+.room-explorer-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   1. Editorial Side-by-Side Section Header
+   -------------------------------------------------------------------------- */
+.room-explorer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 56px);
+  margin-bottom: clamp(36px, 5vw, 64px);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.room-explorer-header-left {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.room-explorer-kicker {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.70rem, 0.85vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.room-explorer-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
+}
+
+.room-explorer-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', 'Average', Georgia, serif);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: #FAF8F5;
+  margin: 0;
+}
+
+.room-explorer-header-right {
+  max-width: 460px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.room-explorer-lead {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  line-height: 1.68;
+  color: rgba(250, 248, 245, 0.78);
+  margin: 0;
+  font-weight: 350;
+}
+
+/* --------------------------------------------------------------------------
+   2. Main Interactive Showcase Grid (2 Columns)
+   -------------------------------------------------------------------------- */
+.room-explorer-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   3. Left Column: Interactive Room Selection & Spatial Narrative
+   -------------------------------------------------------------------------- */
+.room-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.2vw, 36px);
+}
+
+/* Room Navigation Tabs */
+.room-nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.room-tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(250, 248, 245, 0.10);
+  padding: clamp(14px, 1.8vh, 18px) 14px clamp(14px, 1.8vh, 18px) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.room-tab-btn:hover {
+  border-bottom-color: rgba(216, 200, 180, 0.35);
+  padding-left: 8px;
+}
+
+.room-tab-btn.is-active {
+  border-bottom-color: var(--sand, #D8C8B4);
+  padding-left: 12px;
+}
+
+.room-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.room-tab-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: rgba(250, 248, 245, 0.45);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.room-tab-btn:hover .room-tab-title,
+.room-tab-btn.is-active .room-tab-title {
+  color: #FAF8F5;
+}
+
+.room-tab-subtitle {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(216, 200, 180, 0.65);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.room-tab-btn.is-active .room-tab-subtitle {
+  opacity: 1;
+  max-height: 24px;
+  margin-top: 2px;
+  color: var(--sand, #D8C8B4);
+}
+
+/* Active Indicator Pill / Arrow */
+.room-tab-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.room-tab-area {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: rgba(250, 248, 245, 0.4);
+  transition: color 0.3s ease;
+}
+
+.room-tab-btn.is-active .room-tab-area {
+  color: var(--sand, #D8C8B4);
+}
+
+.room-tab-line {
+  width: 24px;
+  height: 1px;
+  background: rgba(250, 248, 245, 0.2);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.room-tab-btn.is-active .room-tab-line {
+  width: 44px;
+  background: var(--sand, #D8C8B4);
+}
+
+/* Active Room Detail Narrative Block */
+.room-narrative-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: clamp(18px, 2.4vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.room-narrative-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--sand, #D8C8B4);
+}
+
+.room-narrative-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.94rem, 1.15vw, 1.05rem);
+  line-height: 1.68;
+  color: rgba(250, 248, 245, 0.85);
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Micro-Specs Grid */
+.room-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.room-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.room-spec-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(216, 200, 180, 0.7);
+  font-weight: 500;
+}
+
+.room-spec-value {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.82rem;
+  color: #FAF8F5;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Material Chips */
+.room-materials-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-materials-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.5);
+  margin-right: 4px;
+}
+
+.room-material-pill {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #FAF8F5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 12px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.room-material-pill:hover {
+  background: rgba(216, 200, 180, 0.15);
+  border-color: rgba(216, 200, 180, 0.35);
+  color: var(--sand, #D8C8B4);
+  transform: translateY(-1px);
+}
+
+/* Interactive Tour & Navigation Toolbar */
+.room-tour-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.room-tour-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.room-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: #FAF8F5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.room-nav-btn:hover {
+  background: var(--sand, #D8C8B4);
+  color: var(--ink, #151614);
+  border-color: var(--sand, #D8C8B4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(216, 200, 180, 0.25);
+}
+
+.room-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: #FAF8F5;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.room-play-btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.30);
+  color: #FAF8F5;
+}
+
+.room-counter {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: rgba(250, 248, 245, 0.55);
+}
+
+.room-counter strong {
+  color: #FAF8F5;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   4. Right Column: Cinematic Interactive Photography Stage
+   -------------------------------------------------------------------------- */
+.room-stage-perspective-wrap {
+  perspective: 1200px;
+  width: 100%;
+}
+
+.room-stage-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55),
+              0 2px 8px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: #0D0E0C;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.room-stage-container:hover {
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65),
+              0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Image Stack with Smooth Crossfade & Micro Ken-Burns */
+.room-image-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.room-image-layer.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Architectural Subtle Gradients */
+.room-stage-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(21, 22, 20, 0.55) 0%,
+    rgba(21, 22, 20, 0.0) 25%,
+    rgba(21, 22, 20, 0.0) 65%,
+    rgba(21, 22, 20, 0.75) 100%
+  );
+  z-index: 2;
+}
+
+/* Top Floating Glass Badges */
+.room-stage-topbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.room-stage-topbar > * {
+  pointer-events: auto;
+}
+
+.room-stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(21, 22, 20, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.70rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FAF8F5;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.room-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
+  box-shadow: 0 0 8px rgba(216, 200, 180, 0.6);
+}
+
+.room-stage-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-action-btn {
+  background: rgba(21, 22, 20, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FAF8F5;
+  padding: 6px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.70rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.room-action-btn:hover {
+  background: rgba(250, 248, 245, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+}
+
+.room-action-btn.is-active {
+  background: var(--sand, #D8C8B4);
+  color: var(--ink, #151614);
+  border-color: var(--sand, #D8C8B4);
+}
+
+/* Bottom In-Stage Status */
+.room-stage-bottombar {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.room-stage-bottombar > * {
+  pointer-events: auto;
+}
+
+.room-stage-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.room-stage-caption-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.35rem;
+  color: #FAF8F5;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.room-stage-caption-sub {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+}
+
+.room-stage-hint {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.7);
+  background: rgba(21, 22, 20, 0.5);
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Interactive Hotspot Pins & Floating Architectural Popovers
+   -------------------------------------------------------------------------- */
+.room-hotspot {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  outline: none;
+}
+
+.room-hotspot-pin {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(21, 22, 20, 0.85);
+  border: 1.5px solid var(--sand, #D8C8B4);
+  color: var(--sand, #D8C8B4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.room-hotspot:hover .room-hotspot-pin,
+.room-hotspot.is-open .room-hotspot-pin {
+  background: var(--sand, #D8C8B4);
+  color: var(--ink, #151614);
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(216, 200, 180, 0.5);
+}
+
+/* Pulsing Ripple Ring Animation */
+.room-hotspot-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid var(--sand, #D8C8B4);
+  opacity: 0.8;
+  animation: hotspot-ripple 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes hotspot-ripple {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  100% {
+    width: 250%;
+    height: 250%;
+    opacity: 0;
+  }
+}
+
+/* Floating Architectural Tooltip Popover */
+.room-hotspot-popover {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 260px;
+  background: rgba(21, 22, 20, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(216, 200, 180, 0.35);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #FAF8F5;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6),
+              0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 20;
+}
+
+.room-hotspot.is-open .room-hotspot-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Flip downwards if pin is positioned in the top 25% of image */
+.room-hotspot.align-down .room-hotspot-popover {
+  bottom: auto;
+  top: calc(100% + 14px);
+}
+
+.room-popover-tag {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.room-popover-close {
+  background: none;
+  border: none;
+  color: rgba(250, 248, 245, 0.5);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.room-popover-close:hover {
+  color: #FFFFFF;
+}
+
+.room-popover-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #FAF8F5;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.room-popover-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(250, 248, 245, 0.8);
+  margin: 0;
+}
+
+.room-popover-material {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--sand, #D8C8B4);
+  background: rgba(216, 200, 180, 0.10);
+  padding: 3px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Fullscreen Lightbox Modal
+   -------------------------------------------------------------------------- */
+.room-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 9, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 48px);
+  animation: lightbox-fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lightbox-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.room-lightbox-content {
+  position: relative;
+  max-width: 1400px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.room-lightbox-img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.room-lightbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FAF8F5;
+}
+
+.room-lightbox-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.room-lightbox-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FAF8F5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.room-lightbox-close:hover {
+  background: var(--sand, #D8C8B4);
+  color: var(--ink, #151614);
+}
+
+/* ==========================================================================
+   7. RESPONSIVE BREAKPOINTS (TABLETS & MOBILE SCREENS)
+   ========================================================================== */
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .room-explorer-section {
+    padding: clamp(60px, 8vw, 90px) var(--pad, 24px);
+  }
+
+  .room-explorer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  /* Show photography stage first on tablets and mobile */
+  .room-right-col {
+    order: -1;
+  }
+
+  .room-stage-container {
+    aspect-ratio: 16 / 10;
+    max-height: 480px;
+  }
+
+  .room-tab-btn {
+    padding: 14px 10px;
+  }
+}
+
+/* Medium Mobile & Small Tablet (<= 768px) */
+@media (max-width: 768px) {
+  .room-explorer-section {
+    padding: clamp(48px, 7vw, 76px) var(--pad, 18px);
+  }
+
+  .room-explorer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .room-explorer-header-left,
+  .room-explorer-header-right {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* Horizontal Pill Rail for Mobile */
+  .room-nav-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .room-nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .room-tab-btn {
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .room-tab-btn:hover {
+    padding-left: 16px;
+  }
+
+  .room-tab-btn.is-active {
+    background: var(--sand, #D8C8B4);
+    border-color: var(--sand, #D8C8B4);
+    padding-left: 16px;
+  }
+
+  .room-tab-title {
+    font-size: 1.05rem;
+    color: #FAF8F5;
+  }
+
+  .room-tab-btn.is-active .room-tab-title {
+    color: var(--ink, #151614);
+    font-weight: 500;
+  }
+
+  .room-tab-subtitle,
+  .room-tab-indicator {
+    display: none;
+  }
+
+  .room-stage-container {
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+  }
+
+  .room-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .room-narrative-card {
+    padding: 16px;
+  }
+
+  .room-hotspot-popover {
+    width: 220px;
+    padding: 12px;
+  }
+
+  .room-popover-title {
+    font-size: 1.05rem;
+  }
+
+  .room-popover-desc {
+    font-size: 0.74rem;
+  }
+}
+
+/* Compact Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .room-explorer-section {
+    padding: 44px 14px;
+  }
+
+  .room-explorer-title {
+    font-size: clamp(2.0rem, 8.5vw, 2.5rem);
+  }
+
+  .room-stage-container {
+    aspect-ratio: 16 / 11;
+    min-height: 260px;
+    border-radius: 12px;
+  }
+
+  .room-stage-badge {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+  }
+
+  .room-action-btn {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .room-hotspot-pin {
+    width: 28px;
+    height: 28px;
+  }
+
+  .room-hotspot-popover {
+    width: 200px;
+    padding: 10px;
+  }
+
+  .room-tour-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .room-tour-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
