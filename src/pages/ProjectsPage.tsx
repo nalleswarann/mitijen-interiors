@@ -529,7 +529,7 @@ export const ProjectsPage: React.FC = () => {
                     <img src={project.coverImage} alt={project.name} loading="lazy" />
                   </div>
                   <div className="idx-title-group">
-                    <span className="idx-num">{project.num}</span>
+                    <span className="idx-cat-badge">{project.category}</span>
                     <h3 className="idx-name">{project.name}</h3>
                   </div>
                   <div className="idx-col idx-location">{project.location}</div>
@@ -556,12 +556,12 @@ export const ProjectsPage: React.FC = () => {
                 >
                   <div className="projects-full-plate">
                     <img src={project.coverImage} alt={project.name} loading="lazy" />
-                    <div className="projects-full-plate-tag">{project.num}</div>
+                    <div className="projects-full-plate-tag">{project.category}</div>
                   </div>
                   <div className="projects-full-content">
                     <div className="projects-full-header">
                       <span className="projects-full-cat">
-                        {project.category} · {project.year}
+                        {project.typology || project.category} · {project.year}
                       </span>
                       <span className="projects-full-area">{project.area}</span>
                     </div>
@@ -572,9 +572,12 @@ export const ProjectsPage: React.FC = () => {
                       <span className="mat-lead">Key Materials:</span>
                       <span className="mat-tags">{project.materials.slice(0, 3).join(' · ')}</span>
                     </div>
-                    <span className="projects-card-link">
-                      View Architectural Monograph <span className="arrow">⟶</span>
-                    </span>
+                    <div className="projects-full-cta-wrap">
+                      <span className="projects-monograph-btn">
+                        <span>View Architectural Monograph</span>
+                        <span className="btn-arrow" aria-hidden="true">⟶</span>
+                      </span>
+                    </div>
                   </div>
                 </article>
               );
@@ -598,32 +601,61 @@ export const ProjectsPage: React.FC = () => {
                     className="projects-card-img"
                     loading="lazy"
                   />
-                  <div className="projects-card-badge">{project.num}</div>
+                  <div className="projects-card-plate-top">
+                    <span className="projects-card-tag">{project.category}</span>
+                    <span className="projects-card-year-tag">{project.year}</span>
+                  </div>
                   <div className="projects-card-hover-pill">
-                    <span>EXPLORE SPACE ⟶</span>
+                    <span>EXPLORE MONOGRAPH ⟶</span>
                   </div>
                 </div>
 
                 <div className="projects-card-info">
-                  <div className="projects-card-cat-line">
-                    <span className="projects-card-cat">{project.category}</span>
-                    <span className="projects-card-year">{project.year}</span>
+                  <div className="projects-card-main-col">
+                    <div className="projects-card-kicker-row">
+                      <span className="projects-card-kicker">
+                        {project.typology || project.category}
+                      </span>
+                      <span className="projects-card-status">Commissioned {project.year}</span>
+                    </div>
+
+                    <div className="projects-card-title-row">
+                      <h3 className="projects-card-title">{project.name}</h3>
+                      <div className="projects-card-arrow-badge" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <line x1="7" y1="17" x2="17" y2="7" />
+                          <polyline points="7 7 17 7 17 17" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <p className="projects-card-desc">{project.description}</p>
                   </div>
 
-                  <h3 className="projects-card-title">{project.name}</h3>
+                  <div className="projects-card-side-col">
+                    <div className="projects-card-specs-grid">
+                      <div className="projects-spec-item">
+                        <span className="spec-label">Location</span>
+                        <span className="spec-val">{project.location}</span>
+                      </div>
+                      <div className="projects-spec-item">
+                        <span className="spec-label">Volume</span>
+                        <span className="spec-val">{project.area}</span>
+                      </div>
+                      {project.materials && project.materials.length > 0 && (
+                        <div className="projects-spec-item spec-materials">
+                          <span className="spec-label">Key Materials</span>
+                          <span className="spec-val">{project.materials.slice(0, 2).join(' · ')}</span>
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="projects-card-meta-line">
-                    <span className="projects-card-loc">{project.location}</span>
-                    <span className="projects-card-sep">·</span>
-                    <span className="projects-card-area">{project.area}</span>
-                  </div>
-
-                  <p className="projects-card-desc">{project.description}</p>
-
-                  <div className="projects-card-footer">
-                    <span className="projects-card-link">
-                      Monograph <span className="arrow">⟶</span>
-                    </span>
+                    <div className="projects-card-action">
+                      <span className="projects-monograph-btn">
+                        <span>Explore Monograph</span>
+                        <span className="btn-arrow" aria-hidden="true">⟶</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </article>
