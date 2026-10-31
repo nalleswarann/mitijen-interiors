@@ -133,89 +133,49 @@
 .projects-hero-meta {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  flex-wrap: wrap;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(36, 37, 34, 0.15);
+  padding-top: 1.6rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(21, 22, 20, 0.10);
   animation: heroFadeIn 1.1s var(--ease) 0.6s forwards;
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(14px);
 }
 
-.projects-hero-stat {
+.projects-hero-provenance {
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.stat-num {
-  font-family: var(--serif);
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1;
-  color: var(--ink);
+.provenance-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--olive, #777B61);
+  box-shadow: 0 0 8px rgba(119, 123, 97, 0.6);
+  flex-shrink: 0;
 }
 
-.stat-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+.provenance-title {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--olive);
-  font-weight: 600;
+  color: var(--ink, #151614);
 }
 
-.projects-hero-stat-sep {
-  width: 1px;
-  height: 28px;
-  background: rgba(36, 37, 34, 0.18);
+.provenance-sep {
+  color: rgba(21, 22, 20, 0.35);
+  font-size: 0.82rem;
 }
 
-.projects-hero-coords {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.coords-code {
-  font-family: var(--font-architectural, monospace);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  color: var(--brown);
-  font-weight: 500;
-}
-
-.coords-city {
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  color: var(--olive);
-  font-weight: 600;
-}
-
-.projects-scroll-line {
-  margin-left: auto;
-  display: inline-block;
-  width: 1px;
-  height: 44px;
-  background: rgba(36, 37, 34, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.projects-scroll-line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--ink);
-  animation: scrollDrop 2.4s var(--ease) infinite;
-}
-
-@keyframes scrollDrop {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100%);
-  }
+.provenance-loc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.78rem;
+  color: rgba(21, 22, 20, 0.62);
+  letter-spacing: 0.04em;
 }
 
 /* Hero Showcase Slider */
@@ -270,95 +230,71 @@
 
 .projects-hero-image-caption {
   position: absolute;
-  left: clamp(20px, 3.5vw, 44px);
-  bottom: clamp(24px, 3.5vw, 44px);
-  right: clamp(20px, 3.5vw, 44px);
+  left: clamp(16px, 2.5vw, 32px);
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: clamp(16px, 2.5vw, 28px);
   z-index: 3;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  background: rgba(245, 242, 236, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 1.1rem 1.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  background: rgba(21, 22, 20, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  color: #FAF8F5;
+  box-sizing: border-box;
 }
 
 .caption-text {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-}
-
-.caption-num {
-  font-family: var(--font-architectural, monospace);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  color: var(--olive);
-  font-weight: 600;
-  text-transform: uppercase;
+  gap: 2px;
 }
 
 .caption-title {
-  font-family: var(--serif);
-  font-size: 1.35rem;
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 400;
-  color: var(--ink);
-  line-height: 1.15;
+  color: #FAF8F5;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .caption-sub {
-  font-size: 0.8rem;
-  color: var(--brown);
-  opacity: 0.85;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.78rem;
+  color: rgba(250, 248, 245, 0.72);
 }
 
 .caption-dots {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
 .caption-dot-btn {
-  width: 24px;
+  width: 20px;
   height: 3px;
-  background: rgba(36, 37, 34, 0.25);
+  background: rgba(255, 255, 255, 0.28);
   border: 0;
+  border-radius: 2px;
   padding: 0;
   cursor: pointer;
-  transition: background 0.3s var(--ease), width 0.3s var(--ease);
+  transition: all 0.3s ease;
 }
 
 .caption-dot-btn.is-active {
-  background: var(--ink);
-  width: 42px;
-}
-
-@media (max-width: 900px) {
-  .projects-hero {
-    grid-template-columns: 1fr;
-  }
-  .projects-hero-image-wrap {
-    order: -1;
-    height: 54svh;
-    clip-path: inset(0 0 100% 0);
-  }
-  .projects-hero-text {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  .projects-hero-meta {
-    justify-content: space-between;
-  }
-  .projects-scroll-line {
-    display: none;
-  }
+  background: var(--sand, #D8C8B4);
+  width: 34px;
 }
 
 /* --------------------------------------------------------------------------
-   2. STICKY GALLERY CONTROLS (FILTER TABS & LAYOUT MODES)
+   2. STICKY GALLERY CONTROLS (MINIMALIST PILL BAR & SEGMENTED DOCK)
    -------------------------------------------------------------------------- */
 .projects-gallery-section {
   padding-top: 0;
@@ -369,26 +305,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 16px;
   position: sticky;
   top: calc(72px + env(safe-area-inset-top, 0px));
-  background: rgba(245, 242, 236, 0.94);
+  background: rgba(250, 248, 245, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   z-index: 30;
-  border-bottom: 1px solid rgba(36, 37, 34, 0.14);
-  padding: 0 var(--pad);
+  border-bottom: 1px solid rgba(21, 22, 20, 0.10);
+  padding: 8px var(--pad);
   margin: 0;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 4px 20px rgba(36, 37, 34, 0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .projects-filter-pills {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 6px;
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -398,149 +334,172 @@
   display: none;
 }
 
-.projects-filter-btn {
-  background: none;
-  border: 0;
-  padding: 1.1rem 1.15rem;
-  min-height: 54px;
-  white-space: nowrap;
-  font-size: 0.88rem;
+.projects-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.82rem;
   font-weight: 500;
-  color: var(--ink);
-  opacity: 0.55;
+  color: rgba(21, 22, 20, 0.65);
+  white-space: nowrap;
   cursor: pointer;
-  position: relative;
-  transition: opacity 0.3s var(--ease), color 0.3s var(--ease);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.projects-filter-btn:hover {
-  opacity: 0.85;
+.projects-filter-pill:hover:not(.is-active) {
+  color: var(--ink, #151614);
+  background: rgba(21, 22, 20, 0.05);
 }
 
-.projects-filter-btn.is-active {
-  opacity: 1;
+.projects-filter-pill.is-active {
+  background: var(--ink, #151614);
+  color: #FAF8F5;
   font-weight: 600;
-  color: var(--ink);
-}
-
-.projects-filter-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 1.15rem;
-  right: 1.15rem;
-  height: 2px;
-  background: var(--olive);
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
-}
-
-.projects-filter-btn.is-active::after {
-  opacity: 1;
-  transform: scaleX(1);
+  box-shadow: 0 2px 10px rgba(21, 22, 20, 0.18);
 }
 
 .projects-filter-actions {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: 14px;
   flex-shrink: 0;
 }
 
-.projects-layout-toolbar {
+/* Minimalist Segmented Layout Dock */
+.projects-layout-dock {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 2px;
+  background: rgba(21, 22, 20, 0.05);
+  border: 1px solid rgba(21, 22, 20, 0.08);
+  border-radius: 999px;
+  padding: 3px;
 }
 
-.projects-layout-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--brown);
-  font-weight: 600;
-  margin-right: 0.2rem;
-}
-
-.projects-layout-btn {
-  background: none;
-  border: 1px solid rgba(36, 37, 34, 0.2);
-  padding: 0.4em 0.9em;
-  min-height: 32px;
-  font-size: 0.76rem;
-  letter-spacing: 0.04em;
-  font-weight: 600;
-  color: var(--ink);
+.layout-dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: rgba(21, 22, 20, 0.65);
   cursor: pointer;
-  transition: all 0.25s var(--ease);
+  transition: all 0.25s ease;
 }
 
-.projects-layout-btn:hover {
-  border-color: var(--ink);
+.layout-dock-btn svg {
+  transition: transform 0.25s ease;
 }
 
-.projects-layout-btn.is-active {
-  background: var(--ink);
-  color: var(--ivory);
-  border-color: var(--ink);
+.layout-dock-btn:hover:not(.is-active) {
+  color: var(--ink, #151614);
+}
+
+.layout-dock-btn.is-active {
+  background: var(--ink, #151614);
+  color: #FAF8F5;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .projects-filter-count {
-  font-size: 0.82rem;
-  color: var(--brown);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(21, 22, 20, 0.50);
+  font-weight: 600;
+  padding: 4px 10px;
+  background: rgba(21, 22, 20, 0.04);
+  border-radius: 999px;
   white-space: nowrap;
-  font-weight: 500;
-  padding-left: 0.9rem;
-  border-left: 1px solid rgba(36, 37, 34, 0.18);
 }
 
-@media (max-width: 960px) {
+/* Responsive Rules for Hero & Controls */
+@media (max-width: 900px) {
+  .projects-hero {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .projects-hero-image-wrap {
+    order: -1;
+    height: 50svh;
+    min-height: 360px;
+  }
+  .projects-hero-text {
+    padding-top: 36px;
+    padding-bottom: 40px;
+  }
+  .projects-hero-meta {
+    padding-top: 1.2rem;
+  }
   .projects-filter-bar {
     top: calc(66px + env(safe-area-inset-top, 0px));
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 0;
+    padding: 8px var(--pad);
   }
-  .projects-filter-pills {
-    padding: 0 var(--pad);
-    border-bottom: 1px solid rgba(36, 37, 34, 0.1);
+  .projects-layout-dock span {
+    display: none;
   }
-  .projects-filter-actions {
-    justify-content: space-between;
-    padding: 0.6rem var(--pad);
+  .layout-dock-btn {
+    padding: 6px 9px;
   }
 }
 
 @media (max-width: 600px) {
-  .projects-hero-text {
-    padding-top: 24px;
-    padding-bottom: 24px;
+  .projects-hero-image-wrap {
+    height: 42svh;
+    min-height: 300px;
   }
-  .projects-hero-h1 {
-    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
+  .projects-hero-title {
+    font-size: clamp(2.2rem, 9.5vw, 3.2rem);
   }
   .projects-hero-image-caption {
-    padding: 0.75rem 1rem;
-    gap: 0.8rem;
-    flex-direction: column;
-    align-items: flex-start;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
   }
-  .projects-layout-toolbar {
+  .caption-title {
+    font-size: 1.1rem;
+  }
+  .caption-sub {
+    font-size: 0.72rem;
+  }
+  .projects-filter-bar {
+    padding: 6px 12px;
+  }
+  .projects-filter-pill {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+  .projects-filter-count {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .projects-idx-row {
-    grid-template-columns: 50px 1fr 24px;
-    gap: 10px;
+  .projects-hero-provenance {
+    gap: 8px;
+    font-size: 0.70rem;
   }
-  .projects-filter-btn {
-    padding: 0.9rem 0.95rem;
-    font-size: 0.82rem;
+  .provenance-title {
+    font-size: 0.68rem;
+  }
+  .provenance-loc {
+    font-size: 0.72rem;
+  }
+  .layout-dock-btn {
+    padding: 5px 8px;
   }
 }
 

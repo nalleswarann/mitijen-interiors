@@ -361,8 +361,8 @@ export const ProjectsPage: React.FC = () => {
       <section className="projects-hero" id="top">
         <div className="projects-hero-text">
           <div className="projects-hero-header-badge">
-            <span className="hero-studio-tag">EST. 2018</span>
-            <span className="hero-vol-tag">PORTFOLIO VOL. I — 2024 / 2026</span>
+            <span className="hero-studio-tag">MITJEN INTERIORS</span>
+            <span className="hero-vol-tag">PORTFOLIO ARCHIVE</span>
           </div>
 
           <h1 className="projects-hero-title">
@@ -381,21 +381,12 @@ export const ProjectsPage: React.FC = () => {
           </p>
 
           <div className="projects-hero-meta">
-            <div className="projects-hero-stat">
-              <span className="stat-num">05</span>
-              <span className="stat-label">Selected Spaces</span>
+            <div className="projects-hero-provenance">
+              <span className="provenance-dot" aria-hidden="true" />
+              <span className="provenance-title">Curated Interior Architecture</span>
+              <span className="provenance-sep">·</span>
+              <span className="provenance-loc">Chennai · Bengaluru · Hyderabad</span>
             </div>
-            <div className="projects-hero-stat-sep" />
-            <div className="projects-hero-stat">
-              <span className="stat-num">100%</span>
-              <span className="stat-label">Custom Millwork</span>
-            </div>
-            <div className="projects-hero-stat-sep" />
-            <div className="projects-hero-coords">
-              <span className="coords-code">13.0827° N, 80.2707° E</span>
-              <span className="coords-city">CHENNAI STUDIO</span>
-            </div>
-            <span className="projects-scroll-line" aria-hidden="true" />
           </div>
         </div>
 
@@ -414,8 +405,7 @@ export const ProjectsPage: React.FC = () => {
 
           <div className="projects-hero-image-caption">
             <div className="caption-text">
-              <span className="caption-num">0{activeHeroIdx + 1} / 03</span>
-              <b className="caption-title">{activeHero.title}</b>
+              <h3 className="caption-title">{activeHero.title}</h3>
               <span className="caption-sub">{activeHero.subtitle}</span>
             </div>
 
@@ -440,7 +430,7 @@ export const ProjectsPage: React.FC = () => {
           ===================================================================== */}
       <section className="projects-gallery-section" id="work">
         <div className="projects-filter-bar">
-          {/* Category Tabs */}
+          {/* Minimalist Category Tabs */}
           <div
             className="projects-filter-pills"
             role="tablist"
@@ -454,7 +444,7 @@ export const ProjectsPage: React.FC = () => {
                   type="button"
                   role="tab"
                   aria-selected={isSelected}
-                  className={`projects-filter-btn ${isSelected ? 'is-active' : ''}`}
+                  className={`projects-filter-pill ${isSelected ? 'is-active' : ''}`}
                   onClick={() => handleFilterClick(index)}
                 >
                   {filter}
@@ -463,41 +453,61 @@ export const ProjectsPage: React.FC = () => {
             })}
           </div>
 
-          {/* Actions & Layout Toggles */}
+          {/* Minimalist Segmented Layout Dock & Count */}
           <div className="projects-filter-actions">
-            <div className="projects-layout-toolbar" role="group" aria-label="Gallery display mode">
-              <span className="projects-layout-label">View:</span>
+            <div className="projects-layout-dock" role="group" aria-label="Gallery display layout">
               <button
                 type="button"
-                className={`projects-layout-btn ${layoutMode === 'ed' ? 'is-active' : ''}`}
+                className={`layout-dock-btn ${layoutMode === 'ed' ? 'is-active' : ''}`}
                 onClick={() => handleLayoutChange('ed')}
-                title="Editorial magazine layout"
+                title="Editorial Grid"
+                aria-label="Editorial Grid"
                 aria-pressed={layoutMode === 'ed'}
               >
-                Editorial
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                <span>Editorial</span>
               </button>
               <button
                 type="button"
-                className={`projects-layout-btn ${layoutMode === 'full' ? 'is-active' : ''}`}
+                className={`layout-dock-btn ${layoutMode === 'full' ? 'is-active' : ''}`}
                 onClick={() => handleLayoutChange('full')}
-                title="Full-width monograph layout"
+                title="Full Spread"
+                aria-label="Full Spread"
                 aria-pressed={layoutMode === 'full'}
               >
-                Monograph
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                </svg>
+                <span>Spread</span>
               </button>
               <button
                 type="button"
-                className={`projects-layout-btn ${layoutMode === 'idx' ? 'is-active' : ''}`}
+                className={`layout-dock-btn ${layoutMode === 'idx' ? 'is-active' : ''}`}
                 onClick={() => handleLayoutChange('idx')}
-                title="Table index layout"
+                title="Index Directory"
+                aria-label="Index Directory"
                 aria-pressed={layoutMode === 'idx'}
               >
-                Index
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <line x1="8" y1="6" x2="21" y2="6" />
+                  <line x1="8" y1="12" x2="21" y2="12" />
+                  <line x1="8" y1="18" x2="21" y2="18" />
+                  <circle cx="4" cy="6" r="1.5" fill="currentColor" />
+                  <circle cx="4" cy="12" r="1.5" fill="currentColor" />
+                  <circle cx="4" cy="18" r="1.5" fill="currentColor" />
+                </svg>
+                <span>Index</span>
               </button>
             </div>
 
             <span className="projects-filter-count" aria-live="polite">
-              {filteredProjects.length} {filteredProjects.length === 1 ? 'Space' : 'Spaces'}
+              {filteredProjects.length} Spaces
             </span>
           </div>
         </div>
