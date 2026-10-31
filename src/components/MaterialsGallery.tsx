@@ -73,14 +73,18 @@ export const MaterialsGallery: React.FC = () => {
       <div className="corporate-human-container">
         {/* Section Header */}
         <div className="corporate-human-header">
-          <span className="corporate-human-label">Corporate Architecture</span>
-          <h2 className="corporate-human-title">
-            Spaces where leadership can think, listen, and decide.
-          </h2>
-          <p className="corporate-human-lead">
-            We shape executive headquarters and private offices with acoustic calm, natural light, 
-            and bespoke millwork — creating workplaces that feel dignified and human rather than corporate.
-          </p>
+          <div className="corporate-human-header-left">
+            <span className="corporate-human-label">Corporate Architecture</span>
+            <h2 className="corporate-human-title">
+              Spaces where leadership can think, listen, and decide.
+            </h2>
+          </div>
+          <div className="corporate-human-header-right">
+            <p className="corporate-human-lead">
+              We shape executive headquarters and private offices with acoustic calm, natural light, 
+              and bespoke millwork — creating workplaces that feel dignified and human rather than corporate.
+            </p>
+          </div>
         </div>
 
         {/* Editorial Showcase Grid */}

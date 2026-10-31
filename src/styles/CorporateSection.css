@@ -27,8 +27,20 @@
    1. Section Editorial Header
    -------------------------------------------------------------------------- */
 .corporate-human-header {
-  max-width: 780px;
-  margin-bottom: clamp(32px, 4.5vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 56px);
+  margin-bottom: clamp(36px, 5vw, 64px);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.corporate-human-header-left {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .corporate-human-label {
@@ -36,12 +48,12 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
+  font-size: clamp(0.70rem, 0.85vw, 0.78rem);
   font-weight: 600;
   letter-spacing: 0.22em;
   color: var(--sand, #D8C8B4);
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .corporate-human-label::before {
@@ -59,19 +71,26 @@
   font-weight: 400;
   color: #FAF8F5;
   line-height: 1.1;
-  margin: 0 0 1.25rem;
+  margin: 0;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
+.corporate-human-header-right {
+  max-width: 460px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .corporate-human-lead {
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
   color: rgba(250, 248, 245, 0.78);
-  line-height: 1.7;
+  line-height: 1.68;
   margin: 0;
   font-weight: 350;
-  max-width: 680px;
 }
 
 /* --------------------------------------------------------------------------
@@ -488,6 +507,17 @@
 
 /* Medium Mobile / Tablet (<= 768px) */
 @media (max-width: 768px) {
+  .corporate-human-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .corporate-human-header-left,
+  .corporate-human-header-right {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
   .corporate-human-section {
     padding: clamp(56px, 8vw, 84px) var(--pad);
   }

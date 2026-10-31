@@ -50,15 +50,19 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
       <div className="arch-practices-container">
         {/* Section Editorial Header */}
         <div className="arch-practices-header">
-          <span className="arch-practices-kicker">
-            Disciplines of Form & Space
-          </span>
-          <h2 className="arch-practices-title">
-            Architectural Disciplines & Commissioned Spaces.
-          </h2>
-          <p className="arch-practices-intro">
-            From private residential sanctuaries to curated commercial venues and executive headquarters—each commission is designed with bespoke joinery, monolithic materiality, and refined architectural restraint.
-          </p>
+          <div className="arch-practices-header-left">
+            <span className="arch-practices-kicker">
+              Disciplines of Form & Space
+            </span>
+            <h2 className="arch-practices-title">
+              Architectural Disciplines & Commissioned Spaces.
+            </h2>
+          </div>
+          <div className="arch-practices-header-right">
+            <p className="arch-practices-intro">
+              From private residential sanctuaries to curated commercial venues and executive headquarters—each commission is designed with bespoke joinery, monolithic materiality, and refined architectural restraint.
+            </p>
+          </div>
         </div>
 
         {/* 3-Practice Monograph Grid */}
