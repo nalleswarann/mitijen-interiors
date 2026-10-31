@@ -366,8 +366,8 @@ export const ProjectsPage: React.FC = () => {
           </div>
 
           <h1 className="projects-hero-title">
-            Spaces shaped around the <br className="hero-break" />
-            quiet art of living.
+            SPACES SHAPED AROUND THE <br className="hero-break" />
+            QUIET ART OF LIVING.
           </h1>
 
           <p className="projects-hero-desc">

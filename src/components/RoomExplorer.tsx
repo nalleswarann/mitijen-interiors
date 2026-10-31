@@ -113,9 +113,9 @@ export const RoomExplorer: React.FC = () => {
         {/* 1. Editorial Side-by-Side Section Header */}
         <div className="room-explorer-header">
           <div className="room-explorer-header-left">
-            <span className="room-explorer-kicker">Explore The Space</span>
+            <span className="room-explorer-kicker">EXPLORE THE SPACE</span>
             <h2 className="room-explorer-title">
-              One home, room by room.
+              ONE HOME, ROOM BY ROOM.
             </h2>
           </div>
           <div className="room-explorer-header-right">

@@ -68,7 +68,7 @@ const TRUST_COLUMNS: TrustColumn[] = [
 
 export const DesignProcess: React.FC = () => {
   return (
-    <section className="built-on-trust-section" id="process" aria-label="Built On Trust">
+    <section className="built-on-trust-section" id="process" aria-label="BUILT ON TRUST">
       <div className="built-on-trust-container">
         {/* Header Block with Slower Editorial Reveal */}
         <div className="built-on-trust-header reveal-fade-up">

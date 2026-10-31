@@ -348,7 +348,7 @@ export const ArchitectureShowcase: React.FC = () => {
           <div className="arch-header-left">
             <span className="arch-kicker">IMMERSIVE SPATIAL ARCHITECTURE</span>
             <h2 id="arch-heading" className="arch-title">
-              360° Spatial Craft & Materiality.
+              360° SPATIAL CRAFT & MATERIALITY.
             </h2>
           </div>
           <div className="arch-header-right">

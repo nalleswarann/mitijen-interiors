@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Services & Practices */}
           <div className="footer-col">
-            <SectionLabel style={{ color: 'var(--sand)' }}>Services & Practices</SectionLabel>
+            <SectionLabel style={{ color: 'var(--sand)' }}>SERVICES & PRACTICES</SectionLabel>
             <Link to="/services" className="footer-link footer-link-featured">
               All Practices Overview →
             </Link>
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Studio Contact */}
           <div className="footer-col">
-            <SectionLabel style={{ color: 'var(--sand)' }}>Studio Contact</SectionLabel>
+            <SectionLabel style={{ color: 'var(--sand)' }}>STUDIO CONTACT</SectionLabel>
             <Link to="/contact" className="footer-link footer-link-featured">
               Contact & Enquiries →
             </Link>
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 4: Social & Archive */}
           <div className="footer-col">
-            <SectionLabel style={{ color: 'var(--sand)' }}>Social & Archive</SectionLabel>
+            <SectionLabel style={{ color: 'var(--sand)' }}>SOCIAL & ARCHIVE</SectionLabel>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">
               Instagram ↗
             </a>

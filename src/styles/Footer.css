@@ -116,6 +116,16 @@ footer.mitjen-footer:hover .interior-outlines-svg {
   gap: 2px;
 }
 
+.footer-col .lab {
+  font-family: var(--font-special, Georgia, serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase !important;
+  color: var(--sand, #D8C8B4) !important;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
 .footer-link {
   font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.9rem;

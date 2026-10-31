@@ -172,10 +172,10 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
 
           <h1 className="arch-serv-hero-title">
             {data.category === 'Residential'
-              ? 'Residential Interior Architecture & Bespoke Living Sanctuaries'
+              ? 'RESIDENTIAL INTERIOR ARCHITECTURE & BESPOKE LIVING SANCTUARIES'
               : data.category === 'Commercial'
-              ? 'Commercial Interior Architecture & Experiential Brand Spaces'
-              : 'Corporate Interior Architecture & High-Performance Workspaces'}
+              ? 'COMMERCIAL INTERIOR ARCHITECTURE & EXPERIENTIAL BRAND SPACES'
+              : 'CORPORATE INTERIOR ARCHITECTURE & HIGH-PERFORMANCE WORKSPACES'}
           </h1>
         </div>
       </section>

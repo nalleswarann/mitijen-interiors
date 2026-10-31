@@ -52,10 +52,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         <div className="arch-practices-header">
           <div className="arch-practices-header-left">
             <span className="arch-practices-kicker">
-              Disciplines of Form & Space
+              DISCIPLINES OF FORM & SPACE
             </span>
             <h2 className="arch-practices-title">
-              Architectural Disciplines & Commissioned Spaces.
+              ARCHITECTURAL DISCIPLINES & COMMISSIONED SPACES.
             </h2>
           </div>
           <div className="arch-practices-header-right">

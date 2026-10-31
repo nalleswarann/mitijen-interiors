@@ -86,7 +86,8 @@
   line-height: 1.15;
   margin: 0.6rem 0 1.6rem;
   color: var(--ink, #151614);
-  letter-spacing: -0.015em;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
   overflow: visible;
   text-wrap: balance;
   word-break: normal;

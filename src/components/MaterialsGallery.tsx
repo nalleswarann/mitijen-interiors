@@ -69,14 +69,14 @@ export const MaterialsGallery: React.FC = () => {
   const currentProject = CORPORATE_PROJECTS[activeIdx];
 
   return (
-    <section className="corporate-human-section" id="corporate" aria-label="Corporate Architecture & Workplaces">
+    <section className="corporate-human-section" id="corporate" aria-label="CORPORATE ARCHITECTURE & Workplaces">
       <div className="corporate-human-container">
         {/* Section Header with Animated Reveal */}
         <div className="corporate-human-header reveal-fade-up">
           <div className="corporate-human-header-left">
             <span className="corporate-human-label">Corporate Architecture</span>
             <h2 className="corporate-human-title">
-              Spaces where leadership can think, listen, and decide.
+              SPACES WHERE LEADERSHIP CAN THINK, LISTEN & DECIDE.
             </h2>
           </div>
           <div className="corporate-human-header-right">
