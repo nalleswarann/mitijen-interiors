@@ -102,15 +102,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
             </h2>
           </div>
 
-          <div className="faq-accordion" role="region" aria-label="FAQ Accordion">
+          <div className="faq-accordion reveal-fade-up" role="region" aria-label="FAQ Accordion">
             {FAQ_ITEMS.map((item, idx) => {
               const isActive = activeFaqIndex === idx;
 
               return (
                 <div
                   key={item.number}
-                  className={`faq-item reveal-fade-up ${isActive ? 'is-active' : ''}`}
-                  data-delay={String((idx + 1) * 80)}
+                  className={`faq-item ${isActive ? 'is-active' : ''}`}
                   onClick={() => toggleFaq(idx)}
                 >
                   <button
