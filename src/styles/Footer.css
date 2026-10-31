@@ -1,7 +1,7 @@
 /* ==========================================================================
-   MITJEN INTERIORS — ARCHITECTURAL HERITAGE FOOTER
-   Features Monument Skyline Illustration, Newsletter Subscription,
-   Creative Smooth Micro-Interactions, and Multi-Device Responsiveness.
+   MITJEN INTERIORS — ARCHITECTURAL FOOTER
+   Features 4-Column Editorial Links, Panoramic Interior Elevation Outlines,
+   Tactile Interactive Hover Highlights, and Multi-Device Responsiveness.
    ========================================================================== */
 
 footer.mitjen-footer {
@@ -26,25 +26,23 @@ footer.mitjen-footer {
 }
 
 /* --------------------------------------------------------------------------
-   1. Top Tier: Brand Editorial & Newsletter Studio Journal
+   1. 4-Column Architectural Navigation Grid (Matching Benchmark Layout)
    -------------------------------------------------------------------------- */
-.footer-top-tier {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: clamp(32px, 5vw, 64px);
-  padding-bottom: clamp(36px, 5vw, 56px);
-  border-bottom: 1px solid rgba(250, 248, 245, 0.10);
-  flex-wrap: wrap;
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1.2fr 1.2fr 1fr;
+  gap: clamp(2rem, 3.5vw, 3.5rem);
 }
 
-.footer-brand-wrap {
-  max-width: 460px;
+.footer-col-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-brand-logo {
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.015em;
   color: var(--ivory, #FAF8F5);
@@ -61,195 +59,73 @@ footer.mitjen-footer {
 .footer-brand-desc {
   font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.92rem;
-  line-height: 1.68;
-  color: rgba(250, 248, 245, 0.72);
+  line-height: 1.65;
+  color: rgba(250, 248, 245, 0.68);
+  max-width: 340px;
   margin: 14px 0 0 0;
 }
 
-/* Newsletter / Studio Journal Subscription Box */
-.footer-newsletter-wrap {
-  max-width: 440px;
-  width: 100%;
-}
-
-.footer-newsletter-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: 1.45rem;
-  font-weight: 400;
-  color: #FAF8F5;
-  margin: 0 0 6px 0;
-  letter-spacing: -0.01em;
-}
-
-.footer-newsletter-subtitle {
-  font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.84rem;
-  line-height: 1.5;
-  color: rgba(250, 248, 245, 0.65);
-  margin: 0 0 14px 0;
-}
-
-.footer-newsletter-form {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.footer-input-field {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px;
-  padding: 12px 20px;
-  font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.88rem;
-  color: #FAF8F5;
-  outline: none;
-  transition: all 0.25s ease;
-}
-
-.footer-input-field::placeholder {
-  color: rgba(250, 248, 245, 0.4);
-}
-
-.footer-input-field:focus {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--sand, #D8C8B4);
-  box-shadow: 0 0 12px rgba(216, 200, 180, 0.2);
-}
-
-.footer-submit-btn {
-  background: var(--sand, #D8C8B4);
-  color: var(--ink, #151614);
-  border: none;
-  border-radius: 999px;
-  padding: 12px 24px;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
-}
-
-.footer-submit-btn:hover {
-  background: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(216, 200, 180, 0.3);
-}
-
-.footer-newsletter-feedback {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.76rem;
-  color: var(--sand, #D8C8B4);
-  margin-top: 8px;
-  display: block;
-}
-
-/* --------------------------------------------------------------------------
-   2. Middle Tier: 4-Column Architectural Navigation Links
-   -------------------------------------------------------------------------- */
-.footer-links-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(24px, 3.5vw, 48px);
-  padding: clamp(36px, 5vw, 56px) 0;
-}
-
-.footer-nav-col {
+.footer-col {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
-.footer-col-heading {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--sand, #D8C8B4);
-  margin: 0 0 12px 0;
-}
-
-.footer-nav-link {
+.footer-link {
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   color: rgba(250, 248, 245, 0.72);
   text-decoration: none;
-  padding: 4px 0;
+  padding: 5px 0;
   display: inline-flex;
   align-items: center;
-  transition: all 0.25s ease;
+  min-height: 34px;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-.footer-nav-link:hover {
+.footer-link:hover {
   color: #FAF8F5;
+  opacity: 1;
   transform: translateX(4px);
 }
 
-.footer-nav-link-featured {
+.footer-link-featured {
   color: var(--sand, #D8C8B4);
   font-weight: 500;
+  opacity: 0.95;
   margin-bottom: 4px;
 }
 
-.footer-meta-detail {
+.footer-email {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.footer-location {
   font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.82rem;
   line-height: 1.5;
   color: rgba(250, 248, 245, 0.5);
-  margin-top: 8px;
+  margin-top: 6px;
   display: block;
 }
 
-/* Social Icon Badges (Matching Reference Image) */
-.footer-social-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.footer-social-circle {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FAF8F5;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.footer-social-circle:hover {
-  background: var(--sand, #D8C8B4);
-  color: var(--ink, #151614);
-  border-color: var(--sand, #D8C8B4);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(216, 200, 180, 0.3);
-}
-
 /* --------------------------------------------------------------------------
-   3. Architectural Heritage Skyline Banner (Edge-to-Edge)
+   2. Panoramic Interior Elevation Outlines Banner
    -------------------------------------------------------------------------- */
-.footer-skyline-section {
+.footer-interior-outlines-section {
   position: relative;
   width: 100%;
-  margin-top: clamp(24px, 3.5vw, 40px);
+  margin-top: clamp(36px, 5vw, 64px);
   overflow: hidden;
-  background: linear-gradient(180deg, transparent 0%, rgba(21, 22, 20, 0.8) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(21, 22, 20, 0.6) 100%);
   border-bottom: 1px solid rgba(250, 248, 245, 0.08);
 }
 
-.skyline-wrapper {
+.interior-outlines-wrapper {
   position: relative;
   width: 100%;
   display: flex;
@@ -257,62 +133,41 @@ footer.mitjen-footer {
   align-items: center;
 }
 
-.skyline-svg {
+.interior-outlines-svg {
   width: 100%;
   height: auto;
-  max-height: 280px;
+  max-height: 170px;
   display: block;
   transform-origin: bottom center;
 }
 
-/* Monument Hover & Interactive Effects */
-.monument-group {
+/* Interior Groups & Hover Highlight Animations */
+.interior-group {
+  color: rgba(250, 248, 245, 0.32);
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.35s ease;
   transform-origin: bottom center;
 }
 
-.monument-group:hover {
-  transform: translateY(-6px);
-  filter: drop-shadow(0 8px 24px rgba(216, 200, 180, 0.35));
+.interior-group:hover {
+  color: #FAF8F5;
+  transform: translateY(-4px);
+  filter: drop-shadow(0 0 10px rgba(216, 200, 180, 0.55));
 }
 
-/* Ambient Floating Clouds */
-@keyframes cloudFloatSlow {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(60px); }
-  100% { transform: translateX(0); }
-}
-
-@keyframes cloudFloatMed {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-40px); }
-  100% { transform: translateX(0); }
-}
-
-.cloud-slow {
-  animation: cloudFloatSlow 30s ease-in-out infinite;
-}
-
-.cloud-medium {
-  animation: cloudFloatMed 22s ease-in-out infinite;
-}
-
-.cloud-fast {
-  animation: cloudFloatSlow 18s ease-in-out infinite reverse;
-}
-
-/* Floating Tooltip Pill */
-.skyline-tooltip {
+/* Floating Architectural Dimension Tooltip */
+.interior-outline-tooltip {
   position: absolute;
-  top: 14px;
-  background: rgba(21, 22, 20, 0.88);
+  top: 10px;
+  background: rgba(21, 22, 20, 0.90);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(216, 200, 180, 0.4);
   padding: 6px 16px;
   border-radius: 999px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   pointer-events: none;
@@ -323,9 +178,17 @@ footer.mitjen-footer {
   z-index: 10;
 }
 
-.skyline-tooltip.is-visible {
+.interior-outline-tooltip.is-active {
   opacity: 1;
   transform: translateY(0);
+}
+
+.tooltip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
+  box-shadow: 0 0 6px rgba(216, 200, 180, 0.8);
 }
 
 .tooltip-title {
@@ -335,16 +198,21 @@ footer.mitjen-footer {
   font-weight: 500;
 }
 
-.tooltip-loc {
+.tooltip-sep {
+  color: rgba(250, 248, 245, 0.3);
+  font-size: 0.8rem;
+}
+
+.tooltip-desc {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-size: 0.70rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
 }
 
 /* --------------------------------------------------------------------------
-   4. Bottom Bar: Copyright & Back to Top
+   3. Footer Bottom Bar: Copyright & Back to Top
    -------------------------------------------------------------------------- */
 .footer-bottom-bar {
   max-width: 1360px;
@@ -360,7 +228,7 @@ footer.mitjen-footer {
 .footer-copyright {
   font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.82rem;
-  color: rgba(250, 248, 245, 0.55);
+  color: rgba(250, 248, 245, 0.52);
   letter-spacing: 0.02em;
   margin: 0;
 }
@@ -404,55 +272,38 @@ footer.mitjen-footer {
 }
 
 /* ==========================================================================
-   5. RESPONSIVE BREAKPOINTS (ALL DEVICES)
+   4. RESPONSIVE BREAKPOINTS (ALL DEVICES)
    ========================================================================== */
 
 /* Tablet Screens (<= 1024px) */
 @media (max-width: 1024px) {
-  .footer-links-grid {
+  .footer-main-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
 
-  .footer-top-tier {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .footer-newsletter-wrap {
-    max-width: 100%;
-  }
-
-  .skyline-svg {
-    max-height: 220px;
+  .interior-outlines-svg {
+    max-height: 130px;
   }
 }
 
 /* Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   footer.mitjen-footer {
-    padding-top: 56px;
+    padding-top: 52px;
   }
 
-  .footer-links-grid {
+  .footer-main-grid {
     grid-template-columns: 1fr;
     gap: 28px;
-    padding: 32px 0;
   }
 
-  .footer-newsletter-form {
-    flex-direction: column;
-    align-items: stretch;
+  .interior-outlines-svg {
+    max-height: 100px;
   }
 
-  .footer-submit-btn {
-    width: 100%;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .skyline-svg {
-    max-height: 180px;
+  .footer-interior-outlines-section {
+    margin-top: 32px;
   }
 
   .footer-bottom-bar {
@@ -470,11 +321,11 @@ footer.mitjen-footer {
 
 /* Compact Mobile (<= 480px) */
 @media (max-width: 480px) {
-  .skyline-svg {
-    max-height: 140px;
+  .interior-outlines-svg {
+    max-height: 80px;
   }
 
-  .skyline-tooltip {
+  .interior-outline-tooltip {
     display: none;
   }
 }
