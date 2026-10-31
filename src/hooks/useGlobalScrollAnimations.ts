@@ -88,3 +88,4 @@ export function useGlobalScrollAnimations() {
     };
   }, [location.pathname, location.search]);
 }
+

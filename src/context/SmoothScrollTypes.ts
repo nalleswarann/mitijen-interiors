@@ -25,3 +25,4 @@ export const SmoothScrollContext = createContext<SmoothScrollContextValue>({
   start: () => {},
   scrollProgress: 0,
 });
+

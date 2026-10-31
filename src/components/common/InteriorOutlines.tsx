@@ -14,9 +14,9 @@ export const InteriorOutlines: React.FC = () => {
           {/* Transparent Gradient for Ground Plinth */}
           <linearGradient id="groundLineGrad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#D8C8B4" stopOpacity="0.05" />
-            <stop offset="15%" stopColor="#D8C8B4" stopOpacity="0.45" />
-            <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.75" />
-            <stop offset="85%" stopColor="#D8C8B4" stopOpacity="0.45" />
+            <stop offset="15%" stopColor="#D8C8B4" stopOpacity="0.22" />
+            <stop offset="50%" stopColor="#FAF8F5" stopOpacity="0.38" />
+            <stop offset="85%" stopColor="#D8C8B4" stopOpacity="0.22" />
             <stop offset="100%" stopColor="#D8C8B4" stopOpacity="0.05" />
           </linearGradient>
         </defs>
@@ -195,16 +195,16 @@ export const InteriorOutlines: React.FC = () => {
 
         {/* ARCHITECTURAL GROUND BASELINE WITH CAD DIMENSION TICKS */}
         <line x1="0" y1="168" x2="1440" y2="168" stroke="url(#groundLineGrad)" strokeWidth="1.4" />
-        <line x1="40" y1="168" x2="40" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="160" y1="168" x2="160" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="400" y1="168" x2="400" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="570" y1="168" x2="570" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="710" y1="168" x2="710" y2="176" stroke="var(--sand, #D8C8B4)" strokeWidth="1.4" />
-        <line x1="844" y1="168" x2="844" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="1030" y1="168" x2="1030" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="1115" y1="168" x2="1115" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="1225" y1="168" x2="1225" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-        <line x1="1415" y1="168" x2="1415" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+        <line x1="40" y1="168" x2="40" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="160" y1="168" x2="160" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="400" y1="168" x2="400" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="570" y1="168" x2="570" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="710" y1="168" x2="710" y2="176" stroke="var(--sand, #D8C8B4)" strokeWidth="1.4" opacity="0.5" />
+        <line x1="844" y1="168" x2="844" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="1030" y1="168" x2="1030" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="1115" y1="168" x2="1115" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="1225" y1="168" x2="1225" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+        <line x1="1415" y1="168" x2="1415" y2="174" stroke="currentColor" strokeWidth="1" opacity="0.3" />
       </svg>
     </div>
   );
