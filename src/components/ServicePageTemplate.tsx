@@ -5,23 +5,91 @@ import { SEO } from './common/SEO';
 import { Breadcrumbs } from './common/Breadcrumbs';
 import { useInquiry } from '../context/useInquiry';
 import '../styles/ServicePage.css';
+import '../styles/FaqSection.css';
 
 interface ServicePageTemplateProps {
   data: ServicePageData;
+}
+
+interface ServiceFaqMeta {
+  image: string;
+  badge: string;
+}
+
+const RESIDENTIAL_FAQ_META: ServiceFaqMeta[] = [
+  { image: '/assets/mitijen/home1.jpeg', badge: 'Residential · Spatial Scope' },
+  { image: '/assets/CL.jpg', badge: 'Residential · Studio Methodology' },
+  { image: '/assets/transformations/lounge_after.jpg', badge: 'Residential · Compact Footprints' },
+  { image: '/assets/mitijen/Banner3.jpg', badge: 'Residential · Villa Architecture' },
+  { image: '/assets/craft_wardrobe.jpg', badge: 'Residential · Joinery & Millwork' },
+  { image: '/assets/panorama_bath.jpg', badge: 'Residential · Lighting & Ambiance' },
+  { image: '/assets/craft_joinery.jpg', badge: 'Residential · Turnkey Supervision' },
+  { image: '/assets/mitijen/bedroom.jpeg', badge: 'Residential · Master Suites' },
+];
+
+const COMMERCIAL_FAQ_META: ServiceFaqMeta[] = [
+  { image: '/assets/CS.jpg', badge: 'Commercial · Spatial Scope' },
+  { image: '/assets/CP.jpg', badge: 'Commercial · Typologies' },
+  { image: '/assets/mitijen/warm1.jpeg', badge: 'Commercial · Public Dynamics' },
+  { image: '/assets/mitijen/deco1.jpeg', badge: 'Commercial · Retail Circulation' },
+  { image: '/assets/craft_credenza.jpg', badge: 'Commercial · Merchandising Display' },
+  { image: '/assets/craft_shelving.jpg', badge: 'Commercial · Advisory & Brief' },
+  { image: '/assets/forma_facade.jpg', badge: 'Commercial · Storefront & Leases' },
+  { image: '/assets/PHOTO.jpg', badge: 'Commercial · Fit-Out Refurbishment' },
+];
+
+const CORPORATE_FAQ_META: ServiceFaqMeta[] = [
+  { image: '/assets/I2.jpg', badge: 'Corporate · Workplace Architecture' },
+  { image: '/assets/craft_stone_vanity.jpg', badge: 'Corporate · Productivity Focus' },
+  { image: '/assets/transformations/bedroom_after.jpg', badge: 'Corporate · Spatial Typologies' },
+  { image: '/assets/I3.jpg', badge: 'Corporate · Collaboration Zones' },
+  { image: '/assets/mitijen/deco3.jpeg', badge: 'Corporate · Executive Reception' },
+  { image: '/assets/mitijen/deco2.jpeg', badge: 'Corporate · Brand Identity' },
+  { image: '/assets/mitijen/dressingtable.jpeg', badge: 'Corporate · Briefing & Headcount' },
+  { image: '/assets/mitijen/deco-kitchen.jpeg', badge: 'Corporate · Phased Modernization' },
+];
+
+function getCategoryFaqMeta(category: 'Residential' | 'Commercial' | 'Corporate'): ServiceFaqMeta[] {
+  switch (category) {
+    case 'Residential':
+      return RESIDENTIAL_FAQ_META;
+    case 'Commercial':
+      return COMMERCIAL_FAQ_META;
+    case 'Corporate':
+      return CORPORATE_FAQ_META;
+    default:
+      return RESIDENTIAL_FAQ_META;
+  }
+}
+
+function parseFaqAnswer(answer: string): { summary: string; desc: string } {
+  const periodIndex = answer.indexOf('. ');
+  if (periodIndex !== -1 && periodIndex < answer.length - 12) {
+    return {
+      summary: answer.slice(0, periodIndex + 1).trim(),
+      desc: answer.slice(periodIndex + 1).trim(),
+    };
+  }
+  return {
+    summary: '',
+    desc: answer,
+  };
 }
 
 export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }) => {
   const { openInquiry } = useInquiry();
   const location = useLocation();
 
-  // Accordion state for FAQs (first item open by default)
-  const [openFaqIndexes, setOpenFaqIndexes] = useState<number[]>([0]);
+  // Accordion state for FAQs (first item open by default, single-selection with smooth image cross-fade like homepage)
+  const [activeFaqIndex, setActiveFaqIndex] = useState<number>(0);
 
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndexes((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+  const toggleFaq = (idx: number) => {
+    setActiveFaqIndex((prev) => (prev === idx ? -1 : idx));
   };
+
+  const faqMetaList = getCategoryFaqMeta(data.category);
+  const currentMeta =
+    faqMetaList[activeFaqIndex >= 0 ? activeFaqIndex : 0] || faqMetaList[0];
 
   const serviceNavItems = [
     { name: 'Residential Interior Design', path: '/services/residential-interior-design' },
@@ -418,61 +486,152 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               </div>
             </section>
 
-            {/* Section 6: Frequently Asked Questions */}
-            <section className="clinic-content-section reveal-fade-up">
-              <h2 className="clinic-section-title">
-                <span className="clinic-dash">—</span> Frequently Asked Questions
-              </h2>
-
-              <div className="clinic-faq-accordion">
-                {data.faqsSection.faqs.map((faq, idx) => {
-                  const isOpen = openFaqIndexes.includes(idx);
-                  return (
-                    <div key={idx} className={`clinic-faq-row ${isOpen ? 'is-open' : ''}`}>
-                      <button
-                        type="button"
-                        className="clinic-faq-btn"
-                        onClick={() => toggleFaq(idx)}
-                        aria-expanded={isOpen}
-                      >
-                        <span className="clinic-faq-question">{faq.question}</span>
-                        <span className="clinic-faq-icon" aria-hidden="true">
-                          {isOpen ? '—' : '+'}
-                        </span>
-                      </button>
-                      {isOpen && (
-                        <div className="clinic-faq-answer">
-                          <p>{faq.answer}</p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-
-            {/* Section 7: Bottom Callout Banner */}
-            <div className="clinic-bottom-cta reveal-fade-up">
-              <h3 className="clinic-bottom-title">
-                Ready to Commission Your Interior Transformation?
-              </h3>
-              <p className="clinic-bottom-desc">
-                Meet directly with our senior interior architects in Krishnagiri or book a virtual 3D design consultation.
-              </p>
-              <div className="clinic-callout-actions">
-                <button type="button" onClick={() => openInquiry(`${data.category} — Schedule Consultation`)} className="clinic-btn-primary hover-lift">
-                  Schedule Consultation
-                </button>
-                <a href="tel:+919444328555" className="clinic-btn-outline">
-                  Call +91 94443 28555
-                </a>
-              </div>
-            </div>
-
           </main>
 
         </div>
       </div>
+
+      {/* ====================================================================
+          3. FULL-WIDTH LUXURY FAQ SECTION (MATCHING HOMEPAGE DESIGN)
+          ==================================================================== */}
+      <section className="faq-section" id="faq" aria-label="Frequently Asked Questions">
+        <div className="faq-container">
+          {/* Left Column: Sticky Atmospheric Photo Preview */}
+          <div className="faq-left reveal-scale">
+            <div className="faq-img-wrap img-zoom-hover">
+              {data.faqsSection.faqs.map((faq, idx) => {
+                const meta = faqMetaList[idx] || faqMetaList[0];
+                return (
+                  <img
+                    key={idx}
+                    src={meta.image}
+                    alt={faq.question}
+                    className={`faq-img ${activeFaqIndex === idx ? 'is-active' : ''}`}
+                    loading="lazy"
+                  />
+                );
+              })}
+              <div className="faq-img-badge badge-float">
+                <span className="faq-badge-dot" />
+                <span>{currentMeta.badge}</span>
+              </div>
+            </div>
+            <p className="faq-left-note">
+              Every {data.category.toLowerCase()} architectural commission is guided by absolute transparency, uncompromising materiality, and dedicated site leadership.
+            </p>
+          </div>
+
+          {/* Right Column: Header & Interactive Accordion */}
+          <div className="faq-right">
+            <div className="reveal-fade-up">
+              <span className="faq-kicker">
+                {data.faqsSection.sectionTag || `${data.category.toUpperCase()} GUIDANCE & FAQS`}
+              </span>
+              <h2 className="faq-headline">
+                {data.faqsSection.subtitle || `Answers to common questions regarding our ${data.category.toLowerCase()} interior design services, processes, and project requirements.`}
+              </h2>
+            </div>
+
+            <div className="faq-accordion reveal-fade-up" role="region" aria-label="FAQ Accordion">
+              {data.faqsSection.faqs.map((faq, idx) => {
+                const isActive = activeFaqIndex === idx;
+                const { summary, desc } = parseFaqAnswer(faq.answer);
+                const numStr = String(idx + 1).padStart(2, '0');
+
+                return (
+                  <div
+                    key={idx}
+                    className={`faq-item ${isActive ? 'is-active' : ''}`}
+                    onClick={() => toggleFaq(idx)}
+                  >
+                    <button
+                      type="button"
+                      className="faq-header"
+                      aria-expanded={isActive}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFaq(idx);
+                      }}
+                    >
+                      <div className="faq-header-left">
+                        <span className="faq-num">{numStr}</span>
+                        <span className="faq-title">{faq.question}</span>
+                      </div>
+
+                      <span className="faq-icon-wrap" aria-hidden="true">
+                        <svg
+                          className="faq-svg"
+                          width="13"
+                          height="13"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                        >
+                          <line x1="7" y1="1" x2="7" y2="13" />
+                          <line x1="1" y1="7" x2="13" y2="7" />
+                        </svg>
+                      </span>
+                    </button>
+
+                    <div className={`faq-collapse ${isActive ? 'is-open' : ''}`}>
+                      <div className="faq-collapse-inner">
+                        <div className="faq-body">
+                          {summary && <p className="faq-summary">{summary}</p>}
+                          <p className="faq-desc">{desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom CTA Row */}
+            <div className="faq-cta-row reveal-fade-up" data-delay="200">
+              <span className="faq-cta-text">
+                Have a specific {data.category.toLowerCase()} spatial requirement or architectural brief?
+              </span>
+              <button
+                type="button"
+                className="faq-cta-btn hover-lift"
+                onClick={() => openInquiry(`${data.category} Interiors — FAQ Consultation Request`)}
+              >
+                <span>Book Private Consultation</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          4. BOTTOM CALLOUT BANNER
+          ==================================================================== */}
+      <section className="service-bottom-banner-section">
+        <div className="arch-page-container">
+          <div className="clinic-bottom-cta reveal-fade-up">
+            <h3 className="clinic-bottom-title">
+              Ready to Commission Your Interior Transformation?
+            </h3>
+            <p className="clinic-bottom-desc">
+              Meet directly with our senior interior architects in Krishnagiri or book a virtual 3D design consultation.
+            </p>
+            <div className="clinic-callout-actions">
+              <button
+                type="button"
+                onClick={() => openInquiry(`${data.category} — Schedule Consultation`)}
+                className="clinic-btn-primary hover-lift"
+              >
+                Schedule Consultation
+              </button>
+              <a href="tel:+919444328555" className="clinic-btn-outline">
+                Call +91 94443 28555
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </article>
   );
 };

@@ -1817,3 +1817,16 @@
   margin: 0 0 10px 0;
 }
 
+
+
+/* Service Page Bottom Banner Section */
+.service-bottom-banner-section {
+  padding: clamp(40px, 6vh, 72px) clamp(24px, 5vw, 64px) clamp(64px, 10vh, 100px);
+  background-color: var(--ivory, #FAF8F5);
+  border-top: 1px solid rgba(24, 28, 32, 0.06);
+}
+
+.service-bottom-banner-section .clinic-bottom-cta {
+  max-width: 960px;
+  margin: 0 auto;
+}
