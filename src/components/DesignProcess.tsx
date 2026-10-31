@@ -70,9 +70,9 @@ export const DesignProcess: React.FC = () => {
   return (
     <section className="built-on-trust-section" id="process" aria-label="Built On Trust">
       <div className="built-on-trust-container">
-        {/* Header Block */}
-        <div className="built-on-trust-header">
-          <div className="trust-badge">
+        {/* Header Block with Slower Editorial Reveal */}
+        <div className="built-on-trust-header reveal-fade-up">
+          <div className="trust-badge badge-float">
             <span className="trust-badge-dot" />
             <span>Proven Excellence</span>
           </div>
@@ -86,14 +86,18 @@ export const DesignProcess: React.FC = () => {
           </p>
         </div>
 
-        {/* 4-Column Alternating Bento Grid */}
+        {/* 4-Column Alternating Bento Grid with Staggered Scroll Animation */}
         <div className="trust-grid">
           {TRUST_COLUMNS.map((col, idx) => (
-            <div key={idx} className="trust-column">
+            <div
+              key={idx}
+              className="trust-column reveal-fade-up"
+              data-delay={String((idx + 1) * 120)}
+            >
               {col.type === 'photo-first' ? (
                 <>
                   {/* Photo on Top */}
-                  <div className="trust-photo-card">
+                  <div className="trust-photo-card img-zoom-hover">
                     <img
                       src={col.photo.src}
                       alt={col.photo.alt}
@@ -103,7 +107,7 @@ export const DesignProcess: React.FC = () => {
                   </div>
 
                   {/* Stat Card on Bottom */}
-                  <div className="trust-stat-card">
+                  <div className="trust-stat-card hover-lift">
                     <div className="trust-number">{col.card.number}</div>
                     <h3 className="trust-card-title">{col.card.title}</h3>
                     <p className="trust-card-desc">{col.card.description}</p>
@@ -112,14 +116,14 @@ export const DesignProcess: React.FC = () => {
               ) : (
                 <>
                   {/* Stat Card on Top */}
-                  <div className="trust-stat-card">
+                  <div className="trust-stat-card hover-lift">
                     <div className="trust-number">{col.card.number}</div>
                     <h3 className="trust-card-title">{col.card.title}</h3>
                     <p className="trust-card-desc">{col.card.description}</p>
                   </div>
 
                   {/* Photo on Bottom */}
-                  <div className="trust-photo-card">
+                  <div className="trust-photo-card img-zoom-hover">
                     <img
                       src={col.photo.src}
                       alt={col.photo.alt}

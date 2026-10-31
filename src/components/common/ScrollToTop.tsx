@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSmoothScroll } from '../../context/useSmoothScroll';
 
 export const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
+  const { scrollTo } = useSmoothScroll();
 
   useEffect(() => {
     // Disable browser automatic scroll restoration to ensure refresh lands cleanly
@@ -15,19 +17,15 @@ export const ScrollToTop: React.FC = () => {
       const element = document.getElementById(id);
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
+          scrollTo(element, { offset: -80, duration: 1.6 });
         }, 120);
         return;
       }
     }
 
-    // Scroll to the very top (Hero Banner) on mount and on route change without hash
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
-  }, [pathname, hash]);
+    // Scroll to the very top on mount and on route change without hash
+    scrollTo(0, { immediate: true });
+  }, [pathname, hash, scrollTo]);
 
   return null;
 };

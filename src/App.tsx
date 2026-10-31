@@ -6,6 +6,9 @@ import { InquiryDialog } from './components/InquiryDialog';
 import { InquiryProvider } from './context/InquiryContext';
 import { useInquiry } from './context/useInquiry';
 import { ScrollToTop } from './components/common/ScrollToTop';
+import { SmoothScrollProvider } from './context/SmoothScrollContext';
+import { ScrollProgressBar } from './components/common/ScrollProgressBar';
+import { useGlobalScrollAnimations } from './hooks/useGlobalScrollAnimations';
 
 import { HomePage } from './pages/HomePage';
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -22,8 +25,12 @@ import './styles/responsive.css';
 const AppContent: React.FC = () => {
   const { isInquiryOpen, closeInquiry, contextTitle } = useInquiry();
 
+  // Activate high-performance editorial scroll animations across all routes
+  useGlobalScrollAnimations();
+
   return (
     <>
+      <ScrollProgressBar />
       <ScrollToTop />
       <Header />
 
@@ -65,7 +72,9 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <InquiryProvider>
-        <AppContent />
+        <SmoothScrollProvider>
+          <AppContent />
+        </SmoothScrollProvider>
       </InquiryProvider>
     </BrowserRouter>
   );

@@ -70,8 +70,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
     <section className="faq-section" id="faq" aria-label="Frequently Asked Questions">
       <div className="faq-container">
         {/* Left Column: Sticky Atmospheric Photo Preview */}
-        <div className="faq-left">
-          <div className="faq-img-wrap">
+        <div className="faq-left reveal-scale">
+          <div className="faq-img-wrap img-zoom-hover">
             {FAQ_ITEMS.map((item, idx) => (
               <img
                 key={item.number}
@@ -81,7 +81,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
                 loading="lazy"
               />
             ))}
-            <div className="faq-img-badge">
+            <div className="faq-img-badge badge-float">
               <span className="faq-badge-dot" />
               <span>{currentFaq.badge}</span>
             </div>
@@ -93,7 +93,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
 
         {/* Right Column: Header & Interactive Accordion */}
         <div className="faq-right">
-          <div>
+          <div className="reveal-fade-up">
             <span className="faq-kicker">
               CLIENT GUIDANCE & FAQS
             </span>
@@ -109,7 +109,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
               return (
                 <div
                   key={item.number}
-                  className={`faq-item ${isActive ? 'is-active' : ''}`}
+                  className={`faq-item reveal-fade-up ${isActive ? 'is-active' : ''}`}
+                  data-delay={String((idx + 1) * 80)}
                   onClick={() => toggleFaq(idx)}
                 >
                   <button
@@ -160,13 +161,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
           </div>
 
           {/* Bottom CTA Row */}
-          <div className="faq-cta-row">
+          <div className="faq-cta-row reveal-fade-up" data-delay="250">
             <span className="faq-cta-text">
               Have a specific spatial requirement or architectural brief?
             </span>
             <button
               type="button"
-              className="faq-cta-btn"
+              className="faq-cta-btn hover-lift"
               onClick={() => onOpenInquiry?.('Home Page FAQ — Consultation Request')}
             >
               <span>Book Private Consultation</span>
@@ -180,4 +181,3 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
 };
 
 export default FaqSection;
-

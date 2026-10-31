@@ -2,11 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SectionLabel } from './common/SectionLabel';
 import { InteriorOutlines } from './common/InteriorOutlines';
+import { useSmoothScroll } from '../context/useSmoothScroll';
 import '../styles/Footer.css';
 
 export const Footer: React.FC = () => {
+  const { scrollTo } = useSmoothScroll();
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTo(0, { duration: 1.8 });
   };
 
   return (

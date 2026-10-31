@@ -71,8 +71,8 @@ export const MaterialsGallery: React.FC = () => {
   return (
     <section className="corporate-human-section" id="corporate" aria-label="Corporate Architecture & Workplaces">
       <div className="corporate-human-container">
-        {/* Section Header */}
-        <div className="corporate-human-header">
+        {/* Section Header with Animated Reveal */}
+        <div className="corporate-human-header reveal-fade-up">
           <div className="corporate-human-header-left">
             <span className="corporate-human-label">Corporate Architecture</span>
             <h2 className="corporate-human-title">
@@ -90,7 +90,12 @@ export const MaterialsGallery: React.FC = () => {
         {/* Editorial Showcase Grid */}
         <div className="corporate-editorial-grid">
           {/* Left Column: Project Navigation List */}
-          <div className="corporate-project-list" role="tablist" aria-label="Corporate commissions">
+          <div
+            className="corporate-project-list reveal-fade-up"
+            data-delay="150"
+            role="tablist"
+            aria-label="Corporate commissions"
+          >
             {CORPORATE_PROJECTS.map((proj, idx) => {
               const isActive = activeIdx === idx;
               return (
@@ -131,9 +136,14 @@ export const MaterialsGallery: React.FC = () => {
           </div>
 
           {/* Right Column: Architectural Photography Frame */}
-          <div className="corporate-visual-display" id="corporate-visual-display" tabIndex={-1}>
+          <div
+            className="corporate-visual-display reveal-scale"
+            data-delay="250"
+            id="corporate-visual-display"
+            tabIndex={-1}
+          >
             {/* Primary Large Photograph */}
-            <div className="corporate-main-photo-wrap">
+            <div className="corporate-main-photo-wrap img-zoom-hover">
               <img
                 src={currentProject.image}
                 alt={currentProject.title}
@@ -148,7 +158,7 @@ export const MaterialsGallery: React.FC = () => {
 
             {/* Secondary Companion Detail */}
             <div className="corporate-companion-row">
-              <div className="companion-photo-wrap">
+              <div className="companion-photo-wrap img-zoom-hover">
                 <img
                   src={currentProject.detailImage}
                   alt={`${currentProject.title} architectural detail`}
@@ -157,7 +167,7 @@ export const MaterialsGallery: React.FC = () => {
                 />
               </div>
 
-              <div className="companion-note-card">
+              <div className="companion-note-card hover-lift">
                 <span className="note-label">ARCHITECTURAL INTENT</span>
                 <p className="note-text">
                   Every timber joint and acoustic layer is custom-detailed in our studio to eliminate 
@@ -176,7 +186,7 @@ export const MaterialsGallery: React.FC = () => {
         </div>
 
         {/* Quiet Studio Consultation Prompt */}
-        <div className="corporate-footer-banner">
+        <div className="corporate-footer-banner reveal-fade-up" data-delay="200">
           <div className="footer-banner-text">
             <h4>Planning a new office or executive suite?</h4>
             <p>We work directly with founders, CEOs, and real estate heads from initial spatial strategy to final handover.</p>
@@ -184,7 +194,7 @@ export const MaterialsGallery: React.FC = () => {
           <div className="footer-banner-actions">
             <button
               type="button"
-              className="corporate-inquiry-btn"
+              className="corporate-inquiry-btn hover-lift"
               onClick={() => openInquiry()}
             >
               Discuss Your Workplace Project

@@ -53,7 +53,6 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
     { icon: '🎨', title: 'Worry that different rooms won’t match or feel cohesive' },
   ];
 
-
   // Turnkey Guarantees
   const studioGuarantees = [
     {
@@ -155,9 +154,9 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
           <div className="arch-serv-hero-scrim" />
         </div>
 
-        <div className="arch-serv-hero-inner">
+        <div className="arch-serv-hero-inner reveal-fade-up">
           <div className="arch-serv-hero-top">
-            <span className="arch-serv-pill">
+            <span className="arch-serv-pill badge-float">
               <span className="arch-serv-pill-dot" />
               <span>MITJEN INTERIORS · {data.category.toUpperCase()} PRACTICE</span>
             </span>
@@ -191,7 +190,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               LEFT COLUMN: Services Navigation Stack + Sticky Consultation Box
               ================================================================== */}
           <aside className="clinic-sidebar" aria-label="Services Navigation and Advisory">
-            <div className="clinic-sticky-sidebar">
+            <div className="clinic-sticky-sidebar reveal-slide-left">
               {/* Vertical Services Navigation Stack */}
               <nav className="clinic-services-nav" aria-label="Our Interior Practices">
                 {serviceNavItems.map((item) => {
@@ -212,7 +211,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               </nav>
 
               {/* Consultation Card */}
-              <div className="clinic-inquiry-box">
+              <div className="clinic-inquiry-box hover-lift">
                 <div className="clinic-inquiry-badge">
                   <span className="clinic-inquiry-dot" />
                   <span>DIRECT STUDIO ADVISORY</span>
@@ -236,7 +235,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                 <button
                   type="button"
                   onClick={() => openInquiry(`${data.category} — Private Consultation`)}
-                  className="clinic-inquiry-submit-btn"
+                  className="clinic-inquiry-submit-btn hover-lift"
                 >
                   Book Private Consultation
                 </button>
@@ -249,11 +248,11 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               </div>
 
               {/* Studio Guarantees */}
-              <div className="arch-guarantees-card">
+              <div className="arch-guarantees-card reveal-fade-up" data-delay="150">
                 <h4 className="arch-guar-heading">THE MITJEN INTERIORS PROMISE</h4>
                 <div className="arch-guar-list">
                   {studioGuarantees.map((g) => (
-                    <div key={g.icon} className="arch-guar-item">
+                    <div key={g.icon} className="arch-guar-item hover-lift">
                       <span className="arch-guar-num">{g.icon}</span>
                       <div className="arch-guar-content">
                         <h5 className="arch-guar-title">{g.title}</h5>
@@ -267,11 +266,11 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
           </aside>
 
           {/* ==================================================================
-              RIGHT COLUMN: Exact Children's Clinic Content Rhythm
+              RIGHT COLUMN: Exact Content Rhythm
               ================================================================== */}
           <main className="clinic-main-content">
             {/* Top Large Feature Image */}
-            <div className="clinic-lead-media">
+            <div className="clinic-lead-media reveal-scale img-zoom-hover">
               <img
                 src={data.hero.bgImage}
                 alt={`${data.category} Interior Design — Mitjen Interiors`}
@@ -280,7 +279,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </div>
 
             {/* Section 1: Overview & Intro */}
-            <section className="clinic-content-section">
+            <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> {data.overview.title}
               </h2>
@@ -296,7 +295,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
               </div>
 
               {/* Callout Box with Left Accent Border */}
-              <div className="clinic-callout-box">
+              <div className="clinic-callout-box reveal-fade-up hover-lift">
                 <h3 className="clinic-callout-title">
                   Planning your home interiors or taking handover of a new property?
                 </h3>
@@ -304,7 +303,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                   Get personalized design guidance based on your floor plan, daylighting path, and lifestyle routines.
                 </p>
                 <div className="clinic-callout-actions">
-                  <button type="button" onClick={() => openInquiry(`${data.category} — Plan Consultation`)} className="clinic-btn-primary">
+                  <button type="button" onClick={() => openInquiry(`${data.category} — Plan Consultation`)} className="clinic-btn-primary hover-lift">
                     Book a Design Consultation
                   </button>
                   <a href="tel:+919444328555" className="clinic-btn-outline">
@@ -315,7 +314,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 2: What Can It Help With? */}
-            <section className="clinic-content-section">
+            <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> Residential Interior Design in Krishnagiri: What Can It Help With?
               </h2>
@@ -330,7 +329,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                 </h4>
                 <div className="clinic-pill-grid">
                   {guidanceTopics.map((g, idx) => (
-                    <div key={idx} className="clinic-pill-card">
+                    <div key={idx} className="clinic-pill-card hover-lift">
                       <span className="clinic-pill-icon">{g.icon}</span>
                       <span className="clinic-pill-text">{g.title}</span>
                     </div>
@@ -340,7 +339,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 3: When Should You Seek Support? */}
-            <section className="clinic-content-section">
+            <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> Home Interior Challenges That Need Professional Guidance
               </h2>
@@ -355,7 +354,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                 </h4>
                 <div className="clinic-pill-grid">
                   {challengeTriggers.map((c, idx) => (
-                    <div key={idx} className="clinic-pill-card">
+                    <div key={idx} className="clinic-pill-card hover-lift">
                       <span className="clinic-pill-icon">{c.icon}</span>
                       <span className="clinic-pill-text">{c.title}</span>
                     </div>
@@ -365,7 +364,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 4: What Does Support Include? */}
-            <section id="deliverables" className="clinic-content-section">
+            <section id="deliverables" className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> What Does Our Residential Interior Design Include?
               </h2>
@@ -378,7 +377,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                 {data.servicesSection.cards.map((card) => {
                   const anchorId = card.id.replace(/^(res|com|corp)-/, '');
                   return (
-                    <div key={card.id} id={anchorId} className="clinic-scope-item">
+                    <div key={card.id} id={anchorId} className="clinic-scope-item hover-lift">
                       <h3 className="clinic-scope-heading">{card.title}</h3>
                       <p className="clinic-scope-text">{card.description}</p>
                       <ul className="clinic-feature-bullets">
@@ -396,7 +395,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 5: Step-by-Step 4-Stage Process */}
-            <section id="turnkey" className="clinic-content-section">
+            <section id="turnkey" className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> Our Step-by-Step 4-Stage Process
               </h2>
@@ -407,7 +406,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
 
               <div className="clinic-process-grid">
                 {data.processSection.steps.map((st) => (
-                  <div key={st.step} className="clinic-process-card">
+                  <div key={st.step} className="clinic-process-card hover-lift">
                     <span className="clinic-process-badge">{st.step}</span>
                     <h3 className="clinic-process-title">{st.title}</h3>
                     <p className="clinic-process-desc">{st.description}</p>
@@ -420,7 +419,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 6: Frequently Asked Questions */}
-            <section className="clinic-content-section">
+            <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
                 <span className="clinic-dash">—</span> Frequently Asked Questions
               </h2>
@@ -453,7 +452,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
             </section>
 
             {/* Section 7: Bottom Callout Banner */}
-            <div className="clinic-bottom-cta">
+            <div className="clinic-bottom-cta reveal-fade-up">
               <h3 className="clinic-bottom-title">
                 Ready to Commission Your Interior Transformation?
               </h3>
@@ -461,7 +460,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
                 Meet directly with our senior interior architects in Krishnagiri or book a virtual 3D design consultation.
               </p>
               <div className="clinic-callout-actions">
-                <button type="button" onClick={() => openInquiry(`${data.category} — Schedule Consultation`)} className="clinic-btn-primary">
+                <button type="button" onClick={() => openInquiry(`${data.category} — Schedule Consultation`)} className="clinic-btn-primary hover-lift">
                   Schedule Consultation
                 </button>
                 <a href="tel:+919444328555" className="clinic-btn-outline">
@@ -474,9 +473,6 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
 
         </div>
       </div>
-
-      
-
     </article>
   );
 };
