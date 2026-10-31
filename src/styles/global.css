@@ -8,6 +8,7 @@
 @import './ProjectsSection.css';
 @import './TransformationsAccordion.css';
 @import './EditorialHero.css';
+@import './RoomExplorer.css';
 
 html {
   overflow-x: hidden;

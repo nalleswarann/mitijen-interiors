@@ -366,12 +366,8 @@ export const ProjectsPage: React.FC = () => {
           </div>
 
           <h1 className="projects-hero-title">
-            <span className="ln">
-              <span>Spaces shaped around</span>
-            </span>
-            <span className="ln">
-              <span>the quiet art of living.</span>
-            </span>
+            Spaces shaped around <br className="hero-break" />
+            the quiet art of living.
           </h1>
 
           <p className="projects-hero-desc">
