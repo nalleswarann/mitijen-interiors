@@ -1,156 +1,231 @@
 /* ==========================================================================
    HUMAN ARCHITECTURAL CORPORATE SECTION STYLES
-   Calm, editorial, human design inspired by top architectural studios
+   Minimalist, quiet luxury editorial design with high contrast,
+   standardized typography, and flawless multi-device responsiveness.
    ========================================================================== */
 
 .corporate-human-section {
-  padding: clamp(60px, 8vw, 100px) var(--pad);
+  padding: clamp(70px, 9vw, 120px) var(--pad);
   background: var(--ink, #151614);
   color: var(--ivory, #FAF8F5);
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .corporate-human-container {
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Header Elements */
+/* --------------------------------------------------------------------------
+   1. Section Editorial Header
+   -------------------------------------------------------------------------- */
 .corporate-human-header {
-  max-width: 760px;
-  margin-bottom: clamp(24px, 3.5vw, 40px);
+  max-width: 780px;
+  margin-bottom: clamp(32px, 4.5vw, 56px);
 }
 
 .corporate-human-label {
-  display: block;
-  font-family: var(--font-special);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   color: var(--sand, #D8C8B4);
   text-transform: uppercase;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.corporate-human-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sand, #D8C8B4);
 }
 
 .corporate-human-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.4rem, 4.5vw, 4.0rem);
   font-weight: 400;
   color: #FAF8F5;
-  line-height: 1.15;
+  line-height: 1.1;
   margin: 0 0 1.25rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 .corporate-human-lead {
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  color: rgba(250, 248, 245, 0.75);
-  line-height: 1.65;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  color: rgba(250, 248, 245, 0.78);
+  line-height: 1.7;
   margin: 0;
-  font-weight: 300;
+  font-weight: 350;
+  max-width: 680px;
 }
 
-/* Editorial Split Grid */
+/* --------------------------------------------------------------------------
+   2. Editorial Split Grid (Desktop 2-Column, Mobile Stacked)
+   -------------------------------------------------------------------------- */
 .corporate-editorial-grid {
   display: grid;
-  grid-template-columns: 1fr 1.18fr;
-  gap: clamp(24px, 3.5vw, 44px);
+  grid-template-columns: 1fr 1.16fr;
+  gap: clamp(28px, 4vw, 52px);
   align-items: start;
-  margin-bottom: clamp(28px, 3.5vw, 44px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Left Column: Project Rows */
+/* --------------------------------------------------------------------------
+   3. Left Column: Interactive Project Cards
+   -------------------------------------------------------------------------- */
 .corporate-project-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .corporate-project-row {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   color: #FAF8F5;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  padding: clamp(20px, 2.5vw, 26px);
+  border-radius: 14px;
+  padding: clamp(20px, 2.4vw, 28px);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .corporate-project-row:hover {
-  background: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(216, 200, 180, 0.35);
   transform: translateX(4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
+.corporate-project-row:focus-visible {
+  outline: 2px solid var(--sand, #D8C8B4);
+  outline-offset: 2px;
+}
+
+/* Active Highlighted State */
 .corporate-project-row.is-active {
-  background: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.14);
-  border-left: 3px solid var(--olive);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--sand, #D8C8B4);
+  border-left: 4px solid var(--sand, #D8C8B4);
   transform: translateX(6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.4);
 }
 
 .project-row-top {
   display: flex;
   align-items: baseline;
   gap: 0.85rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .project-row-num {
-  font-family: var(--font-special);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  color: var(--olive);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--sand, #D8C8B4);
 }
 
 .project-row-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.28rem, 1.8vw, 1.6rem);
   font-weight: 400;
-  color: #242522;
+  color: #FAF8F5;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.corporate-project-row:hover .project-row-title,
+.corporate-project-row.is-active .project-row-title {
+  color: #FFFFFF;
 }
 
 .project-row-cat {
   display: block;
-  font-family: var(--font-special);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #8C8479;
-  margin-bottom: 0.65rem;
+  color: var(--sand, #D8C8B4);
+  opacity: 0.85;
+  margin-bottom: 0.75rem;
 }
 
 .project-row-desc {
-  font-size: 0.92rem;
-  color: #615B52;
-  line-height: 1.6;
-  margin: 0 0 0.9rem;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.9rem, 1.1vw, 0.96rem);
+  color: rgba(250, 248, 245, 0.76);
+  line-height: 1.68;
+  margin: 0 0 1.1rem;
+  font-weight: 350;
 }
 
 .project-row-materials {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .material-crumb {
-  font-size: 0.76rem;
-  color: #6B635B;
-  background: #EFEBE3;
-  padding: 0.25rem 0.6rem;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ivory, #FAF8F5);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  padding: 5px 12px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
 }
 
-/* Right Column: Visual Display */
+.corporate-project-row.is-active .material-crumb {
+  background: rgba(216, 200, 180, 0.16);
+  border-color: rgba(216, 200, 180, 0.35);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   4. Right Column: Architectural Photography Frame
+   -------------------------------------------------------------------------- */
 .corporate-visual-display {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.4rem;
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .corporate-main-photo-wrap {
@@ -159,8 +234,9 @@
   aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
-  background: #E8E3DA;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  background: #0d0f0e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 .corporate-main-photo {
@@ -168,11 +244,20 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease;
+  animation: corpPhotoFade 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.corporate-main-photo-wrap:hover .corporate-main-photo {
-  transform: scale(1.03);
+@keyframes corpPhotoFade {
+  0% {
+    opacity: 0.3;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .corporate-photo-caption {
@@ -180,31 +265,42 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1.2rem 1.5rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(28, 27, 24, 0.75) 100%);
+  padding: 1.2rem 1.6rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 17, 15, 0.88) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .caption-location {
-  font-family: var(--font-special);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  color: var(--sand);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  font-weight: 500;
 }
 
 .caption-title {
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #FAF8F5;
+  letter-spacing: -0.01em;
 }
 
 /* Companion Row */
 .corporate-companion-row {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.25fr;
   gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .companion-photo-wrap {
@@ -213,8 +309,9 @@
   aspect-ratio: 4 / 3;
   border-radius: 12px;
   overflow: hidden;
-  background: #E8E3DA;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  background: #0d0f0e;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .companion-photo {
@@ -225,64 +322,73 @@
 }
 
 .companion-note-card {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 12px;
   padding: clamp(18px, 2vw, 24px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  color: #FAF8F5;
 }
 
 .note-label {
-  font-family: var(--font-special);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  color: var(--olive);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--sand, #D8C8B4);
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .note-text {
+  font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.88rem;
-  color: #615B52;
-  line-height: 1.6;
+  color: rgba(250, 248, 245, 0.78);
+  line-height: 1.65;
   margin: 0.6rem 0 1rem;
+  font-weight: 350;
 }
 
 .note-link {
   background: none;
   border: none;
   padding: 0;
-  color: #242522;
-  font-family: var(--font-special);
-  font-size: 0.78rem;
+  color: var(--sand, #D8C8B4);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.76rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
   text-align: left;
   cursor: pointer;
-  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .note-link:hover {
-  color: var(--olive);
+  color: #FFFFFF;
+  transform: translateX(2px);
 }
 
-/* Footer Banner */
+/* --------------------------------------------------------------------------
+   5. Quiet Studio Consultation Prompt (Footer Banner)
+   -------------------------------------------------------------------------- */
 .corporate-footer-banner {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #FAF8F5;
-  border-radius: 14px;
-  padding: clamp(20px, 3.5vw, 36px) clamp(18px, 4vw, 44px);
+  border-radius: 16px;
+  padding: clamp(24px, 3.5vw, 40px) clamp(22px, 4vw, 48px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -290,27 +396,28 @@
 }
 
 .footer-banner-text {
-  flex: 1 1 280px;
+  flex: 1 1 320px;
   max-width: 100%;
   box-sizing: border-box;
 }
 
 .footer-banner-text h4 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 3.5vw, 1.45rem);
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
   font-weight: 400;
-  color: #242522;
-  margin: 0 0 0.35rem;
-  word-break: break-word;
+  color: #FAF8F5;
+  margin: 0 0 0.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .footer-banner-text p {
-  font-size: 0.95rem;
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.94rem;
   color: rgba(250, 248, 245, 0.75);
   margin: 0;
-  max-width: 560px;
-  line-height: 1.5;
-  word-break: break-word;
+  max-width: 620px;
+  line-height: 1.6;
 }
 
 .footer-banner-actions {
@@ -323,56 +430,222 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.6rem;
+  padding: 0.95rem 1.8rem;
   background: var(--sand, #D8C8B4);
   color: var(--ink, #151614);
   font-weight: 600;
   border: none;
-  font-family: var(--font-special);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
   font-size: 0.8rem;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 4px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: normal;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.35;
   box-sizing: border-box;
   max-width: 100%;
 }
 
 .corporate-inquiry-btn:hover {
-  background: var(--olive);
+  background: #FFFFFF;
+  color: var(--ink, #151614);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(216, 200, 180, 0.25);
 }
 
-@media (max-width: 640px) {
-  .corporate-companion-row {
+/* ==========================================================================
+   6. RESPONSIVE BREAKPOINTS (TABLET & MOBILE FIXES)
+   ========================================================================== */
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .corporate-editorial-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Show visual display on top on mobile so the photo updates in direct view */
+  .corporate-visual-display {
+    order: -1;
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+
+  .corporate-main-photo-wrap {
+    aspect-ratio: 16 / 10;
+    max-height: 440px;
+  }
+
+  .corporate-project-row:hover,
+  .corporate-project-row.is-active {
+    transform: none !important;
+  }
+}
+
+/* Medium Mobile / Tablet (<= 768px) */
+@media (max-width: 768px) {
+  .corporate-human-section {
+    padding: clamp(56px, 8vw, 84px) var(--pad);
+  }
+
+  .corporate-companion-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
   .corporate-footer-banner {
     flex-direction: column;
     align-items: stretch;
-    padding: 22px 16px;
-    gap: 1.2rem;
+    padding: 26px 22px;
+    gap: 1.4rem;
   }
 
-  .footer-banner-text {
-    width: 100%;
-  }
-
+  .footer-banner-text,
   .footer-banner-actions {
     width: 100%;
   }
 
   .corporate-inquiry-btn {
     width: 100%;
-    max-width: 100%;
-    padding: 12px 16px;
-    font-size: 0.76rem;
-    letter-spacing: 0.08em;
+    padding: 14px 20px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+  .corporate-human-section {
+    padding: clamp(48px, 9vw, 72px) var(--pad, 16px);
+  }
+
+  .corporate-human-header {
+    margin-bottom: 24px;
+  }
+
+  .corporate-human-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .corporate-human-title {
+    font-size: clamp(2.0rem, 7.8vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .corporate-human-lead {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .corporate-editorial-grid {
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .corporate-main-photo-wrap {
+    aspect-ratio: 16 / 10;
+    max-height: 300px;
+    border-radius: 12px;
+  }
+
+  .corporate-photo-caption {
+    padding: 0.9rem 1.1rem;
+  }
+
+  .caption-location {
+    font-size: 0.68rem;
+  }
+
+  .caption-title {
+    font-size: 0.95rem;
+  }
+
+  .corporate-companion-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .companion-photo-wrap {
+    aspect-ratio: 16 / 9;
+    max-height: 180px;
+    border-radius: 10px;
+  }
+
+  .companion-note-card {
+    padding: 18px 16px;
+    border-radius: 10px;
+  }
+
+  .corporate-project-list {
+    gap: 12px;
+  }
+
+  .corporate-project-row {
+    padding: 18px 16px;
+    border-radius: 12px;
+    transform: none !important;
+  }
+
+  .project-row-top {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-row-num {
+    font-size: 0.74rem;
+  }
+
+  .project-row-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .project-row-cat {
+    font-size: 0.68rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-row-desc {
+    font-size: 0.88rem;
+    line-height: 1.58;
+    margin-bottom: 0.85rem;
+  }
+
+  .project-row-materials {
+    gap: 6px;
+  }
+
+  .material-crumb {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+  }
+
+  .corporate-footer-banner {
+    padding: 22px 16px;
+    border-radius: 12px;
+    gap: 1.1rem;
+  }
+
+  .footer-banner-text h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .footer-banner-text p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .corporate-inquiry-btn {
+    padding: 13px 18px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
   }
 }

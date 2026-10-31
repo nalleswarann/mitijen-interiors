@@ -42,7 +42,9 @@ body {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -1292,7 +1294,7 @@ footer .g {
 
 .footer-logo,
 footer .logo {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-family: var(--font-content);
   font-size: clamp(1.85rem, 3.2vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.015em;

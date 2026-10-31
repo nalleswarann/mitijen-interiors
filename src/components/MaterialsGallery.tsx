@@ -128,7 +128,7 @@ export const MaterialsGallery: React.FC = () => {
           </div>
 
           {/* Right Column: Architectural Photography Frame */}
-          <div className="corporate-visual-display">
+          <div className="corporate-visual-display" id="corporate-visual-display" tabIndex={-1}>
             {/* Primary Large Photograph */}
             <div className="corporate-main-photo-wrap">
               <img

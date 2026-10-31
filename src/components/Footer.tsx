@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
         {/* Brand Information */}
         <div className="footer-col-brand">
           <Link to="/" className="footer-logo" aria-label="Mitjen Interiors Home">
-            Mitjen Interiors
+            MITJEN INTERIORS
           </Link>
           <p className="footer-brand-desc">
             Contemporary interior architecture and thoughtful spatial design across residential, commercial, and corporate environments.

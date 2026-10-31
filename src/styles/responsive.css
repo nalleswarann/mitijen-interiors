@@ -164,6 +164,28 @@ svg {
   .ts {
     grid-template-columns: 1fr !important;
   }
+
+  /* Corporate Section Stack */
+  .corporate-editorial-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .corporate-visual-display {
+    order: -1 !important;
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+
+  .corporate-project-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
