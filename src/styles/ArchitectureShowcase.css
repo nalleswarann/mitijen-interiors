@@ -80,17 +80,13 @@
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 10px 18px;
-  background: rgba(247, 245, 240, 0.92);
-  border: 1px solid rgba(21, 22, 20, 0.12);
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(21, 22, 20, 0.14);
   border-radius: 999px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   color: var(--ink, #151614);
-  border-radius: 999px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  box-sizing: border-box;
 }
 
 /* Scene Selector Tabs */
@@ -115,45 +111,33 @@
   background: transparent;
   border: 1px solid transparent;
   border-radius: 999px;
-  color: rgba(21, 22, 20, 0.65);
+  color: rgba(21, 22, 20, 0.70);
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.80rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .arch-scene-btn:hover:not(.is-active) {
-  color: #FAF8F5;
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink, #151614);
+  background: rgba(21, 22, 20, 0.06);
 }
 
 .arch-scene-btn.is-active {
   background: var(--ink, #151614);
   color: #FAF8F5;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-}
-
-.arch-scene-num {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  opacity: 0.65;
-}
-
-.arch-scene-btn.is-active .arch-scene-num {
-  opacity: 0.9;
-  color: #121413;
+  box-shadow: 0 4px 14px rgba(21, 22, 20, 0.25);
 }
 
 /* Toolbar Right Group: Atmosphere & Controls */
 .arch-toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -161,22 +145,22 @@
 .arch-lighting-group {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
-  background: rgba(0, 0, 0, 0.28);
+  gap: 3px;
+  padding: 3px;
+  background: rgba(21, 22, 20, 0.06);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(21, 22, 20, 0.10);
 }
 
 .arch-light-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 6px 13px;
   background: transparent;
   border: none;
   border-radius: 999px;
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(21, 22, 20, 0.68);
   font-family: var(--font-content, 'Manrope', sans-serif);
   font-size: 0.76rem;
   font-weight: 500;
@@ -189,12 +173,15 @@
 }
 
 .arch-light-btn:hover:not(.is-active) {
-  color: #FAF8F5;
+  color: var(--ink, #151614);
+  background: rgba(21, 22, 20, 0.05);
 }
 
 .arch-light-btn.is-active {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--ink, #151614);
   color: #FAF8F5;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(21, 22, 20, 0.20);
 }
 
 .arch-light-btn.is-active svg {
@@ -212,30 +199,37 @@
 .arch-orbit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(21, 22, 20, 0.05);
+  border: 1px solid rgba(21, 22, 20, 0.14);
   border-radius: 999px;
-  color: rgba(250, 248, 245, 0.8);
+  color: var(--ink, #151614);
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 500;
+  font-size: 0.76rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .arch-orbit-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #FAF8F5;
+  background: rgba(21, 22, 20, 0.10);
+  border-color: rgba(21, 22, 20, 0.24);
+  color: var(--ink, #151614);
 }
 
 .arch-orbit-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(21, 22, 20, 0.35);
   transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arch-orbit-btn.is-active {
+  background: var(--ink, #151614);
+  color: #FAF8F5;
+  border-color: var(--ink, #151614);
 }
 
 .arch-orbit-btn.is-active .arch-orbit-dot {
@@ -246,20 +240,22 @@
 .arch-reset-btn {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  background: rgba(21, 22, 20, 0.05);
+  border: 1px solid rgba(21, 22, 20, 0.14);
   border-radius: 999px;
-  color: rgba(250, 248, 245, 0.7);
+  color: var(--ink, #151614);
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .arch-reset-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #FAF8F5;
+  background: rgba(21, 22, 20, 0.10);
+  border-color: rgba(21, 22, 20, 0.24);
+  color: var(--ink, #151614);
 }
 
 /* --------------------------------------------------------------------------
@@ -275,10 +271,6 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -777,7 +769,7 @@
 /* Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   .arch-showcase-section {
-    padding: clamp(50px, 7vh, 80px) 18px;
+    padding: clamp(50px, 7vh, 80px) 16px;
   }
 
   .arch-header {
@@ -789,35 +781,57 @@
   .arch-stage-wrap {
     height: 420px;
     min-height: 380px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .arch-toolbar {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 12px;
   }
 
   .arch-scene-tabs {
     width: 100%;
     justify-content: flex-start;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
+    gap: 6px;
   }
 
   .arch-scene-btn {
-    padding: 7px 14px;
-    font-size: 0.76rem;
+    padding: 8px 14px;
+    font-size: 0.78rem;
   }
 
   .arch-toolbar-actions {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .arch-lighting-group {
+    padding: 3px;
+    gap: 2px;
   }
 
   .arch-light-btn {
-    padding: 5px 10px;
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  .arch-tool-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .arch-orbit-btn,
+  .arch-reset-btn {
+    padding: 6px 12px;
     font-size: 0.72rem;
   }
 
@@ -859,8 +873,8 @@
 /* Compact Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
   .arch-stage-wrap {
-    height: 380px;
-    min-height: 340px;
+    height: 360px;
+    min-height: 320px;
   }
 
   .arch-title {
@@ -878,30 +892,40 @@
     padding: 4px 10px;
   }
 
+  .arch-toolbar {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
   .arch-toolbar-actions {
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 8px;
+    width: 100%;
   }
 
   .arch-lighting-group {
     width: 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .arch-light-btn {
-    flex: 1;
     justify-content: center;
+    padding: 7px 4px;
   }
 
   .arch-tool-group {
     width: 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .arch-orbit-btn,
   .arch-reset-btn {
-    flex: 1;
     justify-content: center;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 0.74rem;
   }
 }
-

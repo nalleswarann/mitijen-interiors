@@ -174,7 +174,7 @@ const TESTIMONIALS = [
         <div className="renova-disciplines-container">
           <div className="renova-section-header">
             <span className="renova-kicker" style={{ color: 'var(--olive)' }}>
-              02 / DISCIPLINES · CORE SERVICES
+              DISCIPLINES · CORE SERVICES
             </span>
             <span style={{ fontFamily: 'var(--font-content)', fontSize: '0.86rem', color: '#666' }}>
               Select a practice to explore full case studies & specifications

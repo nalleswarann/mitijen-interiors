@@ -140,7 +140,7 @@ export const BeforeAfterSection: React.FC = () => {
         {/* 1. Editorial Header */}
         <div className="ba-header">
           <div className="ba-header-lead">
-            <span className="ba-kicker">03 / SPATIAL METAMORPHOSIS · BEFORE &amp; AFTER</span>
+            <span className="ba-kicker">SPATIAL METAMORPHOSIS · BEFORE &amp; AFTER</span>
             <h2 className="ba-title">
               Raw Framework to Living Sanctuary.
             </h2>

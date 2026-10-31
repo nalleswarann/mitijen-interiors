@@ -21,9 +21,9 @@ const PRACTICE_HEADINGS: Record<string, string> = {
 };
 
 const PRACTICE_NUMERALS: Record<string, string> = {
-  residential: '01 / RESIDENTIAL',
-  commercial: '02 / COMMERCIAL',
-  corporates: '03 / CORPORATE',
+  residential: 'RESIDENTIAL',
+  commercial: 'COMMERCIAL',
+  corporates: 'CORPORATE',
 };
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProject }) => {
@@ -51,7 +51,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         {/* Section Editorial Header */}
         <div className="arch-practices-header">
           <span className="arch-practices-kicker">
-            03 / Disciplines of Form & Space
+            Disciplines of Form & Space
           </span>
           <h2 className="arch-practices-title">
             Architectural Disciplines & Commissioned Spaces.

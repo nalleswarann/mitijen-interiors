@@ -105,7 +105,6 @@ export const MaterialsGallery: React.FC = () => {
                   }}
                 >
                   <div className="project-row-top">
-                    <span className="project-row-num">{proj.num}</span>
                     <h3 className="project-row-title">{proj.title}</h3>
                   </div>
 

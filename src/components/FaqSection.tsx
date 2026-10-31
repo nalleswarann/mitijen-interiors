@@ -95,7 +95,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
         <div className="faq-right">
           <div>
             <span className="faq-kicker">
-              08 / CLIENT GUIDANCE & FAQS
+              CLIENT GUIDANCE & FAQS
             </span>
             <h2 className="faq-headline">
               Answers to common questions about our design methodology, timelines, execution, and architectural standards.

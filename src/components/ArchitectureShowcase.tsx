@@ -346,7 +346,7 @@ export const ArchitectureShowcase: React.FC = () => {
         {/* 1. Minimalist Editorial Header */}
         <div className="arch-header">
           <div className="arch-header-left">
-            <span className="arch-kicker">02 / IMMERSIVE SPATIAL ARCHITECTURE</span>
+            <span className="arch-kicker">IMMERSIVE SPATIAL ARCHITECTURE</span>
             <h2 id="arch-heading" className="arch-title">
               360° Spatial Craft & Materiality.
             </h2>
@@ -371,7 +371,7 @@ export const ArchitectureShowcase: React.FC = () => {
                 className={`arch-scene-btn ${activeViewIdx === i ? 'is-active' : ''}`}
                 onClick={() => handleSelectView(i)}
               >
-                <span className="arch-scene-num">0{i + 1}</span>
+                
                 <span>{view.name.split('&')[0].trim()}</span>
               </button>
             ))}

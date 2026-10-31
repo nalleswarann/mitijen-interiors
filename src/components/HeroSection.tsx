@@ -25,7 +25,7 @@ const HERO_SLIDES: ArchitecturalSlide[] = [
   {
     id: 'slide-01',
     image: '/assets/mitijen/Banner1.jpg',
-    badge: 'Residential Studio · Vol. 01',
+    badge: 'Residential Studio',
     category: 'Residential',
     line1: 'SPACES THAT',
     line2: 'FEEL LIKE HOME.',
@@ -378,15 +378,12 @@ export const HeroSection: React.FC = () => {
               aria-label={`Go to slide ${idx + 1}: ${slide.line1}`}
               aria-current={idx === currentSlideIndex ? 'true' : 'false'}
             >
-              <span className="arch-dot-index">0{idx + 1}</span>
               <span className="arch-dot-bar">
                 <span className="arch-dot-progress" />
               </span>
             </button>
           ))}
-          <span className="arch-slide-counter">
-            0{currentSlideIndex + 1} / 0{HERO_SLIDES.length}
-          </span>
+          
         </div>
 
         <div className="arch-scroll-cue" aria-hidden="true">

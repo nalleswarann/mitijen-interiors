@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
     gal: ["lounge", "dine", "bed", "dressing"],
     categoryTitle: "RESIDENTIAL",
     numeral: "I",
-    archRef: "SECTOR 01 // BESPOKE RESIDENCES",
+    archRef: "BESPOKE RESIDENCES",
     previewImage: "/assets/mitijen/home1.jpeg"
   },
   {
@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     gal: ["stone", "hero", "linen"],
     categoryTitle: "COMMERCIAL",
     numeral: "II",
-    archRef: "SECTOR 02 // COMMERCIAL VENUES",
+    archRef: "COMMERCIAL VENUES",
     previewImage: "/assets/mitijen/commercial1.jpeg"
   },
   {
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     gal: ["stair", "hero", "dine"],
     categoryTitle: "CORPORATES",
     numeral: "III",
-    archRef: "SECTOR 03 // EXECUTIVE SPACES",
+    archRef: "EXECUTIVE SPACES",
     previewImage: "/assets/mitijen/commercial4.jpeg"
   }
 ];
