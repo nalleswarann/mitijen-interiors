@@ -366,8 +366,8 @@ export const ProjectsPage: React.FC = () => {
           </div>
 
           <h1 className="projects-hero-title">
-            Spaces shaped around <br className="hero-break" />
-            the quiet art of living.
+            Spaces shaped around the <br className="hero-break" />
+            quiet art of living.
           </h1>
 
           <p className="projects-hero-desc">
@@ -512,9 +512,8 @@ export const ProjectsPage: React.FC = () => {
             PROJECTS GRID / LIST CONTAINER
             =================================================================== */}
         <div
-          className={`projects-container projects-view-${layoutMode} ${
-            isGridTransitioning ? 'is-transitioning' : ''
-          }`}
+          className={`projects-container projects-view-${layoutMode} ${isGridTransitioning ? 'is-transitioning' : ''
+            }`}
           data-v={layoutMode}
         >
           {filteredProjects.map((project, index) => {
@@ -680,7 +679,7 @@ export const ProjectsPage: React.FC = () => {
           ===================================================================== */}
       <ProjectsMaterialsPhilosophy onSelectProjectByTitle={handleSelectByTitle} />
 
-      
+
     </main>
   );
 };
