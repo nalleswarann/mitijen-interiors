@@ -15,8 +15,78 @@
 }
 
 /* ==========================================================================
-   1. HERO SECTION
+   1. HERO SECTION (COMPACT MONOGRAPH BANNER — Next Section Visible Above Fold)
    ========================================================================== */
+#contact-hero.mono-banner {
+  min-height: clamp(480px, 72vh, 660px);
+  max-height: 76vh;
+  padding-top: calc(68px + env(safe-area-inset-top, 0px));
+}
+
+#contact-hero .mono-canvas {
+  justify-content: space-between;
+}
+
+#contact-hero .mono-top-badge-row {
+  padding: clamp(14px, 2vw, 24px) clamp(24px, 4vw, 56px) 0;
+}
+
+#contact-hero .mono-headline-wrap {
+  padding: clamp(14px, 2vw, 28px) clamp(24px, 4vw, 56px);
+  margin-top: auto;
+  margin-bottom: clamp(12px, 1.8vh, 22px);
+}
+
+#contact-hero .mono-headline {
+  font-size: clamp(2.8rem, 6.2vw, 5.6rem);
+  line-height: 0.94;
+}
+
+#contact-hero .mono-frosted-bar {
+  margin: 0 clamp(24px, 4vw, 56px) clamp(16px, 2.5vh, 28px);
+}
+
+#contact-hero .mono-pillar-col {
+  padding: clamp(12px, 1.4vw, 18px) clamp(16px, 1.8vw, 24px);
+}
+
+#contact-hero .mono-sidebar-tier {
+  padding: clamp(18px, 2.2vw, 28px) clamp(18px, 2vw, 28px);
+}
+
+#contact-hero .mono-sidebar-note {
+  font-size: clamp(0.80rem, 0.9vw, 0.88rem);
+  line-height: 1.55;
+}
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  #contact-hero.mono-banner {
+    min-height: clamp(440px, 68vh, 580px);
+    max-height: 72vh;
+  }
+  #contact-hero .mono-headline {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  #contact-hero.mono-banner {
+    min-height: auto;
+    max-height: none;
+  }
+  #contact-hero .mono-canvas {
+    min-height: clamp(340px, 48vh, 440px);
+  }
+}
+
+/* Compact Mobile (<= 480px) */
+@media (max-width: 480px) {
+  #contact-hero .mono-canvas {
+    min-height: clamp(300px, 44vh, 380px);
+  }
+}
 .contact-hero {
   position: relative;
   min-height: 85vh;
@@ -213,7 +283,7 @@
    2. CONTACT INFORMATION AND ENQUIRY FORM (TWO-COLUMN)
    ========================================================================== */
 .contact-main-section {
-  padding: clamp(80px, 11vw, 150px) var(--pad);
+  padding: clamp(44px, 5.5vw, 76px) var(--pad) clamp(80px, 11vw, 150px);
   max-width: 1400px;
   margin: 0 auto;
 }
