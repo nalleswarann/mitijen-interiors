@@ -9,6 +9,7 @@
 @import './TransformationsAccordion.css';
 @import './EditorialHero.css';
 @import './RoomExplorer.css';
+@import './Footer.css';
 
 html {
   overflow-x: hidden;
