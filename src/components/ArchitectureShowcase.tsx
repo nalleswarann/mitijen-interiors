@@ -4,6 +4,8 @@ import { ARCHITECTURE_VIEWS } from '../data/architecture';
 import type { LightingMode, Hotspot } from '../data/architecture';
 import '../styles/ArchitectureShowcase.css';
 
+const SHOWCASE_TABS = ['RESIDENTIAL', 'COMMERCIAL', 'CORPORATE'];
+
 export const ArchitectureShowcase: React.FC = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -346,9 +348,9 @@ export const ArchitectureShowcase: React.FC = () => {
         {/* 1. Minimalist Editorial Header */}
         <div className="arch-header">
           <div className="arch-header-left">
-            <span className="arch-kicker">IMMERSIVE SPATIAL ARCHITECTURE</span>
+            <span className="arch-kicker">DESIGN, DETAIL & MATERIALITY</span>
             <h2 id="arch-heading" className="arch-title">
-              360° SPATIAL CRAFT & MATERIALITY.
+              Spaces We’ve Designed. Stories We’ve Shaped.
             </h2>
           </div>
           <div className="arch-header-right">
@@ -372,7 +374,7 @@ export const ArchitectureShowcase: React.FC = () => {
                 onClick={() => handleSelectView(i)}
               >
                 
-                <span>{view.name.split('&')[0].trim()}</span>
+                <span>{SHOWCASE_TABS[i] || view.name}</span>
               </button>
             ))}
           </div>
@@ -627,7 +629,7 @@ export const ArchitectureShowcase: React.FC = () => {
             <p className="arch-summary-desc">
               {activeSpot ? (
                 <span>
-                  <strong style={{ color: '#FAF8F5' }}>{activeSpot.name}: </strong>
+                  <strong style={{ color: 'var(--ink, #151614)' }}>{activeSpot.name}: </strong>
                   {activeSpot.description}
                 </span>
               ) : (

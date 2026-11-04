@@ -11,63 +11,63 @@ export interface TransformationItem {
 
 export const TRANSFORMATION_ITEMS: TransformationItem[] = [
   {
-    id: 'credenza',
-    title: 'Living Kitchen Transformation',
-    room: 'Living & Kitchen',
+    id: 'living-room',
+    title: 'Elegant spaces made for everyday living.',
+    room: 'Living Room',
     beforeImage: '/assets/mitijen/BF&AF/KitchenBF.jpeg',
     afterImage: '/assets/mitijen/BF&AF/KitchenAF.jpeg',
     thumbnail: '/assets/mitijen/BF&AF/KitchenAF.jpeg',
-    beforeAlt: 'Raw interior under construction with exposed electrical wiring and bare timber framework',
-    afterAlt: 'Transformed contemporary living room with bespoke walnut credenza, Japanese shoji partition, and warm cove wash lighting'
+    beforeAlt: 'Living room interior during renovation and structural planning',
+    afterAlt: 'Elegant living room made for everyday living with bespoke joinery and warm lighting'
   },
   {
-    id: 'wardrobe',
-    title: 'Architectural Master Wardrobe',
-    room: 'Master Suite',
+    id: 'modular-kitchen',
+    title: 'Smart layouts with a refined finish.',
+    room: 'Modular Kitchen',
     beforeImage: '/assets/mitijen/BF&AF/BFCupboard.jpeg',
     afterImage: '/assets/mitijen/BF&AF/AFCupboard.jpeg',
     thumbnail: '/assets/mitijen/BF&AF/BFCupboard.jpeg',
-    beforeAlt: 'Unfinished wooden wardrobe shelving skeleton with bare drywall and construction materials',
-    afterAlt: 'Completed luxury master wardrobe suite with curved architectural cabinetry and warm integrated illumination'
+    beforeAlt: 'Kitchen and cabinetry space under initial installation',
+    afterAlt: 'Modular kitchen with smart layouts and a refined architectural finish'
   },
   {
-    id: 'vanity',
-    title: 'Stone & Timber Vanity Sanctuary',
-    room: 'Primary Bath',
+    id: 'retail-showroom',
+    title: 'Interiors designed to strengthen the customer experience.',
+    room: 'Retail Showroom',
     beforeImage: '/assets/mitijen/BF&AF/Wood.jpeg',
     afterImage: '/assets/mitijen/BF&AF/AFWood.jpeg',
     thumbnail: '/assets/mitijen/BF&AF/AFWood.jpeg',
-    beforeAlt: 'Italian marble bathroom vanity under installation with plumbing cutouts and bare walls',
-    afterAlt: 'Finished monolithic marble vanity with organic backlit mirror, stone vessel sink, and freestanding bath'
+    beforeAlt: 'Commercial retail venue space during rough-in build',
+    afterAlt: 'Retail showroom designed to strengthen the customer experience'
   },
   {
-    id: 'kitchen',
-    title: 'Culinary Pavilion & Island Kitchen',
-    room: 'Kitchen & Dining',
+    id: 'restaurant-cafe',
+    title: 'Inviting spaces designed around the brand.',
+    room: 'Restaurant & Cafe',
     beforeImage: '/assets/transformations/kitchen_before.jpg',
     afterImage: '/assets/transformations/kitchen_after.jpg',
     thumbnail: '/assets/transformations/kitchen_thumb.jpg',
-    beforeAlt: 'Kitchen space under renovation with dangling electrical cables from ceiling and uninstalled fixtures',
-    afterAlt: 'Transformed boutique culinary pavilion with monolithic stone island, fluted detailing, and warm recessed lighting'
+    beforeAlt: 'Dining hospitality space during structural refurbishment',
+    afterAlt: 'Inviting restaurant and cafe spaces designed around the brand'
   },
   {
-    id: 'lounge',
-    title: 'Sunlit Living Lounge & Gallery',
-    room: 'Main Residence',
+    id: 'reception-lounge',
+    title: 'An impressive welcome that reflects your brand.',
+    room: 'Reception & Lounge',
     beforeImage: '/assets/transformations/lounge_before.jpg',
     afterImage: '/assets/transformations/lounge_after.jpg',
     thumbnail: '/assets/transformations/lounge_thumb.jpg',
-    beforeAlt: 'Entrance and hallway during construction with raw portal framing and paint buckets on floor',
-    afterAlt: 'Completed sunlit contemporary living space featuring floor-to-ceiling windows, natural oak, and curated furnishings'
+    beforeAlt: 'Reception foyer during framework and services rough-in',
+    afterAlt: 'Reception and lounge with an impressive welcome reflecting the brand'
   },
   {
-    id: 'bedroom',
-    title: 'Executive Bedroom Joinery',
-    room: 'Private Chamber',
+    id: 'office-workspace',
+    title: 'Professional interiors built around the way your team works.',
+    room: 'Office Workspace',
     beforeImage: '/assets/transformations/bedroom_before.jpg',
     afterImage: '/assets/transformations/bedroom_after.jpg',
     thumbnail: '/assets/transformations/bedroom_thumb.jpg',
-    beforeAlt: 'Unfinished bedroom wall paneling with exposed electrical wiring overhead and construction tools',
-    afterAlt: 'Sculptural architectural suite with refined timber craftsmanship and soft natural light'
+    beforeAlt: 'Office floor under structural execution and cabling',
+    afterAlt: 'Professional office workspace built around the way your team works'
   }
 ];

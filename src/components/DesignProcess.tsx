@@ -23,17 +23,17 @@ const TRUST_COLUMNS: TrustColumn[] = [
       alt: 'Warm sunlit minimalist living interior with natural oak and linen daybed'
     },
     card: {
-      number: '250+',
-      title: 'Project Completed',
-      description: 'Delivering thoughtfully designed spaces across industries.'
+      number: '15+',
+      title: 'Years of Experience',
+      description: 'A well-established interior design brand with experience across diverse project requirements.'
     }
   },
   {
     type: 'card-first',
     card: {
-      number: '15+',
-      title: 'Years of Experience',
-      description: 'Shaping timeless interiors with unmatched creative expertise.'
+      number: '2000+',
+      title: 'Projects Completed',
+      description: 'A wide range of completed residential, commercial and corporate interior projects.'
     },
     photo: {
       src: '/assets/mitijen/hom2.jpeg',
@@ -47,17 +47,17 @@ const TRUST_COLUMNS: TrustColumn[] = [
       alt: 'Illuminated contemporary culinary space with monolithic island plinth'
     },
     card: {
-      number: '98+',
-      title: 'Client Satisfaction',
-      description: 'Built on exceptional client trust and satisfaction.'
+      number: '5.0',
+      title: 'Client Rating',
+      description: 'A 5.0 rating reflecting positive client experiences across completed projects.'
     }
   },
   {
     type: 'card-first',
     card: {
-      number: '12',
-      title: 'Design Awards',
-      description: 'Recognized for exceptional client satisfaction consistently.'
+      number: '2D & 3D',
+      title: 'Design Visualisation',
+      description: 'Clear 2D and 3D presentations that help clients understand the proposed interior before execution.'
     },
     photo: {
       src: '/assets/mitijen/bedroom.jpeg',
@@ -68,22 +68,18 @@ const TRUST_COLUMNS: TrustColumn[] = [
 
 export const DesignProcess: React.FC = () => {
   return (
-    <section className="built-on-trust-section" id="process" aria-label="BUILT ON TRUST">
+    <section className="built-on-trust-section" id="process" aria-label="AT A GLANCE">
       <div className="built-on-trust-container">
         {/* Header Block with Slower Editorial Reveal */}
         <div className="built-on-trust-header reveal-fade-up">
           <div className="trust-badge badge-float">
             <span className="trust-badge-dot" />
-            <span>Proven Excellence</span>
+            <span>AT A GLANCE</span>
           </div>
 
           <h2 className="trust-title">
-            Built On Trust
+            EXPERIENCE THAT SPEAKS
           </h2>
-
-          <p className="trust-subtitle">
-            Built through timeless craftsmanship and lasting client relationships.
-          </p>
         </div>
 
         {/* 4-Column Alternating Bento Grid with Staggered Scroll Animation */}

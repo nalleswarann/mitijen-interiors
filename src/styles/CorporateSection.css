@@ -510,7 +510,8 @@
   .corporate-human-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
+    margin-bottom: 24px;
   }
 
   .corporate-human-header-left,
@@ -518,81 +519,28 @@
     max-width: 100%;
     margin-bottom: 0;
   }
+
   .corporate-human-section {
-    padding: clamp(56px, 8vw, 84px) var(--pad);
-  }
-
-  .corporate-companion-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .corporate-footer-banner {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 26px 22px;
-    gap: 1.4rem;
-  }
-
-  .footer-banner-text,
-  .footer-banner-actions {
-    width: 100%;
-  }
-
-  .corporate-inquiry-btn {
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 0.78rem;
-  }
-}
-
-/* Mobile Screens (<= 640px) */
-@media (max-width: 640px) {
-  .corporate-human-section {
-    padding: clamp(48px, 9vw, 72px) var(--pad, 16px);
-  }
-
-  .corporate-human-header {
-    margin-bottom: 24px;
-  }
-
-  .corporate-human-label {
-    font-size: 0.7rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .corporate-human-title {
-    font-size: clamp(2.0rem, 7.8vw, 2.6rem);
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  .corporate-human-lead {
-    font-size: 0.94rem;
-    line-height: 1.6;
+    padding: clamp(48px, 7vw, 76px) var(--pad, 18px);
   }
 
   .corporate-editorial-grid {
-    gap: 20px;
-    margin-bottom: 32px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .corporate-visual-display {
+    order: -1;
+    position: relative;
+    top: 0;
+    width: 100%;
   }
 
   .corporate-main-photo-wrap {
     aspect-ratio: 16 / 10;
-    max-height: 300px;
-    border-radius: 12px;
-  }
-
-  .corporate-photo-caption {
-    padding: 0.9rem 1.1rem;
-  }
-
-  .caption-location {
-    font-size: 0.68rem;
-  }
-
-  .caption-title {
-    font-size: 0.95rem;
+    max-height: 320px;
+    border-radius: 14px;
   }
 
   .corporate-companion-row {
@@ -601,81 +549,660 @@
   }
 
   .companion-photo-wrap {
-    aspect-ratio: 16 / 9;
-    max-height: 180px;
-    border-radius: 10px;
+    display: none;
   }
 
   .companion-note-card {
-    padding: 18px 16px;
-    border-radius: 10px;
-  }
-
-  .corporate-project-list {
-    gap: 12px;
-  }
-
-  .corporate-project-row {
-    padding: 18px 16px;
+    padding: 16px 18px;
     border-radius: 12px;
-    transform: none !important;
   }
 
-  .project-row-top {
+  .corporate-footer-banner {
     flex-direction: column;
-    gap: 2px;
-    align-items: flex-start;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 24px 20px;
+    gap: 16px;
+    border-radius: 14px;
+  }
+
+  .footer-banner-text {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .footer-banner-actions {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .corporate-inquiry-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 14px 20px;
+    font-size: 0.76rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+  .corporate-human-section {
+    padding: clamp(40px, 8vw, 60px) var(--pad, 16px);
+  }
+
+  .corporate-human-header {
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .corporate-human-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
     margin-bottom: 0.25rem;
   }
 
-  .project-row-num {
+  .corporate-human-title {
+    font-size: clamp(1.85rem, 7vw, 2.35rem);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .corporate-human-lead {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .corporate-editorial-grid {
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .corporate-main-photo-wrap {
+    aspect-ratio: 16 / 10;
+    min-height: 210px;
+    max-height: 260px;
+    border-radius: 12px;
+  }
+
+  .corporate-photo-caption {
+    padding: 8px 12px;
+  }
+
+  .caption-location {
+    font-size: 0.65rem;
+  }
+
+  .caption-title {
+    font-size: 0.88rem;
+  }
+
+  .companion-note-card {
+    padding: 15px 14px;
+    border-radius: 12px;
+  }
+
+  .note-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.4rem;
+  }
+
+  .note-text {
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+
+  .note-link {
     font-size: 0.74rem;
+    padding: 6px 0;
+  }
+
+  .corporate-project-list {
+    gap: 10px;
+  }
+
+  .corporate-project-row {
+    padding: 14px 14px;
+    border-radius: 12px;
+    transform: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .corporate-project-row.is-active {
+    border-color: var(--sand, #D8C8B4);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .project-row-top {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-row-num {
+    font-size: 0.72rem;
+    color: var(--sand, #D8C8B4);
   }
 
   .project-row-title {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     line-height: 1.25;
   }
 
   .project-row-cat {
-    font-size: 0.68rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
   }
 
   .project-row-desc {
-    font-size: 0.88rem;
-    line-height: 1.58;
-    margin-bottom: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.52;
+    margin-bottom: 0.6rem;
   }
 
   .project-row-materials {
-    gap: 6px;
+    gap: 5px;
   }
 
   .material-crumb {
-    font-size: 0.68rem;
-    padding: 4px 10px;
+    font-size: 0.64rem;
+    padding: 3px 8px;
+    border-radius: 9999px;
   }
 
   .corporate-footer-banner {
-    padding: 22px 16px;
-    border-radius: 12px;
-    gap: 1.1rem;
+    padding: 20px 16px;
+    border-radius: 14px;
+    gap: 14px;
+  }
+
+  .footer-banner-text {
+    flex: 0 0 auto;
+    width: 100%;
+    margin: 0;
   }
 
   .footer-banner-text h4 {
-    font-size: 1.25rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
+    margin: 0 0 0.35rem 0;
   }
 
   .footer-banner-text p {
-    font-size: 0.88rem;
-    line-height: 1.5;
+    font-size: 0.82rem;
+    line-height: 1.48;
+    margin: 0;
+  }
+
+  .footer-banner-actions {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 2px;
   }
 
   .corporate-inquiry-btn {
-    padding: 13px 18px;
-    font-size: 0.75rem;
+    padding: 13px 16px;
+    font-size: 0.74rem;
     letter-spacing: 0.1em;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP / MOBILE VIEWPORT DISPLAY SWITCHER
+   ========================================================================== */
+.corporate-desktop-view {
+  display: block;
+  width: 100%;
+}
+
+.corporate-mobile-portfolio-view {
+  display: none !important;
+}
+
+@media (max-width: 400px) {
+  .corporate-human-section {
+    padding: 34px 12px;
+  }
+
+  .corporate-human-title {
+    font-size: 1.75rem;
+  }
+
+  .corporate-main-photo-wrap {
+    min-height: 190px;
+  }
+
+  .corporate-project-row {
+    padding: 12px 12px;
+  }
+
+  .project-row-title {
+    font-size: 0.98rem;
+  }
+
+  .material-crumb {
+    font-size: 0.60rem;
+    padding: 2px 6px;
+  }
+}
+
+/* ==========================================================================
+   MOBILE EDITORIAL VIEWPORT (<= 768px)
+   "DESIGNED AROUND WHAT MATTERS."
+   Editorial-style accordion portfolio with interactive expandable cards
+   ========================================================================== */
+@media (max-width: 768px) {
+  .corporate-desktop-view {
+    display: none !important;
+  }
+
+  /* Warm ivory editorial canvas on mobile matching reference */
+  .corporate-human-section {
+    background-color: var(--ivory, #FAF8F5) !important;
+    color: var(--ink, #151614) !important;
+    padding: clamp(48px, 8vw, 76px) var(--pad, 16px) !important;
+    border-top: 1px solid rgba(21, 22, 20, 0.08) !important;
+  }
+
+  .corporate-mobile-portfolio-view {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 22px;
+  }
+
+  /* 1. Section Introduction */
+  .corporate-mobile-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .corporate-mobile-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.70rem;
+    font-weight: 600;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--olive, #777B61);
+  }
+
+  .corporate-mobile-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--olive, #777B61);
+    flex-shrink: 0;
+  }
+
+  .corporate-mobile-heading {
+    font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(2.1rem, 7.8vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: var(--ink, #151614);
+    margin: 2px 0 0 0;
+  }
+
+  .corporate-mobile-intro-desc {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.90rem;
+    line-height: 1.6;
+    color: #4A4D46;
+    margin: 4px 0 0 0;
+    max-width: 580px;
+  }
+
+  /* 2. Vertically Stacked Expandable Practice Cards */
+  .corporate-mobile-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .corporate-mobile-card {
+    position: relative;
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: height 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s ease,
+                transform 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .corporate-mobile-card.is-collapsed {
+    height: 98px;
+  }
+
+  .corporate-mobile-card.is-expanded {
+    height: 350px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  }
+
+  .corporate-mobile-card:focus-visible {
+    outline: 2px solid var(--sand, #D8C8B4);
+    outline-offset: 2px;
+  }
+
+  /* Full-bleed background photo & atmospheric dark scrim */
+  .corporate-mobile-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .corporate-mobile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.02);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .corporate-mobile-card.is-expanded .corporate-mobile-img {
+    transform: scale(1.06);
+  }
+
+  .corporate-mobile-scrim {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.72) 100%);
+    transition: background 0.4s ease;
+  }
+
+  .corporate-mobile-scrim.is-expanded {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.25) 30%,
+      rgba(0, 0, 0, 0.85) 75%,
+      rgba(0, 0, 0, 0.96) 100%
+    );
+  }
+
+  /* Card Inner Content Layout */
+  .corporate-mobile-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .corporate-mobile-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .corporate-mobile-card-badge {
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.90);
+  }
+
+  .corporate-mobile-toggle-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #FFFFFF;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .corporate-mobile-bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .corporate-mobile-card-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(1.35rem, 5.2vw, 1.65rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* Expanding Body Details */
+  .corporate-mobile-card.is-collapsed .corporate-mobile-expanded-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, max-height 0.35s ease;
+  }
+
+  .corporate-mobile-card.is-expanded .corporate-mobile-expanded-content {
+    opacity: 1;
+    max-height: 220px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: opacity 0.35s ease 0.1s, max-height 0.4s ease;
+  }
+
+  .corporate-mobile-meta {
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--sand, #D8C8B4);
+    letter-spacing: 0.08em;
+  }
+
+  .corporate-mobile-card-desc {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.84rem;
+    line-height: 1.52;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+  }
+
+  .corporate-mobile-materials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .corporate-mobile-crumb {
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.62rem;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--sand, #D8C8B4);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 3px 8px;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .corporate-mobile-actions {
+    margin-top: 4px;
+  }
+
+  .corporate-mobile-explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-bottom: 1.5px solid #FFFFFF;
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .corporate-mobile-explore-link:hover {
+    color: var(--sand, #D8C8B4);
+    border-color: var(--sand, #D8C8B4);
+  }
+
+  /* 3. The Complete Picture Narrative Note on Mobile */
+  .corporate-mobile-complete-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(21, 22, 20, 0.08);
+    border-left: 3px solid var(--olive, #777B61);
+    border-radius: 12px;
+    padding: 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .corporate-mobile-complete-label {
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--olive, #777B61);
+  }
+
+  .corporate-mobile-complete-text {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #3E423A;
+    margin: 0;
+  }
+
+  /* 4. Section Bottom Archive Navigation Link */
+  .corporate-mobile-archive-row {
+    padding-top: 6px;
+    margin-bottom: 4px;
+  }
+
+  .corporate-mobile-archive-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink, #151614);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--ink, #151614);
+    padding-bottom: 3px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .corporate-mobile-archive-link:hover {
+    color: var(--olive, #777B61);
+    border-color: var(--olive, #777B61);
+  }
+
+  /* 4. Studio Consultation Card on Mobile (Clean, compact, no empty black space) */
+  .corporate-mobile-consult-card {
+    background: #181A17;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .corporate-mobile-consult-text h4 {
+    font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(1.25rem, 4.6vw, 1.45rem);
+    font-weight: 400;
+    color: #FAF8F5;
+    margin: 0 0 6px 0;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+  }
+
+  .corporate-mobile-consult-text p {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.84rem;
+    line-height: 1.52;
+    color: rgba(250, 248, 245, 0.76);
+    margin: 0;
+  }
+
+  .corporate-mobile-consult-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 9999px;
+    background: var(--sand, #D8C8B4);
+    color: var(--ink, #151614);
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .corporate-mobile-consult-btn:hover {
+    background: #FFFFFF;
+    transform: translateY(-1px);
   }
 }

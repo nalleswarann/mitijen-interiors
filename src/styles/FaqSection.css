@@ -36,10 +36,10 @@
 .faq-img-wrap {
   width: 100%;
   aspect-ratio: 4 / 5;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
-  background-color: #151614;
+  background: linear-gradient(145deg, #232622, #151614);
   position: relative;
 }
 
@@ -57,9 +57,10 @@
 }
 
 .faq-img.is-active {
-  opacity: 1;
-  transform: scale(1.0);
-  z-index: 1;
+  opacity: 1 !important;
+  transform: scale(1.0) !important;
+  z-index: 2 !important;
+  visibility: visible !important;
 }
 
 .faq-img-badge {
@@ -334,13 +335,13 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS (ALL DEVICES)
+   RESPONSIVE BREAKPOINTS (ALL DEVICES — SEVERE MOBILE OPTIMISATION)
    ========================================================================== */
 
 @media (max-width: 1024px) {
   .faq-container {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 36px;
   }
 
   .faq-left {
@@ -355,45 +356,150 @@
 
 @media (max-width: 768px) {
   .faq-section {
-    padding: clamp(60px, 9vh, 90px) 20px;
+    padding: clamp(48px, 8vw, 76px) var(--pad, 18px);
+  }
+
+  /* Display FAQ questions first on mobile for immediate clarity */
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .faq-right {
+    order: 1;
+    width: 100%;
   }
 
   .faq-left {
+    order: 2;
+    width: 100%;
     max-width: 100%;
+    margin-top: 8px;
   }
 
   .faq-img-wrap {
     aspect-ratio: 16 / 10;
+    max-height: 220px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #232622, #151614);
+  }
+
+  .faq-img-badge {
+    bottom: 12px;
+    left: 12px;
+    padding: 6px 14px;
+    font-size: 0.68rem;
+  }
+
+  .faq-left-note {
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .faq-kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.4rem;
   }
 
   .faq-headline {
-    font-size: clamp(1.85rem, 6.5vw, 2.4rem);
+    font-size: clamp(1.75rem, 6.4vw, 2.3rem);
+    line-height: 1.18;
+    margin-bottom: 22px;
+  }
+
+  .faq-accordion {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.is-active {
+    border-radius: 12px;
   }
 
   .faq-header {
-    padding: 18px 20px;
+    padding: 16px 18px;
+    min-height: 50px;
+    box-sizing: border-box;
   }
 
   .faq-header-left {
     gap: 12px;
   }
 
+  .faq-num {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+
+  .faq-title {
+    font-size: clamp(0.92rem, 3.6vw, 1.02rem);
+    line-height: 1.35;
+  }
+
+  .faq-icon-wrap {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    margin-left: 10px;
+  }
+
   .faq-body {
-    padding: 2px 20px 22px 20px;
+    padding: 0 18px 20px 18px;
   }
 
   .faq-summary {
-    font-size: 0.94rem;
+    font-size: 0.90rem;
+    line-height: 1.55;
+    margin-bottom: 8px;
   }
 
   .faq-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .faq-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 14px;
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+  .faq-cta-text {
     font-size: 0.88rem;
+    line-height: 1.48;
+  }
+
+  .faq-cta-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 9999px;
+    justify-content: center;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    padding: 12px 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .faq-section {
+    padding: 40px 14px;
+  }
+
   .faq-header {
-    padding: 16px 16px;
+    padding: 14px 14px;
   }
 
   .faq-header-left {
@@ -401,26 +507,34 @@
   }
 
   .faq-num {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
   }
 
   .faq-title {
-    font-size: 0.92rem;
+    font-size: 0.90rem;
   }
 
   .faq-icon-wrap {
     width: 28px;
     height: 28px;
+    min-width: 28px;
     margin-left: 8px;
   }
 
   .faq-body {
-    padding: 2px 16px 18px 16px;
+    padding: 0 14px 16px 14px;
   }
 
-  .faq-cta-btn {
-    width: 100%;
-    justify-content: center;
+  .faq-summary {
+    font-size: 0.86rem;
+  }
+
+  .faq-desc {
+    font-size: 0.82rem;
+  }
+
+  .faq-img-wrap {
+    max-height: 190px;
   }
 }
 

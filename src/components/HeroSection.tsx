@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArchitecturalHeroCanvas } from './common/ArchitecturalHeroCanvas';
@@ -18,36 +19,52 @@ interface ArchitecturalSlide {
   line1: string;
   line2: string;
   supportingText: string;
+  primaryCtaText: string;
+  primaryCtaLink: string;
+  secondaryCtaText: string;
+  inquiryContext: string;
 }
 
-// Exactly 3 Curated Residential Interior Architectural Concepts
+// Exactly 3 Curated Architectural Discipline Concepts
 const HERO_SLIDES: ArchitecturalSlide[] = [
   {
     id: 'slide-01',
     image: '/assets/mitijen/Banner1.jpg',
-    badge: 'Residential Studio',
+    badge: 'RESIDENTIAL | THE ART OF LIVING WELL',
     category: 'Residential',
-    line1: 'SPACES THAT',
-    line2: 'FEEL LIKE HOME.',
-    supportingText: 'Thoughtfully designed interiors for the way you live.'
+    line1: 'Thoughtful Design.',
+    line2: 'Beautiful Living.',
+    supportingText: 'Bringing elegance into every corner, creating a home you’ll love to live in.',
+    primaryCtaText: 'EXPLORE RESIDENTIAL SERVICES',
+    primaryCtaLink: '/services/residential-interior-design',
+    secondaryCtaText: 'SHAPE YOUR VISION →',
+    inquiryContext: 'Hero Banner — Residential Consultation'
   },
   {
     id: 'slide-02',
     image: '/assets/mitijen/Banner2.jpg',
-    badge: 'Contemporary Architecture · Vol. 02',
-    category: 'Contemporary',
-    line1: 'FORM MEETS',
-    line2: 'FUNCTION.',
-    supportingText: 'Beautifully balanced spaces, crafted around everyday living.'
+    badge: 'COMMERCIAL | SPACES THAT MAKE AN IMPACT',
+    category: 'Commercial',
+    line1: 'Designed to Make',
+    line2: 'an Impression.',
+    supportingText: 'Elevated commercial spaces that bring your brand, people and purpose together.',
+    primaryCtaText: 'EXPLORE COMMERCIAL SERVICES',
+    primaryCtaLink: '/services/commercial-interior-design',
+    secondaryCtaText: 'MAKE AN IMPACT →',
+    inquiryContext: 'Hero Banner — Commercial Consultation'
   },
   {
     id: 'slide-03',
     image: '/assets/mitijen/Banner3.jpg',
-    badge: 'Monolithic Living · Vol. 03',
-    category: 'BESPOKE CRAFT',
-    line1: 'YOUR HOME.',
-    line2: 'REIMAGINED.',
-    supportingText: 'Timeless residential interiors with a personal touch.'
+    badge: 'CORPORATE | SPACES THAT MOVE BUSINESS FORWARD',
+    category: 'Corporate',
+    line1: 'Better Space for',
+    line2: 'Better Work.',
+    supportingText: 'Corporate spaces designed to reflect your identity and make every detail count.',
+    primaryCtaText: 'EXPLORE CORPORATE SERVICES',
+    primaryCtaLink: '/services/corporate-interior-design',
+    secondaryCtaText: 'BRING IT TO LIFE →',
+    inquiryContext: 'Hero Banner — Corporate Consultation'
   }
 ];
 
@@ -105,7 +122,7 @@ export const HeroSection: React.FC = () => {
       ease: 'power2.in'
     }, 0);
 
-    transitionTl.to([badgeRef.current, supportingRef.current], {
+    transitionTl.to([badgeRef.current, supportingRef.current, actionsRef.current], {
       opacity: 0,
       y: -8,
       duration: 0.22,
@@ -120,6 +137,7 @@ export const HeroSection: React.FC = () => {
       if (headlineLine2Ref.current) gsap.set(headlineLine2Ref.current, { opacity: 0, yPercent: 100 });
       if (badgeRef.current) gsap.set(badgeRef.current, { opacity: 0, y: 10 });
       if (supportingRef.current) gsap.set(supportingRef.current, { opacity: 0, y: 10 });
+      if (actionsRef.current) gsap.set(actionsRef.current, { opacity: 0, y: 10 });
     }, 0.30);
 
     // 3. Reveal incoming text upward through mask (starts at 0.34s)
@@ -144,6 +162,13 @@ export const HeroSection: React.FC = () => {
       duration: 0.65,
       ease: 'power3.out'
     }, 0.48);
+
+    transitionTl.to(actionsRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.65,
+      ease: 'power3.out'
+    }, 0.52);
 
     // 4. WebGL displacement shader wave (0.0 to 1.0 from t = 0.0 to 1.1s)
     const progressObj = { value: 0 };
@@ -250,12 +275,12 @@ export const HeroSection: React.FC = () => {
   }, [currentSlideIndex, isPaused, goToSlide]);
 
   const handleExploreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const target = document.getElementById('projects');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.location.hash = 'projects';
+    if (currentSlide.primaryCtaLink.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(currentSlide.primaryCtaLink);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -294,7 +319,7 @@ export const HeroSection: React.FC = () => {
     <section
       ref={heroRef}
       className="arch-hero"
-      aria-label="Mitjen Interiors — Contemporary Residential Architecture"
+      aria-label={`Mitjen Interiors — Contemporary ${currentSlide.category} Architecture`}
       id="hero"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -342,25 +367,38 @@ export const HeroSection: React.FC = () => {
           </p>
 
           <div ref={actionsRef} className="arch-actions">
-            <a
-              href="#projects"
-              onClick={handleExploreClick}
-              className="arch-btn-explore"
-              aria-label="Explore Our Work"
-            >
-              <span>Explore Our Work</span>
-              <svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M0 5h13M9 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+            {currentSlide.primaryCtaLink.startsWith('#') ? (
+              <a
+                href={currentSlide.primaryCtaLink}
+                onClick={handleExploreClick}
+                className="arch-btn-explore"
+                aria-label={currentSlide.primaryCtaText}
+              >
+                <span>{currentSlide.primaryCtaText}</span>
+                <svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M0 5h13M9 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            ) : (
+              <Link
+                to={currentSlide.primaryCtaLink}
+                className="arch-btn-explore"
+                aria-label={currentSlide.primaryCtaText}
+              >
+                <span>{currentSlide.primaryCtaText}</span>
+                <svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M0 5h13M9 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            )}
 
             <button
               type="button"
-              onClick={() => openInquiry('Hero Banner — Consult Studio')}
+              onClick={() => openInquiry(currentSlide.inquiryContext)}
               className="arch-btn-consult"
-              aria-label="Book Design Consultation"
+              aria-label={`Book Design Consultation for ${currentSlide.category}`}
             >
-              <span>Consult Studio</span>
+              <span>{currentSlide.secondaryCtaText}</span>
             </button>
           </div>
         </div>

@@ -15,9 +15,21 @@ const CATEGORY_ROUTES: Record<string, string> = {
 };
 
 const PRACTICE_HEADINGS: Record<string, string> = {
-  residential: 'Private Living & Sanctuaries',
-  commercial: 'Boutique Commercial Venues',
-  corporates: 'Executive Corporate Workspaces',
+  residential: 'Made Around Your Way of Living',
+  commercial: 'Designed to Leave a Mark',
+  corporates: 'Built for Better Workdays',
+};
+
+const PRACTICE_DESCRIPTIONS: Record<string, string> = {
+  residential: 'Personalised interiors that bring comfort, character and your style into every corner of your home.',
+  commercial: 'Distinctive interiors that bring your brand to life and create memorable experiences for every customer.',
+  corporates: 'Thoughtfully planned environments that support your people, reflect your culture and elevate the everyday work experience.',
+};
+
+const PRACTICE_CTAS: Record<string, string> = {
+  residential: 'EXPLORE RESIDENTIAL',
+  commercial: 'EXPLORE COMMERCIAL',
+  corporates: 'EXPLORE CORPORATE',
 };
 
 const PRACTICE_NUMERALS: Record<string, string> = {
@@ -52,15 +64,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         <div className="arch-practices-header">
           <div className="arch-practices-header-left">
             <span className="arch-practices-kicker">
-              DISCIPLINES OF FORM & SPACE
+              OUR SERVICES
             </span>
             <h2 className="arch-practices-title">
-              ARCHITECTURAL DISCIPLINES & COMMISSIONED SPACES.
+              INTERIORS DESIGNED FOR THE WAY YOU LIVE, WORK &amp; GROW.
             </h2>
           </div>
           <div className="arch-practices-header-right">
             <p className="arch-practices-intro">
-              From private residential sanctuaries to curated commercial venues and executive headquarters—each commission is designed with bespoke joinery, monolithic materiality, and refined architectural restraint.
+              Every project begins with an understanding of how the place should look, feel and work. We shape each interior with a clear sense of purpose and personality, creating surroundings that feel natural, distinctive and made to last.
             </p>
           </div>
         </div>
@@ -110,16 +122,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                     {project.cat}
                   </div>
                   <h3 className="arch-practice-name">
-                    {heading}
+                    {PRACTICE_HEADINGS[project.id] || heading}
                   </h3>
                   <p className="arch-practice-desc">
-                    {project.over}
+                    {PRACTICE_DESCRIPTIONS[project.id] || project.over}
                   </p>
 
                   {/* Action Row */}
                   <div className="arch-practice-actions">
                     <span className="arch-practice-cta">
-                      <span>Explore Practice</span>
+                      <span>{PRACTICE_CTAS[project.id] || 'Explore Practice'}</span>
                       <span className="arch-practice-cta-arrow" aria-hidden="true">
                         <svg width="15" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor">
                           <path d="M0 5h15M11 1l4 4-4 4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

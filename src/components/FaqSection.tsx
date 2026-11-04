@@ -13,42 +13,42 @@ export interface FaqItem {
 const FAQ_ITEMS: FaqItem[] = [
   {
     number: '01',
-    question: 'What is your studio’s end-to-end design & execution process?',
-    summary: 'A disciplined four-phase methodology: Spatial Brief, 3D Conceptualization, Turnkey Fabrication, and Curated Handover.',
-    answer: 'Every commission begins with an immersive discovery dialogue and structural assessment. From there, we develop detailed architectural drawings, BIM spatial plans, bespoke joinery specifications, and oversee turnkey on-site execution through white-glove handover.',
-    badge: 'Phase 01 · Methodology & Rigor',
-    image: '/assets/mitijen/Banner3.jpg'
+    question: 'How much does it cost to do the interiors of a house?',
+    summary: 'The cost depends on factors such as the size of the home, layout, materials, furniture, finishes and level of customisation.',
+    answer: 'The overall budget can be planned based on your requirements and priorities.',
+    badge: 'Budget & Scope',
+    image: '/assets/mitijen/hom2.jpeg'
   },
   {
     number: '02',
-    question: 'How do you approach budgets, procurement, and project timelines?',
-    summary: 'Transparent architectural cost schedules, direct material sourcing, and milestone-governed execution.',
-    answer: 'We establish clear budgetary parameters during initial conceptualization. Itemized Bills of Quantities (BOQ) ensure total cost transparency with zero unexpected overheads. Full villa commissions typically span 4 to 8 months depending on custom millwork and structural modifications.',
-    badge: 'Phase 02 · Budget & Schedule',
+    question: 'How long does it take to complete an interior project?',
+    summary: 'There is no fixed timeline for every project.',
+    answer: 'The duration depends on the size, design scope, custom work, material availability and execution involved. A project timeline can be planned after understanding the requirements.',
+    badge: 'Project Duration',
     image: '/assets/mitijen/kitchen.jpeg'
   },
   {
     number: '03',
-    question: 'Do you manage complete turnkey execution and on-site coordination?',
-    summary: 'Full-service site supervision, MEP integration, artisan joinery, and structural coordination.',
-    answer: 'Yes. Our turnkey service covers civil modifications, electrical, plumbing, HVAC coordination, acoustic treatments, and custom carpentry fabrication managed by our dedicated project engineers and site supervisors to ensure exact fidelity to the drawings.',
-    badge: 'Phase 03 · Turnkey Execution',
+    question: 'Can I get interiors done within my budget?',
+    summary: 'Yes. Interior planning can be adjusted according to the available budget.',
+    answer: 'The choice of materials, furniture, finishes and level of customisation can be planned based on what matters most to you.',
+    badge: 'Custom Planning',
     image: '/assets/mitijen/home1.jpeg'
   },
   {
     number: '04',
-    question: 'What geographic locations does Mitjen Interiors serve?',
-    summary: 'Flagship studio in Coimbatore with ongoing commissions across Bangalore, Chennai, and South India.',
-    answer: 'While our core studio and bespoke fabrication ateliers are located in Coimbatore, Tamil Nadu, we regularly execute flagship residences, private villas, corporate headquarters, and commercial venues across Bangalore, Mysore, Chennai, and Kerala with dedicated on-site teams.',
-    badge: 'Locations · South India Practice',
-    image: '/assets/mitijen/Banner2.jpg'
+    question: 'How do I choose the right interior style for my home?',
+    summary: 'Start by considering how you want the home to feel and how you use each room.',
+    answer: 'References, colours, materials, furniture styles and existing elements can then be combined into a consistent design direction.',
+    badge: 'Design Direction',
+    image: '/assets/mitijen/home3.jpeg'
   },
   {
     number: '05',
-    question: 'Can we engage your studio for individual spaces or full residences only?',
-    summary: 'Primarily comprehensive spatial architecture, with select commissions for signature living or executive spaces.',
-    answer: 'Our practice delivers the highest value when orchestrating comprehensive architectural narratives across complete residences, penthouses, and commercial spaces. We selectively undertake single-space commissions when they demand bespoke architectural intervention.',
-    badge: 'Commissions · Spatial Scope',
+    question: 'Can interior design improve the use of a small home?',
+    summary: 'Yes. Good planning can make better use of limited areas.',
+    answer: 'Through suitable layouts, built-in storage, multi-purpose furniture, lighting and careful selection of colours and finishes.',
+    badge: 'Spatial Optimization',
     image: '/assets/mitijen/bedroom.jpeg'
   }
 ];
@@ -59,12 +59,20 @@ interface FaqSectionProps {
 
 export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
   const [activeFaqIndex, setActiveFaqIndex] = useState<number>(0);
-
-  const currentFaq = FAQ_ITEMS[activeFaqIndex >= 0 ? activeFaqIndex : 0];
+  const [lastActiveIndex, setLastActiveIndex] = useState<number>(0);
 
   const toggleFaq = (idx: number) => {
-    setActiveFaqIndex((prev) => (prev === idx ? -1 : idx));
+    setActiveFaqIndex((prev) => {
+      const next = prev === idx ? -1 : idx;
+      if (next >= 0) {
+        setLastActiveIndex(next);
+      }
+      return next;
+    });
   };
+
+  const displayIndex = activeFaqIndex >= 0 ? activeFaqIndex : lastActiveIndex;
+  const currentFaq = FAQ_ITEMS[displayIndex];
 
   return (
     <section className="faq-section" id="faq" aria-label="Frequently Asked Questions">
@@ -77,13 +85,16 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
                 key={item.number}
                 src={item.image}
                 alt={item.question}
-                className={`faq-img ${activeFaqIndex === idx ? 'is-active' : ''}`}
-                loading="lazy"
+                className={`faq-img ${displayIndex === idx ? 'is-active' : ''}`}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/mitijen/home1.jpeg';
+                }}
               />
             ))}
             <div className="faq-img-badge badge-float">
               <span className="faq-badge-dot" />
-              <span>{currentFaq.badge}</span>
+              <span>{currentFaq?.badge || 'Studio Guidance'}</span>
             </div>
           </div>
           <p className="faq-left-note">
@@ -95,10 +106,10 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
         <div className="faq-right">
           <div className="reveal-fade-up">
             <span className="faq-kicker">
-              CLIENT GUIDANCE & FAQS
+              CLIENT GUIDANCE / FAQs
             </span>
             <h2 className="faq-headline">
-              Answers to common questions about our design methodology, timelines, execution, and architectural standards.
+              Common Questions About Interior Design, Answered
             </h2>
           </div>
 

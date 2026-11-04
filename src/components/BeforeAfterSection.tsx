@@ -140,15 +140,15 @@ export const BeforeAfterSection: React.FC = () => {
         {/* 1. Editorial Header */}
         <div className="ba-header">
           <div className="ba-header-lead">
-            <span className="ba-kicker">SPATIAL METAMORPHOSIS · BEFORE &amp; AFTER</span>
+            <span className="ba-kicker">BEFORE &amp; AFTER | THE TRANSFORMATION</span>
             <h2 className="ba-title">
-              RAW FRAMEWORK TO LIVING SANCTUARY.
+              From Empty Spaces to Beautifully Finished Interiors.
             </h2>
           </div>
 
           <div className="ba-header-right">
             <p className="ba-intro">
-              Drag the precision divider to reveal the meticulous transition from structural rough-in to refined, bespoke living spaces.
+              See how MitjEn Interiors transforms everyday spaces through thoughtful design, quality materials and precise execution.
             </p>
             <div className="ba-drag-hint" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

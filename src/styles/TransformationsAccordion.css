@@ -18,6 +18,15 @@
   margin: 0 auto;
 }
 
+/* Dual-View Visibility */
+.renova-desktop-view {
+  display: block;
+}
+
+.renova-mobile-view {
+  display: none;
+}
+
 .renova-trans-header {
   display: flex;
   align-items: flex-end;
@@ -437,139 +446,286 @@
   }
 }
 
-/* Mobile Screens (<= 768px) */
+/* ==========================================================================
+   Mobile-Only Redesign (<= 768px) — Reference Showcase (media_1793794719992)
+   ========================================================================== */
 @media (max-width: 768px) {
-  .renova-transformations {
-    padding: clamp(50px, 8vh, 80px) 18px;
+  .renova-desktop-view {
+    display: none !important;
   }
 
-  .renova-expand-accordion {
+  .renova-mobile-view {
+    display: flex !important;
     flex-direction: column;
-    height: auto;
-    gap: 10px;
-  }
-
-  .renova-acc-card {
-    flex: none;
     width: 100%;
-    height: 70px;
-    transition: height 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
   }
 
-  .renova-acc-card.is-active {
-    height: clamp(380px, 60vh, 440px);
+  .renova-transformations {
+    padding: clamp(48px, 8vw, 68px) clamp(16px, 4.5vw, 22px);
   }
 
-  .renova-acc-collapsed-bar {
-    flex-direction: row;
+  /* Section Header */
+  .renova-mob-header {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .renova-mob-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.70rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sand, #D8C8B4);
+  }
+
+  .renova-mob-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--sand, #D8C8B4);
+    box-shadow: 0 0 8px rgba(216, 200, 180, 0.4);
+    display: inline-block;
+  }
+
+  .renova-mob-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(1.85rem, 6.8vw, 2.35rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: #FAF8F5;
+    margin: 0;
+  }
+
+  .renova-mob-subtitle {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(250, 248, 245, 0.65);
+    margin: 0;
+  }
+
+  /* Large Featured Card (Occupies the blank showcase area) */
+  .renova-mob-featured-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #1a1b18;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+  }
+
+  .renova-mob-featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: renovaFadeIn 0.35s ease;
+  }
+
+  @keyframes renovaFadeIn {
+    from {
+      opacity: 0.4;
+      transform: scale(1.02);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .renova-mob-featured-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, transparent 45%, rgba(18, 19, 16, 0.65) 100%);
+    pointer-events: none;
+  }
+
+  /* Active Project Info Row + Enquire Pill */
+  .renova-mob-info-row {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-    background: rgba(14, 16, 14, 0.45);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    gap: 14px;
+    margin-top: 18px;
+    padding: 0 2px;
   }
 
-  .renova-acc-collapsed-num {
+  .renova-mob-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .renova-mob-project-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(1.25rem, 4.2vw, 1.48rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #FAF8F5;
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  .renova-mob-project-desc {
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: #A09D95;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .renova-mob-enquire-btn {
+    background-color: #FAF8F5;
+    color: #151614;
+    border-radius: 9999px;
+    padding: 9px 22px;
+    font-family: var(--font-content, 'Manrope', sans-serif);
     font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
-    color: var(--sand, #D8C8B4);
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   }
 
-  .renova-acc-collapsed-title {
-    font-size: 1.15rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+  .renova-mob-enquire-btn:active {
+    transform: scale(0.95);
+    background-color: #E2DFD8;
+  }
+
+  /* Horizontal Thumbnails Grid (4 items) */
+  .renova-mob-thumbnails-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(8px, 2.4vw, 12px);
+    margin-top: 22px;
+  }
+
+  .renova-mob-thumb-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    outline: none;
+    min-width: 0;
+  }
+
+  .renova-mob-thumb-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    background-color: #1c1d1a;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .renova-mob-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .renova-mob-thumb-btn.is-active .renova-mob-thumb-img-wrap {
+    border-color: #D8C8B4;
+    box-shadow: 0 0 0 2px #D8C8B4, 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .renova-mob-thumb-btn.is-active .renova-mob-thumb-img {
+    transform: scale(1.05);
+  }
+
+  .renova-mob-thumb-label {
+    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: #8C8A84;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .renova-mob-thumb-btn.is-active .renova-mob-thumb-label {
     color: #FAF8F5;
-    writing-mode: horizontal-tb;
-    transform: none;
-    margin-bottom: 0;
+    font-weight: 600;
   }
 
-  .renova-acc-mobile-cue {
-    display: inline-flex;
-    font-family: var(--font-architectural, monospace);
-    font-size: 1.3rem;
-    color: var(--sand, #D8C8B4);
-    line-height: 1;
+  /* Full-width "View all projects" button */
+  .renova-mob-view-all-btn {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+    color: #FAF8F5;
+    font-family: var(--font-content, 'Manrope', sans-serif);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
   }
 
-  .renova-acc-content {
-    padding: 24px 18px;
-  }
-
-  .renova-acc-heading {
-    font-size: 1.85rem;
-  }
-
-  .renova-acc-desc {
-    font-size: 0.86rem;
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-
-  .renova-acc-actions {
-    gap: 14px;
-  }
-
-  .renova-acc-enquire-btn {
-    padding: 9px 20px;
-    font-size: 0.76rem;
-  }
-
-  .renova-acc-spec-link {
-    font-size: 0.72rem;
+  .renova-mob-view-all-btn:active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
   }
 }
 
 /* Compact Mobile (<= 480px) */
 @media (max-width: 480px) {
-  .renova-transformations {
-    padding: 44px 14px;
+  .renova-mob-title {
+    font-size: clamp(1.7rem, 6.5vw, 2.05rem);
   }
 
-  .renova-acc-card {
-    height: 64px;
+  .renova-mob-featured-card {
+    aspect-ratio: 1 / 1.02;
   }
 
-  .renova-acc-card.is-active {
-    height: 400px;
+  .renova-mob-thumb-img-wrap {
+    border-radius: 10px;
   }
 
-  .renova-acc-collapsed-bar {
-    padding: 0 14px;
-  }
-
-  .renova-acc-collapsed-title {
-    font-size: 1.05rem;
-  }
-
-  .renova-acc-heading {
-    font-size: 1.55rem;
-  }
-
-  .renova-acc-actions {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    gap: 10px;
-  }
-
-  .renova-acc-enquire-btn {
-    text-align: center;
-    width: 100%;
-  }
-
-  .renova-acc-spec-link {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .renova-btn-outline {
-    width: 100%;
-    justify-content: center;
-    padding: 12px 18px;
+  .renova-mob-thumb-label {
+    font-size: 0.64rem;
   }
 }
 

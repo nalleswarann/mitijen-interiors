@@ -150,28 +150,12 @@
 }
 
 /* --------------------------------------------------------------------------
-   RESPONSIVE ADAPTATIONS
+   RESPONSIVE ADAPTATIONS (SEVERE MOBILE OPTIMISATION)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .trust-photo-card {
-    aspect-ratio: 1 / 1.1;
-  }
-
-  .trust-stat-card {
-    aspect-ratio: auto;
-    min-height: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .trust-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 
   .trust-column {
@@ -179,16 +163,120 @@
   }
 
   .trust-photo-card {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1.05;
     border-radius: 20px;
   }
 
   .trust-stat-card {
+    aspect-ratio: 1 / 1.05;
+    min-height: auto;
     border-radius: 20px;
-    padding: 24px;
+    padding: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .built-on-trust-section {
+    padding: clamp(38px, 6vw, 54px) var(--pad, 16px);
+  }
+
+  .built-on-trust-header {
+    margin-bottom: 24px;
+  }
+
+  .trust-badge {
+    margin-bottom: 0.75rem;
+    padding: 0.30rem 0.80rem;
+    font-size: 0.72rem;
+  }
+
+  .trust-title {
+    font-size: clamp(1.85rem, 6.8vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+  }
+
+  .trust-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* Retain balanced 2-column bento checkerboard on mobile */
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .trust-column {
+    gap: 12px;
+  }
+
+  .trust-photo-card {
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+  }
+
+  .trust-stat-card {
+    border-radius: 16px;
+    padding: 16px 14px;
+    aspect-ratio: 1 / 1;
+    min-height: auto;
+    justify-content: center;
   }
 
   .trust-number {
-    font-size: 2.4rem;
+    font-size: clamp(1.75rem, 5.8vw, 2.15rem);
+    margin-bottom: 0.35rem;
+    line-height: 1;
+  }
+
+  .trust-card-title {
+    font-size: clamp(0.84rem, 2.8vw, 0.95rem);
+    margin-bottom: 0.30rem;
+    line-height: 1.25;
+  }
+
+  .trust-card-desc {
+    font-size: clamp(0.70rem, 2.4vw, 0.78rem);
+    line-height: 1.38;
+    color: #7D756D;
+  }
+}
+
+@media (max-width: 400px) {
+  .built-on-trust-section {
+    padding: 34px 12px;
+  }
+
+  .trust-grid {
+    gap: 8px;
+  }
+
+  .trust-column {
+    gap: 8px;
+  }
+
+  .trust-photo-card {
+    border-radius: 14px;
+  }
+
+  .trust-stat-card {
+    border-radius: 14px;
+    padding: 13px 11px;
+  }
+
+  .trust-number {
+    font-size: 1.55rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .trust-card-title {
+    font-size: 0.80rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .trust-card-desc {
+    font-size: 0.67rem;
+    line-height: 1.32;
   }
 }
