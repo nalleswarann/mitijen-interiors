@@ -7,7 +7,7 @@
   position: relative;
   background-color: var(--ink, #151614);
   color: var(--ivory, #FAF8F5);
-  padding: clamp(80px, 11vw, 130px) var(--pad, 32px);
+  padding: clamp(56px, 6.5vh, 88px) var(--pad, 32px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
@@ -32,21 +32,21 @@
   align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 28px;
-  margin-bottom: clamp(36px, 5vw, 56px);
+  padding-bottom: 20px;
+  margin-bottom: clamp(24px, 3.2vh, 36px);
 }
 
 .renova-trans-title {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.2rem);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.015em;
   text-transform: uppercase;
   color: #FAF8F5;
-  margin: 10px 0 0 0;
+  margin: 8px 0 0 0;
 }
 
 .renova-trans-subtitle {
@@ -65,7 +65,7 @@
   display: flex;
   gap: 14px;
   width: 100%;
-  height: clamp(520px, 64vh, 660px);
+  height: clamp(440px, 52vh, 540px);
   position: relative;
   box-sizing: border-box;
 }

@@ -4,7 +4,7 @@
    ========================================================================== */
 
 .built-on-trust-section {
-  padding: clamp(44px, 5.5vw, 76px) var(--pad);
+  padding: clamp(40px, 4.5vh, 64px) var(--pad);
   background: var(--ivory, #FAF8F5);
   color: var(--ink);
   overflow: hidden;
@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: clamp(24px, 3.5vw, 40px);
+  margin-bottom: clamp(18px, 2.4vh, 28px);
 }
 
 .trust-badge {
@@ -37,7 +37,7 @@
   font-weight: 500;
   color: #383531;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .trust-badge-dot {
@@ -49,11 +49,11 @@
 
 .trust-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 4.4vw, 3.8rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.1rem);
   font-weight: 400;
   color: #242522;
   line-height: 1.1;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.5rem;
 }
 
 .trust-subtitle {
@@ -69,14 +69,14 @@
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 1.8vw, 24px);
+  gap: clamp(14px, 1.5vw, 20px);
   align-items: stretch;
 }
 
 .trust-column {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 1.8vw, 24px);
+  gap: clamp(14px, 1.5vw, 20px);
 }
 
 /* Photo Card */

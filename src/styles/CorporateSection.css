@@ -5,7 +5,7 @@
    ========================================================================== */
 
 .corporate-human-section {
-  padding: clamp(70px, 9vw, 120px) var(--pad);
+  padding: clamp(56px, 6.5vh, 88px) var(--pad);
   background: var(--ink, #151614);
   color: var(--ivory, #FAF8F5);
   position: relative;
@@ -30,8 +30,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: clamp(24px, 4vw, 56px);
-  margin-bottom: clamp(36px, 5vw, 64px);
+  gap: clamp(20px, 3vw, 44px);
+  margin-bottom: clamp(24px, 3.2vh, 36px);
   flex-wrap: wrap;
   width: 100%;
 }
@@ -40,7 +40,7 @@
   max-width: 680px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .corporate-human-label {
@@ -67,7 +67,7 @@
 
 .corporate-human-title {
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(2.4rem, 4.5vw, 4.0rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.2rem);
   font-weight: 400;
   color: #FAF8F5;
   line-height: 1.1;
@@ -99,9 +99,9 @@
 .corporate-editorial-grid {
   display: grid;
   grid-template-columns: 1fr 1.16fr;
-  gap: clamp(28px, 4vw, 52px);
+  gap: clamp(24px, 3.2vw, 44px);
   align-items: start;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(24px, 3.2vh, 36px);
   width: 100%;
   box-sizing: border-box;
 }
@@ -122,7 +122,7 @@
   border: 1px solid rgba(255, 255, 255, 0.09);
   color: #FAF8F5;
   border-radius: 14px;
-  padding: clamp(20px, 2.4vw, 28px);
+  padding: clamp(16px, 1.8vw, 22px);
   cursor: pointer;
   transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),

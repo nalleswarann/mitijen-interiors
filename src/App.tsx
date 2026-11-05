@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { InquiryDialog } from './components/InquiryDialog';
@@ -18,6 +18,7 @@ import { ResidentialInteriorDesign } from './pages/ResidentialInteriorDesign';
 import { CommercialInteriorDesign } from './pages/CommercialInteriorDesign';
 import { CorporateInteriorDesign } from './pages/CorporateInteriorDesign';
 import { ServicesPage } from './pages/ServicesPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 import './styles/global.css';
 import './styles/responsive.css';
@@ -53,8 +54,8 @@ const AppContent: React.FC = () => {
           path="/services/corporate-interior-design"
           element={<CorporateInteriorDesign />}
         />
-        {/* Catch-all fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* Custom 404 Not Found fallback */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <Footer />

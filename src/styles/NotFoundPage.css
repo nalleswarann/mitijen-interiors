@@ -1,0 +1,273 @@
+/* ==========================================================================
+   MITJEN INTERIORS — CUSTOM 404 NOT FOUND PAGE
+   Quiet luxury editorial aesthetic · Deep charcoal palette · Responsive
+   ========================================================================== */
+
+.notfound-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ink, #151614);
+  color: var(--ivory, #FAF8F5);
+  position: relative;
+  overflow: hidden;
+  padding: calc(96px + env(safe-area-inset-top, 0px)) var(--pad, 24px) 80px;
+  box-sizing: border-box;
+}
+
+/* Subtle architectural radial lighting */
+.notfound-page::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(800px, 90vw);
+  height: min(500px, 60vh);
+  background: radial-gradient(circle, rgba(216, 200, 180, 0.08) 0%, rgba(21, 22, 20, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.notfound-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   1. Architectural Badge
+   -------------------------------------------------------------------------- */
+.notfound-badge-wrap {
+  margin-bottom: clamp(16px, 2.5vh, 24px);
+}
+
+.notfound-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.notfound-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #DF7E41;
+  box-shadow: 0 0 8px rgba(223, 126, 65, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   2. Prominent 404 Display Number
+   -------------------------------------------------------------------------- */
+.notfound-num-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 20px);
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(6.5rem, 16vw, 11rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #FAF8F5;
+  user-select: none;
+  margin-bottom: clamp(8px, 1.5vh, 16px);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.notfound-digit-accent {
+  color: var(--sand, #D8C8B4);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   3. Single H1 Primary Heading
+   -------------------------------------------------------------------------- */
+.notfound-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: #FAF8F5;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.notfound-description {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(250, 248, 245, 0.70);
+  max-width: 540px;
+  margin: 0 auto clamp(28px, 4vh, 40px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Action Buttons
+   -------------------------------------------------------------------------- */
+.notfound-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(36px, 5vh, 52px);
+}
+
+.notfound-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.notfound-btn-primary {
+  background-color: var(--sand, #D8C8B4);
+  color: #151614;
+  border: 1px solid var(--sand, #D8C8B4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.notfound-btn-primary:hover {
+  background-color: #FAF8F5;
+  border-color: #FAF8F5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.notfound-btn-secondary {
+  background-color: transparent;
+  color: #FAF8F5;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.notfound-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.notfound-btn-arrow,
+.notfound-btn-arrow-left {
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
+}
+
+.notfound-btn-primary:hover .notfound-btn-arrow {
+  transform: translateX(3px);
+}
+
+.notfound-btn-secondary:hover .notfound-btn-arrow-left {
+  transform: translateX(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   5. Directory Quick Links
+   -------------------------------------------------------------------------- */
+.notfound-directory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  width: 100%;
+  max-width: 480px;
+}
+
+.notfound-directory-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.70rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.45);
+}
+
+.notfound-directory-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.notfound-link {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.84rem;
+  color: rgba(250, 248, 245, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.notfound-link:hover {
+  color: var(--sand, #D8C8B4);
+}
+
+.notfound-link-sep {
+  color: rgba(255, 255, 255, 0.20);
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .notfound-page {
+    padding: calc(88px + env(safe-area-inset-top, 0px)) 18px 60px;
+  }
+
+  .notfound-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .notfound-btn {
+    width: 100%;
+  }
+
+  .notfound-num-display {
+    font-size: clamp(5.2rem, 24vw, 7.5rem);
+  }
+}
