@@ -14,10 +14,12 @@ export const RoomExplorer: React.FC = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const autoPlayTimerRef = useRef<number | null>(null);
+  const tipTimerRef = useRef<number | null>(null);
 
   const currentCategoryData = ROOM_CATEGORIES[activeCategory] || ROOM_CATEGORIES.residential;
   const rooms = currentCategoryData.rooms;
   const currentRoom: Room = rooms[activeRoomIndex] || rooms[0];
+  const activeHotspot = currentRoom.hotspots.find((spot) => spot.id === activeHotspotId);
 
   const handleSelectCategory = (cat: 'residential' | 'commercial' | 'corporate') => {
     setActiveCategory(cat);
@@ -80,7 +82,16 @@ export const RoomExplorer: React.FC = () => {
     return () => window.removeEventListener('keydown', handleGlobalKey);
   }, [isLightboxOpen, isDetailsOpen, activeHotspotId]);
 
-  // Autoplay auto-tour mechanism
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (tipTimerRef.current) {
+        window.clearTimeout(tipTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Autoplay auto-tour mechanism (5s interval matching reference)
   useEffect(() => {
     if (!isPlaying) {
       if (autoPlayTimerRef.current) {
@@ -93,7 +104,7 @@ export const RoomExplorer: React.FC = () => {
     autoPlayTimerRef.current = window.setInterval(() => {
       setActiveRoomIndex((prev) => (prev + 1) % rooms.length);
       setActiveHotspotId(null);
-    }, 6000);
+    }, 5000);
 
     return () => {
       if (autoPlayTimerRef.current) {
@@ -102,30 +113,67 @@ export const RoomExplorer: React.FC = () => {
     };
   }, [isPlaying, rooms.length]);
 
-  // Subtle 3D mouse parallax tilt on desktop
+  // Subtle 2D mouse parallax shift on desktop matching reference
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReduced || window.innerWidth < 1024 || !stageRef.current) return;
+    if (isReduced || !stageRef.current) return;
 
     const rect = stageRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const rotateY = x * 4; // -2 to +2 deg
-    const rotateX = -y * 4; // -2 to +2 deg
-
-    stageRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+    const layers = stageRef.current.querySelectorAll<HTMLImageElement>('.room-stage-layer > img');
+    layers.forEach((img) => {
+      img.style.setProperty('--tx', `${-x * 16}px`);
+      img.style.setProperty('--ty', `${-y * 10}px`);
+    });
   };
 
   const handlePointerLeave = () => {
     if (!stageRef.current) return;
-    stageRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    const layers = stageRef.current.querySelectorAll<HTMLImageElement>('.room-stage-layer > img');
+    layers.forEach((img) => {
+      img.style.setProperty('--tx', '0px');
+      img.style.setProperty('--ty', '0px');
+    });
   };
 
-  // Toggle hotspot pin
+  // Toggle hotspot pin with auto-dismiss timer
+  const handleTogglePin = (id: string) => {
+    if (tipTimerRef.current) {
+      window.clearTimeout(tipTimerRef.current);
+      tipTimerRef.current = null;
+    }
+    setActiveHotspotId((prev) => {
+      if (prev === id) return null;
+      tipTimerRef.current = window.setTimeout(() => {
+        setActiveHotspotId(null);
+      }, 4500);
+      return id;
+    });
+  };
+
+  // Mobile toggle hotspot pin
   const handleToggleHotspot = (spot: RoomHotspot, e: React.MouseEvent) => {
     e.stopPropagation();
     setActiveHotspotId((prev) => (prev === spot.id ? null : spot.id));
+  };
+
+  // Inspect fullscreen / lightbox
+  const handleInspect = () => {
+    if (stageRef.current) {
+      const el = stageRef.current as HTMLElement & {
+        webkitRequestFullscreen?: () => Promise<void>;
+      };
+      if (el.requestFullscreen) {
+        el.requestFullscreen().catch(() => setIsLightboxOpen(true));
+        return;
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+        return;
+      }
+    }
+    setIsLightboxOpen(true);
   };
 
   return (
@@ -135,315 +183,203 @@ export const RoomExplorer: React.FC = () => {
         <div className="room-desktop-explorer-view">
           {/* Category Selector Tabs */}
           <div className="room-category-switcher" role="tablist" aria-label="Explore disciplines">
-          {(['residential', 'commercial', 'corporate'] as const).map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              role="tab"
-              aria-selected={activeCategory === cat}
-              className={`room-cat-btn ${activeCategory === cat ? 'is-active' : ''}`}
-              onClick={() => handleSelectCategory(cat)}
-            >
-              {ROOM_CATEGORIES[cat].name.toUpperCase()}
-            </button>
-          ))}
-        </div>
-
-        {/* 1. Editorial Side-by-Side Section Header */}
-        <div className="room-explorer-header">
-          <div className="room-explorer-header-left">
-            <span className="room-explorer-kicker">{currentCategoryData.kicker}</span>
-            <h2 className="room-explorer-title">
-              {currentCategoryData.title}
-            </h2>
-          </div>
-          <div className="room-explorer-header-right">
-            <p className="room-explorer-lead">
-              {currentCategoryData.lead}
-            </p>
-          </div>
-        </div>
-
-        {/* 2. Main Interactive Showcase Grid */}
-        <div className="room-explorer-grid">
-          {/* Left Column: Interactive Room Selection & Spatial Narrative */}
-          <div className="room-left-col">
-            {/* Interactive Room Tabs */}
-            <div className="room-nav-tabs" role="tablist" aria-label="Spatial commission spaces">
-              {rooms.map((room, i) => {
-                const isActive = activeRoomIndex === i;
-                return (
-                  <button
-                    key={room.k}
-                    ref={(el) => {
-                      tabRefs.current[i] = el;
-                    }}
-                    role="tab"
-                    id={`room-tab-${i}`}
-                    aria-selected={isActive}
-                    tabIndex={isActive ? 0 : -1}
-                    className={`room-tab-btn ${isActive ? 'is-active' : ''}`}
-                    onClick={() => {
-                      handleSelectRoom(i);
-                      setIsPlaying(false);
-                    }}
-                    onKeyDown={(e) => handleKeyDown(e, i)}
-                    aria-label={`View ${room.t} architectural space`}
-                  >
-                    <div className="room-tab-content">
-                      <h3 className="room-tab-title">{room.t}</h3>
-                      <span className="room-tab-subtitle">{room.subtitle}</span>
-                    </div>
-
-                    <div className="room-tab-indicator">
-                      <span className="room-tab-area">{room.area}</span>
-                      <span className="room-tab-line" aria-hidden="true" />
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Active Room Narrative & Micro-Specs Card */}
-            <div className="room-narrative-card" aria-live="polite">
-              <p className="room-narrative-desc">
-                {currentRoom.d}
-              </p>
-
-              {/* Architectural Specs Row */}
-              <div className="room-specs-grid">
-                {currentRoom.specs.map((spec, sIdx) => (
-                  <div key={sIdx} className="room-spec-item">
-                    <span className="room-spec-label">{spec.label}</span>
-                    <span className="room-spec-value">{spec.value}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Material Palette Chips */}
-              <div className="room-materials-wrap">
-                <span className="room-materials-label">Materials:</span>
-                {currentRoom.materials.map((mat, mIdx) => (
-                  <span key={mIdx} className="room-material-pill">
-                    {mat}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom Navigation & Tour Toolbar */}
-            <div className="room-tour-bar">
-              <div className="room-tour-controls">
-                <button
-                  type="button"
-                  className="room-nav-btn"
-                  onClick={() => {
-                    handleSelectRoom(activeRoomIndex - 1);
-                    setIsPlaying(false);
-                  }}
-                  aria-label="Previous architectural room"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </button>
-
-                <button
-                  type="button"
-                  className="room-nav-btn"
-                  onClick={() => {
-                    handleSelectRoom(activeRoomIndex + 1);
-                    setIsPlaying(false);
-                  }}
-                  aria-label="Next architectural room"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </button>
-
-                <button
-                  type="button"
-                  className={`room-play-btn ${isPlaying ? 'is-playing' : ''}`}
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  title={isPlaying ? 'Pause automated tour' : 'Start automated architectural tour'}
-                >
-                  {isPlaying ? (
-                    <>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="4" width="4" height="16" />
-                        <rect x="14" y="4" width="4" height="16" />
-                      </svg>
-                      <span>Pause Tour</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                      <span>Auto Tour</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <div className="room-counter">
-                <span>Room <strong>{activeRoomIndex + 1}</strong> of {rooms.length}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Cinematic Interactive Photography Stage */}
-          <div className="room-right-col">
-            <div className="room-stage-perspective-wrap">
-              <div
-                ref={stageRef}
-                className="room-stage-container"
-                onPointerMove={handlePointerMove}
-                onPointerLeave={handlePointerLeave}
-                onClick={() => setActiveHotspotId(null)}
+            {(['residential', 'commercial', 'corporate'] as const).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === cat}
+                className={`room-cat-btn ${activeCategory === cat ? 'is-active' : ''}`}
+                onClick={() => handleSelectCategory(cat)}
               >
-                {/* Layered Crossfading Architectural Photos */}
-                {rooms.map((room, i) => (
+                {ROOM_CATEGORIES[cat].name.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Cinematic Interactive Showcase Container */}
+          <div
+            ref={stageRef}
+            className={`room-stage-cinematic ${isPlaying ? 'is-touring' : ''} ${!showHotspots ? 'is-pins-off' : ''}`}
+            onPointerMove={handlePointerMove}
+            onPointerLeave={handlePointerLeave}
+          >
+            {/* Background crossfading architectural photo layers */}
+            {rooms.map((room, i) => {
+              const isActive = activeRoomIndex === i;
+              return (
+                <div
+                  key={room.k}
+                  className={`room-stage-layer ${isActive ? 'is-active' : ''}`}
+                >
                   <img
-                    key={room.k}
                     src={room.image}
-                    alt={`${room.t} interior architecture`}
-                    className={`room-image-layer ${activeRoomIndex === i ? 'is-active' : ''}`}
+                    alt={`${room.t} interior`}
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
-                ))}
-
-                {/* Subtle Cinematic Vignette Scrim */}
-                <div className="room-stage-scrim" aria-hidden="true" />
-
-                {/* Top Floating Glass Badges & Controls */}
-                <div className="room-stage-topbar">
-                  <div className="room-stage-badge">
-                    <span className="room-badge-dot" />
-                    <span>Mitjen Studio Commission</span>
-                  </div>
-
-                  <div className="room-stage-actions">
-                    <button
-                      type="button"
-                      className={`room-action-btn ${showHotspots ? 'is-active' : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowHotspots(!showHotspots);
-                      }}
-                      title="Toggle interactive craftsmanship hotspots"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="16" />
-                        <line x1="8" y1="12" x2="16" y2="12" />
-                      </svg>
-                      <span>{showHotspots ? 'Pins On' : 'Pins Off'}</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="room-action-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsLightboxOpen(true);
-                      }}
-                      title="Inspect high-resolution full view"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="15 3 21 3 21 9" />
-                        <polyline points="9 21 3 21 3 15" />
-                        <line x1="21" y1="3" x2="14" y2="10" />
-                        <line x1="3" y1="21" x2="10" y2="14" />
-                      </svg>
-                      <span>Inspect</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Interactive Hotspot Pins */}
-                {showHotspots &&
-                  currentRoom.hotspots.map((spot) => {
-                    const isOpen = activeHotspotId === spot.id;
-                    const isTopZone = spot.y < 30;
-
-                    return (
-                      <div
+                  {/* Hotspot Pins for this room layer */}
+                  {showHotspots &&
+                    room.hotspots.map((spot) => (
+                      <button
                         key={spot.id}
-                        className={`room-hotspot ${isOpen ? 'is-open' : ''} ${isTopZone ? 'align-down' : ''}`}
+                        type="button"
+                        className={`room-stage-pin ${activeHotspotId === spot.id ? 'is-active' : ''}`}
                         style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
-                        onClick={(e) => handleToggleHotspot(spot, e)}
-                        role="button"
-                        tabIndex={0}
-                        aria-expanded={isOpen}
-                        aria-label={`Hotspot: ${spot.title}`}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            handleToggleHotspot(spot, e as unknown as React.MouseEvent);
-                          }
+                        aria-label={`Detail: ${spot.title}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleTogglePin(spot.id);
                         }}
                       >
-                        <div className="room-hotspot-pin">
-                          <span className="room-hotspot-pulse" />
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            {isOpen ? (
-                              <>
-                                <line x1="18" y1="6" x2="6" y2="18" />
-                                <line x1="6" y1="6" x2="18" y2="18" />
-                              </>
-                            ) : (
-                              <>
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                              </>
-                            )}
-                          </svg>
-                        </div>
-
-                        {/* Architectural Detail Card Popover */}
-                        <div
-                          className="room-hotspot-popover"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <div className="room-popover-tag">
-                            <span>Craft Detail</span>
-                            <button
-                              type="button"
-                              className="room-popover-close"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveHotspotId(null);
-                              }}
-                              aria-label="Close detail"
-                            >
-                              ×
-                            </button>
-                          </div>
-                          <h4 className="room-popover-title">{spot.title}</h4>
-                          <p className="room-popover-desc">{spot.description}</p>
-                          <span className="room-popover-material">{spot.material}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                {/* Bottom In-Stage Status */}
-                <div className="room-stage-bottombar">
-                  <div className="room-stage-caption">
-                    <h4 className="room-stage-caption-title">{currentRoom.t}</h4>
-                    <span className="room-stage-caption-sub">{currentRoom.subtitle}</span>
-                  </div>
-
-                  <span className="room-stage-hint">
-                    {showHotspots ? 'Tap pins for joinery details' : 'Unobstructed perspective'}
-                  </span>
+                        +
+                      </button>
+                    ))}
                 </div>
+              );
+            })}
+
+            {/* Top-Left: Narrative Header */}
+            <div className="room-stage-top">
+              <div className="room-stage-kicker">
+                <span className="room-kicker-dot" aria-hidden="true" />
+                <span>{currentCategoryData.kicker || 'EXPLORE THE SPACE'}</span>
+              </div>
+              <h2 className="room-stage-title">
+                {currentCategoryData.title}
+              </h2>
+              <p className="room-stage-lead">
+                {currentCategoryData.lead}
+              </p>
+            </div>
+
+            {/* Top-Right: Dark Floating Information Panel */}
+            <div className="room-stage-card" aria-live="polite">
+              <small className="room-card-kicker">
+                {currentRoom.subtitle || currentRoom.area || currentCategoryData.name}
+              </small>
+              <h3 className="room-card-title">{currentRoom.t}</h3>
+              <p className="room-card-desc">{currentRoom.d}</p>
+              <dl className="room-card-specs">
+                {currentRoom.specs.map((spec, sIdx) => (
+                  <div key={sIdx}>
+                    <dt>{spec.label}</dt>
+                    <dd>{spec.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              {currentRoom.materials && currentRoom.materials.length > 0 && (
+                <div className="room-card-materials">
+                  {currentRoom.materials.join(' · ')}
+                </div>
+              )}
+            </div>
+
+            {/* Hotspot Popover Tooltip */}
+            {activeHotspot && (
+              <div className="room-stage-tip" role="status">
+                <div className="room-tip-header">
+                  <span className="room-tip-title">{activeHotspot.title}</span>
+                  <button
+                    type="button"
+                    className="room-tip-close"
+                    onClick={() => setActiveHotspotId(null)}
+                    aria-label="Close detail"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <p className="room-tip-desc">{activeHotspot.description}</p>
+                {activeHotspot.material && (
+                  <span className="room-tip-mat">· {activeHotspot.material}</span>
+                )}
+              </div>
+            )}
+
+            {/* Bottom Bar: Timeline Navigation + Action Controls */}
+            <div className="room-stage-bot">
+              {/* Horizontal Room Timeline Rail */}
+              <div className="room-stage-rail" role="tablist" aria-label="Room selection timeline">
+                {rooms.map((room, i) => {
+                  const isActive = activeRoomIndex === i;
+                  return (
+                    <button
+                      key={room.k}
+                      ref={(el) => {
+                        tabRefs.current[i] = el;
+                      }}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      tabIndex={isActive ? 0 : -1}
+                      className={`room-stage-rt ${isActive ? 'is-active' : ''}`}
+                      onClick={() => {
+                        setIsPlaying(false);
+                        handleSelectRoom(i);
+                      }}
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                    >
+                      <span className="room-rt-no">0{i + 1}</span>
+                      <b className="room-rt-name">{room.t}</b>
+                      <small className="room-rt-meta">{room.area || ''}</small>
+                      <i className="room-rt-progress" aria-hidden="true" />
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Action Controls */}
+              <div className="room-stage-ctl">
+                <button
+                  type="button"
+                  className="room-stage-ar"
+                  onClick={() => {
+                    setIsPlaying(false);
+                    handleSelectRoom(activeRoomIndex - 1);
+                  }}
+                  aria-label="Previous room"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  className="room-stage-ar"
+                  onClick={() => {
+                    setIsPlaying(false);
+                    handleSelectRoom(activeRoomIndex + 1);
+                  }}
+                  aria-label="Next room"
+                >
+                  ›
+                </button>
+                <button
+                  type="button"
+                  className={`room-stage-sm ${isPlaying ? 'is-active' : ''}`}
+                  aria-pressed={isPlaying}
+                  onClick={() => setIsPlaying(!isPlaying)}
+                >
+                  {isPlaying ? '■ Stop tour' : '▶ Auto tour'}
+                </button>
+                <button
+                  type="button"
+                  className={`room-stage-sm ${showHotspots ? 'is-active' : ''}`}
+                  aria-pressed={showHotspots}
+                  onClick={() => setShowHotspots(!showHotspots)}
+                >
+                  Pins
+                </button>
+                <button
+                  type="button"
+                  className="room-stage-sm"
+                  onClick={handleInspect}
+                >
+                  Inspect
+                </button>
+                <span className="room-stage-cnt" aria-live="polite">
+                  <b>{activeRoomIndex + 1}</b> / {rooms.length}
+                </span>
               </div>
             </div>
           </div>
-        </div>
         </div>
         {/* End Desktop Architecture View */}
 

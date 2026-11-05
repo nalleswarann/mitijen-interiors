@@ -37,135 +37,135 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
   residential: {
     id: 'residential',
     name: 'Residential',
-    kicker: 'EXPLORE EVERY SPACE.',
+    kicker: 'EXPLORE THE SPACE',
     title: 'Every Corner, Made to Feel Like Yours',
-    lead: 'Explore the key areas of a home and see how each one is planned around comfort, function and everyday living.',
+    lead: 'Select a space to inspect bespoke millwork, ambient lighting and tactile material layers.',
     rooms: [
       {
         k: 'living-room',
         t: 'Living Room',
-        subtitle: 'A welcoming setting for family time, conversations and everyday living.',
-        d: 'A welcoming setting for conversations, family time and quiet moments, brought together with balanced proportions and carefully crafted details.',
+        subtitle: 'Spatial sanctuary & open joinery',
+        d: 'Low linen seating and bespoke architectural joinery gather around a sun-drenched living space, framed by natural quarter-sawn oak.',
         image: '/assets/mitijen/home1.jpeg',
-        area: 'Residential Salon',
-        materials: ['Natural Wood', 'Soft Fabrics', 'Textured Finishes'],
+        area: '640 sq.ft',
+        materials: ['Quarter-Sawn White Oak', 'Belgian Natural Linen', 'Honed Travertine'],
         specs: [
-          { label: 'LAYOUT', value: 'Open & Balanced' },
-          { label: 'LIGHTING', value: 'Warm & Layered' },
-          { label: 'JOINERY', value: 'Custom Crafted' }
+          { label: 'CEILING', value: '3.4m Unbroken' },
+          { label: 'DAYLIGHT', value: 'North-East Wash' },
+          { label: 'ACOUSTIC', value: 'Perimeter Slats' }
         ],
         hotspots: [
           {
-            id: 'lr-joinery',
-            x: 32,
-            y: 42,
-            title: 'Custom Crafted Joinery',
-            description: 'Balanced proportions with integrated architectural storage and tactile natural finishes.',
-            material: 'Natural Wood'
+            id: 'lr-niche',
+            x: 29.7,
+            y: 38.6,
+            title: 'Honed Stone Niche',
+            description: 'Honed stone niche with concealed linear lighting.',
+            material: 'Honed Travertine'
           },
           {
-            id: 'lr-lighting',
-            x: 68,
-            y: 28,
-            title: 'Warm & Layered Lighting',
-            description: 'Concealed ambient illumination highlighting textures and architectural depth.',
-            material: 'Soft Light'
-          }
-        ]
-      },
-      {
-        k: 'entrance-foyer',
-        t: 'Entrance & Foyer',
-        subtitle: 'The first impression of the home, planned to feel warm and inviting.',
-        d: 'A considered arrival that introduces the character of the home through clean lines, useful elements and a warm visual transition.',
-        image: '/assets/mitijen/hom2.jpeg',
-        area: 'Arrival Foyer',
-        materials: ['Wood Panels', 'Stone Surfaces', 'Decorative Elements'],
-        specs: [
-          { label: 'STYLE', value: 'Clean & Welcoming' },
-          { label: 'STORAGE', value: 'Built-In Solutions' },
-          { label: 'DETAILS', value: 'Statement Finishes' }
-        ],
-        hotspots: [
-          {
-            id: 'foyer-panels',
-            x: 38,
-            y: 45,
-            title: 'Wood Paneling & Clean Lines',
-            description: 'Warm architectural paneling creating a thoughtful threshold transition into the home.',
-            material: 'Wood Panels'
-          },
-          {
-            id: 'foyer-console',
-            x: 65,
-            y: 62,
-            title: 'Stone Surfaces',
-            description: 'Integrated console plinth in durable stone for welcoming everyday functionality.',
-            material: 'Stone Surfaces'
+            id: 'lr-door',
+            x: 66,
+            y: 71.5,
+            title: 'Solid Oak Door',
+            description: 'Solid oak door in a flush, shadow-gap architrave.',
+            material: 'Quarter-Sawn Oak'
           }
         ]
       },
       {
         k: 'kitchen-dining',
         t: 'Kitchen & Dining',
-        subtitle: 'Practical, comfortable surroundings for cooking, dining and gathering.',
-        d: 'Planned around cooking, dining and gathering, with an efficient arrangement that keeps movement smooth and everyday routines easy.',
+        subtitle: 'Gathering & culinary craft',
+        d: 'A long walnut table and flush tall joinery turn cooking and dining into one calm, continuous gathering space.',
         image: '/assets/mitijen/kitchen.jpeg',
-        area: 'Culinary & Dining',
-        materials: ['Solid Surfaces', 'Premium Hardware', 'Easy-Care Finishes'],
+        area: '480 sq.ft',
+        materials: ['Solid Walnut', 'Honed Concrete', 'Sage Velvet'],
         specs: [
-          { label: 'LAYOUT', value: 'Efficient & Open' },
-          { label: 'WORKFLOW', value: 'Easy & Seamless' },
-          { label: 'HARDWARE', value: 'Quality & Durable' }
+          { label: 'CEILING', value: '3.1m Concrete Soffit' },
+          { label: 'DAYLIGHT', value: 'Panoramic Valley View' },
+          { label: 'ACOUSTIC', value: 'Felt-Lined Panels' }
         ],
         hotspots: [
           {
-            id: 'kitchen-island',
-            x: 44,
-            y: 56,
-            title: 'Solid Work Surfaces',
-            description: 'Seamless solid surface counters engineered for easy cleaning and food preparation.',
-            material: 'Solid Surfaces'
+            id: 'kd-table',
+            x: 48,
+            y: 50,
+            title: 'Solid Walnut Table',
+            description: 'Solid walnut table, hand-oiled for tactile warmth.',
+            material: 'Solid Walnut'
           },
           {
-            id: 'kitchen-hardware',
-            x: 75,
-            y: 48,
-            title: 'Premium Hardware',
-            description: 'Concealed soft-close drawer tracks and ergonomic handles built for long-lasting daily use.',
-            material: 'Durable Hardware'
+            id: 'kd-glazing',
+            x: 22,
+            y: 32,
+            title: 'Floor-to-Ceiling Glazing',
+            description: 'Floor-to-ceiling glazing framing the landscape.',
+            material: 'Low-Iron Glass'
           }
         ]
       },
       {
-        k: 'bedroom-wardrobe',
-        t: 'Bedroom & Wardrobe',
-        subtitle: 'Personal spaces designed for comfort, privacy and organised living.',
-        d: 'A private retreat designed for restful evenings and organised mornings, combining a calm atmosphere with purposeful wardrobe planning.',
+        k: 'bedroom',
+        t: 'Bedroom',
+        subtitle: 'Quiet retreat & soft texture',
+        d: 'Layered linen, boucle and warm indirect light create a low-contrast retreat built for rest.',
         image: '/assets/mitijen/bedroom.jpeg',
-        area: 'Private Suite',
-        materials: ['Woodgrain Finishes', 'Soft Textures', 'Custom Fittings'],
+        area: '390 sq.ft',
+        materials: ['Washed Linen', 'Lime Plaster', 'Smoked Oak'],
         specs: [
-          { label: 'ATMOSPHERE', value: 'Quiet & Relaxed' },
-          { label: 'WARDROBES', value: 'Tailored Storage' },
-          { label: 'LIGHTING', value: 'Soft & Ambient' }
+          { label: 'CEILING', value: '2.9m Plaster Vault' },
+          { label: 'DAYLIGHT', value: 'East Morning Light' },
+          { label: 'ACOUSTIC', value: 'Upholstered Headboard' }
         ],
         hotspots: [
           {
-            id: 'bed-wardrobes',
-            x: 40,
-            y: 44,
-            title: 'Tailored Storage',
-            description: 'Custom floor-to-ceiling wardrobes organized for effortless everyday storage and visual calm.',
-            material: 'Woodgrain Finishes'
+            id: 'bed-headboard',
+            x: 34,
+            y: 62,
+            title: 'Upholstered Bed Head',
+            description: 'Upholstered bed head with concealed reading lights.',
+            material: 'Washed Linen'
           },
           {
-            id: 'bed-lighting',
-            x: 72,
-            y: 35,
-            title: 'Soft & Ambient Lighting',
-            description: 'Low-glare bedside luminaires designed to support relaxation and nighttime comfort.',
-            material: 'Ambient Light'
+            id: 'bed-linen',
+            x: 62,
+            y: 38,
+            title: 'Sheer Linen Layers',
+            description: 'Sheer linen layers to soften east light.',
+            material: 'Belgian Linen'
+          }
+        ]
+      },
+      {
+        k: 'wardrobe-dressing',
+        t: 'Wardrobe & Dressing',
+        subtitle: 'Tailored storage & dressing',
+        d: 'Tailored oak joinery with concealed lighting and a low plinth bed makes dressing feel considered and unhurried.',
+        image: '/assets/panorama_wardrobe.jpg',
+        area: '270 sq.ft',
+        materials: ['Rift Oak', 'Brushed Bronze', 'Wool Felt'],
+        specs: [
+          { label: 'CEILING', value: '2.8m Lit Cove' },
+          { label: 'DAYLIGHT', value: 'Borrowed Daylight' },
+          { label: 'ACOUSTIC', value: 'Soft-Close Millwork' }
+        ],
+        hotspots: [
+          {
+            id: 'wardrobe-shelving',
+            x: 60,
+            y: 40,
+            title: 'Rift Oak Shelving',
+            description: 'Rift oak shelving with integrated LED edge lighting.',
+            material: 'Rift Oak'
+          },
+          {
+            id: 'wardrobe-plinth',
+            x: 40,
+            y: 75,
+            title: 'Low Upholstered Plinth',
+            description: 'Low upholstered plinth, tailored to the room.',
+            material: 'Wool Felt'
           }
         ]
       }
@@ -184,12 +184,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'A welcoming arrival that introduces the character of your business.',
         d: 'The first point of contact with your business, designed to welcome customers while introducing your brand with clarity and confidence.',
         image: '/assets/CS.jpg',
-        area: 'Commercial Arrival',
+        area: '540 sq.ft',
         materials: ['Feature Walls', 'Glass', 'Refined Finishes'],
         specs: [
-          { label: 'IMPRESSION', value: 'Distinctive & Inviting' },
-          { label: 'BRANDING', value: 'Visible & Refined' },
-          { label: 'FLOW', value: 'Clear & Natural' }
+          { label: 'CEILING', value: '3.6m Floating Acoustic' },
+          { label: 'DAYLIGHT', value: 'Streetfront Wash' },
+          { label: 'ACOUSTIC', value: 'Fluted Wood Panels' }
         ],
         hotspots: [
           {
@@ -216,12 +216,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Comfortable surroundings designed for natural customer interaction.',
         d: 'Comfortable surroundings that make customers feel at ease, with thoughtful planning that supports smooth movement and natural interaction.',
         image: '/assets/mitijen/commercial1.jpeg',
-        area: 'Engagement Zone',
+        area: '720 sq.ft',
         materials: ['Upholstery', 'Timber Details', 'Durable Surfaces'],
         specs: [
-          { label: 'LAYOUT', value: 'Open & Accessible' },
-          { label: 'SEATING', value: 'Comfortable & Flexible' },
-          { label: 'EXPERIENCE', value: 'Welcoming & Engaging' }
+          { label: 'CEILING', value: '3.2m Open Trusses' },
+          { label: 'DAYLIGHT', value: 'Natural Clerestory' },
+          { label: 'ACOUSTIC', value: 'Upholstered Baffles' }
         ],
         hotspots: [
           {
@@ -248,12 +248,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Well-planned presentation that keeps products and brand identity in focus.',
         d: 'Purposeful presentation that gives products the attention they deserve while keeping the overall environment visually balanced.',
         image: '/assets/mitijen/commercial2.jpeg',
-        area: 'Showcase Suite',
+        area: '460 sq.ft',
         materials: ['Glass', 'Feature Lighting', 'Custom Displays'],
         specs: [
-          { label: 'PRESENTATION', value: 'Clear & Impactful' },
-          { label: 'LIGHTING', value: 'Focused & Highlighted' },
-          { label: 'ARRANGEMENT', value: 'Organised & Fluid' }
+          { label: 'CEILING', value: '3.0m Recessed Track' },
+          { label: 'DAYLIGHT', value: 'Glare-Free Ambient' },
+          { label: 'ACOUSTIC', value: 'Perforated Felt' }
         ],
         hotspots: [
           {
@@ -280,12 +280,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Inviting surroundings that encourage comfort, connection and longer stays.',
         d: 'An inviting setting created for relaxed dining and meaningful moments, balancing atmosphere, comfort and practical movement.',
         image: '/assets/mitijen/commercial3.jpeg',
-        area: 'Dining Pavilion',
+        area: '680 sq.ft',
         materials: ['Wood Details', 'Upholstery', 'Easy-Care Surfaces'],
         specs: [
-          { label: 'ATMOSPHERE', value: 'Warm & Inviting' },
-          { label: 'SEATING', value: 'Comfortable & Versatile' },
-          { label: 'AMBIENCE', value: 'Relaxed & Memorable' }
+          { label: 'CEILING', value: '3.4m Slatted Timber' },
+          { label: 'DAYLIGHT', value: 'Courtyard Infused' },
+          { label: 'ACOUSTIC', value: 'Sound Banquettes' }
         ],
         hotspots: [
           {
@@ -321,12 +321,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'A professional welcome that reflects the organisation from the moment people arrive.',
         d: 'A polished arrival that creates a confident first impression while giving visitors a comfortable place to pause.',
         image: '/assets/mitijen/commercial.jpeg',
-        area: 'Executive Arrival',
+        area: '620 sq.ft',
         materials: ['Wood Finishes', 'Glass', 'Feature Surfaces'],
         specs: [
-          { label: 'STYLE', value: 'Professional & Welcoming' },
-          { label: 'SEATING', value: 'Comfortable & Refined' },
-          { label: 'BRANDING', value: 'Clear & Integrated' }
+          { label: 'CEILING', value: '3.5m Monolithic Cove' },
+          { label: 'DAYLIGHT', value: 'North Elevation' },
+          { label: 'ACOUSTIC', value: 'Acoustic Plaster' }
         ],
         hotspots: [
           {
@@ -353,12 +353,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Comfortable, well-planned environments that support focus and productivity.',
         d: 'Planned to support focused work throughout the day, with a balance of productivity, comfort and smooth movement.',
         image: '/assets/mitijen/commercial4.jpeg',
-        area: 'Team Workspaces',
+        area: '1,200 sq.ft',
         materials: ['Durable Surfaces', 'Acoustic Elements', 'Quality Fittings'],
         specs: [
-          { label: 'LAYOUT', value: 'Focused & Flexible' },
-          { label: 'ERGONOMICS', value: 'Comfort-Driven' },
-          { label: 'LIGHTING', value: 'Clear & Balanced' }
+          { label: 'CEILING', value: '3.0m Linear Baffles' },
+          { label: 'DAYLIGHT', value: 'Circadian Smart Wash' },
+          { label: 'ACOUSTIC', value: 'Felt Desk Dividers' }
         ],
         hotspots: [
           {
@@ -385,12 +385,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Purposeful settings for discussions, presentations and important decisions.',
         d: 'Purposeful settings for presentations, discussions and important decisions, with the right balance of privacy and collaboration.',
         image: '/assets/mitijen/commercial5.jpeg',
-        area: 'Conference Suites',
+        area: '480 sq.ft',
         materials: ['Acoustic Panels', 'Glass Partitions', 'Refined Finishes'],
         specs: [
-          { label: 'PRIVACY', value: 'Focused & Secure' },
-          { label: 'TECHNOLOGY', value: 'Integrated & Practical' },
-          { label: 'SEATING', value: 'Professional & Comfortable' }
+          { label: 'CEILING', value: '2.9m Acoustic Cloud' },
+          { label: 'DAYLIGHT', value: 'Switchable Smart Glass' },
+          { label: 'ACOUSTIC', value: 'Double Glazed STC 48' }
         ],
         hotspots: [
           {
@@ -417,12 +417,12 @@ export const ROOM_CATEGORIES: Record<'residential' | 'commercial' | 'corporate',
         subtitle: 'Relaxed areas for informal conversations, breaks and connection.',
         d: 'Relaxed areas that give teams room to recharge, connect informally and step away from their regular work routine.',
         image: '/assets/mitijen/commercial6.jpeg',
-        area: 'Collaboration Lounge',
+        area: '550 sq.ft',
         materials: ['Soft Furnishings', 'Timber Details', 'Textured Surfaces'],
         specs: [
-          { label: 'ATMOSPHERE', value: 'Relaxed & Inviting' },
-          { label: 'SEATING', value: 'Flexible & Comfortable' },
-          { label: 'FUNCTION', value: 'Pause & Connect' }
+          { label: 'CEILING', value: '3.1m Timber Slats' },
+          { label: 'DAYLIGHT', value: 'East Terrace Light' },
+          { label: 'ACOUSTIC', value: 'Low-Reverberation' }
         ],
         hotspots: [
           {
