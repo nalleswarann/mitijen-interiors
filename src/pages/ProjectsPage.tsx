@@ -14,37 +14,6 @@ import '../styles/ProjectsPage.css';
 
 type LayoutMode = 'ed' | 'full' | 'idx';
 
-interface HeroBanner {
-  id: string;
-  title: string;
-  subtitle: string;
-  image: string;
-  location: string;
-}
-
-const HERO_BANNERS: HeroBanner[] = [
-  {
-    id: 'b1',
-    title: 'The Quiet Residence',
-    subtitle: 'Chennai · 4,800 sq.ft Villa',
-    image: '/assets/mitijen/Banner1.jpg',
-    location: '13.0827° N, 80.2707° E'
-  },
-  {
-    id: 'b2',
-    title: 'The Olive House',
-    subtitle: 'Coimbatore · 3,600 sq.ft Courtyard',
-    image: '/assets/mitijen/Banner2.jpg',
-    location: '11.0168° N, 76.9558° E'
-  },
-  {
-    id: 'b3',
-    title: 'The Stillwater Apartment',
-    subtitle: 'Bengaluru · 2,450 sq.ft Penthouse',
-    image: '/assets/mitijen/Banner3.jpg',
-    location: '12.9716° N, 77.5946° E'
-  }
-];
 
 export const ProjectsPage: React.FC = () => {
   const location = useLocation();
@@ -55,7 +24,6 @@ export const ProjectsPage: React.FC = () => {
   const [activeFilterIdx, setActiveFilterIdx] = useState(0);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>('ed');
   const [isGridTransitioning, setIsGridTransitioning] = useState(false);
-  const [activeHeroIdx, setActiveHeroIdx] = useState(0);
 
   // Derive selected project directly from URL hash for instant sync
   const rawHash = location.hash.replace('#', '');
@@ -75,13 +43,6 @@ export const ProjectsPage: React.FC = () => {
     }
   }, [selectedProject]);
 
-  // Auto-cycle hero banner every 7 seconds if user is in top hero
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveHeroIdx((prev) => (prev + 1) % HERO_BANNERS.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, []);
 
   // Filtered projects
   const filteredProjects = useMemo(() => {
@@ -343,8 +304,6 @@ export const ProjectsPage: React.FC = () => {
   // =========================================================================
   // MAIN PORTFOLIO PAGE
   // =========================================================================
-  const activeHero = HERO_BANNERS[activeHeroIdx];
-
   return (
     <main className="projects-page-wrapper" id="projects-main">
       <SEO
@@ -354,67 +313,105 @@ export const ProjectsPage: React.FC = () => {
       />
 
       {/* =====================================================================
-          CINEMATIC ARCHITECTURAL HERO
+          CINEMATIC EDITORIAL HERO BANNER (INSPIRED BY REFERENCE)
           ===================================================================== */}
-      <section className="projects-hero" id="top">
-        <div className="projects-hero-text">
-          <div className="projects-hero-header-badge">
-            <span className="hero-studio-tag">MITJEN INTERIORS</span>
-            <span className="hero-vol-tag">PORTFOLIO ARCHIVE</span>
-          </div>
-
-          <h1 className="projects-hero-title">
-            SPACES SHAPED AROUND THE <br className="hero-break" />
-            QUIET ART OF LIVING.
-          </h1>
-
-          <p className="projects-hero-desc">
-            Explore a collection of considered interiors, where monolithic stone, quarter-sawn
-            timber, and architectural light converge to create environments that feel timeless,
-            tactile, and deeply personal.
-          </p>
-
-          <div className="projects-hero-meta">
-            <div className="projects-hero-provenance">
-              <span className="provenance-dot" aria-hidden="true" />
-              <span className="provenance-title">Curated Interior Architecture</span>
-              <span className="provenance-sep">·</span>
-              <span className="provenance-loc">Chennai · Bengaluru · Hyderabad</span>
-            </div>
-          </div>
+      <section className="projects-editorial-banner" id="top" aria-label="Curated Architectural Portfolio">
+        <div className="banner-backdrop">
+          <img
+            src="/assets/projects_banner_bg.jpg"
+            alt="Mitjen Interiors minimalist architectural space"
+            className="banner-bg-img"
+            loading="eager"
+            fetchPriority="high"
+          />
+          <div className="banner-backdrop-overlay" aria-hidden="true" />
         </div>
 
-        {/* Hero Interactive Showcase Slider */}
-        <div className="projects-hero-image-wrap">
-          <div className="projects-hero-image-slider">
-            {HERO_BANNERS.map((banner, idx) => (
-              <div
-                key={banner.id}
-                className={`hero-slide-item ${idx === activeHeroIdx ? 'is-active' : ''}`}
-              >
-                <img src={banner.image} alt={banner.title} />
-              </div>
-            ))}
+        <div className="banner-content">
+          {/* Top botanical sprig flourish & kicker */}
+          <div className="banner-kicker-wrap">
+            <svg
+              className="banner-sprig sprig-left"
+              width="54"
+              height="18"
+              viewBox="0 0 54 18"
+              fill="none"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M52 9 C36 9 18 6 2 2" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M2 2 C0.5 4 1.5 6.5 4 6 C5.5 4.5 4.5 2.5 2 2Z" fill="currentColor" />
+              <path d="M12 4 C10 1.5 7.5 2 6.5 4.5 C8.5 5.5 11 5.5 12 4Z" fill="currentColor" />
+              <path d="M24 5.5 C22 3 19.5 3.5 18.5 6 C20.5 7 23 7 24 5.5Z" fill="currentColor" />
+              <path d="M36 7 C34 4.5 31.5 5 30.5 7.5 C32.5 8.5 35 8.5 36 7Z" fill="currentColor" />
+              <path d="M14 5 C16 3 18.5 3.5 19.5 6 C17.5 7 15 6.5 14 5Z" fill="currentColor" />
+              <path d="M26 6.5 C28 4.5 30.5 5 31.5 7.5 C29.5 8.5 27 8 26 6.5Z" fill="currentColor" />
+            </svg>
+            <span className="banner-kicker">SELECTED WORKS &amp; ARCHIVES</span>
+            <svg
+              className="banner-sprig sprig-right"
+              width="54"
+              height="18"
+              viewBox="0 0 54 18"
+              fill="none"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M52 9 C36 9 18 6 2 2" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M2 2 C0.5 4 1.5 6.5 4 6 C5.5 4.5 4.5 2.5 2 2Z" fill="currentColor" />
+              <path d="M12 4 C10 1.5 7.5 2 6.5 4.5 C8.5 5.5 11 5.5 12 4Z" fill="currentColor" />
+              <path d="M24 5.5 C22 3 19.5 3.5 18.5 6 C20.5 7 23 7 24 5.5Z" fill="currentColor" />
+              <path d="M36 7 C34 4.5 31.5 5 30.5 7.5 C32.5 8.5 35 8.5 36 7Z" fill="currentColor" />
+              <path d="M14 5 C16 3 18.5 3.5 19.5 6 C17.5 7 15 6.5 14 5Z" fill="currentColor" />
+              <path d="M26 6.5 C28 4.5 30.5 5 31.5 7.5 C29.5 8.5 27 8 26 6.5Z" fill="currentColor" />
+            </svg>
           </div>
 
-          <div className="projects-hero-image-caption">
-            <div className="caption-text">
-              <h3 className="caption-title">{activeHero.title}</h3>
-              <span className="caption-sub">{activeHero.subtitle}</span>
-            </div>
+          {/* Minimalist Interiors Heading (Single Page H1) */}
+          <h1 className="banner-title">
+            <span className="title-line">Minimalist</span>
+            <span className="title-line">Interiors</span>
+          </h1>
 
-            {/* Slider Switch Dots */}
-            <div className="caption-dots" role="group" aria-label="Hero project switcher">
-              {HERO_BANNERS.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  aria-label={`Show slide ${idx + 1}`}
-                  className={`caption-dot-btn ${idx === activeHeroIdx ? 'is-active' : ''}`}
-                  onClick={() => setActiveHeroIdx(idx)}
-                />
-              ))}
-            </div>
+          {/* Signature Brand Subtitle */}
+          <p className="banner-subtitle">
+            SPACES SHAPED AROUND THE QUIET ART OF LIVING
+          </p>
+
+          {/* Reference-Matched White Capsule Floating Action Badges */}
+          <div className="banner-actions">
+            <a
+              href="#work"
+              className="banner-pill banner-pill-link"
+              title="Explore 24+ Curated Spaces"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <span className="banner-pill-badge" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </span>
+              <span className="banner-pill-text">mitijeninteriors.com</span>
+            </a>
+
+            <button
+              type="button"
+              className="banner-pill banner-pill-btn"
+              onClick={() => openInquiry('Portfolio Hero — Architectural Consultation')}
+              title="Schedule an Architectural Consultation"
+            >
+              <span className="banner-pill-badge" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
+              <span className="banner-pill-text">+91 99403 76222</span>
+            </button>
           </div>
         </div>
       </section>
