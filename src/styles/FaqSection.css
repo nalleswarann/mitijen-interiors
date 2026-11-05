@@ -340,13 +340,35 @@
 
 @media (max-width: 1024px) {
   .faq-container {
-    grid-template-columns: 1fr;
-    gap: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .faq-right {
+    display: contents;
+  }
+
+  .faq-header-block {
+    order: 1;
+    width: 100%;
   }
 
   .faq-left {
+    order: 2;
     position: static;
-    max-width: 540px;
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .faq-accordion {
+    order: 3;
+    width: 100%;
+  }
+
+  .faq-cta-row {
+    order: 4;
+    width: 100%;
   }
 
   .faq-img-wrap {
@@ -359,23 +381,39 @@
     padding: clamp(48px, 8vw, 76px) var(--pad, 18px);
   }
 
-  /* Display FAQ questions first on mobile for immediate clarity */
+  /* Display FAQ header first, then the atmospheric photo preview, then the accordion list */
   .faq-container {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 24px;
   }
 
   .faq-right {
-    order: 1;
-    width: 100%;
+    display: contents;
   }
 
+  .faq-header-block {
+    order: 1;
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  /* Image placed immediately above the FAQ accordions */
   .faq-left {
     order: 2;
     width: 100%;
     max-width: 100%;
-    margin-top: 8px;
+    margin: 0 0 6px 0;
+  }
+
+  .faq-accordion {
+    order: 3;
+    width: 100%;
+  }
+
+  .faq-cta-row {
+    order: 4;
+    width: 100%;
   }
 
   .faq-img-wrap {

@@ -104,7 +104,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenInquiry }) => {
 
         {/* Right Column: Header & Interactive Accordion */}
         <div className="faq-right">
-          <div className="reveal-fade-up">
+          <div className="faq-header-block reveal-fade-up">
             <span className="faq-kicker">
               CLIENT GUIDANCE / FAQs
             </span>

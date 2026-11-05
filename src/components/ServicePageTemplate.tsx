@@ -523,7 +523,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
 
           {/* Right Column: Header & Interactive Accordion */}
           <div className="faq-right">
-            <div className="reveal-fade-up">
+            <div className="faq-header-block reveal-fade-up">
               <span className="faq-kicker">
                 {data.faqsSection.sectionTag || `${data.category.toUpperCase()} GUIDANCE & FAQS`}
               </span>
