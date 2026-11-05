@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useInquiry } from '../context/useInquiry';
 
 export interface CraftDetailItem {
   id: string;
   num: string;
+  category: string;
   title: string;
+  editorialTitle: string;
   image: string;
   detailImage: string;
   description: string;
@@ -17,52 +19,56 @@ const CRAFT_DETAIL_ITEMS: CraftDetailItem[] = [
   {
     id: 'layout-flow',
     num: '01',
+    category: 'LAYOUT & SPATIAL FLOW',
     title: 'LAYOUT & FLOW',
+    editorialTitle: 'The Living Salon & Foyer Flow',
     image: '/assets/mitijen/home1.jpeg',
     detailImage: '/assets/mitijen/hom2.jpeg',
     description: 'Well-planned arrangements that make movement feel natural while giving every part of the interior a clear purpose.',
-    materials: ['SMART PLANNING', 'EASY MOVEMENT', 'BALANCED PROPORTIONS'],
+    materials: ['Smart Spatial Planning', 'Natural Circulation', 'Balanced Proportions'],
     route: '/services/residential-interior-design'
   },
   {
     id: 'custom-elements',
     num: '02',
+    category: 'CUSTOM ELEMENTS & MILLWORK',
     title: 'CUSTOM ELEMENTS',
+    editorialTitle: 'Bespoke Joinery & Architectural Storage',
     image: '/assets/craft_joinery.jpg',
     detailImage: '/assets/craft_wardrobe.jpg',
     description: 'Tailored furniture, storage and joinery created to make better use of the available area while complementing the overall look.',
-    materials: [],
+    materials: ['Acoustic White Oak', 'Concealed Shadow Gaps', 'Integrated Storage'],
     route: '/services/residential-interior-design'
   },
   {
     id: 'materials-finishes',
     num: '03',
+    category: 'MATERIALS & SURFACE FINISHES',
     title: 'MATERIALS & FINISHES',
+    editorialTitle: 'Tactile Stone & Natural Veneers',
     image: '/assets/craft_stone_vanity.jpg',
     detailImage: '/assets/craft_credenza.jpg',
     description: 'Wood, glass, stone, textures and other finishes are carefully combined to create the right character for each interior.',
-    materials: ['TEXTURES', 'SURFACES', 'REFINED FINISHES'],
+    materials: ['Honed Roman Travertine', 'Brushed Bronze Trim', 'Textured Lime Plaster'],
     route: '/services/residential-interior-design'
   },
   {
     id: 'lighting-ambience',
     num: '04',
+    category: 'LIGHTING & SPATIAL AMBIENCE',
     title: 'LIGHTING & AMBIENCE',
+    editorialTitle: 'Layered Illumination & Warm Coves',
     image: '/assets/mitijen/kitchen.jpeg',
     detailImage: '/assets/mitijen/bedroom.jpeg',
     description: 'Lighting is planned to support everyday use, highlight key features and create a comfortable atmosphere throughout the interior.',
-    materials: ['FUNCTIONAL LIGHTING', 'FEATURE LIGHTING', 'AMBIENT LIGHT'],
+    materials: ['Recessed 2700K Warm Cove', 'Low-Glare Task Lighting', 'Diffused Ambient Wash'],
     route: '/services/residential-interior-design'
   }
 ];
 
 export const MaterialsGallery: React.FC = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
   const [expandedItemId, setExpandedItemId] = useState<string | null>('layout-flow');
-  const navigate = useNavigate();
   const { openInquiry } = useInquiry();
-
-  const currentProject = CRAFT_DETAIL_ITEMS[activeIdx] || CRAFT_DETAIL_ITEMS[0];
 
   const toggleItem = (id: string) => {
     setExpandedItemId((prev) => (prev === id ? null : id));
@@ -73,137 +79,69 @@ export const MaterialsGallery: React.FC = () => {
       <div className="corporate-human-container">
         {/* ==================================================================
             1. DESKTOP VIEW (Visible on Viewports > 768px)
-            100% Unchanged Desktop Layout, Typography & Photo Frame
+            Editorial-style 2-column architectural project showcase
+            Directly modeled on the reference video frames and architecture
             ================================================================== */}
         <div className="corporate-desktop-view">
-          {/* Section Header with Animated Reveal */}
-          <div className="corporate-human-header reveal-fade-up">
-            <div className="corporate-human-header-left">
-              <span className="corporate-human-label">INTERIOR CRAFT &amp; DETAIL</span>
-              <h2 className="corporate-human-title">
+          {/* Section Introduction */}
+          <div className="corporate-desk-header">
+            <div className="corporate-desk-header-left">
+              <span className="corporate-desk-kicker">INTERIOR CRAFT &amp; DETAIL</span>
+              <h2 className="corporate-desk-heading">
                 DESIGNED AROUND WHAT MATTERS.
               </h2>
             </div>
-            <div className="corporate-human-header-right">
-              <p className="corporate-human-lead">
+            <div className="corporate-desk-header-right">
+              <p className="corporate-desk-lead">
                 Every interior has different requirements, but the details that make it work remain important. From the way people move through an interior to the furniture, finishes and lighting around them, we bring each element together with purpose.
               </p>
             </div>
           </div>
 
-          {/* Editorial Showcase Grid */}
-          <div className="corporate-editorial-grid">
-            {/* Left Column: Craft Details Navigation List */}
-            <div
-              className="corporate-project-list reveal-fade-up"
-              data-delay="150"
-              role="tablist"
-              aria-label="Interior craft details"
-            >
-              {CRAFT_DETAIL_ITEMS.map((proj, idx) => {
-                const isActive = activeIdx === idx;
-                return (
-                  <div
-                    key={proj.id}
-                    className={`corporate-project-row ${isActive ? 'is-active' : ''}`}
-                    onClick={() => setActiveIdx(idx)}
-                    role="tab"
-                    tabIndex={0}
-                    aria-selected={isActive}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        setActiveIdx(idx);
-                      }
-                    }}
-                  >
-                    <div className="project-row-top">
-                      <span className="project-row-num">{proj.num}</span>
-                      <h3 className="project-row-title">{proj.title}</h3>
-                    </div>
-
-                    <p className="project-row-desc">
-                      {proj.description}
-                    </p>
-
-                    {proj.materials.length > 0 && (
-                      <div className="project-row-materials">
-                        {proj.materials.map((mat, mIdx) => (
-                          <span key={mIdx} className="material-crumb">
-                            {mat}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Right Column: Architectural Photography Frame */}
-            <div
-              className="corporate-visual-display reveal-scale"
-              data-delay="250"
-              id="corporate-visual-display"
-              tabIndex={-1}
-            >
-              {/* Primary Large Photograph */}
-              <div className="corporate-main-photo-wrap img-zoom-hover">
-                <img
-                  src={currentProject.image}
-                  alt={`${currentProject.title} architectural view`}
-                  className="corporate-main-photo"
-                  loading="lazy"
-                />
-                <div className="corporate-photo-caption">
-                  <span className="caption-location">{currentProject.num} · CRAFT &amp; DETAIL</span>
-                  <span className="caption-title">{currentProject.title}</span>
-                </div>
-              </div>
-
-              {/* Secondary Companion Detail */}
-              <div className="corporate-companion-row">
-                <div className="companion-photo-wrap img-zoom-hover">
+          {/* 2-Column Editorial Grid */}
+          <div className="corporate-desk-grid" role="list" aria-label="Interior craft showcases">
+            {CRAFT_DETAIL_ITEMS.map((item, idx) => (
+              <article key={item.id} className="corporate-desk-card" role="listitem">
+                <div className="corporate-desk-media">
                   <img
-                    src={currentProject.detailImage}
-                    alt={`${currentProject.title} architectural detail`}
-                    className="companion-photo"
-                    loading="lazy"
+                    src={item.image}
+                    alt={`${item.editorialTitle} architectural view`}
+                    className="corporate-desk-img"
+                    loading={idx > 1 ? 'lazy' : 'eager'}
                   />
                 </div>
-
-                <div className="companion-note-card hover-lift">
-                  <span className="note-label">THE COMPLETE PICTURE</span>
-                  <p className="note-text">
-                    A good interior comes together when the layout, function, materials and small details work well together to create a space that feels complete.
-                  </p>
-                  <button
-                    type="button"
-                    className="note-link"
-                    onClick={() => navigate('/services')}
-                  >
-                    Explore Practice &rarr;
-                  </button>
+                <div className="corporate-desk-body">
+                  <span className="corporate-desk-tag">
+                    {item.num} · {item.category}
+                  </span>
+                  <h3 className="corporate-desk-card-title">{item.editorialTitle}</h3>
+                  <p className="corporate-desk-card-desc">{item.description}</p>
+                  {item.materials && item.materials.length > 0 && (
+                    <div className="corporate-desk-materials">
+                      <b className="corporate-desk-materials-label">Materials</b>
+                      <span className="corporate-desk-materials-list">{item.materials.join(' · ')}</span>
+                    </div>
+                  )}
                 </div>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
 
-          {/* Quiet Studio Consultation Prompt */}
-          <div className="corporate-footer-banner reveal-fade-up" data-delay="200">
-            <div className="footer-banner-text">
-              <h4>TELL US WHAT YOU’RE LOOKING FOR?</h4>
-              <p>From the first conversation to the finished result, let’s find the right way forward for your requirements.</p>
+          {/* Bottom Consultation CTA Strip */}
+          <div className="corporate-desk-cta">
+            <div className="corporate-desk-cta-content">
+              <h3 className="corporate-desk-cta-heading">TELL US WHAT YOU’RE LOOKING FOR?</h3>
+              <p className="corporate-desk-cta-desc">
+                From the first conversation to the finished result, let’s find the right way forward for your requirements.
+              </p>
             </div>
-            <div className="footer-banner-actions">
-              <button
-                type="button"
-                className="corporate-inquiry-btn hover-lift"
-                onClick={() => openInquiry('Tell Us What You Are Looking For — Consultation')}
-              >
-                GET IN TOUCH →
-              </button>
-            </div>
+            <button
+              type="button"
+              className="corporate-desk-cta-btn"
+              onClick={() => openInquiry('Tell Us What You Are Looking For — Consultation')}
+            >
+              GET IN TOUCH →
+            </button>
           </div>
         </div>
 
@@ -211,6 +149,7 @@ export const MaterialsGallery: React.FC = () => {
             2. MOBILE EDITORIAL VIEW (Visible on Viewports <= 768px)
             "DESIGNED AROUND WHAT MATTERS."
             Expandable interactive craft cards matching the reference architecture
+            100% UNCHANGED
             ================================================================== */}
         <div className="corporate-mobile-portfolio-view">
           {/* Section Introduction */}
