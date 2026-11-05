@@ -1,13 +1,13 @@
 /* ==========================================================================
    MITJEN INTERIORS — SPATIAL METAMORPHOSIS (BEFORE & AFTER)
-   Minimalist Editorial Design · Quiet Luxury Architecture · Clean Precision Split
+   Minimalist Editorial Design · Compact Quiet Luxury · Clean Precision Split
    ========================================================================== */
 
 .ba-section {
   position: relative;
   background-color: var(--ink, #151614);
   color: var(--ivory, #FAF8F5);
-  padding: clamp(70px, 10vh, 120px) clamp(24px, 5vw, 64px);
+  padding: clamp(44px, 5vh, 64px) clamp(20px, 4vw, 48px);
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.10);
   font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
@@ -15,11 +15,11 @@
 }
 
 .ba-container {
-  max-width: 1360px;
+  max-width: 1240px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(28px, 4vh, 44px);
+  gap: clamp(18px, 2.4vh, 26px);
 }
 
 /* --------------------------------------------------------------------------
@@ -29,48 +29,49 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: clamp(24px, 4vw, 56px);
+  gap: clamp(16px, 3vw, 40px);
   flex-wrap: wrap;
 }
 
 .ba-header-lead {
-  max-width: 680px;
+  max-width: 620px;
 }
 
 .ba-kicker {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(0.70rem, 0.85vw, 0.78rem);
+  font-size: clamp(0.66rem, 0.78vw, 0.72rem);
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .ba-title {
   font-family: var(--font-heading, 'Cormorant Garamond', 'Average', Georgia, serif);
-  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-size: clamp(1.85rem, 2.6vw, 2.6rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.015em;
   color: #FAF8F5;
   margin: 0;
+  text-wrap: balance;
 }
 
 .ba-header-right {
-  max-width: 440px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 6px;
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .ba-intro {
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
-  line-height: 1.65;
+  font-size: clamp(0.86rem, 0.95vw, 0.94rem);
+  line-height: 1.55;
   color: rgba(250, 248, 245, 0.75);
   margin: 0;
 }
@@ -78,9 +79,9 @@
 .ba-drag-hint {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
@@ -108,15 +109,15 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: min(720px, 72vh);
-  min-height: 420px;
-  border-radius: 12px;
+  max-height: min(500px, 52vh);
+  min-height: 350px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: #121413;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.12),
-    0 4px 18px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(24, 28, 32, 0.12);
+    0 20px 48px rgba(0, 0, 0, 0.18),
+    0 4px 14px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y;
@@ -165,7 +166,7 @@
   bottom: 0;
   width: 2px;
   background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.8);
   pointer-events: none;
   z-index: 5;
   transform: translateX(-50%);
@@ -185,13 +186,13 @@
 }
 
 .ba-handle-disc {
-  width: clamp(40px, 3.8vw, 48px);
-  height: clamp(40px, 3.8vw, 48px);
+  width: clamp(36px, 3.2vw, 42px);
+  height: clamp(36px, 3.2vw, 42px);
   border-radius: 50%;
   background: #FFFFFF;
   border: 1px solid rgba(24, 28, 32, 0.14);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.26),
+    0 6px 20px rgba(0, 0, 0, 0.26),
     0 2px 6px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
@@ -202,11 +203,11 @@
 
 .ba-handle:hover .ba-handle-disc,
 .ba-stage-container.is-dragging .ba-handle-disc {
-  transform: scale(1.12);
+  transform: scale(1.10);
   background: var(--ink, #151614);
   color: #FAF8F5;
   border-color: var(--ink, #151614);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
 }
 
 .ba-handle-chevrons {
@@ -215,65 +216,67 @@
   justify-content: center;
   pointer-events: none;
   stroke: currentColor;
+  width: 16px;
+  height: 16px;
 }
 
 /* Minimalist Frosted Corner Labels */
 .ba-badge {
   position: absolute;
-  top: clamp(16px, 2vw, 24px);
+  top: 14px;
   z-index: 10;
-  padding: 8px 18px;
+  padding: 6px 14px;
   border-radius: 999px;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(0.68rem, 0.8vw, 0.76rem);
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #FAF8F5;
-  background: rgba(18, 20, 18, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(18, 20, 18, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   pointer-events: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .ba-badge-before {
-  left: clamp(16px, 2vw, 24px);
+  left: 14px;
 }
 
 .ba-badge-after {
-  right: clamp(16px, 2vw, 24px);
+  right: 14px;
 }
 
 .ba-badge-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--sand, #D8C8B4);
-  box-shadow: 0 0 8px var(--sand, #D8C8B4);
+  box-shadow: 0 0 6px var(--sand, #D8C8B4);
 }
 
 /* In-Stage Bottom Room Badge */
 .ba-stage-badge {
   position: absolute;
-  bottom: clamp(16px, 2vw, 24px);
-  left: clamp(16px, 2vw, 24px);
+  bottom: 14px;
+  left: 14px;
   z-index: 10;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: rgba(18, 20, 18, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 8px 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #FAF8F5;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
   pointer-events: none;
 }
 
@@ -283,7 +286,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.70rem;
+  font-size: 0.65rem;
 }
 
 .ba-stage-badge-sep {
@@ -292,7 +295,7 @@
 
 .ba-stage-badge-title {
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 500;
   opacity: 0.95;
 }
@@ -304,14 +307,14 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 
 /* Minimalist Circular Navigation Buttons */
 .ba-nav-btn {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #FFFFFF;
   color: var(--ink, #151614);
@@ -321,7 +324,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
@@ -331,7 +334,7 @@
   color: #FAF8F5;
   border-color: var(--ink, #151614);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
 }
 
 .ba-nav-btn:active {
@@ -339,8 +342,8 @@
 }
 
 .ba-nav-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   stroke-width: 2.2;
   stroke: currentColor;
 }
@@ -349,13 +352,13 @@
 .ba-thumbnails-track {
   display: flex;
   align-items: stretch;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 10px 4px 14px;
+  padding: 6px 2px 10px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
@@ -364,22 +367,23 @@
   display: none;
 }
 
-/* Thumbnail Card Item (Comfortable width to prevent text truncation) */
+/* Thumbnail Card Item */
 .ba-thumb-item {
-  flex: 0 0 clamp(210px, 19vw, 250px);
-  min-width: clamp(210px, 19vw, 250px);
+  flex: 0 0 clamp(180px, 15vw, 210px);
+  min-width: clamp(180px, 15vw, 210px);
   scroll-snap-align: start;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 8px;
+  border-radius: 8px;
+  padding: 6px;
   cursor: pointer;
   outline: none;
   position: relative;
   opacity: 0.85;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease,
     box-shadow 0.3s ease,
@@ -391,7 +395,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
   background-color: #1a1a1a;
 }
@@ -406,15 +410,15 @@
 
 .ba-thumb-index {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 5px;
+  right: 5px;
   background: rgba(18, 20, 18, 0.78);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   color: #FAF8F5;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
+  font-size: 0.60rem;
   letter-spacing: 0.08em;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 3px;
   line-height: 1;
 }
@@ -422,15 +426,15 @@
 .ba-thumb-text {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 2px 4px 4px;
+  gap: 2px;
+  padding: 2px 3px 2px;
 }
 
 .ba-thumb-room {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
   white-space: nowrap;
@@ -441,38 +445,38 @@
 
 .ba-thumb-title {
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: 0.98rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.22;
   color: #FAF8F5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 2.5em;
+  min-height: 2.3em;
 }
 
 .ba-thumb-item:hover {
   opacity: 1;
-  transform: translateY(-3px);
-  border-color: rgba(24, 28, 32, 0.26);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
 .ba-thumb-item:hover .ba-thumb-img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .ba-thumb-item.is-active {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.12);
   border-color: var(--sand, #D8C8B4);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .ba-thumb-item.is-active .ba-thumb-room {
-  color: var(--ink, #151614);
+  color: var(--sand, #D8C8B4);
   font-weight: 700;
 }
 
@@ -483,57 +487,63 @@
 /* Tablet Screens (<= 1024px) */
 @media (max-width: 1024px) {
   .ba-section {
-    padding: clamp(60px, 8vh, 90px) 24px;
+    padding: clamp(40px, 6vh, 60px) 20px;
   }
 
   .ba-stage-container {
-    height: 480px;
-    min-height: 380px;
+    height: 400px;
+    min-height: 320px;
   }
 
   .ba-thumb-item {
-    flex: 0 0 190px;
-    min-width: 190px;
+    flex: 0 0 170px;
+    min-width: 170px;
   }
 
   .ba-thumb-title {
-    font-size: 0.90rem;
-    min-height: 2.4em;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    font-size: 0.85rem;
+    min-height: 2.2em;
   }
 }
 
 /* Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   .ba-section {
-    padding: clamp(50px, 7vh, 80px) 18px;
+    padding: clamp(36px, 5vh, 48px) 16px;
   }
 
   .ba-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
 
   .ba-stage-container {
     aspect-ratio: 16 / 10;
-    height: 380px;
-    min-height: 320px;
+    height: 320px;
+    min-height: 280px;
     border-radius: 8px;
   }
 
   .ba-badge {
-    padding: 6px 14px;
-    font-size: 0.68rem;
+    top: 10px;
+    padding: 5px 12px;
+    font-size: 0.62rem;
+  }
+
+  .ba-badge-before {
+    left: 10px;
+  }
+
+  .ba-badge-after {
+    right: 10px;
   }
 
   .ba-stage-badge {
-    bottom: 12px;
-    left: 12px;
-    padding: 6px 14px;
-    font-size: 0.72rem;
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    font-size: 0.68rem;
   }
 
   .ba-nav-btn {
@@ -541,67 +551,68 @@
   }
 
   .ba-thumbnails-track {
-    gap: 12px;
-    padding-bottom: 8px;
+    gap: 8px;
+    padding-bottom: 6px;
   }
 
   .ba-thumb-item {
-    flex: 0 0 156px;
-    min-width: 156px;
-    padding: 7px;
+    flex: 0 0 145px;
+    min-width: 145px;
+    padding: 5px;
   }
 
   .ba-thumb-title {
-    font-size: 0.84rem;
-    min-height: 2.2em;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    font-size: 0.80rem;
+    min-height: 2.1em;
   }
 }
 
 /* Compact Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
+  .ba-section {
+    padding: 30px 14px;
+  }
+
   .ba-stage-container {
-    height: 310px;
-    min-height: 280px;
+    height: 260px;
+    min-height: 220px;
   }
 
   .ba-title {
-    font-size: clamp(2rem, 8.5vw, 2.5rem);
+    font-size: clamp(1.75rem, 7.5vw, 2.1rem);
   }
 
   .ba-badge {
-    top: 12px;
-    padding: 5px 12px;
-    font-size: 0.65rem;
-  }
-
-  .ba-badge-before {
-    left: 12px;
-  }
-
-  .ba-badge-after {
-    right: 12px;
-  }
-
-  .ba-handle-disc {
-    width: 38px;
-    height: 38px;
-  }
-
-  .ba-thumb-item {
-    flex: 0 0 135px;
-    min-width: 135px;
-    padding: 6px;
-  }
-
-  .ba-thumb-room {
+    top: 8px;
+    padding: 4px 10px;
     font-size: 0.60rem;
   }
 
+  .ba-badge-before {
+    left: 8px;
+  }
+
+  .ba-badge-after {
+    right: 8px;
+  }
+
+  .ba-handle-disc {
+    width: 34px;
+    height: 34px;
+  }
+
+  .ba-thumb-item {
+    flex: 0 0 128px;
+    min-width: 128px;
+    padding: 5px;
+  }
+
+  .ba-thumb-room {
+    font-size: 0.58rem;
+  }
+
   .ba-thumb-title {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     min-height: auto;
     -webkit-line-clamp: 1;
   }
