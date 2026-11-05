@@ -33,19 +33,25 @@
 
 /* ==========================================================================
    DESKTOP CINEMATIC SHOWCASE (>= 769px)
-   Interactive Architectural Stage Inspired by Reference Video
+   Interactive Architectural Stage Inspired by Reference Video — Compact Edition
    ========================================================================== */
+
+@media (min-width: 769px) {
+  .room-explorer-section {
+    padding: clamp(38px, 4.5vh, 56px) var(--pad, 32px);
+  }
+}
 
 /* Category Switcher Tabs */
 .room-category-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: rgba(255, 255, 255, 0.05);
-  padding: 5px 6px;
+  padding: 4px 5px;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .room-cat-btn {
@@ -53,10 +59,10 @@
   border: none;
   color: rgba(250, 248, 245, 0.65);
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.14em;
-  padding: 8px 20px;
+  padding: 6px 16px;
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -73,21 +79,21 @@
 }
 
 /* --------------------------------------------------------------------------
-   Cinematic Stage Container
+   Cinematic Stage Container (Refined & Compact Proportions)
    -------------------------------------------------------------------------- */
 .room-stage-cinematic {
   position: relative;
-  height: clamp(600px, 80vh, 740px);
-  border-radius: 20px;
+  height: clamp(500px, 68vh, 600px);
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(26px, 3.2vw, 44px);
+  padding: clamp(20px, 2.5vw, 32px);
   background: #151613;
   color: #F5F2EC;
   border: 1px solid rgba(245, 242, 236, 0.12);
-  box-shadow: 0 28px 64px -14px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.55);
   user-select: none;
 }
 
@@ -109,7 +115,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.9s cubic-bezier(0.65, 0, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.65, 0, 0.2, 1);
   pointer-events: none;
 }
 
@@ -123,7 +129,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: scale(1.06) translate(var(--tx, 0), var(--ty, 0));
+  transform: scale(1.05) translate(var(--tx, 0), var(--ty, 0));
   transition: transform 0.6s cubic-bezier(0.65, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -134,48 +140,48 @@
 .room-stage-top {
   position: relative;
   z-index: 4;
-  max-width: 32rem;
+  max-width: 28rem;
   pointer-events: none;
 }
 
 .room-stage-kicker {
   display: inline-flex;
-  gap: 0.6rem;
+  gap: 0.5rem;
   align-items: center;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .room-kicker-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: currentColor;
 }
 
 .room-stage-heading {
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(2.1rem, 3.4vw, 3.3rem);
+  font-size: clamp(1.75rem, 2.5vw, 2.45rem);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.08;
   text-transform: uppercase;
   color: #F5F2EC;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.5rem;
   letter-spacing: -0.015em;
 }
 
 .room-stage-lead {
   margin: 0;
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: rgba(245, 242, 236, 0.82);
-  max-width: 27rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(245, 242, 236, 0.80);
+  max-width: 24rem;
   font-weight: 350;
 }
 
@@ -185,68 +191,68 @@
 .room-stage-card {
   position: absolute;
   z-index: 5;
-  right: clamp(20px, 2.8vw, 36px);
-  top: clamp(20px, 2.8vw, 36px);
-  width: min(330px, 38%);
+  right: clamp(16px, 2vw, 26px);
+  top: clamp(16px, 2vw, 26px);
+  width: min(290px, 34%);
   background: rgba(21, 22, 19, 0.86);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(245, 242, 236, 0.14);
-  border-radius: 16px;
-  padding: 22px 24px;
+  border-radius: 14px;
+  padding: 16px 18px;
   color: #F5F2EC;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
   pointer-events: auto;
 }
 
 .room-card-kicker {
   display: block;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.62rem;
+  font-size: 0.56rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--sand, #D8C8B4);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .room-card-title {
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: 1.75rem;
+  font-size: 1.45rem;
   font-weight: 400;
   line-height: 1.15;
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.45rem;
   color: #FFFFFF;
 }
 
 .room-card-desc {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   font-family: var(--font-content, 'Manrope', sans-serif);
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: rgba(245, 242, 236, 0.85);
+  font-size: 0.78rem;
+  line-height: 1.48;
+  color: rgba(245, 242, 236, 0.84);
   font-weight: 350;
 }
 
 .room-card-specs {
   margin: 0;
   display: grid;
-  gap: 0.6rem;
+  gap: 0.45rem;
 }
 
 .room-card-specs div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   border-top: 1px solid rgba(245, 242, 236, 0.12);
-  padding-top: 0.6rem;
-  font-size: 0.8rem;
+  padding-top: 0.45rem;
+  font-size: 0.75rem;
 }
 
 .room-card-specs dt {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.58rem;
+  font-size: 0.54rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -263,11 +269,11 @@
 }
 
 .room-card-materials {
-  margin-top: 0.9rem;
-  padding-top: 0.7rem;
+  margin-top: 0.7rem;
+  padding-top: 0.55rem;
   border-top: 1px solid rgba(245, 242, 236, 0.12);
-  font-size: 0.74rem;
-  line-height: 1.45;
+  font-size: 0.70rem;
+  line-height: 1.4;
   color: rgba(245, 242, 236, 0.75);
   font-weight: 350;
 }
@@ -278,9 +284,9 @@
 .room-stage-pin {
   position: absolute;
   z-index: 3;
-  width: 34px;
-  height: 34px;
-  margin: -17px;
+  width: 30px;
+  height: 30px;
+  margin: -15px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.85);
   background: rgba(21, 22, 19, 0.65);
@@ -290,7 +296,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 300;
   line-height: 1;
   padding: 0;
@@ -302,7 +308,7 @@
 .room-stage-pin::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.4);
   animation: roomPulseRing 2.4s ease-out infinite;
@@ -330,26 +336,26 @@
   z-index: 6;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 110px;
-  max-width: 24rem;
+  bottom: 85px;
+  max-width: 22rem;
   width: max-content;
   background: rgba(245, 242, 236, 0.96);
   color: #151614;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-radius: 12px;
-  padding: 0.85rem 1.2rem;
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.4);
+  border-radius: 11px;
+  padding: 0.70rem 1rem;
+  box-shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.4);
   animation: tipSlideUp 0.25s ease-out;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
   border: 1px solid rgba(21, 22, 19, 0.08);
   pointer-events: auto;
 }
 
 @keyframes tipSlideUp {
-  from { opacity: 0; transform: translate(-50%, 8px); }
+  from { opacity: 0; transform: translate(-50%, 6px); }
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 
@@ -357,12 +363,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .room-tip-title {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -372,7 +378,7 @@
 .room-tip-close {
   background: none;
   border: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
   color: rgba(21, 22, 19, 0.6);
   padding: 0;
@@ -381,13 +387,13 @@
 
 .room-tip-desc {
   margin: 0;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  font-size: 0.78rem;
+  line-height: 1.4;
   color: rgba(21, 22, 19, 0.85);
 }
 
 .room-tip-mat {
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   color: #777B61;
   font-weight: 500;
 }
@@ -401,14 +407,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 1.5rem;
   pointer-events: auto;
 }
 
 .room-stage-rail {
   display: flex;
   flex: 1;
-  max-width: 720px;
+  max-width: 660px;
 }
 
 .room-stage-rt {
@@ -418,7 +424,7 @@
   background: none;
   border: 0;
   border-top: 1px solid rgba(245, 242, 236, 0.3);
-  padding: 0.95rem 1rem 0 0;
+  padding: 0.75rem 0.85rem 0 0;
   color: rgba(245, 242, 236, 0.55);
   transition: color 0.4s ease;
   cursor: pointer;
@@ -427,7 +433,7 @@
 .room-stage-rt .room-rt-no {
   display: block;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.6rem;
+  font-size: 0.56rem;
   font-weight: 600;
   letter-spacing: 0.16em;
 }
@@ -436,14 +442,14 @@
   display: block;
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
   font-weight: 400;
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   line-height: 1.15;
-  margin: 0.35rem 0 0.15rem;
+  margin: 0.25rem 0 0.1rem;
 }
 
 .room-stage-rt .room-rt-meta {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   opacity: 0.7;
 }
 
@@ -478,13 +484,13 @@
 /* Stage Action Controls */
 .room-stage-ctl {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.45rem;
   align-items: center;
 }
 
 .room-stage-ar,
 .room-stage-sm {
-  height: 44px;
+  height: 38px;
   border-radius: 999px;
   border: 1px solid rgba(245, 242, 236, 0.35);
   background: rgba(21, 22, 19, 0.55);
@@ -496,19 +502,19 @@
 }
 
 .room-stage-ar {
-  width: 44px;
+  width: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   line-height: 1;
   padding: 0;
 }
 
 .room-stage-sm {
-  padding: 0 1.1rem;
+  padding: 0 0.95rem;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -528,10 +534,10 @@
 }
 
 .room-stage-cnt {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   letter-spacing: 0.1em;
   color: rgba(245, 242, 236, 0.75);
-  margin-left: 0.4rem;
+  margin-left: 0.3rem;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
   white-space: nowrap;
 }
@@ -547,9 +553,9 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .room-stage-cinematic {
     height: auto;
-    min-height: 600px;
-    padding: 26px;
-    gap: 1.5rem;
+    min-height: 520px;
+    padding: 22px;
+    gap: 1.25rem;
   }
 
   .room-stage-card {
@@ -557,13 +563,13 @@
     right: auto;
     top: auto;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
   }
 
   .room-stage-bot {
     flex-direction: column;
     align-items: stretch;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .room-stage-rail {
@@ -573,7 +579,7 @@
 
   .room-stage-rt {
     flex: none;
-    min-width: 140px;
+    min-width: 130px;
   }
 }
 
