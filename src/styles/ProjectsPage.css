@@ -1676,3 +1676,195 @@
     gap: 10px;
   }
 }
+
+/* Corner Architectural Monograph Stamps */
+.banner-corner-stamps {
+  position: absolute;
+  top: clamp(20px, 2.5vw, 32px);
+  left: clamp(20px, 3.5vw, 48px);
+  right: clamp(20px, 3.5vw, 48px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.corner-stamp {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.60rem, 0.7vw, 0.68rem);
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: #556854;
+  opacity: 0.82;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   5. STUDIO MONOGRAPHIC METRICS STRIP (UNIQUE TO PROJECTS)
+   -------------------------------------------------------------------------- */
+.projects-metrics-strip {
+  background: #EFECE6;
+  border-top: 1px solid rgba(85, 104, 84, 0.14);
+  border-bottom: 1px solid rgba(85, 104, 84, 0.14);
+  padding: clamp(32px, 4vw, 48px) var(--pad, 32px);
+  margin-top: clamp(40px, 6vw, 70px);
+}
+
+.metrics-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 1px solid rgba(85, 104, 84, 0.22);
+  padding-left: clamp(14px, 1.8vw, 24px);
+}
+
+.metric-num {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-weight: 700;
+  color: #556854;
+  line-height: 1;
+}
+
+.metric-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.68rem, 0.78vw, 0.76rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #493B30;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   6. DEDICATED ARCHITECTURAL COMMISSION BANNER
+   -------------------------------------------------------------------------- */
+.projects-commission-section {
+  background: #242522;
+  color: #FAF8F5;
+  padding: clamp(60px, 8vw, 100px) var(--pad, 32px);
+  position: relative;
+  overflow: hidden;
+}
+
+.commission-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(24px, 3.5vw, 36px);
+}
+
+.commission-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.commission-tag {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: #D8C8B4;
+  text-transform: uppercase;
+}
+
+.commission-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.0rem, 4.2vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #FAF8F5;
+  margin: 0;
+  max-width: 780px;
+}
+
+.commission-desc {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 1.7;
+  color: rgba(250, 248, 245, 0.78);
+  max-width: 680px;
+  margin: 0;
+}
+
+.commission-action-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.commission-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #D8C8B4;
+  color: #242522;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 34px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.commission-primary-btn:hover {
+  background: #EFECE6;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.commission-primary-btn .btn-arrow {
+  transition: transform 0.3s var(--ease);
+}
+
+.commission-primary-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.commission-foot-note {
+  font-family: var(--font-content, 'Manrope', sans-serif);
+  font-size: 0.74rem;
+  color: rgba(250, 248, 245, 0.55);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .banner-corner-stamps {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .commission-primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

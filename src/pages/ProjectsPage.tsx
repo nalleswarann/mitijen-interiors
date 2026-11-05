@@ -5,8 +5,6 @@ import {
   PORTFOLIO_FILTERS,
   type PortfolioProject
 } from '../data/portfolioData';
-import { ProjectsMaterialsPhilosophy } from '../components/ProjectsMaterialsPhilosophy';
-import { ProjectsBeforeAfter } from '../components/ProjectsBeforeAfter';
 import { SEO } from '../components/common/SEO';
 import { useInquiry } from '../context/useInquiry';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -89,17 +87,6 @@ export const ProjectsPage: React.FC = () => {
         workSection.scrollIntoView({ behavior: 'smooth' });
       }
     }, 50);
-  };
-
-  const handleSelectByTitle = (title: string) => {
-    const matched = PORTFOLIO_PROJECTS.find(
-      (p) =>
-        p.name.toLowerCase().includes(title.toLowerCase()) ||
-        title.toLowerCase().includes(p.name.toLowerCase())
-    );
-    if (matched) {
-      handleOpenDetail(matched);
-    }
   };
 
   // Next project logic for Monograph detail view
@@ -313,9 +300,9 @@ export const ProjectsPage: React.FC = () => {
       />
 
       {/* =====================================================================
-          CINEMATIC EDITORIAL HERO BANNER (INSPIRED BY REFERENCE)
+          CINEMATIC EDITORIAL HERO BANNER — SELECTED WORKS ARCHIVE
           ===================================================================== */}
-      <section className="projects-editorial-banner" id="top" aria-label="Curated Architectural Portfolio">
+      <section className="projects-editorial-banner" id="top" aria-label="Selected Works & Architectural Portfolio">
         <div className="banner-backdrop">
           <img
             src="/assets/projects_banner_bg.jpg"
@@ -325,6 +312,12 @@ export const ProjectsPage: React.FC = () => {
             fetchPriority="high"
           />
           <div className="banner-backdrop-overlay" aria-hidden="true" />
+        </div>
+
+        {/* Editorial Corner Stamps to distinguish the portfolio archive */}
+        <div className="banner-corner-stamps" aria-hidden="true">
+          <span className="corner-stamp stamp-left">ARCHIVE VOL. IV · 2021—2026</span>
+          <span className="corner-stamp stamp-right">24 BUILT COMMISSIONS · SOUTH INDIA</span>
         </div>
 
         <div className="banner-content">
@@ -347,7 +340,7 @@ export const ProjectsPage: React.FC = () => {
               <path d="M14 5 C16 3 18.5 3.5 19.5 6 C17.5 7 15 6.5 14 5Z" fill="currentColor" />
               <path d="M26 6.5 C28 4.5 30.5 5 31.5 7.5 C29.5 8.5 27 8 26 6.5Z" fill="currentColor" />
             </svg>
-            <span className="banner-kicker">SELECTED WORKS &amp; ARCHIVES</span>
+            <span className="banner-kicker">CURATED ARCHITECTURAL PORTFOLIO</span>
             <svg
               className="banner-sprig sprig-right"
               width="54"
@@ -367,15 +360,15 @@ export const ProjectsPage: React.FC = () => {
             </svg>
           </div>
 
-          {/* Minimalist Interiors Heading (Single Page H1) */}
+          {/* Distinctive Selected Works Headline (Single Global H1) */}
           <h1 className="banner-title">
-            <span className="title-line">Minimalist</span>
-            <span className="title-line">Interiors</span>
+            <span className="title-line">Selected</span>
+            <span className="title-line">Works</span>
           </h1>
 
-          {/* Signature Brand Subtitle */}
+          {/* Portfolio-Specific Subtitle */}
           <p className="banner-subtitle">
-            SPACES SHAPED AROUND THE QUIET ART OF LIVING
+            A MONOGRAPHIC COMPENDIUM OF 24 BESPOKE RESIDENCES, COMMERCIAL VENUES &amp; WORKSPACES
           </p>
 
           {/* Reference-Matched White Capsule Floating Action Badges */}
@@ -383,7 +376,7 @@ export const ProjectsPage: React.FC = () => {
             <a
               href="#work"
               className="banner-pill banner-pill-link"
-              title="Explore 24+ Curated Spaces"
+              title="Explore 24 Built Works"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
@@ -391,26 +384,30 @@ export const ProjectsPage: React.FC = () => {
             >
               <span className="banner-pill-badge" aria-hidden="true">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
                 </svg>
               </span>
-              <span className="banner-pill-text">mitijeninteriors.com</span>
+              <span className="banner-pill-text">Browse 24 Monographic Spaces &darr;</span>
             </a>
 
             <button
               type="button"
               className="banner-pill banner-pill-btn"
-              onClick={() => openInquiry('Portfolio Hero — Architectural Consultation')}
-              title="Schedule an Architectural Consultation"
+              onClick={() => openInquiry('Portfolio Hero — Architectural Commission')}
+              title="Inquire about commissioning an architectural project"
             >
               <span className="banner-pill-badge" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                  <path d="M2 2l7.586 7.586" />
+                  <circle cx="11" cy="11" r="2" />
                 </svg>
               </span>
-              <span className="banner-pill-text">+91 99403 76222</span>
+              <span className="banner-pill-text">Commission a Project &rarr;</span>
             </button>
           </div>
         </div>
@@ -665,14 +662,56 @@ export const ProjectsPage: React.FC = () => {
       </section>
 
       {/* =====================================================================
-          SPATIAL TRANSFORMATION (BEFORE & AFTER SLIDER)
+          STUDIO MONOGRAPHIC METRICS & COMMISSION CTA (DISTINCT TO PROJECTS)
           ===================================================================== */}
-      <ProjectsBeforeAfter onSelectProject={handleSelectByTitle} />
+      <section className="projects-metrics-strip" aria-label="Studio Monograph Metrics">
+        <div className="metrics-grid">
+          <div className="metric-box">
+            <span className="metric-num">24</span>
+            <span className="metric-label">Built Monographic Works</span>
+          </div>
+          <div className="metric-box">
+            <span className="metric-num">88K+</span>
+            <span className="metric-label">Sq.Ft Architectural Volume</span>
+          </div>
+          <div className="metric-box">
+            <span className="metric-num">04</span>
+            <span className="metric-label">Cities · Chennai, BLR, CBE, HYD</span>
+          </div>
+          <div className="metric-box">
+            <span className="metric-num">100%</span>
+            <span className="metric-label">Bespoke Millwork &amp; Stone</span>
+          </div>
+        </div>
+      </section>
 
-      {/* =====================================================================
-          MATERIAL PHILOSOPHY & TACTILITY SHOWCASE
-          ===================================================================== */}
-      <ProjectsMaterialsPhilosophy onSelectProjectByTitle={handleSelectByTitle} />
+      {/* Dedicated Architectural Commission Banner */}
+      <section className="projects-commission-section" aria-labelledby="commission-heading">
+        <div className="commission-inner">
+          <div className="commission-header">
+            <span className="commission-tag">ARCHITECTURAL COMMISSIONS</span>
+            <h2 id="commission-heading" className="commission-heading">
+              Have a residential or workspace project in mind?
+            </h2>
+            <p className="commission-desc">
+              We accept a selective roster of private residence and corporate headquarters commissions each year, ensuring every joint, surface, and lightwell is executed with quiet precision.
+            </p>
+          </div>
+          <div className="commission-action-wrap">
+            <button
+              type="button"
+              className="commission-primary-btn"
+              onClick={() => openInquiry('Projects Monograph Footer — Commission Consultation')}
+            >
+              <span>Schedule a Project Consultation</span>
+              <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <span className="commission-foot-note">
+              Direct consultation with our lead architectural directors
+            </span>
+          </div>
+        </div>
+      </section>
 
 
     </main>
