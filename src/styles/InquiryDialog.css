@@ -33,12 +33,13 @@
 .inquiry-modal-wrapper {
   position: relative;
   background-color: #FAF8F5;
-  border: 1px solid rgba(36, 37, 34, 0.14);
-  border-radius: 8px;
+  border: 1px solid rgba(21, 22, 20, 0.14);
+  border-radius: 14px;
   overflow-y: auto;
   max-height: 94vh;
-  padding: 16px 20px 20px;
+  padding: clamp(16px, 2.5vw, 24px) clamp(16px, 3vw, 28px);
   -webkit-overflow-scrolling: touch;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
 }
 
 /* Custom scrollbar for modal (only active if viewport height is extremely small) */

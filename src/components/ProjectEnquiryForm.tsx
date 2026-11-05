@@ -302,7 +302,16 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                 aria-required="true"
                 aria-invalid={Boolean(errors.fullName)}
               />
-              {errors.fullName && <span className="field-error">{errors.fullName}</span>}
+              {errors.fullName && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.fullName}</span>
+                </span>
+              )}
             </div>
 
             <div className={`form-group ${errors.phone ? 'has-error' : ''}`}>
@@ -320,7 +329,16 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                 aria-required="true"
                 aria-invalid={Boolean(errors.phone)}
               />
-              {errors.phone && <span className="field-error">{errors.phone}</span>}
+              {errors.phone && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.phone}</span>
+                </span>
+              )}
             </div>
           </div>
 
@@ -341,7 +359,16 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                 aria-required="true"
                 aria-invalid={Boolean(errors.email)}
               />
-              {errors.email && <span className="field-error">{errors.email}</span>}
+              {errors.email && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.email}</span>
+                </span>
+              )}
             </div>
 
             <div className={`form-group ${errors.location ? 'has-error' : ''}`}>
@@ -358,7 +385,16 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                 aria-required="true"
                 aria-invalid={Boolean(errors.location)}
               />
-              {errors.location && <span className="field-error">{errors.location}</span>}
+              {errors.location && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.location}</span>
+                </span>
+              )}
             </div>
           </div>
 
@@ -382,9 +418,20 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                     </option>
                   ))}
                 </select>
-                <span className="select-arrow" aria-hidden="true">▾</span>
+                <svg className="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
               </div>
-              {errors.spaceType && <span className="field-error">{errors.spaceType}</span>}
+              {errors.spaceType && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.spaceType}</span>
+                </span>
+              )}
             </div>
 
             <div className={`form-group ${errors.requirements ? 'has-error' : ''}`}>
@@ -405,9 +452,20 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                     </option>
                   ))}
                 </select>
-                <span className="select-arrow" aria-hidden="true">▾</span>
+                <svg className="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
               </div>
-              {errors.requirements && <span className="field-error">{errors.requirements}</span>}
+              {errors.requirements && (
+                <span className="field-error" role="alert">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{errors.requirements}</span>
+                </span>
+              )}
             </div>
 
             <div className="form-group">
@@ -428,12 +486,14 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
                     </option>
                   ))}
                 </select>
-                <span className="select-arrow" aria-hidden="true">▾</span>
+                <svg className="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
               </div>
             </div>
           </div>
 
-          {/* Row 4: Tell Us About Your Project Notes (Compact 2 rows) */}
+          {/* Row 4: Tell Us About Your Project Notes */}
           <div className={`form-group ${errors.projectNotes ? 'has-error' : ''}`}>
             <label htmlFor="enquiry-projectNotes">
               Project Notes & Desires <span className="req">*</span>
@@ -441,14 +501,23 @@ export const ProjectEnquiryForm: React.FC<ProjectEnquiryFormProps> = ({
             <textarea
               id="enquiry-projectNotes"
               name="projectNotes"
-              rows={2}
+              rows={3}
               placeholder="Tell us about your floor plan, square footage, design style, possession status, or timeline..."
               value={formData.projectNotes}
               onChange={handleInputChange}
               aria-required="true"
               aria-invalid={Boolean(errors.projectNotes)}
             />
-            {errors.projectNotes && <span className="field-error">{errors.projectNotes}</span>}
+            {errors.projectNotes && (
+              <span className="field-error" role="alert">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span>{errors.projectNotes}</span>
+              </span>
+            )}
           </div>
 
           {/* Row 5: Submit Button and Privacy Inline Bar */}
