@@ -171,7 +171,7 @@ const GALLERY_CARDS: GalleryCard[] = [
     layout: 'wide',
     tag: '01 · PLANNING',
     title: 'Living rooms',
-    subtitle: 'Open, double-height light & balanced order',
+    subtitle: 'Open, double-height light',
     image: '/assets/mitijen/panaroma/panaroma1.png',
     alt: 'Living room planning and natural light'
   },
@@ -180,7 +180,7 @@ const GALLERY_CARDS: GalleryCard[] = [
     layout: 'half',
     tag: '02 · JOINERY',
     title: 'Kitchens',
-    subtitle: 'Fluted glass, tailored joinery & honed stone',
+    subtitle: 'Fluted glass, honed stone',
     image: '/assets/mitijen/kitchen.jpeg',
     alt: 'Custom kitchen and crafted cabinetry'
   },
@@ -189,7 +189,7 @@ const GALLERY_CARDS: GalleryCard[] = [
     layout: 'half',
     tag: '03 · FINISHES',
     title: 'Bedrooms',
-    subtitle: 'Linen, cove lighting & calming textures',
+    subtitle: 'Linen and cove lighting',
     image: '/assets/mitijen/bedroom.jpeg',
     alt: 'Bedroom interior with tailored wardrobe'
   },
@@ -198,7 +198,7 @@ const GALLERY_CARDS: GalleryCard[] = [
     layout: 'wide',
     tag: '04 · EXPERIENCE',
     title: 'Dining spaces',
-    subtitle: 'Timber tables, morning daylight & crafted details',
+    subtitle: 'Timber tables, morning daylight',
     image: '/assets/mitijen/commercial6.jpeg',
     alt: 'Dining area with natural oak and crafted finishes'
   }
@@ -939,14 +939,11 @@ export const AboutPage: React.FC = () => {
       {/* =====================================================================
           6. A CLOSER LOOK AT OUR WORK (SIGNATURE INTERIOR SPACES GALLERY)
           ===================================================================== */}
-      <section className="about-gallery-section" id="gallery">
+      <section className="about-gallery-section" id="gallery" aria-label="Signature interior spaces">
         <div className="about-gallery-header">
-          <div>
-            <SectionLabel style={{ color: 'var(--sand)' }}>A CLOSER LOOK AT OUR WORK</SectionLabel>
-            <h2 className="about-gallery-heading">THE DETAILS DEFINE THE RESULT.</h2>
-          </div>
+          <h2 className="about-gallery-heading">Signature interior spaces</h2>
           <p className="about-gallery-sub">
-            Every interior is shaped by hundreds of decisions. We pay attention to the elements that bring the whole design together - from the way it is arranged to the way the final details are finished.
+            Natural light and bespoke craftsmanship.
           </p>
         </div>
 
@@ -965,7 +962,6 @@ export const AboutPage: React.FC = () => {
                 />
                 <div className="about-gallery-vignette" />
                 <figcaption className="about-gallery-overlay">
-                  <span className="about-gallery-card-tag">{card.tag}</span>
                   <h3 className="about-gallery-card-title">{card.title}</h3>
                   <p className="about-gallery-card-sub">{card.subtitle}</p>
                 </figcaption>
