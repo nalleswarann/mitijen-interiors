@@ -101,7 +101,13 @@ export const MaterialsGallery: React.FC = () => {
           {/* 2-Column Editorial Grid */}
           <div className="corporate-desk-grid" role="list" aria-label="Interior craft showcases">
             {CRAFT_DETAIL_ITEMS.map((item, idx) => (
-              <article key={item.id} className="corporate-desk-card" role="listitem">
+              <article
+                key={item.id}
+                className="corporate-desk-card"
+                role="listitem"
+                tabIndex={0}
+                aria-label={`${item.editorialTitle} — Hover to inspect details`}
+              >
                 <div className="corporate-desk-media">
                   <img
                     src={item.image}
@@ -109,19 +115,26 @@ export const MaterialsGallery: React.FC = () => {
                     className="corporate-desk-img"
                     loading={idx > 1 ? 'lazy' : 'eager'}
                   />
+                  <span className="corporate-desk-media-badge" aria-hidden="true">
+                    <span className="badge-num">{item.num}</span>
+                    <span className="badge-sep">·</span>
+                    <span className="badge-title">{item.title}</span>
+                  </span>
                 </div>
                 <div className="corporate-desk-body">
-                  <span className="corporate-desk-tag">
-                    {item.num} · {item.category}
-                  </span>
-                  <h3 className="corporate-desk-card-title">{item.editorialTitle}</h3>
-                  <p className="corporate-desk-card-desc">{item.description}</p>
-                  {item.materials && item.materials.length > 0 && (
-                    <div className="corporate-desk-materials">
-                      <b className="corporate-desk-materials-label">Materials</b>
-                      <span className="corporate-desk-materials-list">{item.materials.join(' · ')}</span>
-                    </div>
-                  )}
+                  <div className="corporate-desk-body-inner">
+                    <span className="corporate-desk-tag">
+                      {item.num} · {item.category}
+                    </span>
+                    <h3 className="corporate-desk-card-title">{item.editorialTitle}</h3>
+                    <p className="corporate-desk-card-desc">{item.description}</p>
+                    {item.materials && item.materials.length > 0 && (
+                      <div className="corporate-desk-materials">
+                        <b className="corporate-desk-materials-label">Materials</b>
+                        <span className="corporate-desk-materials-list">{item.materials.join(' · ')}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}

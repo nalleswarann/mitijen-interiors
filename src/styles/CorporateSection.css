@@ -102,7 +102,9 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. 2-Column Editorial Grid Showcase
+   2. 2-Column Editorial Grid Showcase (Hover-Expand Interactive Cards)
+   Default: Image occupies full width, text is hidden
+   Hover: Image shrinks to 38% on left, text smoothly expands on right
    -------------------------------------------------------------------------- */
 .corporate-desk-grid {
   display: grid;
@@ -112,37 +114,131 @@
 }
 
 .corporate-desk-card {
-  display: grid;
-  grid-template-columns: 38% 1fr;
-  gap: clamp(1.2rem, 1.6vw, 1.6rem);
-  align-items: start;
+  display: flex;
+  align-items: stretch;
   border-top: 1px solid rgba(36, 37, 34, 0.22);
   padding-top: 1.3rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* Image container: defaultly takes 100% width, shrinks to 38% on hover */
 .corporate-desk-media {
-  aspect-ratio: 4 / 5;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(270px, 22vw, 310px);
   border-radius: 10px;
   overflow: hidden;
   background: var(--sand, #D8C8B4);
   position: relative;
+  box-sizing: border-box;
+  transition: flex-basis 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              max-width 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              width 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.corporate-desk-card:hover .corporate-desk-media,
+.corporate-desk-card:focus-within .corporate-desk-media {
+  flex: 0 0 38%;
+  max-width: 38%;
+  width: 38%;
 }
 
 .corporate-desk-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.corporate-desk-card:hover .corporate-desk-img {
+.corporate-desk-card:hover .corporate-desk-img,
+.corporate-desk-card:focus-within .corporate-desk-img {
   transform: scale(1.05);
 }
 
+/* Default corner badge on image that gracefully hides on hover */
+.corporate-desk-media-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(21, 22, 20, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FAF8F5;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.corporate-desk-media-badge .badge-sep {
+  opacity: 0.5;
+}
+
+.corporate-desk-card:hover .corporate-desk-media-badge,
+.corporate-desk-card:focus-within .corporate-desk-media-badge {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Text area body: defaultly max-width 0 & hidden, smoothly expands and reveals on hover */
 .corporate-desk-body {
+  flex: 1 1 62%;
+  min-width: 0;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-left: 0;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  transition: max-width 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              padding-left 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.45s ease;
+}
+
+.corporate-desk-card:hover .corporate-desk-body,
+.corporate-desk-card:focus-within .corporate-desk-body {
+  max-width: 62%;
+  padding-left: clamp(1.2rem, 1.6vw, 1.6rem);
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.05s;
+}
+
+/* Inner text container with natural min-width to avoid squishing during expansion */
+.corporate-desk-body-inner {
+  width: 100%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(20px);
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.corporate-desk-card:hover .corporate-desk-body-inner,
+.corporate-desk-card:focus-within .corporate-desk-body-inner {
+  transform: translateX(0);
 }
 
 .corporate-desk-tag {
@@ -158,7 +254,7 @@
 
 .corporate-desk-card-title {
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(1.4rem, 1.75vw, 1.8rem);
+  font-size: clamp(1.35rem, 1.7vw, 1.75rem);
   font-weight: 400;
   line-height: 1.15;
   color: #242522;
@@ -274,8 +370,20 @@
     gap: 2.2rem;
   }
 
-  .corporate-desk-card {
-    grid-template-columns: 32% 1fr;
+  .corporate-desk-media {
+    height: 270px;
+  }
+
+  .corporate-desk-card:hover .corporate-desk-media,
+  .corporate-desk-card:focus-within .corporate-desk-media {
+    flex: 0 0 34%;
+    max-width: 34%;
+    width: 34%;
+  }
+
+  .corporate-desk-card:hover .corporate-desk-body,
+  .corporate-desk-card:focus-within .corporate-desk-body {
+    max-width: 66%;
   }
 
   .corporate-desk-cta {
