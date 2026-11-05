@@ -149,24 +149,22 @@ export const ProjectsPage: React.FC = () => {
     return PORTFOLIO_PROJECTS[nextIndex];
   }, [selectedProject]);
 
-  // Editorial grid column mapping to create high-fashion magazine rhythm
+  // Editorial grid column mapping with compact magazine rhythm (no massive empty voids or 110px margins)
   const getEditorialSpan = (index: number) => {
-    const cycle = index % 6;
+    const cycle = index % 5;
     switch (cycle) {
       case 0:
-        return 'col-span-7 aspect-16-11';
+        return 'col-span-8 aspect-featured';
       case 1:
-        return 'col-span-5 aspect-3-4 mt-editorial';
+        return 'col-span-4 aspect-standard';
       case 2:
-        return 'col-span-5 aspect-4-5';
+        return 'col-span-4 aspect-standard';
       case 3:
-        return 'col-span-7 aspect-16-10 mt-editorial-sm';
+        return 'col-span-4 aspect-standard';
       case 4:
-        return 'col-span-12 aspect-21-9';
-      case 5:
-        return 'col-span-6 aspect-4-3';
+        return 'col-span-4 aspect-standard';
       default:
-        return 'col-span-6 aspect-16-10';
+        return 'col-span-4 aspect-standard';
     }
   };
 
