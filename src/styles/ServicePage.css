@@ -1055,45 +1055,94 @@
 
 @media (max-width: 768px) {
   .editorial-service-page {
-    padding-top: calc(72px + env(safe-area-inset-top, 0px));
+    padding-top: calc(68px + env(safe-area-inset-top, 0px));
   }
 
+  .ed-section-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Sticky Discipline Switcher Bar with subtle blur on mobile */
   .ed-discipline-pill-bar {
-    padding: 6px 16px;
-    margin-bottom: 12px;
+    position: sticky;
+    top: calc(64px + env(safe-area-inset-top, 0px));
+    z-index: 30;
+    background: rgba(245, 242, 236, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(37, 35, 31, 0.08);
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    gap: 10px;
   }
 
+  .ed-discipline-label {
+    font-size: 0.64rem;
+  }
+
+  .ed-discipline-pill {
+    padding: 6px 14px;
+    font-size: 0.76rem;
+  }
+
+  /* Hero Section */
   .ed-hero-section {
-    padding: 16px 0 44px 0;
+    padding: 10px 0 36px 0;
+  }
+
+  .ed-hero-container {
+    padding: 0 16px;
+    gap: 24px;
   }
 
   .ed-hero-headline {
-    font-size: clamp(2.0rem, 7.5vw, 2.75rem);
+    font-size: clamp(2.1rem, 7.8vw, 2.85rem);
+    line-height: 1.15;
     margin-bottom: 14px;
+    letter-spacing: -0.015em;
   }
 
   .ed-hero-subtitle {
-    font-size: 0.94rem;
-    line-height: 1.6;
-    margin-bottom: 24px;
+    font-size: 0.95rem;
+    line-height: 1.62;
+    margin-bottom: 22px;
   }
 
   .ed-hero-actions {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .ed-hero-actions .ed-btn-burgundy {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.92rem;
+  }
+
+  .ed-scroll-indicator {
+    display: none;
+  }
+
+  .ed-hero-media {
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   }
 
   .ed-hero-media img {
-    max-height: 260px;
-    border-radius: 14px;
+    max-height: 220px;
+    object-fit: cover;
   }
 
+  /* Section Spacing */
   .ed-about-section,
   .ed-solutions-section,
   .ed-challenges-section,
   .ed-deliverables-section,
   .ed-philosophy-section,
   .ed-faq-section {
-    padding: 44px 0;
+    padding: 38px 0;
   }
 
   .ed-about-heading,
@@ -1101,13 +1150,84 @@
   .ed-challenge-heading,
   .ed-deliverables-heading,
   .ed-faq-heading {
-    font-size: clamp(1.8rem, 6.2vw, 2.3rem);
+    font-size: clamp(1.75rem, 6.0vw, 2.25rem);
+    line-height: 1.2;
+    margin-bottom: 12px;
   }
 
+  /* About Our Service Arched Frame & Stats */
+  .ed-about-container {
+    padding: 0 16px;
+    gap: 28px;
+  }
+
+  .ed-about-arch-wrap {
+    max-width: 280px;
+  }
+
+  .ed-arch-concentric-rings {
+    top: -12px;
+    left: -12px;
+    right: -12px;
+  }
+
+  .ed-ring-1 {
+    height: 190px;
+    border-radius: 150px 150px 0 0;
+  }
+
+  .ed-ring-2 {
+    height: 184px;
+    border-radius: 144px 144px 0 0;
+  }
+
+  .ed-arch-photo-frame {
+    aspect-ratio: 4/4.5;
+    border-radius: 140px 140px 14px 14px;
+  }
+
+  .ed-about-paragraph {
+    font-size: 0.94rem;
+    line-height: 1.68;
+    margin-bottom: 24px;
+  }
+
+  .ed-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding-top: 18px;
+  }
+
+  .ed-stat-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ed-stat-divider {
+    display: none;
+  }
+
+  .ed-stat-number {
+    font-size: clamp(1.65rem, 6.2vw, 2.1rem);
+  }
+
+  .ed-stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+  }
+
+  /* Solutions Horizontal Swipeable Snap Track */
   .ed-solutions-header {
     grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ed-solutions-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .ed-solutions-grid {
@@ -1116,12 +1236,10 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
-    padding-bottom: 12px;
-    scrollbar-width: none;
+    padding: 4px 16px 18px 16px;
     margin-left: -16px;
     margin-right: -16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    scrollbar-width: none;
   }
 
   .ed-solutions-grid::-webkit-scrollbar {
@@ -1129,45 +1247,231 @@
   }
 
   .ed-solution-card {
-    flex: 0 0 78%;
-    min-width: 240px;
+    flex: 0 0 82%;
+    min-width: 250px;
+    max-width: 310px;
     scroll-snap-align: center;
+    border-radius: 16px;
+  }
+
+  .ed-solution-body {
+    padding: 24px 16px 18px 16px;
+  }
+
+  .ed-solution-title {
+    font-size: 1.15rem;
+  }
+
+  .ed-solution-desc {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  /* Challenges Asymmetric Section */
+  .ed-challenges-layout {
+    gap: 22px;
   }
 
   .ed-challenge-img-wrap {
-    border-radius: 80px 0 0 0;
+    border-radius: 60px 0 0 0;
     aspect-ratio: 16/10;
+    max-height: 200px;
+  }
+
+  .ed-challenge-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.62;
+    margin-bottom: 20px;
+  }
+
+  .ed-challenge-item {
+    padding: 12px 0;
+    gap: 12px;
+  }
+
+  .ed-challenge-num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .ed-challenge-text {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  /* Deliverables 2x3 Grid */
+  .ed-deliverables-layout {
+    gap: 24px;
+  }
+
+  .ed-deliverables-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.62;
+    margin-bottom: 20px;
+  }
+
+  .ed-deliverables-intro .ed-btn-burgundy {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
   }
 
   .ed-deliverables-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .ed-deliverable-thumb-wrap {
+    aspect-ratio: 16/11;
+    border-radius: 10px;
+  }
+
+  .ed-deliverable-title {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  /* Philosophy Section */
+  .ed-philosophy-heading {
+    font-size: clamp(1.35rem, 5.0vw, 1.75rem);
+    line-height: 1.32;
+    margin-bottom: 16px;
   }
 
   .ed-philosophy-prose-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .ed-philosophy-col-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
   }
 
   .ed-metrics-strip {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px 12px;
-    padding: 20px 16px;
+    gap: 14px 10px;
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+
+  .ed-metric-value {
+    font-size: 1.45rem;
+  }
+
+  .ed-metric-label {
+    font-size: 0.88rem;
+  }
+
+  .ed-metric-sub {
+    font-size: 0.7rem;
+  }
+
+  /* FAQ Section */
+  .ed-faq-layout {
+    gap: 20px;
   }
 
   .editorial-botanical-svg {
     display: none;
   }
 
+  .ed-faq-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .ed-accordion-btn {
+    padding: 16px 0;
+    gap: 12px;
+  }
+
+  .ed-accordion-question {
+    font-size: 0.94rem;
+    line-height: 1.42;
+  }
+
+  .ed-accordion-panel {
+    padding: 0 0 16px 0;
+  }
+
+  .ed-accordion-answer {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* Final CTA Banner */
+  .ed-final-cta-section {
+    padding: 20px 0 44px 0;
+  }
+
+  .ed-final-cta-banner {
+    border-radius: 18px;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   .ed-final-cta-content {
-    padding: 32px 20px;
+    padding: 28px 18px;
   }
 
   .ed-final-cta-heading {
-    font-size: clamp(1.75rem, 6vw, 2.2rem);
+    font-size: clamp(1.65rem, 6.2vw, 2.1rem);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .ed-final-cta-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .ed-final-cta-content .ed-btn-white {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
   }
 
   .ed-final-cta-media {
-    min-height: 220px;
+    min-height: 180px;
+    max-height: 200px;
+  }
+}
+
+/* Extra small smartphones (<= 390px) */
+@media (max-width: 390px) {
+  .ed-hero-headline {
+    font-size: 1.95rem;
+  }
+
+  .ed-about-arch-wrap {
+    max-width: 240px;
+  }
+
+  .ed-stats-row {
+    gap: 4px;
+  }
+
+  .ed-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .ed-stat-label {
+    font-size: 0.58rem;
+  }
+
+  .ed-solution-card {
+    flex: 0 0 88%;
+  }
+
+  .ed-deliverables-grid {
+    gap: 10px;
+  }
+
+  .ed-deliverable-title {
+    font-size: 0.76rem;
   }
 }
