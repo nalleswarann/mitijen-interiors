@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { ServicePageData } from '../data/servicesData';
 import { SEO } from './common/SEO';
 import { useInquiry } from '../context/useInquiry';
+import { MonographBanner } from './common/MonographBanner';
 import { HowItWorksSection } from './HowItWorksSection';
 import '../styles/ServicePage.css';
 
@@ -31,6 +32,10 @@ interface DisciplineContent {
   heroHeadline: string;
   heroSubtitle: string;
   heroImage: string;
+  bannerKicker: string[];
+  bannerNote: string;
+  bannerHeadline1: string;
+  bannerHeadline2: string;
   aboutEyebrow: string;
   aboutHeading: string;
   aboutText: string;
@@ -62,6 +67,10 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     heroHeadline: 'Let’s Design Workspaces That Inspire',
     heroSubtitle: 'Create productive, elegant and people-centric workspaces engineered for focused innovation, executive prestige, and team vitality.',
     heroImage: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=80',
+    bannerKicker: ['WORKPLACE', 'CULTURE', '& FOCUS'],
+    bannerNote: 'Designing corporate workplaces that boost productivity, reflect executive prestige, and support your people daily.',
+    bannerHeadline1: 'LET’S DESIGN',
+    bannerHeadline2: 'WORKSPACES THAT INSPIRE',
     aboutEyebrow: 'About Our Service ————',
     aboutHeading: 'Professional Spaces. Purposeful Design.',
     aboutText: 'We create corporate interiors that go beyond aesthetics — designing environments that boost productivity, reflect your brand, and support your people’s daily well-being.',
@@ -163,6 +172,10 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     heroHeadline: 'Captivating Commercial Spaces That Drive Business',
     heroSubtitle: 'Design bespoke retail stores, dining pavilions, and boutique commercial venues engineered for customer flow, dwell time, and memorable brand recall.',
     heroImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80',
+    bannerKicker: ['FLAGSHIPS', 'HOSPITALITY', '& SPACES'],
+    bannerNote: 'Crafting experiential flagships, showrooms and dining environments engineered to convert footfall into brand advocates.',
+    bannerHeadline1: 'EXPERIENTIAL',
+    bannerHeadline2: 'COMMERCIAL VENUES',
     aboutEyebrow: 'About Our Service ————',
     aboutHeading: 'Architectural Distinction for Forward-Thinking Brands',
     aboutText: 'We shape commercial destinations that balance bold brand storytelling with operational efficiency, customer circulation, and commercial-grade durability.',
@@ -264,6 +277,10 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     heroHeadline: 'Timeless Residential Sanctuaries Crafted for Living',
     heroSubtitle: 'Tailored luxury homes blending serene architectural warmth, bespoke joinery, and refined daily comfort for discerning homeowners.',
     heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=80',
+    bannerKicker: ['SANCTUARIES', 'COMFORT', '& RITUAL'],
+    bannerNote: 'Tailored luxury homes blending serene architectural warmth, bespoke joinery, and refined daily comfort for discerning families.',
+    bannerHeadline1: 'TIMELESS HOMES',
+    bannerHeadline2: 'CRAFTED FOR LIVING',
     aboutEyebrow: 'About Our Service ————',
     aboutHeading: 'Sanctuaries of Comfort, Proportion & Soul',
     aboutText: 'We craft bespoke homes that reflect your family’s rhythm of life — curating natural textures, balanced proportions, and serene illumination.',
@@ -365,6 +382,10 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     heroHeadline: 'End-to-End Execution with Architectural Precision',
     heroSubtitle: 'Complete single-point turnkey responsibility from approved architectural drawings to handover with fixed timelines and zero cost escalations.',
     heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80',
+    bannerKicker: ['PRECISION', 'EXECUTION', '& ASSURANCE'],
+    bannerNote: 'Single-point construction accountability backed by our advanced CNC manufacturing facility and defect liability warranty.',
+    bannerHeadline1: 'END-TO-END',
+    bannerHeadline2: 'TURNKEY FIT-OUT',
     aboutEyebrow: 'About Our Service ————',
     aboutHeading: 'Flawless Craftsmanship. Single-Point Accountability.',
     aboutText: 'We orchestrate civil engineering, MEP systems, off-site CNC joinery fabrication, and final white-glove styling under one unified, transparent management process.',
@@ -615,113 +636,112 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
       />
 
       {/* ====================================================================
-          STICKY IN-PAGE SERVICE SWITCHER BAR
-          (Allows instant in-place switching without scrolling to top)
+          01 MONOGRAPH HERO BANNER (MATCHES ABOUT PAGE EDITORIAL DESIGN)
           ==================================================================== */}
-      <nav className="svc-switcher-wrap" aria-label="Interior Design Disciplines">
-        <div className="wrap svc-switcher-inner">
-          <div className="svc-switcher-tabs" role="tablist">
-            {serviceCategories.map(cat => {
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  className={`svc-tab-btn ${isActive ? 'is-active' : ''}`}
-                  onClick={e => handleSwitchCategory(cat, e)}
-                >
-                  <span>{cat}</span>
-                  {isActive && <span className="svc-tab-line" aria-hidden="true" />}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
+      <MonographBanner
+        id="service-monograph-banner"
+        sidebarKicker={config.bannerKicker}
+        sidebarNote={heroSubtitle}
+        sidebarYear="2026 · PRACTICES"
+        heroImage={config.heroImage}
+        heroImageAlt={heroHeadline}
+        headlineLine1={isOverviewPage ? 'SPATIAL PRACTICES' : config.bannerHeadline1}
+        headlineLine2={isOverviewPage ? '& DISCIPLINES' : config.bannerHeadline2}
+        topBadge={heroEyebrow ? `${heroEyebrow.toUpperCase()}` : `${config.eyebrow.toUpperCase()} · 2026`}
+        pillars={[
+          {
+            title: 'CORPORATE',
+            subtitle: 'Executive headquarters & high-performance collaborative workplaces.',
+            link: '/services/corporate-interior-design',
+          },
+          {
+            title: 'RESIDENTIAL',
+            subtitle: 'Bespoke homes, private villas & quiet living sanctuaries.',
+            link: '/services/residential-interior-design',
+          },
+          {
+            title: 'COMMERCIAL',
+            subtitle: 'Experiential flagships, luxury retail & dining environments.',
+            link: '/services/commercial-interior-design',
+          },
+        ]}
+      />
 
       {/* ====================================================================
-          02 HERO SECTION (BALANCED EDITORIAL DESKTOP & MOBILE)
+          02 COMPACT SWITCHING & DISCIPLINE INTRO SECTION
+          (Left Image + Right Content with Integrated Discipline Tabs)
           ==================================================================== */}
-      <section className="hero">
-        <div className="wrap hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow">{heroEyebrow}</span>
-            <h1>{heroHeadline}</h1>
-            <p>{heroSubtitle}</p>
-            <div className="hero-actions">
-              <button
-                type="button"
-                onClick={() => openInquiry(`${activeCategory} — Hero Consultation`)}
-                className="btn"
-              >
-                Consult Our Experts
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M4 12h16M14 6l6 6-6 6" />
-                </svg>
-              </button>
-              <div className="scroll-indicator">
-                <i />
-                <span>Scroll to explore</span>
+      <section className="svc-switch-intro-section" id="discipline-overview">
+        <div className="wrap svc-switch-intro-grid">
+          {/* Left Column: Architectural Photo Container */}
+          <div className="svc-switch-media-col">
+            <div className="svc-switch-photo-frame">
+              <img
+                src={config.aboutImage}
+                alt={config.aboutHeading}
+                loading="eager"
+              />
+              <div className="svc-switch-badge">
+                <span className="svc-switch-badge-num">
+                  {activeCategory === 'Corporate' && '01'}
+                  {activeCategory === 'Residential' && '02'}
+                  {activeCategory === 'Commercial' && '03'}
+                  {activeCategory === 'Turnkey' && '04'}
+                </span>
+                <span className="svc-switch-badge-label">{activeCategory} Practice</span>
               </div>
             </div>
           </div>
 
-          <div className="hero-media">
-            <img
-              src={config.heroImage}
-              alt={config.heroHeadline}
-              loading="eager"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          03 INTRO SECTION (CONCENTRIC ARCH & 3-COLUMN STATS)
-          ==================================================================== */}
-      <section className="intro">
-        <div className="wrap intro-grid">
-          <div className="arch-wrap">
-            <div className="arch-concentric-rings" aria-hidden="true">
-              <div className="arch-ring-1" />
-              <div className="arch-ring-2" />
-            </div>
-            <div className="arch-photo">
-              <img
-                src={config.aboutImage}
-                alt={config.aboutHeading}
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div className="intro-content">
-            <span className="eyebrow">{config.aboutEyebrow}</span>
-            <h2>{config.aboutHeading}</h2>
-            <p className="lead">{config.aboutText}</p>
-
-            <div className="intro-stats-row">
-              {config.stats.map(s => (
-                <div key={s.label} className="intro-stat-item">
-                  <span className="intro-stat-val">{s.value}</span>
-                  <span className="intro-stat-lbl">{s.label}</span>
-                </div>
-              ))}
+          {/* Right Column: Switcher Tabs + Editorial Copy + Stats + CTA */}
+          <div className="svc-switch-content-col">
+            {/* Discipline Switcher Tabs right at top of right content */}
+            <div className="svc-inline-switcher" role="tablist" aria-label="Select Spatial Discipline">
+              {serviceCategories.map(cat => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`svc-inline-tab ${isActive ? 'is-active' : ''}`}
+                    onClick={e => handleSwitchCategory(cat, e)}
+                  >
+                    <span>{cat}</span>
+                    {isActive && <span className="svc-tab-line" aria-hidden="true" />}
+                  </button>
+                );
+              })}
             </div>
 
-            <button
-              type="button"
-              onClick={() => openInquiry(`${activeCategory} — About Section Consultation`)}
-              className="btn"
-              style={{ alignSelf: 'flex-start' }}
-            >
-              Book a Consultation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <path d="M4 12h16M14 6l6 6-6 6" />
-              </svg>
-            </button>
+            <div className="svc-switch-text-body">
+              <span className="eyebrow">{config.aboutEyebrow}</span>
+              <h2 className="svc-switch-heading">{config.aboutHeading}</h2>
+              <p className="lead svc-switch-lead">{config.aboutText}</p>
+
+              <div className="svc-switch-stats-row">
+                {config.stats.map(s => (
+                  <div key={s.label} className="svc-switch-stat">
+                    <span className="svc-stat-val">{s.value}</span>
+                    <span className="svc-stat-lbl">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="svc-switch-actions">
+                <button
+                  type="button"
+                  onClick={() => openInquiry(`${activeCategory} — Consultation Request`)}
+                  className="btn"
+                >
+                  Book a Consultation
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                    <path d="M4 12h16M14 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -792,36 +812,6 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
                 <path d="M4 12h16M14 6l6 6-6 6" />
               </svg>
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          05 CHALLENGES SECTION (ASYMMETRICAL ARCHED FACADE)
-          ==================================================================== */}
-      <section className="challenges">
-        <div className="wrap challenges-grid">
-          <div className="ch-media">
-            <img
-              src={config.challengesImage}
-              alt={config.challengesHeading}
-              loading="lazy"
-            />
-          </div>
-
-          <div className="ch-copy">
-            <span className="eyebrow">{config.challengesEyebrow}</span>
-            <h2>{config.challengesHeading}</h2>
-            <p className="lead">{config.challengesLead}</p>
-
-            <ol className="ch-list">
-              {config.challengesList.map((item, idx) => (
-                <li key={item} className="ch-item">
-                  <span className="ch-num">0{idx + 1}</span>
-                  <span className="ch-text">{item}</span>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </section>
