@@ -1,0 +1,349 @@
+/* ==========================================================================
+   HOW IT WORKS — 3 EASY STEPS TO GET INTERIOR DESIGN
+   - Single row on warm off-white (#fbfaf7) with subtle left ambient glow
+   - Left column 25-30% width, three portrait cards to the right (16-20px gap)
+   - Hover effect: dark photo fade-in (0.5s) with gentle zoom-out (1.08 -> 1.0, 0.8s)
+   - Text color transitions to white (0.4s), outlined number stroke shifts to gold (#c19a5b)
+   - Responsive: 3 cols (desktop) -> 2 cols (tablet) -> 1 col (mobile)
+   - Accessible with prefers-reduced-motion support
+   ========================================================================== */
+
+.hiw-section {
+  position: relative;
+  background-color: #fbfaf7;
+  color: #10151f;
+  overflow: hidden;
+  padding: clamp(52px, 6.8vh, 80px) clamp(20px, 4vw, 56px);
+  box-sizing: border-box;
+  border-top: 1px solid rgba(21, 22, 20, 0.06);
+  border-bottom: 1px solid rgba(21, 22, 20, 0.06);
+}
+
+/* Subtle, very light gradient / glow on the left side */
+.hiw-glow {
+  position: absolute;
+  top: 10%;
+  left: -8%;
+  width: 44%;
+  height: 80%;
+  background: radial-gradient(circle at 30% 50%, rgba(243, 237, 226, 0.85) 0%, rgba(251, 250, 247, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Overall Layout Container */
+.hiw-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(28px, 3.5vw, 52px);
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   1. Left Intro Column (takes about 25–30% of the width)
+   -------------------------------------------------------------------------- */
+.hiw-intro-col {
+  flex: 0 0 clamp(260px, 28%, 340px);
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Eyebrow: 90px gold line + uppercase gold label */
+.hiw-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.hiw-gold-line {
+  display: inline-block;
+  width: 90px;
+  height: 1px;
+  background-color: #c19a5b;
+  flex-shrink: 0;
+}
+
+.hiw-eyebrow-label {
+  font-family: 'Space Grotesk', var(--font-architectural, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c19a5b;
+  white-space: nowrap;
+}
+
+/* Heading: bold high-contrast serif, 36-40px, 1.2 line-height, #10151f */
+.hiw-heading {
+  font-family: 'Playfair Display', 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(32px, 3.2vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #10151f;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.015em;
+}
+
+/* Paragraph: clean sans-serif, 14px, 1.6 line-height, #4a4f57 */
+.hiw-paragraph {
+  font-family: 'Inter', 'Roboto', 'Manrope', var(--font-content, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a4f57;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Step Cards Grid (3 equal-width columns with ~16–20px gap)
+   -------------------------------------------------------------------------- */
+.hiw-cards-grid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  box-sizing: border-box;
+}
+
+/* Individual Step Card:
+   - White background (#ffffff)
+   - Square corners (border-radius: 0)
+   - Very soft, wide shadow (0 10px 40px rgba(0,0,0,.06))
+   - Tall portrait (approx 280x540 on desktop, 24px padding)
+*/
+.hiw-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  min-height: 520px;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  outline: none;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.hiw-card:focus-visible {
+  outline: 2px solid #c19a5b;
+  outline-offset: 2px;
+}
+
+/* Background image layer (absolutely positioned inset: 0) */
+.hiw-card-bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Gentle zoom-out: scale from 1.08 to 1.0 over 0.8s */
+.hiw-card-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.08);
+  transition: transform 0.8s ease;
+  will-change: transform;
+}
+
+/* Dark overlay (rgba(10,14,22,.65)) */
+.hiw-card-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 14, 22, 0.65);
+}
+
+/* Foreground content container */
+.hiw-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Top Area: Outlined Number */
+.hiw-card-top {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Large outlined number: 56px, rounded geometric sans, thin 1.5px pale-gold stroke */
+.hiw-card-number {
+  font-family: 'Poppins', 'Inter', 'Space Grotesk', var(--font-architectural, sans-serif);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #e6d3ab;
+  transition: -webkit-text-stroke 0.4s ease;
+}
+
+/* Lower Half: Title & Description */
+.hiw-card-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title: bold serif, ~22px, #10151f */
+.hiw-card-title {
+  font-family: 'Playfair Display', 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #10151f;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+  transition: color 0.4s ease;
+}
+
+/* Description: sans-serif, ~14px, 1.6 line-height, #555a62 */
+.hiw-card-desc {
+  font-family: 'Inter', 'Roboto', 'Manrope', var(--font-content, sans-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555a62;
+  margin: 0;
+  transition: color 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hover Interactions (The Key Effect)
+   - Background photo fades in (0.5s ease)
+   - Gentle image zoom-out from 1.08 to 1.0 (0.8s)
+   - Title and description turn white (0.4s)
+   - Outlined number stroke shifts to a stronger gold (#c19a5b)
+   -------------------------------------------------------------------------- */
+.hiw-card:hover .hiw-card-bg-layer,
+.hiw-card:focus-visible .hiw-card-bg-layer {
+  opacity: 1;
+}
+
+.hiw-card:hover .hiw-card-bg-img,
+.hiw-card:focus-visible .hiw-card-bg-img {
+  transform: scale(1.0);
+}
+
+.hiw-card:hover .hiw-card-title,
+.hiw-card:focus-visible .hiw-card-title {
+  color: #ffffff;
+}
+
+.hiw-card:hover .hiw-card-desc,
+.hiw-card:focus-visible .hiw-card-desc {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hiw-card:hover .hiw-card-number,
+.hiw-card:focus-visible .hiw-card-number {
+  -webkit-text-stroke: 1.5px #c19a5b;
+}
+
+/* --------------------------------------------------------------------------
+   4. Responsive Breakpoints
+   - Tablet: cards go 2 per row
+   - Mobile: stack 1 per column with intro on top
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hiw-container {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .hiw-intro-col {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+
+  .hiw-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .hiw-card {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiw-section {
+    padding: 44px 18px;
+  }
+
+  .hiw-container {
+    gap: 28px;
+  }
+
+  .hiw-eyebrow-row {
+    margin-bottom: 14px;
+  }
+
+  .hiw-gold-line {
+    width: 60px;
+  }
+
+  .hiw-heading {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .hiw-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hiw-card {
+    min-height: 420px;
+    padding: 22px 20px;
+  }
+
+  .hiw-card-number {
+    font-size: 48px;
+  }
+
+  .hiw-card-title {
+    font-size: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibility: Respect prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hiw-card-bg-img {
+    transform: scale(1) !important;
+    transition: none !important;
+  }
+
+  .hiw-card-bg-layer,
+  .hiw-card-title,
+  .hiw-card-desc,
+  .hiw-card-number,
+  .hiw-card {
+    transition-duration: 0.01ms !important;
+  }
+}

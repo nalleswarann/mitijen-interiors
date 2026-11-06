@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — Interior Design Steps</title>
+
+  <!-- Google Fonts for Editorial Serif & Geometric Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       HOW IT WORKS SECTION STYLES
+       - Base background: warm off-white (#fbfaf7)
+       - Subtle left-side radial glow
+       - Left column (25–30% width) + 3 equal-width step cards with 18px gap
+       - Hover effect: dark photo fade-in (0.5s) with gentle zoom-out (1.08 -> 1.0, 0.8s)
+       - Color shifts: text turns white (0.4s), outlined number stroke shifts to gold (#c19a5b)
+       - Fully responsive: 3 columns (desktop) -> 2 columns (tablet) -> 1 column (mobile)
+       - Accessibility: respects prefers-reduced-motion
+       ========================================================================== */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #fbfaf7;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #10151f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Outer Section Container */
+    .hiw-section {
+      position: relative;
+      background-color: #fbfaf7;
+      overflow: hidden;
+      padding: clamp(60px, 8vh, 100px) clamp(24px, 5vw, 64px);
+      width: 100%;
+    }
+
+    /* Subtle, very light ambient glow on the left side */
+    .hiw-glow {
+      position: absolute;
+      top: 15%;
+      left: -10%;
+      width: 50%;
+      height: 75%;
+      background: radial-gradient(circle at 35% 50%, rgba(243, 237, 226, 0.85) 0%, rgba(251, 250, 247, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Centered Inner Grid Container */
+    .hiw-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: clamp(32px, 4vw, 56px);
+    }
+
+    /* --------------------------------------------------------------------------
+       1. Left Intro Column (~25–30% width)
+       -------------------------------------------------------------------------- */
+    .hiw-intro-col {
+      flex: 0 0 clamp(260px, 28%, 340px);
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Eyebrow: 90px gold line followed by uppercase label */
+    .hiw-eyebrow-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hiw-gold-line {
+      display: inline-block;
+      width: 90px;
+      height: 1px;
+      background-color: #c19a5b;
+      flex-shrink: 0;
+    }
+
+    .hiw-eyebrow-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c19a5b;
+      white-space: nowrap;
+    }
+
+    /* Heading: Bold high-contrast serif, ~36–40px, 1.2 line-height, #10151f */
+    .hiw-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 3.2vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #10151f;
+      margin-bottom: 18px;
+      letter-spacing: -0.015em;
+    }
+
+    /* Paragraph: Clean sans-serif, ~14px, 1.6 line-height, #4a4f57 */
+    .hiw-paragraph {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #4a4f57;
+    }
+
+    /* --------------------------------------------------------------------------
+       2. Step Cards Grid (3 equal-width columns with 16–20px gap)
+       -------------------------------------------------------------------------- */
+    .hiw-cards-grid {
+      flex: 1;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    /* Individual Card:
+       - White background (#ffffff)
+       - Square corners (border-radius: 0)
+       - Very soft wide shadow (0 10px 40px rgba(0,0,0,.06))
+       - Tall portrait (~280x540 on desktop, 24px padding)
+    */
+    .hiw-card {
+      position: relative;
+      background-color: #ffffff;
+      border-radius: 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      padding: 24px;
+      min-height: 520px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      outline: none;
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .hiw-card:focus-visible {
+      outline: 2px solid #c19a5b;
+      outline-offset: 2px;
+    }
+
+    /* Absolutely positioned background image layer */
+    .hiw-card-bg-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Gentle zoom-out animation: scale 1.08 to 1.0 over 0.8s */
+    .hiw-card-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.08);
+      transition: transform 0.8s ease;
+      will-change: transform;
+    }
+
+    /* Dark overlay (rgba(10,14,22,.65)) */
+    .hiw-card-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(10, 14, 22, 0.65);
+    }
+
+    /* Foreground card content */
+    .hiw-card-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Top: Outlined Number */
+    .hiw-card-top {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* Number: 56px rounded geometric sans, thin 1.5px pale-gold stroke, no fill */
+    .hiw-card-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1;
+      display: inline-block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #e6d3ab;
+      transition: -webkit-text-stroke 0.4s ease;
+    }
+
+    /* Lower Half: Title & Description */
+    .hiw-card-bottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Title: Bold serif, ~22px, #10151f */
+    .hiw-card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #10151f;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      transition: color 0.4s ease;
+    }
+
+    /* Description: Sans-serif, ~14px, 1.6 line-height, #555a62 */
+    .hiw-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555a62;
+      transition: color 0.4s ease;
+    }
+
+    /* --------------------------------------------------------------------------
+       3. Hover State Interactions (The Key Effect)
+       -------------------------------------------------------------------------- */
+    .hiw-card:hover .hiw-card-bg-layer,
+    .hiw-card:focus-visible .hiw-card-bg-layer {
+      opacity: 1;
+    }
+
+    .hiw-card:hover .hiw-card-bg-img,
+    .hiw-card:focus-visible .hiw-card-bg-img {
+      transform: scale(1.0);
+    }
+
+    .hiw-card:hover .hiw-card-title,
+    .hiw-card:focus-visible .hiw-card-title {
+      color: #ffffff;
+    }
+
+    .hiw-card:hover .hiw-card-desc,
+    .hiw-card:focus-visible .hiw-card-desc {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .hiw-card:hover .hiw-card-number,
+    .hiw-card:focus-visible .hiw-card-number {
+      -webkit-text-stroke: 1.5px #c19a5b;
+    }
+
+    /* --------------------------------------------------------------------------
+       4. Responsive Breakpoints
+       -------------------------------------------------------------------------- */
+    /* Tablet: 2 cards per row */
+    @media (max-width: 1024px) {
+      .hiw-container {
+        flex-direction: column;
+        gap: 36px;
+      }
+
+      .hiw-intro-col {
+        flex: 0 0 auto;
+        max-width: 100%;
+      }
+
+      .hiw-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .hiw-card {
+        min-height: 480px;
+      }
+    }
+
+    /* Mobile: Stack 1 card per column with intro on top */
+    @media (max-width: 680px) {
+      .hiw-section {
+        padding: 48px 20px;
+      }
+
+      .hiw-container {
+        gap: 28px;
+      }
+
+      .hiw-eyebrow-row {
+        margin-bottom: 14px;
+      }
+
+      .hiw-gold-line {
+        width: 60px;
+      }
+
+      .hiw-heading {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+
+      .hiw-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .hiw-card {
+        min-height: 420px;
+        padding: 22px 20px;
+      }
+
+      .hiw-card-number {
+        font-size: 48px;
+      }
+
+      .hiw-card-title {
+        font-size: 20px;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       5. Accessibility: Respect prefers-reduced-motion
+       -------------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      .hiw-card-bg-img {
+        transform: scale(1) !important;
+        transition: none !important;
+      }
+
+      .hiw-card-bg-layer,
+      .hiw-card-title,
+      .hiw-card-desc,
+      .hiw-card-number,
+      .hiw-card {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       "HOW IT WORKS" COMPONENT
+       ========================================================================= -->
+  <section class="hiw-section" aria-label="How It Works — 3 Easy Steps to Get Interior Design">
+    <!-- Subtle left ambient glow -->
+    <div class="hiw-glow" aria-hidden="true"></div>
+
+    <div class="hiw-container">
+      <!-- Left Intro Column (25-30% of width) -->
+      <div class="hiw-intro-col">
+        <div class="hiw-eyebrow-row">
+          <span class="hiw-gold-line" aria-hidden="true"></span>
+          <span class="hiw-eyebrow-label">HOW IT WORKS</span>
+        </div>
+
+        <h2 class="hiw-heading">
+          3 Easy Steps to Get Interior Design
+        </h2>
+
+        <p class="hiw-paragraph">
+          Main architectural design concept plans create seamless, spacious environments centered around your lifestyle.
+        </p>
+      </div>
+
+      <!-- Right Step Cards (3 Equal-Width Columns) -->
+      <div class="hiw-cards-grid">
+        <!-- Step Card 01 -->
+        <article class="hiw-card" tabindex="0" aria-label="Step 01: Personalized In-Home Visits">
+          <!-- Background image layer with dark overlay (fades in on hover) -->
+          <div class="hiw-card-bg-layer" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80"
+              alt="Moody modern living and dining room with warm ambient lighting"
+              class="hiw-card-bg-img"
+              loading="lazy"
+            />
+            <div class="hiw-card-overlay"></div>
+          </div>
+
+          <!-- Foreground text & outlined number -->
+          <div class="hiw-card-content">
+            <div class="hiw-card-top">
+              <span class="hiw-card-number">01</span>
+            </div>
+
+            <div class="hiw-card-bottom">
+              <h3 class="hiw-card-title">Personalized In-Home Visits</h3>
+              <p class="hiw-card-desc">At your personalized in-home consultation, an interior designer will listen to your goals.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Step Card 02 -->
+        <article class="hiw-card" tabindex="0" aria-label="Step 02: Review Your Custom Designs">
+          <!-- Background image layer with dark overlay (fades in on hover) -->
+          <div class="hiw-card-bg-layer" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80"
+              alt="Contemporary dark architectural kitchen and dining space with pendant lights"
+              class="hiw-card-bg-img"
+              loading="lazy"
+            />
+            <div class="hiw-card-overlay"></div>
+          </div>
+
+          <!-- Foreground text & outlined number -->
+          <div class="hiw-card-content">
+            <div class="hiw-card-top">
+              <span class="hiw-card-number">02</span>
+            </div>
+
+            <div class="hiw-card-bottom">
+              <h3 class="hiw-card-title">Review Your Custom Designs</h3>
+              <p class="hiw-card-desc">For your second consultation, visit our local showroom to review design options.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Step Card 03 -->
+        <article class="hiw-card" tabindex="0" aria-label="Step 03: Precision Design Execution">
+          <!-- Background image layer with dark overlay (fades in on hover) -->
+          <div class="hiw-card-bg-layer" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
+              alt="Architectural interior lounge with bespoke dark timber millwork and cove lighting"
+              class="hiw-card-bg-img"
+              loading="lazy"
+            />
+            <div class="hiw-card-overlay"></div>
+          </div>
+
+          <!-- Foreground text & outlined number -->
+          <div class="hiw-card-content">
+            <div class="hiw-card-top">
+              <span class="hiw-card-number">03</span>
+            </div>
+
+            <div class="hiw-card-bottom">
+              <h3 class="hiw-card-title">Precision Design Execution</h3>
+              <p class="hiw-card-desc">With your design finalized, we manage every step of execution to perfection.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

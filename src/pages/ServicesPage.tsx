@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SEO } from '../components/common/SEO';
 import { MonographBanner } from '../components/common/MonographBanner';
+import { HowItWorksSection } from '../components/HowItWorksSection';
 import '../styles/ServicesPage.css';
 
 if (typeof window !== 'undefined') {
@@ -427,7 +428,12 @@ const TESTIMONIALS = [
       </section>
 
       {/* ====================================================================
-          4. ATMOSPHERIC TESTIMONIAL
+          4. HOW IT WORKS (3 EASY STEPS TO GET INTERIOR DESIGN)
+          ==================================================================== */}
+      <HowItWorksSection />
+
+      {/* ====================================================================
+          5. ATMOSPHERIC TESTIMONIAL
           ==================================================================== */}
       <section className="renova-testimonial" aria-label="Client Experience">
         <div className="renova-test-container">
