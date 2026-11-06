@@ -1,1477 +1,1135 @@
 /* ==========================================================================
-   MITJEN INTERIORS — LUXURY ARCHITECTURAL EDITORIAL SERVICE PAGE
-   Full-Page Art-Directed Redesign Matching the Visual Reference
+   MITIJEN INTERIORS — EDITORIAL SERVICE DESIGN SYSTEM
+   Converted faithfully from mitijen-corporate-interior.html
+   Fully responsive & mobile optimized
    ========================================================================== */
 
 :root {
-  --ed-bg: #F5F2EC;
-  --ed-bg-secondary: #EBE5DB;
-  --ed-white: #FFFFFF;
-  --ed-text-primary: #25231F;
-  --ed-text-secondary: #777168;
-  --ed-muted-gold: #A48A65;
-  --ed-burgundy: #7B3036;
-  --ed-burgundy-hover: #632328;
-  --ed-dark: #242321;
-  --ed-dark-footer: #1C1B19;
-  --ed-border-hairline: rgba(37, 35, 31, 0.08);
-  --ed-border-gold: rgba(164, 138, 101, 0.28);
+  --bg: #F5F2EC;
+  --bg2: #EBE5DB;
+  --white: #ffffff;
+  --ink: #25231F;
+  --muted: #777168;
+  --gold: #A48A65;
+  --burg: #7B3036;
+  --burg-hover: #5f2227;
+  --dark: #242321;
+  --line: rgba(37, 35, 31, 0.14);
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --gutter: clamp(20px, 5vw, 72px);
+  --max: 1280px;
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
-.editorial-service-page {
-  background-color: var(--ed-bg);
-  color: var(--ed-text-primary);
-  font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
+.mitijen-service-page {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
-  min-height: 100vh;
-  padding-top: calc(88px + env(safe-area-inset-top, 0px));
+  -webkit-font-smoothing: antialiased;
+  padding-top: calc(72px + env(safe-area-inset-top, 0px));
 }
 
-.ed-section-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding-left: clamp(20px, 4vw, 40px);
-  padding-right: clamp(20px, 4vw, 40px);
+.mitijen-service-page * {
   box-sizing: border-box;
+}
+
+.mitijen-service-page img {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.mitijen-service-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mitijen-service-page ul,
+.mitijen-service-page ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mitijen-service-page button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.mitijen-service-page :focus-visible {
+  outline: 2px solid var(--burg);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Container & Typography */
+.mitijen-service-page .wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
   width: 100%;
 }
 
-/* Common Typography & Buttons */
-.ed-eyebrow {
-  display: inline-block;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+.mitijen-service-page .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  font-weight: 700;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ed-muted-gold);
-  margin-bottom: 14px;
+  color: var(--gold);
+  font-weight: 500;
 }
 
-.ed-btn-burgundy {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background-color: var(--ed-burgundy);
-  color: #ffffff;
-  padding: 13px 28px;
-  border-radius: 9999px;
-  border: 1px solid var(--ed-burgundy);
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  box-shadow: 0 6px 18px rgba(123, 48, 54, 0.22);
+.mitijen-service-page .eyebrow::after {
+  content: "";
+  width: 56px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
 }
 
-.ed-btn-burgundy:hover {
-  background-color: var(--ed-burgundy-hover);
-  border-color: var(--ed-burgundy-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(123, 48, 54, 0.3);
-}
-
-.ed-btn-arrow {
-  font-size: 1.1rem;
-  line-height: 1;
-  transition: transform 0.25s ease;
-}
-
-.ed-btn-burgundy:hover .ed-btn-arrow,
-.ed-btn-white:hover .ed-btn-arrow {
-  transform: translateX(3px);
-}
-
-.ed-btn-white {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #ffffff;
-  color: var(--ed-dark);
-  padding: 13px 28px;
-  border-radius: 9999px;
-  border: 1px solid #ffffff;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.ed-btn-white:hover {
-  background-color: var(--ed-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-/* ==========================================================================
-   FLOATING DISCIPLINE SWITCHER STRIP
-   ========================================================================== */
-.ed-discipline-pill-bar {
-  max-width: 1240px;
-  margin: 0 auto 20px auto;
-  padding: 8px clamp(20px, 4vw, 40px);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-sizing: border-box;
-}
-
-.ed-discipline-label {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--ed-muted-gold);
-}
-
-.ed-discipline-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.ed-discipline-links::-webkit-scrollbar {
+.mitijen-service-page .eyebrow.plain::after {
   display: none;
 }
 
-.ed-discipline-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 18px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(37, 35, 31, 0.1);
-  color: var(--ed-text-primary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
-
-.ed-discipline-pill:hover {
-  background: var(--ed-white);
-  border-color: var(--ed-muted-gold);
-  color: var(--ed-text-primary);
-}
-
-.ed-discipline-pill.is-active {
-  background: var(--ed-text-primary);
-  border-color: var(--ed-text-primary);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 35, 31, 0.15);
-}
-
-/* ==========================================================================
-   SECTION 02 — SERVICE HERO
-   ========================================================================== */
-.ed-hero-section {
-  padding: 24px 0 64px 0;
-}
-
-.ed-hero-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 40px);
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: clamp(36px, 5vw, 68px);
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.ed-hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ed-hero-headline {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.35rem, 4.4vw, 3.85rem);
+.mitijen-service-page h1,
+.mitijen-service-page h2,
+.mitijen-service-page h3 {
+  font-family: var(--serif);
   font-weight: 500;
-  line-height: 1.14;
-  letter-spacing: -0.02em;
-  color: var(--ed-text-primary);
-  margin: 0 0 20px 0;
-  text-wrap: balance;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
-.ed-hero-subtitle {
-  font-size: clamp(1.0rem, 1.4vw, 1.12rem);
-  line-height: 1.68;
-  color: var(--ed-text-secondary);
-  margin: 0 0 32px 0;
-  max-width: 480px;
+.mitijen-service-page h1 {
+  font-size: clamp(2.9rem, 7vw, 5.6rem);
 }
 
-.ed-hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 36px;
+.mitijen-service-page h2 {
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
 }
 
-.ed-scroll-indicator {
+.mitijen-service-page h3 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.mitijen-service-page .lead {
+  color: var(--muted);
+  max-width: 46ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Button */
+.mitijen-service-page .btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: var(--ed-muted-gold);
+  gap: 12px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  background: var(--burg);
+  color: #fff;
+  transition: background 0.35s, transform 0.35s var(--ease), color 0.35s;
+  min-height: 48px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
 }
 
-.ed-scroll-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid var(--ed-muted-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  line-height: 1;
+.mitijen-service-page .btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.35s var(--ease);
 }
 
-.ed-scroll-text {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
+.mitijen-service-page .btn:hover {
+  background: var(--burg-hover);
 }
 
-.ed-hero-media {
+.mitijen-service-page .btn:hover svg {
+  transform: translateX(5px);
+}
+
+.mitijen-service-page .btn.light {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.mitijen-service-page .btn.light:hover {
+  background: #ffffff;
+}
+
+/* Photo Container */
+.mitijen-service-page .photo {
   position: relative;
-  width: 100%;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #d9cdb9, #bfae93);
 }
 
-.ed-hero-media img {
-  width: 100%;
-  height: auto;
-  max-height: 520px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+.mitijen-service-page .photo img {
+  transition: transform 1.2s var(--ease);
 }
 
-.ed-hero-media:hover img {
-  transform: scale(1.02);
+.mitijen-service-page .photo:hover img {
+  transform: scale(1.045);
+}
+
+.mitijen-service-page section {
+  position: relative;
+}
+
+/* Scroll reveal classes */
+.mitijen-service-page .rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+.mitijen-service-page .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+.mitijen-service-page .img-rv {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.3s var(--ease);
+}
+
+.mitijen-service-page .img-rv.in {
+  clip-path: inset(0);
 }
 
 /* ==========================================================================
-   SECTION 03 — ABOUT OUR SERVICE (ARCHED FRAME & STATS)
+   02 HERO SECTION
    ========================================================================== */
-.ed-about-section {
-  padding: clamp(54px, 7vw, 90px) 0;
-}
-
-.ed-about-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 40px);
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: clamp(40px, 6vw, 84px);
+.mitijen-service-page .hero {
+  min-height: max(640px, calc(100svh - 72px));
+  display: flex;
   align-items: center;
-  box-sizing: border-box;
-}
-
-/* Concentric Arched Photo Frame */
-.ed-about-arch-wrap {
+  padding: 120px 0 90px;
+  overflow: hidden;
+  background: var(--bg2);
   position: relative;
-  max-width: 420px;
-  width: 100%;
-  margin: 0 auto;
 }
 
-.ed-arch-concentric-rings {
+.mitijen-service-page .hero .bg {
   position: absolute;
-  top: -18px;
-  left: -18px;
-  right: -18px;
-  bottom: 0;
-  pointer-events: none;
+  inset: 0 0 0 38%;
 }
 
-.ed-ring {
+.mitijen-service-page .hero .bg::after {
+  content: "";
   position: absolute;
-  border: 1px solid var(--ed-border-gold);
-  border-radius: 220px 220px 0 0;
-  border-bottom: none;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bg2) 0%, rgba(235, 229, 219, 0) 38%);
 }
 
-.ed-ring-1 {
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 280px;
-}
-
-.ed-ring-2 {
-  top: 9px;
-  left: 9px;
-  right: 9px;
-  height: 270px;
-  opacity: 0.6;
-}
-
-.ed-arch-photo-frame {
+.mitijen-service-page .hero .wrap {
   position: relative;
   z-index: 2;
   width: 100%;
-  aspect-ratio: 4/5;
-  border-radius: 200px 200px 16px 16px;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
-.ed-arch-photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Right Content & 3-Column Stats */
-.ed-about-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-about-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.0rem, 3.8vw, 3.1rem);
-  font-weight: 500;
-  line-height: 1.18;
-  color: var(--ed-text-primary);
-  margin: 0 0 20px 0;
-}
-
-.ed-about-paragraph {
-  font-size: 1.02rem;
-  line-height: 1.75;
-  color: var(--ed-text-secondary);
-  margin: 0 0 36px 0;
+.mitijen-service-page .hero-copy {
   max-width: 580px;
 }
 
-.ed-stats-row {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(24px, 4vw, 48px);
-  padding-top: 24px;
-  border-top: 1px solid var(--ed-border-hairline);
+.mitijen-service-page .hero h1 {
+  margin: 26px 0 28px;
 }
 
-.ed-stat-col {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.mitijen-service-page .hero p {
+  color: var(--muted);
+  max-width: 40ch;
+  margin-bottom: 38px;
+  font-size: 1.05rem;
 }
 
-.ed-stat-divider {
+.mitijen-service-page .scroll {
   position: absolute;
-  left: calc(clamp(-24px, -4vw, -48px) / 2);
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background-color: var(--ed-border-hairline);
-}
-
-.ed-stat-number {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.2rem, 3.6vw, 3.0rem);
-  font-weight: 600;
-  color: var(--ed-text-primary);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.ed-stat-label {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ed-text-secondary);
-}
-
-/* ==========================================================================
-   SECTION 05 — WHAT WE CAN HELP WITH (SOLUTIONS GRID)
-   ========================================================================== */
-.ed-solutions-section {
-  padding: clamp(54px, 7vw, 90px) 0;
-}
-
-.ed-solutions-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 4vw, 60px);
-  align-items: flex-end;
-  margin-bottom: 40px;
-}
-
-.ed-solutions-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ed-text-primary);
-  margin: 0;
-}
-
-.ed-solutions-subtitle {
-  font-size: 0.98rem;
-  line-height: 1.68;
-  color: var(--ed-text-secondary);
-  margin: 0;
-}
-
-.ed-solutions-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.ed-solution-card {
-  background: var(--ed-white);
-  border: 1px solid var(--ed-border-hairline);
-  border-radius: 18px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
-}
-
-.ed-solution-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
-}
-
-.ed-solution-img-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  background-color: var(--ed-bg-secondary);
-}
-
-.ed-solution-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
-
-.ed-solution-card:hover .ed-solution-img-wrap img {
-  transform: scale(1.05);
-}
-
-.ed-solution-badge {
-  position: absolute;
-  bottom: -18px;
-  left: 18px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--ed-bg-secondary);
-  border: 2px solid var(--ed-white);
-  color: var(--ed-burgundy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  left: var(--gutter);
+  bottom: 36px;
   z-index: 2;
-}
-
-.ed-solution-body {
-  padding: 28px 18px 22px 18px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-grow: 1;
-}
-
-.ed-solution-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--ed-text-primary);
-  margin: 0;
-}
-
-.ed-solution-desc {
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: var(--ed-text-secondary);
-  margin: 0;
-}
-
-/* ==========================================================================
-   SECTION 06 — CORPORATE INTERIOR CHALLENGES
-   ========================================================================== */
-.ed-challenges-section {
-  padding: clamp(54px, 7vw, 90px) 0;
-}
-
-.ed-challenges-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: clamp(36px, 5vw, 68px);
   align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
 }
 
-.ed-challenge-img-wrap {
-  width: 100%;
-  border-radius: 180px 0 0 0;
+.mitijen-service-page .scroll i {
+  width: 1px;
+  height: 42px;
+  background: var(--line);
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-  aspect-ratio: 4/3;
+  display: inline-block;
 }
 
-.ed-challenge-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.mitijen-service-page .scroll i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -50%;
+  width: 1px;
+  height: 50%;
+  background: var(--burg);
+  animation: mitijen-drip 2.2s infinite;
 }
 
-.ed-challenge-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-challenge-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.0rem, 3.6vw, 2.9rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ed-text-primary);
-  margin: 0 0 16px 0;
-}
-
-.ed-challenge-subtitle {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--ed-text-secondary);
-  margin: 0 0 28px 0;
-}
-
-.ed-challenges-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-challenge-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--ed-border-hairline);
-  transition: transform 0.25s ease;
-}
-
-.ed-challenge-item:first-child {
-  border-top: 1px solid var(--ed-border-hairline);
-}
-
-.ed-challenge-item:hover {
-  transform: translateX(4px);
-}
-
-.ed-challenge-num {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--ed-bg-secondary);
-  color: var(--ed-burgundy);
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.ed-challenge-text {
-  font-size: 0.98rem;
-  font-weight: 500;
-  color: var(--ed-text-primary);
+@keyframes mitijen-drip {
+  to {
+    top: 100%;
+  }
 }
 
 /* ==========================================================================
-   SECTION 07 — WHAT THE DESIGN INCLUDES (2x3 CATALOG GRID)
+   03 INTRO SECTION
    ========================================================================== */
-.ed-deliverables-section {
-  padding: clamp(54px, 7vw, 90px) 0;
+.mitijen-service-page .intro {
+  padding: clamp(80px, 11vw, 150px) 0;
+  background: var(--bg);
 }
 
-.ed-deliverables-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: clamp(36px, 5vw, 68px);
-  align-items: flex-start;
-}
-
-.ed-deliverables-intro {
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: 120px;
-}
-
-.ed-deliverables-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.0rem, 3.6vw, 3.0rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ed-text-primary);
-  margin: 0 0 16px 0;
-}
-
-.ed-deliverables-subtitle {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--ed-text-secondary);
-  margin: 0 0 28px 0;
-}
-
-.ed-deliverables-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.ed-deliverable-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform 0.3s ease;
-}
-
-.ed-deliverable-card:hover {
-  transform: translateY(-3px);
-}
-
-.ed-deliverable-thumb-wrap {
-  width: 100%;
-  aspect-ratio: 16/10;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-  background-color: var(--ed-bg-secondary);
-}
-
-.ed-deliverable-thumb-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
-
-.ed-deliverable-card:hover .ed-deliverable-thumb-wrap img {
-  transform: scale(1.06);
-}
-
-.ed-deliverable-title {
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.88rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--ed-text-primary);
-  margin: 0;
-}
-
-/* ==========================================================================
-   SECTION 08 — DESIGN PHILOSOPHY & WORKPLACE STANDARDS
-   ========================================================================== */
-.ed-philosophy-section {
-  padding: clamp(54px, 7vw, 90px) 0;
-  border-top: 1px solid var(--ed-border-hairline);
-}
-
-.ed-philosophy-header {
-  margin-bottom: 36px;
-}
-
-.ed-philosophy-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.28;
-  color: var(--ed-text-primary);
-  margin: 0 0 22px 0;
-  max-width: 960px;
-}
-
-.ed-philosophy-line {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--ed-muted-gold) 0%, rgba(164, 138, 101, 0.2) 60%, transparent 100%);
-}
-
-.ed-philosophy-prose-grid {
+.mitijen-service-page .intro .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 48px);
-  margin-bottom: 40px;
+  gap: clamp(40px, 8vw, 120px);
+  align-items: center;
 }
 
-.ed-philosophy-col {
+.mitijen-service-page .arch {
+  aspect-ratio: 4/5;
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+}
+
+.mitijen-service-page .arch-wrap {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+
+.mitijen-service-page .arch-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -18px -18px 0 18px;
+  border: 1px solid var(--gold);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mitijen-service-page .intro h2 {
+  margin: 22px 0 26px;
+}
+
+.mitijen-service-page .intro .rule {
+  width: 64px;
+  height: 1px;
+  background: var(--gold);
+  margin: 34px 0;
+}
+
+.mitijen-service-page .intro p + p {
+  margin-top: 16px;
+}
+
+/* ==========================================================================
+   04 MAIN LAYOUT WITH SIDEBAR & WHAT WE CAN HELP WITH
+   ========================================================================== */
+.mitijen-service-page .main-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: start;
+  padding-bottom: 40px;
+}
+
+.mitijen-service-page aside.side {
+  position: sticky;
+  top: 110px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 22px;
 }
 
-.ed-philosophy-col-title {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+.mitijen-service-page .svc-nav {
+  border-top: 1px solid var(--line);
+}
+
+.mitijen-service-page .svc-nav h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ed-text-primary);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: var(--gold);
+  font-weight: 500;
+  padding: 20px 0 10px;
 }
 
-.ed-philosophy-col-title::before {
-  content: '';
+.mitijen-service-page .svc-nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  transition: padding 0.35s var(--ease), color 0.3s;
+  min-height: 48px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.mitijen-service-page .svc-nav a:hover {
+  padding-left: 8px;
+  color: var(--burg);
+}
+
+.mitijen-service-page .svc-nav a[aria-current="page"],
+.mitijen-service-page .svc-nav a.is-active {
+  color: var(--burg);
+  font-weight: 600;
+}
+
+.mitijen-service-page .svc-nav a[aria-current="page"]::after,
+.mitijen-service-page .svc-nav a.is-active::after {
+  content: "";
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--ed-muted-gold);
+  background: var(--burg);
 }
 
-.ed-philosophy-col-text {
-  font-size: 0.94rem;
-  line-height: 1.75;
-  color: var(--ed-text-secondary);
-  margin: 0;
+.mitijen-service-page .consult {
+  background: var(--dark);
+  color: #fff;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
-/* Minimalist Metrics Strip */
-.ed-metrics-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 26px 24px;
-  background: rgba(235, 229, 219, 0.4);
-  border-radius: 16px;
-  border: 1px solid var(--ed-border-gold);
+.mitijen-service-page .consult::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(164, 138, 101, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.ed-metric-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.mitijen-service-page .consult h3 {
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+  color: #fff;
 }
 
-.ed-metric-value {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  font-weight: 700;
-  color: var(--ed-text-primary);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.ed-metric-unit {
+.mitijen-service-page .consult p {
+  color: #b9b3a8;
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ed-burgundy);
-  margin-left: 2px;
+  margin-bottom: 24px;
+  line-height: 1.6;
 }
 
-.ed-metric-label {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ed-text-primary);
-  line-height: 1.25;
-}
-
-.ed-metric-sub {
-  font-size: 0.74rem;
-  color: var(--ed-text-secondary);
-}
-
-/* ==========================================================================
-   SECTION 09 — FREQUENTLY ASKED QUESTIONS
-   ========================================================================== */
-.ed-faq-section {
-  padding: clamp(54px, 7vw, 90px) 0;
-}
-
-.ed-faq-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.45fr;
-  gap: clamp(36px, 5vw, 68px);
-  align-items: flex-start;
-}
-
-.ed-faq-left {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  position: sticky;
-  top: 120px;
-}
-
-.editorial-botanical-svg {
-  width: 50px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.ed-faq-header-wrap {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-faq-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.0rem, 3.6vw, 3.0rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ed-text-primary);
-  margin: 0 0 14px 0;
-}
-
-.ed-faq-desc {
-  font-size: 0.96rem;
-  line-height: 1.68;
-  color: var(--ed-text-secondary);
-  margin: 0;
-  max-width: 380px;
-}
-
-.ed-faq-right {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-accordion-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.ed-accordion-item {
-  border-bottom: 1px solid rgba(37, 35, 31, 0.12);
-  transition: all 0.25s ease;
-}
-
-.ed-accordion-item:first-child {
-  border-top: 1px solid rgba(37, 35, 31, 0.12);
-}
-
-.ed-accordion-btn {
+.mitijen-service-page .consult .btn {
   width: 100%;
+  justify-content: center;
+}
+
+.mitijen-service-page .mob-nav {
+  display: none;
+}
+
+.mitijen-service-page .mob-consult {
+  display: none;
+}
+
+/* Section: Help With */
+.mitijen-service-page .help {
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+
+.mitijen-service-page .sec-head {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.mitijen-service-page .sec-head h2 {
+  margin-top: 18px;
+  max-width: 14ch;
+}
+
+.mitijen-service-page .cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+}
+
+.mitijen-service-page .card {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s;
+  grid-column: span 2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mitijen-service-page .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 50px -24px rgba(37, 35, 31, 0.35);
+}
+
+.mitijen-service-page .card.wide {
+  grid-column: span 3;
+}
+
+.mitijen-service-page .card .photo {
+  aspect-ratio: 4/3;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mitijen-service-page .card.wide .photo {
+  aspect-ratio: 16/10;
+}
+
+.mitijen-service-page .card .body {
+  padding: 22px 24px 28px;
+  position: relative;
+}
+
+.mitijen-service-page .card .ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg2);
+  display: grid;
+  place-items: center;
+  margin: -44px 0 14px;
+  position: relative;
+  color: var(--burg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.mitijen-service-page .card .ico svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mitijen-service-page .card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   05 CHALLENGES SECTION
+   ========================================================================== */
+.mitijen-service-page .challenges {
+  background: var(--bg2);
+  margin-top: clamp(60px, 8vw, 110px);
+}
+
+.mitijen-service-page .ch-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: stretch;
+  min-height: 640px;
+}
+
+.mitijen-service-page .ch-img {
+  position: relative;
+  min-height: 420px;
+}
+
+.mitijen-service-page .ch-img .photo {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 999px 0 0;
+  overflow: hidden;
+}
+
+.mitijen-service-page .ch-copy {
+  padding: clamp(56px, 8vw, 110px) var(--gutter) clamp(56px, 8vw, 110px) clamp(32px, 6vw, 90px);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mitijen-service-page .ch-copy h2 {
+  margin: 20px 0 22px;
+}
+
+.mitijen-service-page .ol {
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.mitijen-service-page .ol li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: baseline;
   padding: 20px 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.4s var(--ease);
 }
 
-.ed-accordion-question {
-  font-family: var(--font-content, sans-serif);
+.mitijen-service-page .ol li:hover {
+  padding-left: 10px;
+}
+
+.mitijen-service-page .ol b {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.mitijen-service-page .ol span {
   font-size: 1.02rem;
-  font-weight: 600;
-  color: var(--ed-text-primary);
-  transition: color 0.2s ease;
+  color: var(--ink);
 }
 
-.ed-accordion-btn:hover .ed-accordion-question,
-.ed-accordion-item.is-open .ed-accordion-question {
-  color: var(--ed-burgundy);
+/* ==========================================================================
+   06 WHAT IT INCLUDES SECTION
+   ========================================================================== */
+.mitijen-service-page .includes {
+  padding: clamp(80px, 10vw, 140px) 0;
+  background: var(--bg);
 }
 
-.ed-accordion-icon {
-  font-size: 1.35rem;
-  line-height: 1;
-  font-weight: 400;
-  color: var(--ed-muted-gold);
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
+.mitijen-service-page .inc-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr;
+  gap: clamp(36px, 6vw, 90px);
+  align-items: start;
 }
 
-.ed-accordion-panel {
-  padding: 0 0 22px 0;
+.mitijen-service-page .inc-grid h2 {
+  margin: 18px 0 22px;
 }
 
-.ed-accordion-answer {
-  font-size: 0.94rem;
+.mitijen-service-page .inc-grid .btn {
+  margin-top: 32px;
+}
+
+.mitijen-service-page .cat {
+  counter-reset: c;
+  border-top: 1px solid var(--line);
+}
+
+.mitijen-service-page .cat li {
+  counter-increment: c;
+  display: grid;
+  grid-template-columns: 44px 1fr 120px;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.4s, padding 0.4s var(--ease);
+}
+
+.mitijen-service-page .cat li::before {
+  content: "0" counter(c);
+  font-family: var(--serif);
+  color: var(--gold);
+  font-size: 1.3rem;
+}
+
+.mitijen-service-page .cat li:hover {
+  background: rgba(255, 255, 255, 0.55);
+  padding-inline: 14px;
+}
+
+.mitijen-service-page .cat h3 {
+  font-size: 1.45rem;
+  color: var(--ink);
+}
+
+.mitijen-service-page .cat p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.mitijen-service-page .cat .photo {
+  aspect-ratio: 4/3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   07 DESIGN PHILOSOPHY SECTION
+   ========================================================================== */
+.mitijen-service-page .philo {
+  background: var(--dark);
+  color: #fff;
+  padding: clamp(80px, 11vw, 150px) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.mitijen-service-page .philo::before {
+  content: "";
+  position: absolute;
+  right: -12vw;
+  top: -12vw;
+  width: 44vw;
+  height: 44vw;
+  border: 1px solid rgba(164, 138, 101, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mitijen-service-page .philo::after {
+  content: "";
+  position: absolute;
+  right: -6vw;
+  top: -6vw;
+  width: 32vw;
+  height: 32vw;
+  border: 1px solid rgba(164, 138, 101, 0.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mitijen-service-page .philo .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.mitijen-service-page .philo h2 {
+  font-size: clamp(2.4rem, 5.6vw, 4.8rem);
+  max-width: 17ch;
+  margin: 22px 0 64px;
+  color: #fff;
+}
+
+.mitijen-service-page .philo h2 em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.mitijen-service-page .cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 7vw, 110px);
+}
+
+.mitijen-service-page .cols p {
+  color: #b9b3a8;
+  font-size: 1.02rem;
   line-height: 1.75;
-  color: var(--ed-text-secondary);
+}
+
+.mitijen-service-page .pr {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mitijen-service-page .pr div {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  font-size: 1.02rem;
+  color: #fff;
+}
+
+.mitijen-service-page .pr b {
+  font-family: var(--serif);
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   08 FREQUENTLY ASKED QUESTIONS SECTION
+   ========================================================================== */
+.mitijen-service-page .faq {
+  padding: clamp(80px, 10vw, 140px) 0;
+  background: var(--bg);
+}
+
+.mitijen-service-page .faq-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(36px, 7vw, 110px);
+}
+
+.mitijen-service-page .faq h2 {
+  margin: 18px 0 22px;
+}
+
+.mitijen-service-page .faq .photo {
+  margin-top: 36px;
+  aspect-ratio: 5/4;
+  max-width: 360px;
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+}
+
+.mitijen-service-page .acc {
+  border-top: 1px solid var(--line);
+}
+
+.mitijen-service-page .acc h3 {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.5;
   margin: 0;
 }
 
-/* ==========================================================================
-   SECTION 10 — FINAL CONSULTATION CTA BANNER
-   ========================================================================== */
-.ed-final-cta-section {
-  padding: clamp(30px, 5vw, 60px) 0 clamp(60px, 8vw, 100px) 0;
-}
-
-.ed-final-cta-banner {
-  background-color: var(--ed-dark);
-  color: #ffffff;
-  border-radius: 24px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(24px, 4vw, 48px);
-  align-items: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-}
-
-.ed-final-cta-content {
-  padding: clamp(36px, 5vw, 64px) clamp(28px, 4vw, 56px);
+.mitijen-service-page .acc button {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ed-final-cta-eyebrow {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--ed-muted-gold);
-  margin-bottom: 14px;
-}
-
-.ed-final-cta-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.0rem, 3.8vw, 3.1rem);
-  font-weight: 500;
-  line-height: 1.18;
-  color: #ffffff;
-  margin: 0 0 16px 0;
-}
-
-.ed-final-cta-desc {
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  padding: 24px 0;
+  min-height: 64px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--sans);
   font-size: 1.02rem;
-  line-height: 1.68;
-  color: rgba(255, 255, 255, 0.75);
-  margin: 0 0 32px 0;
-  max-width: 480px;
+  font-weight: 500;
+  transition: color 0.25s ease;
 }
 
-.ed-final-cta-media {
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
+.mitijen-service-page .acc button:hover,
+.mitijen-service-page .acc button[aria-expanded="true"] {
+  color: var(--burg);
+}
+
+.mitijen-service-page .acc .pm {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.mitijen-service-page .acc .pm::before,
+.mitijen-service-page .acc .pm::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  background: var(--burg);
+  transition: transform 0.4s var(--ease);
+}
+
+.mitijen-service-page .acc .pm::after {
+  transform: rotate(90deg);
+}
+
+.mitijen-service-page .acc button[aria-expanded="true"] .pm::after {
+  transform: rotate(0);
+}
+
+.mitijen-service-page .acc .item {
+  border-bottom: 1px solid var(--line);
+}
+
+.mitijen-service-page .acc .panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease);
+}
+
+.mitijen-service-page .acc .panel > div {
   overflow: hidden;
 }
 
-.ed-final-cta-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.mitijen-service-page .acc .panel p {
+  color: var(--muted);
+  padding: 0 40px 26px 0;
+  max-width: 60ch;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.mitijen-service-page .acc button[aria-expanded="true"] + .panel {
+  grid-template-rows: 1fr;
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (DESKTOP, TABLET & MOBILE)
+   09 FINAL CONSULTATION CTA BANNER
    ========================================================================== */
-
-@media (max-width: 1024px) {
-  .ed-hero-container {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .ed-hero-media img {
-    max-height: 380px;
-  }
-
-  .ed-about-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .ed-solutions-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .ed-challenges-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .ed-deliverables-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .ed-deliverables-intro {
-    position: static;
-  }
-
-  .ed-deliverables-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .ed-faq-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .ed-faq-left {
-    position: static;
-  }
-
-  .ed-final-cta-banner {
-    grid-template-columns: 1fr;
-  }
-
-  .ed-final-cta-media {
-    min-height: 280px;
-  }
+.mitijen-service-page .cta {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  background: var(--dark);
+  position: relative;
 }
 
-@media (max-width: 768px) {
-  .editorial-service-page {
-    padding-top: calc(68px + env(safe-area-inset-top, 0px));
+.mitijen-service-page .cta .bg {
+  position: absolute;
+  inset: 0;
+}
+
+.mitijen-service-page .cta .bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(36, 35, 33, 0.92), rgba(36, 35, 33, 0.45) 60%, rgba(36, 35, 33, 0.2));
+}
+
+.mitijen-service-page .cta .wrap {
+  position: relative;
+  z-index: 1;
+  padding-block: 90px;
+}
+
+.mitijen-service-page .cta h2 {
+  margin: 22px 0 22px;
+  max-width: 14ch;
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  color: #fff;
+}
+
+.mitijen-service-page .cta p {
+  color: #d6d0c4;
+  max-width: 44ch;
+  margin-bottom: 34px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE OPTIMIZATIONS)
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+  .mitijen-service-page .main-layout {
+    grid-template-columns: 1fr;
   }
 
-  .ed-section-container {
-    padding-left: 16px;
-    padding-right: 16px;
+  .mitijen-service-page aside.side {
+    display: none;
   }
 
-  /* Sticky Discipline Switcher Bar with subtle blur on mobile */
-  .ed-discipline-pill-bar {
+  /* Sleek sticky horizontal mobile service switcher */
+  .mitijen-service-page .mob-nav {
+    display: block;
     position: sticky;
-    top: calc(64px + env(safe-area-inset-top, 0px));
-    z-index: 30;
-    background: rgba(245, 242, 236, 0.95);
+    top: calc(68px + env(safe-area-inset-top, 0px));
+    z-index: 20;
+    background: rgba(245, 242, 236, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(37, 35, 31, 0.08);
-    padding: 8px 16px;
-    margin-bottom: 16px;
-    gap: 10px;
+    border-bottom: 1px solid var(--line);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0 var(--gutter);
   }
 
-  .ed-discipline-label {
-    font-size: 0.64rem;
-  }
-
-  .ed-discipline-pill {
-    padding: 6px 14px;
-    font-size: 0.76rem;
-  }
-
-  /* Hero Section */
-  .ed-hero-section {
-    padding: 10px 0 36px 0;
-  }
-
-  .ed-hero-container {
-    padding: 0 16px;
-    gap: 24px;
-  }
-
-  .ed-hero-headline {
-    font-size: clamp(2.1rem, 7.8vw, 2.85rem);
-    line-height: 1.15;
-    margin-bottom: 14px;
-    letter-spacing: -0.015em;
-  }
-
-  .ed-hero-subtitle {
-    font-size: 0.95rem;
-    line-height: 1.62;
-    margin-bottom: 22px;
-  }
-
-  .ed-hero-actions {
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .ed-hero-actions .ed-btn-burgundy {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 20px;
-    font-size: 0.92rem;
-  }
-
-  .ed-scroll-indicator {
-    display: none;
-  }
-
-  .ed-hero-media {
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  }
-
-  .ed-hero-media img {
-    max-height: 220px;
-    object-fit: cover;
-  }
-
-  /* Section Spacing */
-  .ed-about-section,
-  .ed-solutions-section,
-  .ed-challenges-section,
-  .ed-deliverables-section,
-  .ed-philosophy-section,
-  .ed-faq-section {
-    padding: 38px 0;
-  }
-
-  .ed-about-heading,
-  .ed-solutions-heading,
-  .ed-challenge-heading,
-  .ed-deliverables-heading,
-  .ed-faq-heading {
-    font-size: clamp(1.75rem, 6.0vw, 2.25rem);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  /* About Our Service Arched Frame & Stats */
-  .ed-about-container {
-    padding: 0 16px;
-    gap: 28px;
-  }
-
-  .ed-about-arch-wrap {
-    max-width: 280px;
-  }
-
-  .ed-arch-concentric-rings {
-    top: -12px;
-    left: -12px;
-    right: -12px;
-  }
-
-  .ed-ring-1 {
-    height: 190px;
-    border-radius: 150px 150px 0 0;
-  }
-
-  .ed-ring-2 {
-    height: 184px;
-    border-radius: 144px 144px 0 0;
-  }
-
-  .ed-arch-photo-frame {
-    aspect-ratio: 4/4.5;
-    border-radius: 140px 140px 14px 14px;
-  }
-
-  .ed-about-paragraph {
-    font-size: 0.94rem;
-    line-height: 1.68;
-    margin-bottom: 24px;
-  }
-
-  .ed-stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    padding-top: 18px;
-  }
-
-  .ed-stat-col {
-    align-items: center;
-    text-align: center;
-  }
-
-  .ed-stat-divider {
-    display: none;
-  }
-
-  .ed-stat-number {
-    font-size: clamp(1.65rem, 6.2vw, 2.1rem);
-  }
-
-  .ed-stat-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.04em;
-    line-height: 1.35;
-  }
-
-  /* Solutions Horizontal Swipeable Snap Track */
-  .ed-solutions-header {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .ed-solutions-subtitle {
-    font-size: 0.92rem;
-    line-height: 1.6;
-  }
-
-  .ed-solutions-grid {
+  .mitijen-service-page .mob-nav ul {
     display: flex;
+    gap: 26px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 14px;
-    padding: 4px 16px 18px 16px;
-    margin-left: -16px;
-    margin-right: -16px;
     scrollbar-width: none;
   }
 
-  .ed-solutions-grid::-webkit-scrollbar {
+  .mitijen-service-page .mob-nav ul::-webkit-scrollbar {
     display: none;
   }
 
-  .ed-solution-card {
-    flex: 0 0 82%;
-    min-width: 250px;
-    max-width: 310px;
-    scroll-snap-align: center;
-    border-radius: 16px;
-  }
-
-  .ed-solution-body {
-    padding: 24px 16px 18px 16px;
-  }
-
-  .ed-solution-title {
-    font-size: 1.15rem;
-  }
-
-  .ed-solution-desc {
-    font-size: 0.84rem;
-    line-height: 1.5;
-  }
-
-  /* Challenges Asymmetric Section */
-  .ed-challenges-layout {
-    gap: 22px;
-  }
-
-  .ed-challenge-img-wrap {
-    border-radius: 60px 0 0 0;
-    aspect-ratio: 16/10;
-    max-height: 200px;
-  }
-
-  .ed-challenge-subtitle {
-    font-size: 0.92rem;
-    line-height: 1.62;
-    margin-bottom: 20px;
-  }
-
-  .ed-challenge-item {
-    padding: 12px 0;
-    gap: 12px;
-  }
-
-  .ed-challenge-num {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
-  }
-
-  .ed-challenge-text {
-    font-size: 0.92rem;
-    line-height: 1.45;
-  }
-
-  /* Deliverables 2x3 Grid */
-  .ed-deliverables-layout {
-    gap: 24px;
-  }
-
-  .ed-deliverables-subtitle {
-    font-size: 0.92rem;
-    line-height: 1.62;
-    margin-bottom: 20px;
-  }
-
-  .ed-deliverables-intro .ed-btn-burgundy {
-    width: 100%;
-    justify-content: center;
-    padding: 13px 20px;
-  }
-
-  .ed-deliverables-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .ed-deliverable-thumb-wrap {
-    aspect-ratio: 16/11;
-    border-radius: 10px;
-  }
-
-  .ed-deliverable-title {
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-
-  /* Philosophy Section */
-  .ed-philosophy-heading {
-    font-size: clamp(1.35rem, 5.0vw, 1.75rem);
-    line-height: 1.32;
-    margin-bottom: 16px;
-  }
-
-  .ed-philosophy-prose-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .ed-philosophy-col-text {
-    font-size: 0.88rem;
-    line-height: 1.65;
-  }
-
-  .ed-metrics-strip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px 10px;
-    padding: 18px 14px;
-    border-radius: 14px;
-  }
-
-  .ed-metric-value {
-    font-size: 1.45rem;
-  }
-
-  .ed-metric-label {
-    font-size: 0.88rem;
-  }
-
-  .ed-metric-sub {
-    font-size: 0.7rem;
-  }
-
-  /* FAQ Section */
-  .ed-faq-layout {
-    gap: 20px;
-  }
-
-  .editorial-botanical-svg {
-    display: none;
-  }
-
-  .ed-faq-desc {
-    font-size: 0.92rem;
-    line-height: 1.6;
-  }
-
-  .ed-accordion-btn {
+  .mitijen-service-page .mob-nav a {
+    display: block;
+    white-space: nowrap;
     padding: 16px 0;
-    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    min-height: 48px;
+    transition: color 0.25s, border-color 0.25s;
   }
 
-  .ed-accordion-question {
-    font-size: 0.94rem;
-    line-height: 1.42;
+  .mitijen-service-page .mob-nav a[aria-current="page"],
+  .mitijen-service-page .mob-nav a.is-active {
+    color: var(--burg);
+    border-color: var(--burg);
+    font-weight: 600;
   }
 
-  .ed-accordion-panel {
-    padding: 0 0 16px 0;
+  .mitijen-service-page .mob-consult {
+    display: block;
+    margin-top: 36px;
   }
 
-  .ed-accordion-answer {
-    font-size: 0.88rem;
-    line-height: 1.65;
-  }
-
-  /* Final CTA Banner */
-  .ed-final-cta-section {
-    padding: 20px 0 44px 0;
-  }
-
-  .ed-final-cta-banner {
-    border-radius: 18px;
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .ed-final-cta-content {
-    padding: 28px 18px;
-  }
-
-  .ed-final-cta-heading {
-    font-size: clamp(1.65rem, 6.2vw, 2.1rem);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-
-  .ed-final-cta-desc {
-    font-size: 0.92rem;
-    line-height: 1.55;
-    margin-bottom: 22px;
-  }
-
-  .ed-final-cta-content .ed-btn-white {
-    width: 100%;
-    justify-content: center;
-    padding: 13px 20px;
-  }
-
-  .ed-final-cta-media {
-    min-height: 180px;
-    max-height: 200px;
+  .mitijen-service-page .cat li {
+    grid-template-columns: 40px 1fr 100px;
   }
 }
 
-/* Extra small smartphones (<= 390px) */
-@media (max-width: 390px) {
-  .ed-hero-headline {
-    font-size: 1.95rem;
+@media (min-width: 1101px) {
+  .mitijen-service-page .mob-consult {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .mitijen-service-page .hero {
+    align-items: flex-end;
+    padding: 0 0 80px;
+    min-height: 88svh;
   }
 
-  .ed-about-arch-wrap {
-    max-width: 240px;
+  .mitijen-service-page .hero .bg {
+    inset: 0;
   }
 
-  .ed-stats-row {
-    gap: 4px;
+  .mitijen-service-page .hero .bg::after {
+    background: linear-gradient(0deg, var(--bg2) 12%, rgba(235, 229, 219, 0.6) 52%, rgba(235, 229, 219, 0) 100%);
   }
 
-  .ed-stat-number {
-    font-size: 1.5rem;
+  .mitijen-service-page .scroll {
+    display: none;
   }
 
-  .ed-stat-label {
-    font-size: 0.58rem;
+  .mitijen-service-page .intro .grid,
+  .mitijen-service-page .inc-grid,
+  .mitijen-service-page .faq-grid,
+  .mitijen-service-page .cols {
+    grid-template-columns: 1fr;
   }
 
-  .ed-solution-card {
-    flex: 0 0 88%;
+  .mitijen-service-page .arch-wrap {
+    max-width: 380px;
   }
 
-  .ed-deliverables-grid {
-    gap: 10px;
+  .mitijen-service-page .ch-grid {
+    grid-template-columns: 1fr;
   }
 
-  .ed-deliverable-title {
-    font-size: 0.76rem;
+  .mitijen-service-page .ch-img {
+    min-height: 320px;
+    margin-right: 0;
+  }
+
+  .mitijen-service-page .ch-img .photo {
+    position: relative;
+    height: 320px;
+    border-radius: 0 999px 0 0;
+  }
+
+  .mitijen-service-page .ch-copy {
+    padding: 48px var(--gutter);
+  }
+
+  .mitijen-service-page .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mitijen-service-page .card,
+  .mitijen-service-page .card.wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .mitijen-service-page .hero {
+    min-height: 80svh;
+    padding: 0 0 54px;
+  }
+
+  .mitijen-service-page .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .mitijen-service-page .cat li {
+    grid-template-columns: 34px 1fr 70px;
+    gap: 12px;
+  }
+
+  .mitijen-service-page .cat .photo {
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+  }
+
+  .mitijen-service-page .cat h3 {
+    font-size: 1.15rem;
+  }
+
+  .mitijen-service-page .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mitijen-service-page .hero .btn,
+  .mitijen-service-page .intro .btn,
+  .mitijen-service-page .includes .btn,
+  .mitijen-service-page .cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mitijen-service-page .acc button {
+    padding: 18px 0;
+    font-size: 0.95rem;
+  }
+
+  .mitijen-service-page .acc .panel p {
+    padding-right: 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .mitijen-service-page *,
+  .mitijen-service-page *::before,
+  .mitijen-service-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .mitijen-service-page .rv,
+  .mitijen-service-page .img-rv {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
   }
 }

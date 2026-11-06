@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { ServicePageData } from '../data/servicesData';
 import { SEO } from './common/SEO';
 import { useInquiry } from '../context/useInquiry';
 import { HowItWorksSection } from './HowItWorksSection';
 import '../styles/ServicePage.css';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 interface ServicePageTemplateProps {
   data: ServicePageData;
   children?: React.ReactNode;
+}
+
+interface SolutionCardItem {
+  title: string;
+  description: string;
+  image: string;
+  wide?: boolean;
+  icon: 'office' | 'meeting' | 'reception' | 'executive' | 'collaborative';
 }
 
 interface DisciplineEditorialConfig {
@@ -26,28 +28,31 @@ interface DisciplineEditorialConfig {
   aboutHeading: string;
   aboutText: string;
   aboutImage: string;
-  stats: Array<{ number: string; label: string }>;
+  sidebarTitle: string;
+  sidebarDesc: string;
   solutionsEyebrow: string;
   solutionsHeading: string;
-  solutionsSubtitle: string;
-  solutionsCards: Array<{
-    title: string;
-    description: string;
-    image: string;
-    iconType: 'office' | 'meeting' | 'reception' | 'executive';
-  }>;
+  solutionsLead: string;
+  solutionsCards: SolutionCardItem[];
   challengesEyebrow: string;
   challengesHeading: string;
-  challengesSubtitle: string;
+  challengesLead: string;
   challengesImage: string;
   challengesList: string[];
-  deliverablesEyebrow: string;
-  deliverablesHeading: string;
-  deliverablesSubtitle: string;
-  deliverablesCards: Array<{
+  includesEyebrow: string;
+  includesHeading: string;
+  includesLead: string;
+  includesItems: Array<{
     title: string;
     image: string;
   }>;
+  philosophyEyebrow: string;
+  philosophyHeading: string;
+  philosophyLead: string;
+  philosophyPoints: string[];
+  faqHeading: string;
+  faqSubtitle: string;
+  faqImage: string;
   ctaEyebrow: string;
   ctaHeading: string;
   ctaSubtitle: string;
@@ -56,762 +61,677 @@ interface DisciplineEditorialConfig {
 
 const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', DisciplineEditorialConfig> = {
   Corporate: {
-    eyebrow: 'CORPORATE INTERIORS',
-    heroHeadline: "Let's Design Workspaces That Inspire",
-    heroSubtitle: 'Create productive, elegant and people-centric workspaces with Mitjen Interiors.',
-    heroImage: '/assets/I2.jpg',
-    aboutEyebrow: 'ABOUT OUR SERVICE —',
-    aboutHeading: 'Professional Spaces. Purposeful Design.',
+    eyebrow: 'Corporate Interiors',
+    heroHeadline: 'Let’s Design Workspaces That Inspire',
+    heroSubtitle: 'Create productive, elegant and people-centric workspaces with Mitijen Interiors.',
+    heroImage: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=80',
+    aboutEyebrow: 'About Our Service',
+    aboutHeading: 'Cultivating Productivity, Culture & Well-Being at Work',
     aboutText:
       'We create corporate interiors that go beyond aesthetics — designing environments that boost productivity, reflect your brand, and support your people’s well-being.',
-    aboutImage: '/assets/I3.jpg',
-    stats: [
-      { number: '40+', label: 'Projects Delivered' },
-      { number: '10+', label: 'Corporate Clients' },
-      { number: '100%', label: 'Client Satisfaction' },
-    ],
-    solutionsEyebrow: 'WHAT WE CAN HELP WITH —',
+    aboutImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80',
+    sidebarTitle: 'Plan Your Workspace',
+    sidebarDesc: 'Speak with our design team about your office, your people and your goals.',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Corporate Interior Solutions',
-    solutionsSubtitle:
+    solutionsLead:
       'From modern offices to collaborative workspaces, we design spaces that work beautifully for your business.',
     solutionsCards: [
       {
         title: 'Office Spaces',
         description: 'Modern, flexible and inspiring work environments.',
-        image: '/assets/I1.jpg',
-        iconType: 'office',
+        image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'office',
       },
       {
         title: 'Meeting & Conference',
         description: 'Spaces for ideas, collaboration and growth.',
-        image: '/assets/I3.jpg',
-        iconType: 'meeting',
+        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'meeting',
       },
       {
         title: 'Reception Areas',
         description: 'Make a lasting first impression.',
-        image: '/assets/craft_stone_vanity.jpg',
-        iconType: 'reception',
+        image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=800&q=80',
+        icon: 'reception',
       },
       {
         title: 'Executive Spaces',
         description: 'Sophisticated spaces for leadership.',
-        image: '/assets/transformations/bedroom_after.jpg',
-        iconType: 'executive',
+        image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+        icon: 'executive',
+      },
+      {
+        title: 'Collaborative Zones',
+        description: 'Open, adaptable areas for teamwork.',
+        image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80&sat=-20',
+        icon: 'collaborative',
       },
     ],
-    challengesEyebrow: 'CORPORATE INTERIOR CHALLENGES',
+    challengesEyebrow: 'Corporate Interior Challenges',
     challengesHeading: 'Turning Workplace Challenges into Opportunities',
-    challengesSubtitle:
+    challengesLead:
       'We understand the unique challenges businesses face — and design solutions that balance functionality, aesthetics and employee well-being.',
-    challengesImage: '/assets/forma_facade.jpg',
+    challengesImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
     challengesList: [
       'Maximizing space for growing teams',
       'Creating a productive and positive work culture',
       'Reflecting your brand identity',
       'Designing for flexibility and future growth',
     ],
-    deliverablesEyebrow: 'WHAT CORPORATE INTERIOR DESIGN INCLUDES',
-    deliverablesHeading: 'A Complete Design Experience',
-    deliverablesSubtitle:
-      'From concept to completion, we handle every detail with precision and care.',
-    deliverablesCards: [
-      { title: 'Space Planning & Layout Optimization', image: '/assets/craft_credenza.jpg' },
-      { title: 'Premium Material Selection', image: '/assets/craft_stone_vanity.jpg' },
-      { title: 'Lighting Design', image: '/assets/panorama_bath.jpg' },
-      { title: 'Custom Furniture & Furnishings', image: '/assets/mitijen/deco3.jpeg' },
-      { title: 'Brand Integration', image: '/assets/mitijen/deco2.jpeg' },
-      { title: 'Turnkey Execution', image: '/assets/craft_joinery.jpg' },
+    includesEyebrow: 'What Corporate Interior Design Includes',
+    includesHeading: 'A Complete Design Experience',
+    includesLead: 'From concept to completion, we handle every detail with precision and care.',
+    includesItems: [
+      { title: 'Space Planning & Layout Optimization', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Premium Material Selection', image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Lighting Design', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Custom Furniture & Furnishings', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Brand Integration', image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Turnkey Execution', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=70' },
     ],
-    ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
+    philosophyEyebrow: 'Workplace Design Philosophy',
+    philosophyHeading: 'Workplaces that perform are designed for people first.',
+    philosophyLead:
+      'Every workplace we design balances functionality, aesthetics and employee well-being, creating environments that support productivity and reflect your culture and brand.',
+    philosophyPoints: [
+      'Productivity through thoughtful space planning',
+      'Culture expressed through design',
+      'Well-being through light, material and comfort',
+    ],
+    faqHeading: 'Your Questions, Answered',
+    faqSubtitle: 'Get quick answers to common queries about our corporate interior design services.',
+    faqImage: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=70',
+    ctaEyebrow: 'Let’s Bring Your Vision to Life',
     ctaHeading: 'Ready to Create an Exceptional Workspace?',
-    ctaSubtitle: 'Partner with Mitjen Interiors for inspiring corporate spaces.',
-    ctaImage: '/assets/hero_cinematic.jpg',
+    ctaSubtitle: 'Partner with Mitijen Interiors for inspiring corporate spaces.',
+    ctaImage: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80',
   },
+
   Commercial: {
-    eyebrow: 'COMMERCIAL INTERIORS',
-    heroHeadline: 'Designing Experiential Spaces That Elevate Brands',
-    heroSubtitle:
-      'Create high-impact, welcoming and revenue-driving commercial environments with Mitjen Interiors.',
-    heroImage: '/assets/CS.jpg',
-    aboutEyebrow: 'ABOUT OUR SERVICE —',
-    aboutHeading: 'Memorable Venues. Brand-Led Design.',
+    eyebrow: 'Commercial Interiors',
+    heroHeadline: 'Captivating Commercial Spaces That Drive Business',
+    heroSubtitle: 'Design bespoke retail, dining, and hospitality venues engineered for customer flow and lasting brand recall.',
+    heroImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80',
+    aboutEyebrow: 'About Our Service',
+    aboutHeading: 'Architectural Distinction for Forward-Thinking Brands',
     aboutText:
-      'We engineer commercial interiors that captivate foot traffic, prolong customer dwell time, and translate brand narratives into immersive spatial architecture.',
-    aboutImage: '/assets/CP.jpg',
-    stats: [
-      { number: '60+', label: 'Venues Crafted' },
-      { number: '25+', label: 'Flagship Brands' },
-      { number: '99%', label: 'On-Time Handover' },
-    ],
-    solutionsEyebrow: 'WHAT WE CAN HELP WITH —',
+      'We shape commercial destinations that balance bold brand storytelling with operational efficiency, customer circulation, and commercial durability.',
+    aboutImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80',
+    sidebarTitle: 'Plan Your Venue',
+    sidebarDesc: 'Consult our commercial studio regarding spatial planning, brand ambiance, and customer flow.',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Commercial Interior Solutions',
-    solutionsSubtitle:
-      'From flagship retail to boutique hospitality, we design spaces that captivate and drive engagement.',
+    solutionsLead:
+      'From flagship retail to boutique hospitality, we engineer environments that captivate customers and drive performance.',
     solutionsCards: [
       {
-        title: 'Retail & Flagships',
-        description: 'High-conversion retail floor plans and display architecture.',
-        image: '/assets/CS.jpg',
-        iconType: 'office',
+        title: 'Retail Experiences',
+        description: 'Engaging retail journeys that maximize foot traffic, dwell time, and merchandise visibility.',
+        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'office',
       },
       {
-        title: 'Cafes & Dining',
-        description: 'Atmospheric hospitality environments that drive repeat visits.',
-        image: '/assets/mitijen/warm1.jpeg',
-        iconType: 'meeting',
+        title: 'Hospitality & Dining',
+        description: 'Atmospheric restaurant and cafe layouts combining kitchen ergonomics with guest intimacy.',
+        image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'meeting',
       },
       {
         title: 'Reception & Foyers',
-        description: 'Engaging arrival zones with intuitive customer circulation.',
-        image: '/assets/mitijen/deco1.jpeg',
-        iconType: 'reception',
+        description: 'Striking arrival zones establishing prestige and intuitive visitor navigation.',
+        image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+        icon: 'reception',
       },
       {
         title: 'Executive Venues',
-        description: 'High-specification turnkey buildouts for ambitious venues.',
-        image: '/assets/PHOTO.jpg',
-        iconType: 'executive',
+        description: 'Sophisticated meeting lounges and private suites for VIP client engagement.',
+        image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+        icon: 'executive',
+      },
+      {
+        title: 'Experience Centers',
+        description: 'Interactive brand showcase zones designed to inspire and convert visitors.',
+        image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
+        icon: 'collaborative',
       },
     ],
-    challengesEyebrow: 'COMMERCIAL INTERIOR CHALLENGES',
-    challengesHeading: 'Turning Commercial Challenges into Opportunities',
-    challengesSubtitle:
+    challengesEyebrow: 'Commercial Interior Challenges',
+    challengesHeading: 'Turning Commercial Challenges into Growth',
+    challengesLead:
       'We understand commercial lease pressures — and engineer spaces that balance visual allure with durable, code-compliant operations.',
-    challengesImage: '/assets/forma_facade.jpg',
+    challengesImage: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1400&q=80',
     challengesList: [
-      'Captivating foot traffic and extending customer dwell time',
-      'Translating brand narrative into tactile materials',
-      'Strict commercial lease, egress & fire code compliance',
-      'Fast-track turnkey execution to minimize rent downtime',
+      'Optimizing guest flow and dwell time without bottlenecks',
+      'Balancing high-traffic material durability with luxury aesthetics',
+      'Aligning spatial atmosphere with distinct brand identity',
+      'Navigating strict commercial codes, MEP, and egress regulations',
     ],
-    deliverablesEyebrow: 'WHAT COMMERCIAL INTERIOR DESIGN INCLUDES',
-    deliverablesHeading: 'A Complete Design Experience',
-    deliverablesSubtitle:
-      'From concept to completion, we handle every detail with precision and care.',
-    deliverablesCards: [
-      { title: 'Circulation & Dwell Time Planning', image: '/assets/craft_credenza.jpg' },
-      { title: 'Commercial Material Selection', image: '/assets/craft_stone_vanity.jpg' },
-      { title: 'Dramatic Architectural Lighting', image: '/assets/panorama_bath.jpg' },
-      { title: 'Bespoke Display Joinery & Counters', image: '/assets/craft_shelving.jpg' },
-      { title: 'Environmental Brand Touchpoints', image: '/assets/mitijen/deco2.jpeg' },
-      { title: 'Turnkey MEP & Build Coordination', image: '/assets/craft_joinery.jpg' },
+    includesEyebrow: 'What Commercial Interior Design Includes',
+    includesHeading: 'A Complete Turnkey Commercial Journey',
+    includesLead: 'From concept to completion, we handle every detail with precision and care.',
+    includesItems: [
+      { title: 'Customer Circulation & Dwell Mapping', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Commercial-Grade Material Specification', image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Architectural & Accent Lighting Design', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Bespoke Joinery & Display Millwork', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Wayfinding & Environmental Branding', image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Turnkey Fit-Out & Statutory Approvals', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=70' },
     ],
-    ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
+    philosophyEyebrow: 'Commercial Design Philosophy',
+    philosophyHeading: 'Spaces that captivate are designed for customer connection.',
+    philosophyLead:
+      'Every commercial interior we create unites brand storytelling with frictionless spatial economics, fostering lasting customer loyalty and tangible business returns.',
+    philosophyPoints: [
+      'Customer experience through intuitive spatial choreography',
+      'Brand resonance expressed in custom material craft',
+      'Operational resilience through commercial-grade engineering',
+    ],
+    faqHeading: 'Your Questions, Answered',
+    faqSubtitle: 'Get quick answers to common queries about our commercial interior architecture and build process.',
+    faqImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=70',
+    ctaEyebrow: 'Bring Your Commercial Concept to Life',
     ctaHeading: 'Ready to Elevate Your Commercial Presence?',
-    ctaSubtitle: 'Partner with Mitjen Interiors for unforgettable brand spaces.',
-    ctaImage: '/assets/CL.jpg',
+    ctaSubtitle: 'Partner with Mitijen Interiors for landmark commercial environments.',
+    ctaImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=80',
   },
+
   Residential: {
-    eyebrow: 'RESIDENTIAL INTERIORS',
-    heroHeadline: 'Bespoke Living Sanctuaries Crafted for Everyday Life',
-    heroSubtitle:
-      'Transform empty spaces into timeless, functional, and deeply personal homes with Mitjen Interiors.',
-    heroImage: '/assets/CL.jpg',
-    aboutEyebrow: 'ABOUT OUR SERVICE —',
-    aboutHeading: 'Quiet Elegance. Living Architecture.',
+    eyebrow: 'Residential Interiors',
+    heroHeadline: 'Timeless Residential Sanctuaries Crafted for Living',
+    heroSubtitle: 'Tailored luxury homes blending serene architectural warmth, bespoke millwork, and refined daily comfort.',
+    heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=80',
+    aboutEyebrow: 'About Our Service',
+    aboutHeading: 'Sanctuaries of Comfort, Proportion & Soul',
     aboutText:
-      'We design private residences that balance serene aesthetics with the physical realities of family living, daylight orientation, and effortless storage.',
-    aboutImage: '/assets/mitijen/Banner3.jpg',
-    stats: [
-      { number: '150+', label: 'Homes Handed Over' },
-      { number: '15+', label: 'Years Durability' },
-      { number: '100%', label: 'Fixed BOQ Guarantee' },
-    ],
-    solutionsEyebrow: 'WHAT WE CAN HELP WITH —',
+      'We craft bespoke homes that reflect your family’s rhythm of life — curating natural textures, balanced proportions, and serene illumination.',
+    aboutImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80',
+    sidebarTitle: 'Plan Your Dream Home',
+    sidebarDesc: 'Schedule a private consultation with our principal residential designers.',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Residential Interior Solutions',
-    solutionsSubtitle:
-      'From complete apartment fit-outs to private luxury villas, we design spaces that elevate everyday living.',
+    solutionsLead:
+      'From full-home renovations to bespoke room transformations, we create spaces tailored to your lifestyle.',
     solutionsCards: [
       {
-        title: 'Living & Social Sanctuaries',
-        description: 'Fluid open-plan living, dining, and custom entertainment walls.',
-        image: '/assets/transformations/lounge_after.jpg',
-        iconType: 'office',
+        title: 'Living & Entertaining Suites',
+        description: 'Expansive, light-filled living spaces designed for effortless relaxation and hosting.',
+        image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'office',
       },
       {
-        title: 'Modular Kitchen Planning',
-        description: 'Ergonomic culinary workspaces with German Blum motion hardware.',
-        image: '/assets/mitijen/deco-kitchen.jpeg',
-        iconType: 'meeting',
+        title: 'Gourmet Kitchens',
+        description: 'Custom architectural culinary spaces featuring integrated joinery and natural stone.',
+        image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80',
+        wide: true,
+        icon: 'meeting',
       },
       {
-        title: 'Master Bedroom Suites',
-        description: 'Acoustically insulated private retreats with bespoke walk-in wardrobes.',
-        image: '/assets/mitijen/bedroom.jpeg',
-        iconType: 'reception',
+        title: 'Master Sanctuaries',
+        description: 'Peaceful private bedroom suites with bespoke dressing rooms and ensuite retreats.',
+        image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80',
+        icon: 'reception',
       },
       {
-        title: 'Executive Joinery',
-        description: 'Single-point architectural execution from masonry to final handover.',
-        image: '/assets/craft_joinery.jpg',
-        iconType: 'executive',
+        title: 'Private Studies & Libraries',
+        description: 'Quiet, acoustically refined home offices designed for sustained creative focus.',
+        image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+        icon: 'executive',
+      },
+      {
+        title: 'Dining Salons',
+        description: 'Intimate gathering spaces defined by sculptural lighting and bespoke dining millwork.',
+        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
+        icon: 'collaborative',
       },
     ],
-    challengesEyebrow: 'RESIDENTIAL INTERIOR CHALLENGES',
-    challengesHeading: 'Turning Living Challenges into Opportunities',
-    challengesSubtitle:
-      'We address homeowner concerns early — from carpentry guesswork to material moisture resistance — with transparent architectural rigor.',
-    challengesImage: '/assets/forma_facade.jpg',
+    challengesEyebrow: 'Residential Interior Challenges',
+    challengesHeading: 'Transforming Living Spaces into Timeless Homes',
+    challengesLead:
+      'We harmonize complex residential constraints — from structural remodels to personal lifestyle preferences — into cohesive elegance.',
+    challengesImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80',
     challengesList: [
-      'Maximizing storage without cluttering visual living sightlines',
-      'Eliminating contractor guesswork and unexpected cost spikes',
-      'Protecting cabinetry from moisture swelling, warping and termites',
-      'Achieving lighting and finish cohesion across different family zones',
+      'Maximizing natural light and architectural sightlines',
+      'Concealing functional clutter with bespoke architectural storage',
+      'Harmonizing contrasting personal tastes into a singular aesthetic',
+      'Selecting timeless, non-toxic, pet-and-child durable materials',
     ],
-    deliverablesEyebrow: 'WHAT RESIDENTIAL INTERIOR DESIGN INCLUDES',
-    deliverablesHeading: 'A Complete Design Experience',
-    deliverablesSubtitle:
-      'From concept to completion, we handle every detail with precision and care.',
-    deliverablesCards: [
-      { title: 'Space Planning & Daylighting Optimization', image: '/assets/craft_credenza.jpg' },
-      { title: 'Marine Ply & Hardwood Selection', image: '/assets/craft_stone_vanity.jpg' },
-      { title: 'Architectural Cove & Mood Lighting', image: '/assets/panorama_bath.jpg' },
-      { title: 'Custom Walk-In Wardrobes & Millwork', image: '/assets/craft_wardrobe.jpg' },
-      { title: 'Tactile Natural Stone & Veneers', image: '/assets/mitijen/warm3.jpeg' },
-      { title: 'Turnkey Civil Execution & Handover', image: '/assets/craft_joinery.jpg' },
+    includesEyebrow: 'What Residential Interior Design Includes',
+    includesHeading: 'An End-to-End Residential Experience',
+    includesLead: 'From concept to completion, we handle every detail with precision and care.',
+    includesItems: [
+      { title: 'Architectural Space Planning & 3D Visuals', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Curated Materials & Palette Curation', image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Custom Joinery & Wardrobe Systems', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Architectural Lighting & Smart Controls', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Art Curation & Soft Furnishings', image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=400&q=70' },
+      { title: 'Turnkey Project Management & Handover', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=70' },
     ],
-    ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
-    ctaHeading: 'Ready to Craft Your Private Living Sanctuary?',
-    ctaSubtitle: 'Partner with Mitjen Interiors for timeless residential architecture.',
-    ctaImage: '/assets/transformations/lounge_after.jpg',
+    philosophyEyebrow: 'Residential Design Philosophy',
+    philosophyHeading: 'Homes of enduring character are designed around life.',
+    philosophyLead:
+      'True luxury is a home that feels calm, tactile, and effortlessly supportive of the moments you cherish with loved ones.',
+    philosophyPoints: [
+      'Daily harmony through intuitive layout zoning',
+      'Sensory warmth through natural, authentic materiality',
+      'Effortless living through concealed, precision engineering',
+    ],
+    faqHeading: 'Your Questions, Answered',
+    faqSubtitle: 'Everything you need to know about designing your home with Mitijen Interiors.',
+    faqImage: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=70',
+    ctaEyebrow: 'Let’s Shape Your Sanctuary',
+    ctaHeading: 'Ready to Design Your Dream Residence?',
+    ctaSubtitle: 'Partner with Mitijen Interiors for extraordinary residential living.',
+    ctaImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=80',
   },
 };
 
-// Line Icon Helper for Solutions Cards
-const SolutionIcon: React.FC<{ type: 'office' | 'meeting' | 'reception' | 'executive' }> = ({ type }) => {
+// SVG Icon Helper for Card Badges
+const CardIcon: React.FC<{ type: SolutionCardItem['icon'] }> = ({ type }) => {
   switch (type) {
     case 'office':
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="3" y="7" width="18" height="13" rx="1" />
+          <path d="M9 7V4h6v3M3 13h18" />
         </svg>
       );
     case 'meeting':
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="8" cy="9" r="3" />
+          <circle cx="17" cy="10" r="2.5" />
+          <path d="M2 20c0-3.5 3-6 6-6s6 2.5 6 6M15 15c3 0 6 1.5 6 5" />
         </svg>
       );
     case 'reception':
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3" />
-          <path d="M9 9h1M9 13h1M9 17h1" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M5 21V5l9-2v18M14 8h5v13M8 8h3M8 12h3M8 16h3" />
         </svg>
       );
     case 'executive':
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M6 3h12l4 6-10 12L2 9z" />
-          <path d="M11 3L8 9l4 12 4-12-3-6" />
-          <path d="M2 9h20" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M6 4h12l3 5-9 11L3 9z" />
+          <path d="M3 9h18M9 4l3 5 3-5" />
         </svg>
       );
+    case 'collaborative':
     default:
-      return null;
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M3 12l9-8 9 8M5 10v10h14V10" />
+        </svg>
+      );
   }
 };
-
-// Botanical Olive/Eucalyptus Branch Sketch SVG
-const BotanicalSketch: React.FC = () => (
-  <svg
-    className="editorial-botanical-svg"
-    viewBox="0 0 120 220"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M60 210C60 160 55 110 75 20"
-      stroke="#A48A65"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      strokeOpacity="0.45"
-    />
-    <path
-      d="M72 40C85 35 95 42 98 48C90 54 80 50 72 40Z"
-      fill="#A48A65"
-      fillOpacity="0.2"
-      stroke="#A48A65"
-      strokeWidth="1"
-      strokeOpacity="0.5"
-    />
-    <path
-      d="M68 65C52 58 45 68 42 75C50 78 62 76 68 65Z"
-      fill="#A48A65"
-      fillOpacity="0.2"
-      stroke="#A48A65"
-      strokeWidth="1"
-      strokeOpacity="0.5"
-    />
-    <path
-      d="M66 95C80 88 90 95 94 102C84 108 74 105 66 95Z"
-      fill="#A48A65"
-      fillOpacity="0.2"
-      stroke="#A48A65"
-      strokeWidth="1"
-      strokeOpacity="0.5"
-    />
-    <path
-      d="M62 125C46 118 38 128 35 135C44 140 56 136 62 125Z"
-      fill="#A48A65"
-      fillOpacity="0.2"
-      stroke="#A48A65"
-      strokeWidth="1"
-      strokeOpacity="0.5"
-    />
-    <path
-      d="M60 155C75 148 85 155 88 162C78 168 68 165 60 155Z"
-      fill="#A48A65"
-      fillOpacity="0.2"
-      stroke="#A48A65"
-      strokeWidth="1"
-      strokeOpacity="0.5"
-    />
-  </svg>
-);
 
 export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, children }) => {
   const { openInquiry } = useInquiry();
   const location = useLocation();
-  const pageRef = useRef<HTMLDivElement>(null);
+  const pageContainerRef = useRef<HTMLDivElement>(null);
 
-  // Accordion state for FAQs (first open by default)
-  const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
+  const category = (data.category as 'Corporate' | 'Commercial' | 'Residential') || 'Corporate';
+  const config = EDITORIAL_CONFIG[category] || EDITORIAL_CONFIG.Corporate;
 
-  const toggleFaq = (idx: number) => {
-    setOpenFaqIndex((prev) => (prev === idx ? -1 : idx));
+  // Accordion state
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(prev => (prev === index ? null : index));
   };
 
-  const config = EDITORIAL_CONFIG[data.category] || EDITORIAL_CONFIG.Corporate;
-
-  // SEO Schemas
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: typeof window !== 'undefined' ? window.location.origin : 'https://mitijeninteriors.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Services',
-        item: `${typeof window !== 'undefined' ? window.location.origin : 'https://mitijeninteriors.com'}/services`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: `${data.category} Interior Design`,
-        item: `${typeof window !== 'undefined' ? window.location.origin : 'https://mitijeninteriors.com'}${data.seo.canonical}`,
-      },
-    ],
-  };
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: data.seo.h1,
-    description: data.seo.description,
-    provider: {
-      '@type': 'Organization',
-      name: 'Mitjen Interiors',
-      url: typeof window !== 'undefined' ? window.location.origin : 'https://mitijeninteriors.com',
-    },
-    serviceType: `${data.category} Interior Architecture & Design`,
-    url: `${typeof window !== 'undefined' ? window.location.origin : 'https://mitijeninteriors.com'}${data.seo.canonical}`,
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: data.faqsSection.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
-
-  // GSAP Scroll Animations
+  // Scroll Reveal Observer matching mitijen-corporate-interior.html
   useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const container = pageContainerRef.current;
+    if (!container) return;
 
-    if (prefersReducedMotion || !pageRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // 1. Hero text & image reveals
-      gsap.fromTo(
-        '.ed-hero-content',
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out', delay: 0.15 }
+    const els = container.querySelectorAll('.rv, .img-rv');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
       );
 
-      gsap.fromTo(
-        '.ed-hero-media',
-        { opacity: 0, scale: 0.98 },
-        { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out', delay: 0.3 }
-      );
+      els.forEach(el => io.observe(el));
+      return () => io.disconnect();
+    } else {
+      els.forEach(el => el.classList.add('in'));
+    }
+  }, [category]);
 
-      // 2. About section reveal
-      gsap.fromTo(
-        '.ed-about-arch-wrap',
-        { opacity: 0, y: 30 },
+  const serviceNavLinks = [
+    { name: 'Corporate Interior Design', shortName: 'Corporate', path: '/services/corporate-interior-design' },
+    { name: 'Residential Interior Design', shortName: 'Residential', path: '/services/residential-interior-design' },
+    { name: 'Commercial Interior Design', shortName: 'Commercial', path: '/services/commercial-interior-design' },
+    { name: 'Turnkey Execution', shortName: 'Turnkey', path: '/services#turnkey' },
+  ];
+
+  // Pull FAQs from servicesData with fallback
+  const faqsList = data.faqsSection?.faqs && data.faqsSection.faqs.length > 0
+    ? data.faqsSection.faqs.slice(0, 5)
+    : [
         {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.ed-about-section',
-            start: 'top 80%',
-            once: true,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.ed-about-content',
-        { opacity: 0, y: 30 },
+          question: `What is ${data.category.toLowerCase()} interior design?`,
+          answer: `${data.category} interior design is the meticulous planning, spatial styling, and technical execution of spaces that elevate well-being, optimize lifestyle or workflow, and reflect timeless architectural elegance.`,
+        },
         {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          delay: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.ed-about-section',
-            start: 'top 80%',
-            once: true,
-          },
-        }
-      );
-
-      // 3. Solutions cards stagger
-      const cards = gsap.utils.toArray('.ed-solution-card');
-      if (cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            stagger: 0.12,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: '.ed-solutions-grid',
-              start: 'top 82%',
-              once: true,
-            },
-          }
-        );
-      }
-
-      // 4. Challenges section reveal
-      gsap.fromTo(
-        '.ed-challenge-img-wrap',
-        { opacity: 0, x: -30 },
+          question: 'Do you handle end-to-end turnkey project execution?',
+          answer: 'Yes. We provide complete turnkey services from architectural concept drafting and 3D visualization to precision factory joinery, MEP engineering, statutory approvals, and final site handover.',
+        },
         {
-          opacity: 1,
-          x: 0,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.ed-challenges-section',
-            start: 'top 80%',
-            once: true,
-          },
-        }
-      );
-
-      const challengeItems = gsap.utils.toArray('.ed-challenge-item');
-      if (challengeItems.length > 0) {
-        gsap.fromTo(
-          challengeItems,
-          { opacity: 0, x: 20 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: '.ed-challenges-list',
-              start: 'top 82%',
-              once: true,
-            },
-          }
-        );
-      }
-
-      // 5. Deliverables 2x3 grid stagger
-      const delivCards = gsap.utils.toArray('.ed-deliverable-card');
-      if (delivCards.length > 0) {
-        gsap.fromTo(
-          delivCards,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: '.ed-deliverables-grid',
-              start: 'top 82%',
-              once: true,
-            },
-          }
-        );
-      }
-
-      // 6. Final CTA banner reveal
-      gsap.fromTo(
-        '.ed-final-cta-banner',
-        { opacity: 0, y: 35 },
+          question: 'How long does a typical project take from start to handover?',
+          answer: 'Project durations range from 8 to 14 weeks depending on the spatial footprint, civil scope, and customization level. We provide a milestone-locked project Gantt chart before commencement.',
+        },
         {
-          opacity: 1,
-          y: 0,
-          duration: 1.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.ed-final-cta-section',
-            start: 'top 82%',
-            once: true,
-          },
-        }
-      );
-    }, pageRef);
-
-    return () => ctx.revert();
-  }, [data.category]);
+          question: 'Can you design within a predetermined budget?',
+          answer: 'Absolutely. We formulate transparent, itemized Bill of Quantities (BOQ) with zero hidden mid-project cost escalations, tailoring finishes to achieve your aesthetic vision within budget.',
+        },
+        {
+          question: 'Do you manage on-site contractor coordination and quality audits?',
+          answer: 'Yes. Our dedicated site architects and project managers conduct rigorous multi-stage quality checks across carpentry, electrical, plumbing, HVAC, and paint finishing.',
+        },
+      ];
 
   return (
-    <article className="editorial-service-page" ref={pageRef} itemScope itemType="https://schema.org/ItemPage">
+    <div ref={pageContainerRef} className="mitijen-service-page">
       <SEO
         title={data.seo.title}
         description={data.seo.description}
         canonical={data.seo.canonical}
         ogImage={data.seo.ogImage}
-        schema={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
 
       {/* ====================================================================
-          FLOATING DISCIPLINE SWITCHER STRIP
+          02 HERO SECTION
           ==================================================================== */}
-      <div className="ed-discipline-pill-bar" aria-label="Interior Disciplines">
-        <span className="ed-discipline-label">PRACTICE:</span>
-        <div className="ed-discipline-links">
-          <Link
-            to="/services/corporate-interior-design"
-            className={`ed-discipline-pill ${location.pathname.includes('corporate') ? 'is-active' : ''}`}
-          >
-            Corporate Workspaces
-          </Link>
-          <Link
-            to="/services/commercial-interior-design"
-            className={`ed-discipline-pill ${location.pathname.includes('commercial') ? 'is-active' : ''}`}
-          >
-            Commercial Venues
-          </Link>
-          <Link
-            to="/services/residential-interior-design"
-            className={`ed-discipline-pill ${location.pathname.includes('residential') ? 'is-active' : ''}`}
-          >
-            Residential Sanctuaries
-          </Link>
+      <section className="hero">
+        <div className="bg photo">
+          <img
+            src={config.heroImage}
+            alt={config.heroHeadline}
+            fetchPriority="high"
+          />
+        </div>
+        <div className="wrap">
+          <div className="hero-copy">
+            <span className="eyebrow rv">{config.eyebrow}</span>
+            <h1 className="rv" style={{ ['--d' as string]: '0.1s' }}>
+              {config.heroHeadline}
+            </h1>
+            <p className="rv" style={{ ['--d' as string]: '0.2s' }}>
+              {config.heroSubtitle}
+            </p>
+            <button
+              type="button"
+              onClick={() => openInquiry(`${data.category} — Hero Consultation`)}
+              className="btn rv"
+              style={{ ['--d' as string]: '0.3s' }}
+            >
+              Consult Our Experts
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M4 12h16M14 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="scroll">
+          <i />
+          Scroll to explore
+        </div>
+      </section>
+
+      {/* ====================================================================
+          03 INTRO SECTION
+          ==================================================================== */}
+      <section className="intro">
+        <div className="wrap grid">
+          <div className="arch-wrap rv">
+            <div className="arch photo">
+              <img
+                src={config.aboutImage}
+                alt={config.aboutHeading}
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div>
+            <span className="eyebrow rv">{config.aboutEyebrow}</span>
+            <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+              {config.aboutHeading}
+            </h2>
+            <p className="lead rv" style={{ ['--d' as string]: '0.16s' }}>
+              {config.aboutText}
+            </p>
+            <div className="rule rv" />
+            <button
+              type="button"
+              onClick={() => openInquiry(`${data.category} — About Section Consultation`)}
+              className="btn rv"
+            >
+              Book a Consultation
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M4 12h16M14 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          04 MAIN LAYOUT WITH SIDEBAR & WHAT WE CAN HELP WITH
+          ==================================================================== */}
+      <div className="wrap main-layout">
+        {/* Desktop Sticky Sidebar */}
+        <aside className="side" aria-label="Services Navigation">
+          <nav className="svc-nav" aria-label="Our services">
+            <h4>Our Services</h4>
+            {serviceNavLinks.map(link => {
+              const isCurrent = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  className={isCurrent ? 'is-active' : ''}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="consult" id="contact">
+            <h3>{config.sidebarTitle}</h3>
+            <p>{config.sidebarDesc}</p>
+            <button
+              type="button"
+              onClick={() => openInquiry(`${data.category} — Sidebar Consultation`)}
+              className="btn"
+            >
+              Book a Consult
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M4 12h16M14 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </aside>
+
+        <div>
+          {/* Mobile Sticky Navigation Strip */}
+          <nav className="mob-nav" aria-label="Our services">
+            <ul>
+              {serviceNavLinks.map(link => {
+                const isCurrent = location.pathname === link.path;
+                return (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      aria-current={isCurrent ? 'page' : undefined}
+                      className={isCurrent ? 'is-active' : ''}
+                    >
+                      {link.shortName}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Section 05: What We Can Help With */}
+          <section className="help">
+            <div className="sec-head">
+              <div>
+                <span className="eyebrow rv">{config.solutionsEyebrow}</span>
+                <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+                  {config.solutionsHeading}
+                </h2>
+              </div>
+              <p className="lead rv" style={{ ['--d' as string]: '0.16s' }}>
+                {config.solutionsLead}
+              </p>
+            </div>
+
+            <div className="cards">
+              {config.solutionsCards.map((card, idx) => (
+                <article
+                  key={card.title}
+                  className={`card ${card.wide ? 'wide' : ''} rv`}
+                  style={{ ['--d' as string]: `${idx * 0.08}s` }}
+                >
+                  <div className="photo">
+                    <img src={card.image} alt={card.title} loading="lazy" />
+                  </div>
+                  <div className="body">
+                    <div className="ico" aria-hidden="true">
+                      <CardIcon type={card.icon} />
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Mobile Consultation Banner */}
+            <div className="consult mob-consult">
+              <h3>{config.sidebarTitle}</h3>
+              <p>{config.sidebarDesc}</p>
+              <button
+                type="button"
+                onClick={() => openInquiry(`${data.category} — Mobile Banner Consultation`)}
+                className="btn"
+              >
+                Book a Consult
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d="M4 12h16M14 6l6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+          </section>
         </div>
       </div>
 
       {/* ====================================================================
-          SECTION 02 — SERVICE HERO
+          06 CHALLENGES SECTION
           ==================================================================== */}
-      <section className="ed-hero-section" aria-label="Service Hero">
-        <div className="ed-hero-container">
-          <div className="ed-hero-content">
-            <span className="ed-eyebrow">{config.eyebrow}</span>
-            <h1 className="ed-hero-headline">{config.heroHeadline}</h1>
-            <p className="ed-hero-subtitle">{config.heroSubtitle}</p>
-
-            <div className="ed-hero-actions">
-              <button
-                type="button"
-                onClick={() => openInquiry(`${data.category} — Hero Consultation`)}
-                className="ed-btn-burgundy hover-lift"
-              >
-                <span>Consult Our Experts</span>
-                <span className="ed-btn-arrow" aria-hidden="true">→</span>
-              </button>
-            </div>
-
-            <div className="ed-scroll-indicator" aria-hidden="true">
-              <span className="ed-scroll-icon">↓</span>
-              <span className="ed-scroll-text">Scroll to explore</span>
-            </div>
-          </div>
-
-          <div className="ed-hero-media">
-            <img
-              src={config.heroImage}
-              alt={`${config.heroHeadline} — Mitjen Interiors`}
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 03 — SERVICE INTRODUCTION ("ABOUT OUR SERVICE")
-          ==================================================================== */}
-      <section className="ed-about-section" aria-label="About Our Service">
-        <div className="ed-about-container">
-          {/* Left Column: Arched Architectural Photo with Concentric Outline Rings */}
-          <div className="ed-about-arch-wrap">
-            <div className="ed-arch-concentric-rings" aria-hidden="true">
-              <span className="ed-ring ed-ring-1" />
-              <span className="ed-ring ed-ring-2" />
-            </div>
-            <div className="ed-arch-photo-frame">
-              <img
-                src={config.aboutImage}
-                alt={`${config.aboutHeading} — Mitjen Interiors`}
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          {/* Right Column: Editorial Text & 3-Column Stats */}
-          <div className="ed-about-content">
-            <span className="ed-eyebrow">{config.aboutEyebrow}</span>
-            <h2 className="ed-about-heading">{config.aboutHeading}</h2>
-            <p className="ed-about-paragraph">{config.aboutText}</p>
-
-            <div className="ed-stats-row">
-              {config.stats.map((st, i) => (
-                <div key={st.label} className="ed-stat-col">
-                  {i > 0 && <span className="ed-stat-divider" aria-hidden="true" />}
-                  <span className="ed-stat-number">{st.number}</span>
-                  <span className="ed-stat-label">{st.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 04 — WHAT WE CAN HELP WITH (SOLUTIONS GRID)
-          ==================================================================== */}
-      <section className="ed-solutions-section" aria-label="Comprehensive Interior Solutions">
-        <div className="ed-section-container">
-          <div className="ed-solutions-header">
-            <div className="ed-solutions-title-col">
-              <span className="ed-eyebrow">{config.solutionsEyebrow}</span>
-              <h2 className="ed-solutions-heading">{config.solutionsHeading}</h2>
-            </div>
-            <div className="ed-solutions-desc-col">
-              <p className="ed-solutions-subtitle">{config.solutionsSubtitle}</p>
-            </div>
-          </div>
-
-          {/* 4 Cards in a Row */}
-          <div className="ed-solutions-grid">
-            {config.solutionsCards.map((card) => (
-              <div key={card.title} className="ed-solution-card hover-lift">
-                <div className="ed-solution-img-wrap">
-                  <img src={card.image} alt={card.title} loading="lazy" />
-                  <div className="ed-solution-badge" aria-hidden="true">
-                    <SolutionIcon type={card.iconType} />
-                  </div>
-                </div>
-                <div className="ed-solution-body">
-                  <h3 className="ed-solution-title">{card.title}</h3>
-                  <p className="ed-solution-desc">{card.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 05 — CORPORATE INTERIOR CHALLENGES
-          ==================================================================== */}
-      <section className="ed-challenges-section" aria-label="Overcoming Interior Challenges">
-        <div className="ed-section-container">
-          <div className="ed-challenges-layout">
-            {/* Left: Asymmetric Curved Glass Facade Image */}
-            <div className="ed-challenge-img-wrap">
+      <section className="challenges">
+        <div className="ch-grid">
+          <div className="ch-img img-rv">
+            <div className="photo">
               <img
                 src={config.challengesImage}
-                alt={`${config.challengesHeading} — Architecture`}
+                alt={config.challengesHeading}
                 loading="lazy"
               />
             </div>
-
-            {/* Right: Challenges Content & Numbered List */}
-            <div className="ed-challenge-content">
-              <span className="ed-eyebrow">{config.challengesEyebrow}</span>
-              <h2 className="ed-challenge-heading">{config.challengesHeading}</h2>
-              <p className="ed-challenge-subtitle">{config.challengesSubtitle}</p>
-
-              <div className="ed-challenges-list">
-                {config.challengesList.map((ch, idx) => (
-                  <div key={ch} className="ed-challenge-item">
-                    <span className="ed-challenge-num">{idx + 1}</span>
-                    <span className="ed-challenge-text">{ch}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          </div>
+          <div className="ch-copy">
+            <span className="eyebrow rv">{config.challengesEyebrow}</span>
+            <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+              {config.challengesHeading}
+            </h2>
+            <p className="lead rv" style={{ ['--d' as string]: '0.16s' }}>
+              {config.challengesLead}
+            </p>
+            <ol className="ol rv">
+              {config.challengesList.map((item, idx) => (
+                <li key={item}>
+                  <b>0{idx + 1}</b>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
       {/* ====================================================================
-          SECTION 06 — WHAT THE DESIGN INCLUDES (2x3 CATALOG GRID)
+          07 WHAT IT INCLUDES SECTION
           ==================================================================== */}
-      <section className="ed-deliverables-section" id="deliverables" aria-label="A Complete Design Experience">
-        <div className="ed-section-container">
-          <div className="ed-deliverables-layout">
-            {/* Left Sticky Intro Column */}
-            <div className="ed-deliverables-intro">
-              <span className="ed-eyebrow">{config.deliverablesEyebrow}</span>
-              <h2 className="ed-deliverables-heading">{config.deliverablesHeading}</h2>
-              <p className="ed-deliverables-subtitle">{config.deliverablesSubtitle}</p>
+      <section className="includes">
+        <div className="wrap inc-grid">
+          <div>
+            <span className="eyebrow rv">{config.includesEyebrow}</span>
+            <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+              {config.includesHeading}
+            </h2>
+            <p className="lead rv" style={{ ['--d' as string]: '0.16s' }}>
+              {config.includesLead}
+            </p>
+            <button
+              type="button"
+              onClick={() => openInquiry(`${data.category} — Includes Section Consultation`)}
+              className="btn rv"
+            >
+              Start Your Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M4 12h16M14 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+          <ul className="cat rv">
+            {config.includesItems.map(item => (
+              <li key={item.title}>
+                <div>
+                  <h3>{item.title}</h3>
+                </div>
+                <div className="photo">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-              <button
-                type="button"
-                onClick={() => openInquiry(`${data.category} — Complete Design Experience`)}
-                className="ed-btn-burgundy hover-lift"
-              >
-                <span>Start Your Project</span>
-                <span className="ed-btn-arrow" aria-hidden="true">→</span>
-              </button>
-            </div>
-
-            {/* Right 2x3 Grid of 6 Thumbnail Cards */}
-            <div className="ed-deliverables-grid">
-              {config.deliverablesCards.map((deliv) => (
-                <div key={deliv.title} className="ed-deliverable-card hover-lift">
-                  <div className="ed-deliverable-thumb-wrap">
-                    <img src={deliv.image} alt={deliv.title} loading="lazy" />
-                  </div>
-                  <h3 className="ed-deliverable-title">{deliv.title}</h3>
+      {/* ====================================================================
+          08 WORKPLACE DESIGN PHILOSOPHY SECTION
+          ==================================================================== */}
+      <section className="philo">
+        <div className="wrap">
+          <span className="eyebrow rv">{config.philosophyEyebrow}</span>
+          <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+            {config.philosophyHeading}
+          </h2>
+          <div className="cols">
+            <p className="rv">{config.philosophyLead}</p>
+            <div className="pr rv" style={{ ['--d' as string]: '0.1s' }}>
+              {config.philosophyPoints.map((point, idx) => (
+                <div key={point}>
+                  <b>0{idx + 1}</b>
+                  <span>{point}</span>
                 </div>
               ))}
             </div>
@@ -820,90 +740,93 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 07 — HOW IT WORKS (3 Easy Steps to Get Interior Design)
+          09 HOW IT WORKS SECTION (Seamless Integration)
           ==================================================================== */}
       {children ? children : <HowItWorksSection />}
 
       {/* ====================================================================
-          SECTION 08 — FREQUENTLY ASKED QUESTIONS
+          10 FREQUENTLY ASKED QUESTIONS SECTION
           ==================================================================== */}
-      <section className="ed-faq-section" id="faq" aria-label="Frequently Asked Questions">
-        <div className="ed-section-container">
-          <div className="ed-faq-layout">
-            {/* Left Header with Botanical Sketch Accent */}
-            <div className="ed-faq-left">
-              <BotanicalSketch />
-              <div className="ed-faq-header-wrap">
-                <span className="ed-eyebrow">FREQUENTLY ASKED QUESTIONS</span>
-                <h2 className="ed-faq-heading">Your Questions, Answered</h2>
-                <p className="ed-faq-desc">
-                  Get quick answers to common queries about our {data.category.toLowerCase()} interior design services.
-                </p>
-              </div>
+      <section className="faq">
+        <div className="wrap faq-grid">
+          <div>
+            <span className="eyebrow rv">Frequently Asked Questions</span>
+            <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+              {config.faqHeading}
+            </h2>
+            <p className="lead rv" style={{ ['--d' as string]: '0.16s' }}>
+              {config.faqSubtitle}
+            </p>
+            <div className="photo img-rv">
+              <img src={config.faqImage} alt="Architectural space" loading="lazy" />
             </div>
-
-            {/* Right Accordion List */}
-            <div className="ed-faq-right">
-              <div className="ed-accordion-list">
-                {data.faqsSection.faqs.slice(0, 5).map((faq, idx) => {
-                  const isOpen = openFaqIndex === idx;
-                  return (
-                    <div key={faq.question} className={`ed-accordion-item ${isOpen ? 'is-open' : ''}`}>
-                      <button
-                        type="button"
-                        className="ed-accordion-btn"
-                        onClick={() => toggleFaq(idx)}
-                        aria-expanded={isOpen}
-                      >
-                        <span className="ed-accordion-question">{faq.question}</span>
-                        <span className="ed-accordion-icon" aria-hidden="true">
-                          {isOpen ? '—' : '+'}
-                        </span>
-                      </button>
-
-                      <div className="ed-accordion-panel" style={{ display: isOpen ? 'block' : 'none' }}>
-                        <p className="ed-accordion-answer">{faq.answer}</p>
-                      </div>
+          </div>
+          <div className="acc rv" id="acc">
+            {faqsList.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
+              const buttonId = `faq-btn-${idx}`;
+              const panelId = `faq-panel-${idx}`;
+              return (
+                <div key={faq.question} className="item">
+                  <h3>
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      id={buttonId}
+                      onClick={() => toggleFaq(idx)}
+                    >
+                      <span>{faq.question}</span>
+                      <span className="pm" aria-hidden="true" />
+                    </button>
+                  </h3>
+                  <div
+                    className="panel"
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                  >
+                    <div>
+                      <p>{faq.answer}</p>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ====================================================================
-          SECTION 09 — FINAL CONSULTATION CTA BANNER
+          11 FINAL CONSULTATION CTA BANNER
           ==================================================================== */}
-      <section className="ed-final-cta-section" aria-label="Start Your Consultation">
-        <div className="ed-section-container">
-          <div className="ed-final-cta-banner">
-            <div className="ed-final-cta-content">
-              <span className="ed-final-cta-eyebrow">{config.ctaEyebrow}</span>
-              <h2 className="ed-final-cta-heading">{config.ctaHeading}</h2>
-              <p className="ed-final-cta-desc">{config.ctaSubtitle}</p>
-
-              <button
-                type="button"
-                onClick={() => openInquiry(`${data.category} — Final Banner Consultation`)}
-                className="ed-btn-white hover-lift"
-              >
-                <span>Book a Consultation</span>
-                <span className="ed-btn-arrow" aria-hidden="true">→</span>
-              </button>
-            </div>
-
-            <div className="ed-final-cta-media">
-              <img
-                src={config.ctaImage}
-                alt={`${config.ctaHeading} — Mitjen Interiors`}
-                loading="lazy"
-              />
-            </div>
-          </div>
+      <section className="cta" id="contact-final">
+        <div className="bg photo">
+          <img src={config.ctaImage} alt="" loading="lazy" />
+        </div>
+        <div className="wrap">
+          <span className="eyebrow rv">{config.ctaEyebrow}</span>
+          <h2 className="rv" style={{ ['--d' as string]: '0.08s' }}>
+            {config.ctaHeading}
+          </h2>
+          <p className="rv" style={{ ['--d' as string]: '0.16s' }}>
+            {config.ctaSubtitle}
+          </p>
+          <button
+            type="button"
+            onClick={() => openInquiry(`${data.category} — Final CTA Consultation`)}
+            className="btn light rv"
+            style={{ ['--d' as string]: '0.24s' }}
+          >
+            Book a Consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <path d="M4 12h16M14 6l6 6-6 6" />
+            </svg>
+          </button>
         </div>
       </section>
-    </article>
+    </div>
   );
 };
+
+export default ServicePageTemplate;
