@@ -192,32 +192,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 }
 
-/* Large outlined number: 52px, rounded geometric sans, thin 1.5px pale-gold stroke */
+/* Large outlined number: 46px, rounded geometric sans, thin 1.5px pale-gold stroke */
 .hiw-card-number {
   font-family: 'Poppins', 'Inter', 'Space Grotesk', var(--font-architectural, sans-serif);
-  font-size: 50px;
+  font-size: clamp(40px, 3vw, 46px);
   font-weight: 700;
   line-height: 1;
   display: inline-block;
   color: transparent;
   -webkit-text-stroke: 1.5px #e6d3ab;
+  flex-shrink: 0;
   transition: -webkit-text-stroke 0.4s ease;
 }
 
 .hiw-stage-pill {
   font-family: var(--font-architectural, sans-serif);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--ed-muted-gold, #c19a5b);
   background: rgba(193, 154, 91, 0.1);
   border: 1px solid rgba(193, 154, 91, 0.22);
   padding: 4px 10px;
   border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.4s ease;
 }
 
@@ -290,6 +295,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   transition: border-color 0.4s ease;
 }
 
@@ -297,8 +304,10 @@
   font-family: var(--font-architectural, sans-serif);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #777168;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.4s ease;
 }
 
@@ -306,8 +315,10 @@
   font-family: var(--font-architectural, sans-serif);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--ed-muted-gold, #c19a5b);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.4s ease;
 }
 
@@ -385,10 +396,10 @@
    - Tablet: cards go 2 per row
    - Mobile: stack 1 per column with intro on top
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .hiw-container {
     flex-direction: column;
-    gap: 36px;
+    gap: 32px;
   }
 
   .hiw-intro-col {
@@ -396,6 +407,13 @@
     max-width: 100%;
   }
 
+  .hiw-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 940px) {
   .hiw-cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;

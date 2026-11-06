@@ -71,7 +71,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     bannerNote: 'Designing corporate workplaces that boost productivity, reflect executive prestige, and support your people daily.',
     bannerHeadline1: 'LET’S DESIGN',
     bannerHeadline2: 'WORKSPACES THAT INSPIRE',
-    aboutEyebrow: 'About Our Service ————',
+    aboutEyebrow: 'About Our Service',
     aboutHeading: 'Professional Spaces. Purposeful Design.',
     aboutText: 'We create corporate interiors that go beyond aesthetics — designing environments that boost productivity, reflect your brand, and support your people’s daily well-being.',
     aboutImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80',
@@ -80,7 +80,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { value: '10+', label: 'Corporate Clients' },
       { value: '100%', label: 'Client Satisfaction' },
     ],
-    solutionsEyebrow: 'What We Can Help With ————',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Corporate Interior Solutions',
     solutionsLead: 'From high-density collaborative open floors to private C-suite executive chambers, we architect workspaces that foster focus, collaboration, and talent retention.',
     solutionsCards: [
@@ -133,7 +133,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
         icon: 'executive',
       },
     ],
-    challengesEyebrow: 'Corporate Interior Challenges ————',
+    challengesEyebrow: 'Corporate Interior Challenges',
     challengesHeading: 'Turning Workplace Challenges into Opportunities',
     challengesLead: 'We understand the complex spatial dilemmas businesses face — and architect solutions balancing density, acoustic peace, and brand character.',
     challengesImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
@@ -143,7 +143,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       'Reflecting authentic brand prestige and values to visiting clients',
       'Designing for agile future scaling and flexible hybrid work models',
     ],
-    includesEyebrow: 'What Corporate Interior Design Includes ————',
+    includesEyebrow: 'What Corporate Interior Design Includes',
     includesHeading: 'A Complete Design Experience',
     includesLead: 'From initial spatial planning and 3D visualization to turnkey factory fit-out, we manage every milestone with precision.',
     includesItems: [
@@ -161,7 +161,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { question: 'Can you design and execute strictly within our approved budget?', answer: 'Yes. We provide complete transparent Bill of Quantities (BOQ) with zero mid-project cost escalations, locking in specifications prior to commencement.' },
       { question: 'Do you manage HVAC, electrical, and statutory compliance approvals?', answer: 'Yes. Our turnkey scope encompasses all mechanical, electrical, plumbing, fire-life-safety codes, and building management authority clearances.' },
     ],
-    ctaEyebrow: 'Let’s Bring Your Vision to Life ————',
+    ctaEyebrow: 'Let’s Bring Your Vision to Life',
     ctaHeading: 'Ready to Create an Exceptional Workspace?',
     ctaSubtitle: 'Partner with Mitijen Interiors for inspiring corporate environments engineered for growth.',
     ctaImage: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80',
@@ -176,7 +176,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     bannerNote: 'Crafting experiential flagships, showrooms and dining environments engineered to convert footfall into brand advocates.',
     bannerHeadline1: 'EXPERIENTIAL',
     bannerHeadline2: 'COMMERCIAL VENUES',
-    aboutEyebrow: 'About Our Service ————',
+    aboutEyebrow: 'About Our Service',
     aboutHeading: 'Architectural Distinction for Forward-Thinking Brands',
     aboutText: 'We shape commercial destinations that balance bold brand storytelling with operational efficiency, customer circulation, and commercial-grade durability.',
     aboutImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80',
@@ -185,7 +185,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { value: '15+', label: 'Brand Partnerships' },
       { value: '100%', label: 'Milestone Delivery' },
     ],
-    solutionsEyebrow: 'What We Can Help With ————',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Commercial Interior Solutions',
     solutionsLead: 'From flagship retail boutiques to high-energy dining spaces, we engineer environments that captivate customers and drive commercial performance.',
     solutionsCards: [
@@ -238,7 +238,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
         icon: 'reception',
       },
     ],
-    challengesEyebrow: 'Commercial Interior Challenges ————',
+    challengesEyebrow: 'Commercial Interior Challenges',
     challengesHeading: 'Turning Commercial Challenges into Growth',
     challengesLead: 'We understand commercial lease pressures and footfall demands — engineering spaces that balance visual allure with durable, code-compliant operations.',
     challengesImage: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1400&q=80',
@@ -248,7 +248,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       'Aligning spatial atmosphere with distinct commercial brand identity',
       'Navigating strict commercial codes, MEP infrastructure, and egress rules',
     ],
-    includesEyebrow: 'What Commercial Interior Design Includes ————',
+    includesEyebrow: 'What Commercial Interior Design Includes',
     includesHeading: 'A Complete Turnkey Commercial Journey',
     includesLead: 'From concept design and 3D visual walkthroughs to bespoke shopfitting and turnkey handover.',
     includesItems: [
@@ -266,7 +266,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { question: 'Can you work around strict commercial lease start dates?', answer: 'Yes. We build fast-track delivery schedules and fabricate joinery off-site in our advanced CNC workshop to minimize on-site duration and meet lease rent-free deadlines.' },
       { question: 'Do you offer maintenance and post-handover warranty support?', answer: 'All Mitijen commercial installations carry comprehensive defects-liability warranty support with dedicated aftercare service.' },
     ],
-    ctaEyebrow: 'Bring Your Commercial Concept to Life ————',
+    ctaEyebrow: 'Bring Your Commercial Concept to Life',
     ctaHeading: 'Ready to Elevate Your Commercial Presence?',
     ctaSubtitle: 'Partner with Mitijen Interiors for landmark commercial environments that convert customers into advocates.',
     ctaImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1800&q=80',
@@ -281,7 +281,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     bannerNote: 'Tailored luxury homes blending serene architectural warmth, bespoke joinery, and refined daily comfort for discerning families.',
     bannerHeadline1: 'TIMELESS HOMES',
     bannerHeadline2: 'CRAFTED FOR LIVING',
-    aboutEyebrow: 'About Our Service ————',
+    aboutEyebrow: 'About Our Service',
     aboutHeading: 'Sanctuaries of Comfort, Proportion & Soul',
     aboutText: 'We craft bespoke homes that reflect your family’s rhythm of life — curating natural textures, balanced proportions, and serene illumination.',
     aboutImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80',
@@ -290,7 +290,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { value: '15+', label: 'Design Awards' },
       { value: '100%', label: 'Bespoke Craftsmanship' },
     ],
-    solutionsEyebrow: 'What We Can Help With ————',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Residential Interior Solutions',
     solutionsLead: 'From full-home renovations to bespoke room transformations, we create spaces tailored to your daily rituals, private comfort, and gracious entertaining.',
     solutionsCards: [
@@ -343,7 +343,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
         icon: 'study',
       },
     ],
-    challengesEyebrow: 'Residential Interior Challenges ————',
+    challengesEyebrow: 'Residential Interior Challenges',
     challengesHeading: 'Transforming Living Spaces into Timeless Homes',
     challengesLead: 'We harmonize complex residential constraints — from structural remodels to personal lifestyle preferences — into cohesive elegance.',
     challengesImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80',
@@ -353,7 +353,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       'Harmonizing contrasting personal tastes into a singular, timeless aesthetic',
       'Selecting non-toxic, pet-and-child durable materials that age gracefully',
     ],
-    includesEyebrow: 'What Residential Interior Design Includes ————',
+    includesEyebrow: 'What Residential Interior Design Includes',
     includesHeading: 'An End-to-End Residential Experience',
     includesLead: 'From initial architectural sketches and 3D visual walkthroughs to precision factory joinery, civil works, and final white-glove styling.',
     includesItems: [
@@ -371,7 +371,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { question: 'How do you prevent budget overruns during home renovations?', answer: 'We deliver an all-inclusive, itemized Bill of Quantities (BOQ) with guaranteed pricing before work starts, eliminating unexpected mid-project cost escalations.' },
       { question: 'How long does a full home interior project typically take?', answer: 'Full residential transformations typically require 8 to 14 weeks from 3D sign-off to move-in day, backed by milestone-locked schedules.' },
     ],
-    ctaEyebrow: 'Let’s Shape Your Sanctuary ————',
+    ctaEyebrow: 'Let’s Shape Your Sanctuary',
     ctaHeading: 'Ready to Design Your Dream Residence?',
     ctaSubtitle: 'Partner with Mitijen Interiors for extraordinary residential living crafted around your lifestyle.',
     ctaImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=80',
@@ -386,7 +386,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
     bannerNote: 'Single-point construction accountability backed by our advanced CNC manufacturing facility and defect liability warranty.',
     bannerHeadline1: 'END-TO-END',
     bannerHeadline2: 'TURNKEY FIT-OUT',
-    aboutEyebrow: 'About Our Service ————',
+    aboutEyebrow: 'About Our Service',
     aboutHeading: 'Flawless Craftsmanship. Single-Point Accountability.',
     aboutText: 'We orchestrate civil engineering, MEP systems, off-site CNC joinery fabrication, and final white-glove styling under one unified, transparent management process.',
     aboutImage: '/assets/craft_joinery.jpg',
@@ -395,7 +395,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { value: '0.0%', label: 'Cost Escalation' },
       { value: '10 Yr', label: 'Hardware Warranty' },
     ],
-    solutionsEyebrow: 'What We Can Help With ————',
+    solutionsEyebrow: 'What We Can Help With',
     solutionsHeading: 'Comprehensive Turnkey Execution Solutions',
     solutionsLead: 'Eliminate contractor disputes and timeline delays. Our in-house engineering and fabrication teams deliver complete turnkey precision from foundation to finishes.',
     solutionsCards: [
@@ -448,7 +448,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
         icon: 'reception',
       },
     ],
-    challengesEyebrow: 'Turnkey Fit-Out Challenges ————',
+    challengesEyebrow: 'Turnkey Fit-Out Challenges',
     challengesHeading: 'Turning Execution Risks into Predictable Certainty',
     challengesLead: 'We eliminate the traditional friction of multiple uncoordinated subcontractors with our unified, in-house turnkey delivery system.',
     challengesImage: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1400&q=80',
@@ -458,7 +458,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       'Ensuring strict adherence to civil, electrical, and HVAC safety standards',
       'Delivering move-in ready handover with complete defects-liability protection',
     ],
-    includesEyebrow: 'What Turnkey Execution Includes ————',
+    includesEyebrow: 'What Turnkey Execution Includes',
     includesHeading: 'A Seamless Construction-to-Handover Journey',
     includesLead: 'Complete single-point project accountability backed by dedicated site engineers and quality audit milestones.',
     includesItems: [
@@ -476,7 +476,7 @@ const DISCIPLINE_DATA: Record<ServiceDiscipline, DisciplineContent> = {
       { question: 'How do you report site progress during construction?', answer: 'You receive weekly scheduled photo/video walkthroughs, milestone checklists, and direct communication with your dedicated site project manager.' },
       { question: 'What warranty is provided upon project handover?', answer: 'We provide a 10-year warranty on all structural hardware and a 1-year comprehensive defects-liability warranty covering all workmanship.' },
     ],
-    ctaEyebrow: 'Start Your Turnkey Project ————',
+    ctaEyebrow: 'Start Your Turnkey Project',
     ctaHeading: 'Ready for Hassle-Free Turnkey Execution?',
     ctaSubtitle: 'Partner with Mitijen Interiors for stress-free interior buildouts with guaranteed milestones and superior craftsmanship.',
     ctaImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80',
@@ -861,7 +861,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
       <section className="faq-section">
         <div className="wrap faq-grid">
           <div className="faq-intro">
-            <span className="eyebrow">Frequently Asked Questions ————</span>
+            <span className="eyebrow">Frequently Asked Questions</span>
             <h2>Your Questions, Answered</h2>
             <p className="lead">
               Get clear answers to common questions about our {activeCategory.toLowerCase()} design and turnkey delivery process.

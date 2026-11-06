@@ -136,11 +136,11 @@
   pointer-events: none;
   background:
     /* Top subtle shadow for top badge */
-    linear-gradient(180deg, rgba(14, 16, 15, 0.65) 0%, rgba(14, 16, 15, 0.12) 30%, transparent 60%),
-    /* Left subtle vignette helping headline contrast */
-    linear-gradient(90deg, rgba(14, 16, 15, 0.55) 0%, rgba(14, 16, 15, 0.20) 45%, transparent 100%),
+    linear-gradient(180deg, rgba(14, 16, 15, 0.70) 0%, rgba(14, 16, 15, 0.15) 30%, transparent 60%),
+    /* Left vignette for strong headline contrast */
+    linear-gradient(90deg, rgba(14, 16, 15, 0.72) 0%, rgba(14, 16, 15, 0.30) 45%, transparent 100%),
     /* Bottom soft darkening for frosted bar readability */
-    linear-gradient(0deg, rgba(14, 16, 15, 0.75) 0%, rgba(14, 16, 15, 0.35) 45%, transparent 80%);
+    linear-gradient(0deg, rgba(14, 16, 15, 0.80) 0%, rgba(14, 16, 15, 0.40) 45%, transparent 80%);
 }
 
 /* Top Badge Row */
@@ -190,7 +190,9 @@
   margin-bottom: clamp(24px, 3.5vh, 40px);
 }
 
-.mono-headline {
+.mono-headline,
+.mono-banner .mono-headline,
+.mitijen-service-page .mono-headline {
   margin: 0;
   font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
   font-size: clamp(3.6rem, 7.8vw, 7.2rem);
@@ -200,6 +202,12 @@
   color: #FAF8F5;
   text-transform: uppercase;
   text-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
+}
+
+.mono-line-inner,
+.mono-banner .mono-line-inner,
+.mitijen-service-page .mono-line-inner {
+  color: #FAF8F5;
 }
 
 .mono-line-wrap {
