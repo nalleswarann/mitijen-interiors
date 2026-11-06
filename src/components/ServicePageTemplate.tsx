@@ -8,6 +8,11 @@ import '../styles/ServicePage.css';
 interface ServicePageTemplateProps {
   data: ServicePageData;
   children?: React.ReactNode;
+  initialDiscipline?: ServiceDiscipline;
+  overrideHeroEyebrow?: string;
+  overrideHeroHeadline?: string;
+  overrideHeroSubtitle?: string;
+  isOverviewPage?: boolean;
 }
 
 export type ServiceDiscipline = 'Corporate' | 'Commercial' | 'Residential' | 'Turnkey';
@@ -534,13 +539,30 @@ const CardIcon: React.FC<{ type: SolutionCard['icon'] }> = ({ type }) => {
   }
 };
 
-export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, children }) => {
+export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({
+  data,
+  children,
+  initialDiscipline,
+  overrideHeroEyebrow,
+  overrideHeroHeadline,
+  overrideHeroSubtitle,
+  isOverviewPage,
+}) => {
   const { openInquiry } = useInquiry();
 
-  // Active discipline state — initialized from route data
-  const initialCategory: ServiceDiscipline =
-    (data.category as ServiceDiscipline) || 'Corporate';
-  const [activeCategory, setActiveCategory] = useState<ServiceDiscipline>(initialCategory);
+  // Active discipline state — initialized from URL hash, initialDiscipline, or route data
+  const getInitialCategory = (): ServiceDiscipline => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.toLowerCase().replace('#', '');
+      if (hash.includes('residential')) return 'Residential';
+      if (hash.includes('commercial')) return 'Commercial';
+      if (hash.includes('corporate')) return 'Corporate';
+      if (hash.includes('turnkey')) return 'Turnkey';
+    }
+    return initialDiscipline || (data?.category as ServiceDiscipline) || 'Corporate';
+  };
+
+  const [activeCategory, setActiveCategory] = useState<ServiceDiscipline>(getInitialCategory);
 
   // Sync state if user navigates via router
   useEffect(() => {
@@ -551,19 +573,21 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
 
   const config = DISCIPLINE_DATA[activeCategory] || DISCIPLINE_DATA.Corporate;
 
+  const pathMap: Record<ServiceDiscipline, string> = {
+    Corporate: '/services/corporate-interior-design',
+    Commercial: '/services/commercial-interior-design',
+    Residential: '/services/residential-interior-design',
+    Turnkey: '/services#turnkey',
+  };
+
   // In-place tab switcher: updates state and URL without reloading or jumping to top
   const handleSwitchCategory = (cat: ServiceDiscipline, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     setActiveCategory(cat);
 
-    const pathMap: Record<ServiceDiscipline, string> = {
-      Corporate: '/services/corporate-interior-design',
-      Commercial: '/services/commercial-interior-design',
-      Residential: '/services/residential-interior-design',
-      Turnkey: '/services#turnkey',
-    };
-
-    if (pathMap[cat] && window.location.pathname !== pathMap[cat]) {
+    if (isOverviewPage) {
+      window.history.replaceState(null, '', `/services#${cat.toLowerCase()}`);
+    } else if (pathMap[cat] && window.location.pathname !== pathMap[cat]) {
       // Use replaceState to update the browser address bar cleanly without triggering ScrollToTop
       window.history.replaceState(null, '', pathMap[cat]);
     }
@@ -576,6 +600,10 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
   };
 
   const serviceCategories: ServiceDiscipline[] = ['Corporate', 'Residential', 'Commercial', 'Turnkey'];
+
+  const heroEyebrow = (isOverviewPage && overrideHeroEyebrow) ? overrideHeroEyebrow : config.eyebrow;
+  const heroHeadline = (isOverviewPage && overrideHeroHeadline) ? overrideHeroHeadline : config.heroHeadline;
+  const heroSubtitle = (isOverviewPage && overrideHeroSubtitle) ? overrideHeroSubtitle : config.heroSubtitle;
 
   return (
     <div className="mitijen-service-page">
@@ -592,7 +620,6 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
           ==================================================================== */}
       <nav className="svc-switcher-wrap" aria-label="Interior Design Disciplines">
         <div className="wrap svc-switcher-inner">
-          <span className="svc-switcher-label">Select Discipline</span>
           <div className="svc-switcher-tabs" role="tablist">
             {serviceCategories.map(cat => {
               const isActive = activeCategory === cat;
@@ -605,8 +632,8 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
                   className={`svc-tab-btn ${isActive ? 'is-active' : ''}`}
                   onClick={e => handleSwitchCategory(cat, e)}
                 >
-                  {isActive && <span className="svc-tab-dot" aria-hidden="true" />}
                   <span>{cat}</span>
+                  {isActive && <span className="svc-tab-line" aria-hidden="true" />}
                 </button>
               );
             })}
@@ -620,9 +647,9 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">{config.eyebrow}</span>
-            <h1>{config.heroHeadline}</h1>
-            <p>{config.heroSubtitle}</p>
+            <span className="eyebrow">{heroEyebrow}</span>
+            <h1>{heroHeadline}</h1>
+            <p>{heroSubtitle}</p>
             <div className="hero-actions">
               <button
                 type="button"
@@ -744,6 +771,27 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="practice-detail-cta-row">
+            <p className="practice-cta-text">
+              Looking for full architectural specifications, technical drawings, and completed projects for {activeCategory} interiors?
+            </p>
+            <a
+              href={pathMap[activeCategory] || '/contact'}
+              onClick={(e) => {
+                if (activeCategory === 'Turnkey') {
+                  e.preventDefault();
+                  openInquiry('Turnkey Interior Execution Inquiry');
+                }
+              }}
+              className="btn light"
+            >
+              <span>{activeCategory === 'Turnkey' ? 'Request Turnkey Fit-Out Quote' : `Explore Dedicated ${activeCategory} Page`}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M4 12h16M14 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>

@@ -204,44 +204,35 @@
 
 /* ==========================================================================
    INTERACTIVE IN-PAGE SERVICE SWITCHER (No page reloads, No scroll jumps)
+   Faithful to editorial reference & media_1793956715536_26ef8e5a.png
    ========================================================================== */
 .mitijen-service-page .svc-switcher-wrap {
   position: sticky;
   top: calc(72px + env(safe-area-inset-top, 0px));
   z-index: 40;
-  background: rgba(245, 242, 236, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(245, 242, 236, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
-  padding: 12px 0;
-  margin-bottom: 40px;
+  padding: 0;
+  margin-bottom: 36px;
   transition: background 0.3s;
 }
 
 .mitijen-service-page .svc-switcher-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.mitijen-service-page .svc-switcher-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 600;
-  white-space: nowrap;
+  justify-content: flex-start;
 }
 
 .mitijen-service-page .svc-switcher-tabs {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(24px, 4vw, 42px);
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  padding: 4px 0;
+  width: 100%;
 }
 
 .mitijen-service-page .svc-switcher-tabs::-webkit-scrollbar {
@@ -251,38 +242,38 @@
 .mitijen-service-page .svc-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-size: 0.86rem;
-  font-weight: 500;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 18px 2px 16px;
+  font-family: var(--sans);
+  font-size: clamp(0.92rem, 1.8vw, 1.04rem);
+  font-weight: 400;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(37, 35, 31, 0.1);
+  cursor: pointer;
   white-space: nowrap;
-  transition: all 0.3s var(--ease);
-  min-height: 42px;
+  min-height: 52px;
+  transition: color 0.25s ease;
+  text-decoration: none;
 }
 
 .mitijen-service-page .svc-tab-btn:hover {
   color: var(--ink);
-  background: #ffffff;
-  border-color: var(--gold);
 }
 
 .mitijen-service-page .svc-tab-btn.is-active {
-  color: #ffffff;
-  background: var(--burg);
-  border-color: var(--burg);
-  font-weight: 600;
-  box-shadow: 0 4px 14px rgba(123, 48, 54, 0.28);
+  color: var(--burg);
+  font-weight: 500;
 }
 
-.mitijen-service-page .svc-tab-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ffffff;
+.mitijen-service-page .svc-tab-line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--burg);
 }
 
 /* ==========================================================================
@@ -627,6 +618,28 @@
   color: var(--burg);
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+/* Practice Deep Dive CTA Row under cards grid */
+.mitijen-service-page .practice-detail-cta-row {
+  margin-top: 36px;
+  padding: 24px 32px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.mitijen-service-page .practice-cta-text {
+  font-size: 0.96rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 62ch;
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -990,25 +1003,36 @@
 
   .mitijen-service-page .svc-switcher-wrap {
     top: calc(60px + env(safe-area-inset-top, 0px));
-    padding: 8px 0;
+    padding: 0;
     margin-bottom: 24px;
   }
 
   .mitijen-service-page .svc-switcher-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    padding: 0;
   }
 
   .mitijen-service-page .svc-switcher-tabs {
     width: 100%;
-    gap: 8px;
+    gap: 24px;
+    padding: 0;
   }
 
   .mitijen-service-page .svc-tab-btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
-    min-height: 38px;
+    padding: 14px 2px 12px;
+    font-size: 0.88rem;
+    min-height: 44px;
+  }
+
+  .mitijen-service-page .practice-detail-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .mitijen-service-page .practice-detail-cta-row .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .mitijen-service-page .hero {
