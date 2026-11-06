@@ -14,6 +14,51 @@ export const Header: React.FC = () => {
   const isProjectsActive = location.pathname.startsWith('/project');
   const isHome = location.pathname === '/';
 
+  // State for Desktop Services Dropdown and Mobile Services Accordion
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(() => isServicesActive);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownTimerRef = useRef<number | null>(null);
+
+  const handleServicesMouseEnter = () => {
+    if (dropdownTimerRef.current) {
+      window.clearTimeout(dropdownTimerRef.current);
+      dropdownTimerRef.current = null;
+    }
+    setIsServicesDropdownOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    dropdownTimerRef.current = window.setTimeout(() => {
+      setIsServicesDropdownOpen(false);
+    }, 180);
+  };
+
+  const toggleServicesDropdown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsServicesDropdownOpen((prev) => !prev);
+  };
+
+  // Close desktop dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (dropdownTimerRef.current) {
+        window.clearTimeout(dropdownTimerRef.current);
+      }
+    };
+  }, []);
+
   // Typewriting animation for Header Logo text
   const FULL_LOGO_TEXT = 'Mitjen Interiors';
   const [typedLogo, setTypedLogo] = useState(() => {
@@ -71,10 +116,13 @@ export const Header: React.FC = () => {
     };
   }, [isMenuOpen]);
 
-  // Keyboard navigation: Escape key closes menu
+  // Keyboard navigation: Escape key closes menu and dropdown
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (isServicesDropdownOpen) {
+          setIsServicesDropdownOpen(false);
+        }
         if (isMenuOpen) {
           setIsMenuOpen(false);
           burgerRef.current?.focus();
@@ -84,12 +132,13 @@ export const Header: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isServicesDropdownOpen]);
 
   // Close menus on route change
   /* oxlint-disable react/set-state-in-effect */
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsServicesDropdownOpen(false);
   }, [location.pathname]);
 
   const toggleMenu = () => {
@@ -105,6 +154,11 @@ export const Header: React.FC = () => {
       setIsMenuOpen(false);
       burgerRef.current?.focus();
     }
+  };
+
+  const closeAllMenus = () => {
+    setIsServicesDropdownOpen(false);
+    closeMenu();
   };
 
   return (
@@ -136,30 +190,129 @@ export const Header: React.FC = () => {
           <Link
             to="/projects"
             className={`nav-desktop-link ${isProjectsActive ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             Projects
           </Link>
 
-          <Link
-            to="/services"
-            className={`nav-desktop-link ${isServicesActive ? 'on' : ''}`}
-            onClick={closeMenu}
+          {/* Desktop Services Dropdown */}
+          <div
+            className={`header-dropdown-container ${isServicesDropdownOpen ? 'is-open' : ''}`}
+            onMouseEnter={handleServicesMouseEnter}
+            onMouseLeave={handleServicesMouseLeave}
+            ref={servicesDropdownRef}
           >
-            Services
-          </Link>
+            <button
+              type="button"
+              className={`nav-desktop-link header-dropdown-toggle ${isServicesActive ? 'on' : ''}`}
+              onClick={toggleServicesDropdown}
+              aria-expanded={isServicesDropdownOpen}
+              aria-haspopup="true"
+              aria-label="Services and Practices Menu"
+            >
+              <span>Services</span>
+              <svg
+                className={`header-dropdown-chevron ${isServicesDropdownOpen ? 'rotate' : ''}`}
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </button>
+
+            <div
+              className={`header-dropdown-menu ${isServicesDropdownOpen ? 'is-open' : ''}`}
+              role="menu"
+              aria-label="Services Submenu"
+            >
+              <div className="header-dropdown-kicker">
+                <span>OUR PRACTICES</span>
+                <span className="dropdown-kicker-dot">·</span>
+                <span>WORKS</span>
+              </div>
+
+              <Link
+                to="/services/corporate-interior-design"
+                className={`header-dropdown-item ${location.pathname === '/services/corporate-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+                role="menuitem"
+              >
+                <div className="dropdown-item-header">
+                  <span className="dropdown-item-index">01</span>
+                  <span className="dropdown-item-title">Corporate Works</span>
+                </div>
+                <p className="dropdown-item-desc">
+                  Offices, executive headquarters & collaborative studios
+                </p>
+              </Link>
+
+              <Link
+                to="/services/residential-interior-design"
+                className={`header-dropdown-item ${location.pathname === '/services/residential-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+                role="menuitem"
+              >
+                <div className="dropdown-item-header">
+                  <span className="dropdown-item-index">02</span>
+                  <span className="dropdown-item-title">Residential Works</span>
+                </div>
+                <p className="dropdown-item-desc">
+                  Bespoke villas, luxury apartments & private sanctuaries
+                </p>
+              </Link>
+
+              <Link
+                to="/services/commercial-interior-design"
+                className={`header-dropdown-item ${location.pathname === '/services/commercial-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+                role="menuitem"
+              >
+                <div className="dropdown-item-header">
+                  <span className="dropdown-item-index">03</span>
+                  <span className="dropdown-item-title">Commercial Works</span>
+                </div>
+                <p className="dropdown-item-desc">
+                  Flagship showrooms, hospitality & experiential venues
+                </p>
+              </Link>
+
+              <div className="header-dropdown-divider" />
+
+              <Link
+                to="/services"
+                className={`header-dropdown-item header-dropdown-footer ${location.pathname === '/services' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+                role="menuitem"
+              >
+                <div className="dropdown-item-header">
+                  <span className="dropdown-item-title">All Services & Practices</span>
+                  <span className="dropdown-arrow-icon" aria-hidden="true">→</span>
+                </div>
+                <p className="dropdown-item-desc">
+                  Explore complete methodology & full practice directory
+                </p>
+              </Link>
+            </div>
+          </div>
 
           <Link
             to="/about"
             className={`nav-desktop-link ${location.pathname === '/about' ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             About
           </Link>
           <Link
             to="/contact"
             className={`nav-desktop-link ${location.pathname === '/contact' ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             Contact
           </Link>
@@ -170,7 +323,7 @@ export const Header: React.FC = () => {
           <Link
             to="/"
             className={`mobile-nav-link ${location.pathname === '/' ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             <span>Home</span>
             <span style={{ fontSize: '1rem', opacity: 0.5 }}>01</span>
@@ -179,25 +332,81 @@ export const Header: React.FC = () => {
           <Link
             to="/projects"
             className={`mobile-nav-link ${isProjectsActive ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             <span>Projects</span>
             <span style={{ fontSize: '1rem', opacity: 0.5 }}>02</span>
           </Link>
 
-          <Link
-            to="/services"
-            className={`mobile-nav-link ${isServicesActive ? 'on' : ''}`}
-            onClick={closeMenu}
-          >
-            <span>Services</span>
-            <span style={{ fontSize: '1rem', opacity: 0.5 }}>03</span>
-          </Link>
+          {/* Mobile Services Accordion */}
+          <div className="mobile-services-container">
+            <button
+              type="button"
+              className={`mobile-services-toggle ${isServicesActive ? 'is-active' : ''} ${isMobileServicesOpen ? 'is-expanded' : ''}`}
+              onClick={() => setIsMobileServicesOpen((prev) => !prev)}
+              aria-expanded={isMobileServicesOpen}
+              aria-label="Toggle Services List"
+            >
+              <span>Services</span>
+              <div className="mobile-services-arrow" aria-hidden="true">
+                <svg
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M1 1.5L6 6.5L11 1.5" />
+                </svg>
+              </div>
+            </button>
+
+            <div className={`mobile-services-drawer ${isMobileServicesOpen ? 'is-open' : ''}`}>
+              <Link
+                to="/services/corporate-interior-design"
+                className={`mobile-sub-link ${location.pathname === '/services/corporate-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+              >
+                <span className="mobile-sub-title">01 · Corporate Works</span>
+                <span className="mobile-sub-desc">Executive offices, headquarters & studios</span>
+              </Link>
+
+              <Link
+                to="/services/residential-interior-design"
+                className={`mobile-sub-link ${location.pathname === '/services/residential-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+              >
+                <span className="mobile-sub-title">02 · Residential Works</span>
+                <span className="mobile-sub-desc">Bespoke villas, apartments & residences</span>
+              </Link>
+
+              <Link
+                to="/services/commercial-interior-design"
+                className={`mobile-sub-link ${location.pathname === '/services/commercial-interior-design' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+              >
+                <span className="mobile-sub-title">03 · Commercial Works</span>
+                <span className="mobile-sub-desc">Showrooms, retail & hospitality venues</span>
+              </Link>
+
+              <Link
+                to="/services"
+                className={`mobile-sub-link mobile-sub-overview ${location.pathname === '/services' ? 'is-active' : ''}`}
+                onClick={closeAllMenus}
+              >
+                <span className="mobile-sub-title">View All Practices & Services →</span>
+                <span className="mobile-sub-desc">Directory of all spatial disciplines</span>
+              </Link>
+            </div>
+          </div>
 
           <Link
             to="/about"
             className={`mobile-nav-link ${location.pathname === '/about' ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             <span>About Us</span>
             <span style={{ fontSize: '1rem', opacity: 0.5 }}>04</span>
@@ -206,7 +415,7 @@ export const Header: React.FC = () => {
           <Link
             to="/contact"
             className={`mobile-nav-link ${location.pathname === '/contact' ? 'on' : ''}`}
-            onClick={closeMenu}
+            onClick={closeAllMenus}
           >
             <span>Contact</span>
             <span style={{ fontSize: '1rem', opacity: 0.5 }}>05</span>

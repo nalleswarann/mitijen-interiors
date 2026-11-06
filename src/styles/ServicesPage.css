@@ -298,14 +298,245 @@
 }
 
 .renova-section-header {
-  margin-bottom: clamp(40px, 6vh, 64px);
+  margin-bottom: clamp(32px, 5vh, 48px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 20px;
+  padding-bottom: 24px;
+}
+
+/* ==========================================================================
+   SERVICES PAGE ARCHITECTURAL DROPDOWN SELECTOR (CORPORATE, RESIDENTIAL, COMMERCIAL)
+   ========================================================================== */
+.services-page-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.services-dropdown-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.6);
+  white-space: nowrap;
+}
+
+.services-custom-dropdown {
+  position: relative;
+  min-width: 260px;
+}
+
+.services-dropdown-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(216, 200, 180, 0.35);
+  border-radius: 6px;
+  color: #FAF8F5;
+  padding: 10px 16px;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.services-dropdown-button:hover,
+.services-dropdown-button[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--sand, #D8C8B4);
+  color: var(--sand, #D8C8B4);
+}
+
+.services-dropdown-arrow {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.services-dropdown-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.services-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 290px;
+  background: #1C1E1B;
+  border: 1px solid rgba(216, 200, 180, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 1px rgba(255, 255, 255, 0.15);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  animation: servicesDropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes servicesDropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-dropdown-option {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.services-dropdown-option:hover {
+  background: rgba(216, 200, 180, 0.14);
+  transform: translateX(2px);
+}
+
+.services-dropdown-option.selected {
+  background: rgba(85, 104, 84, 0.28);
+  border-left: 2px solid var(--sand, #D8C8B4);
+}
+
+.opt-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.opt-num {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--sand, #D8C8B4);
+  font-weight: 600;
+}
+
+.opt-title {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FAF8F5;
+}
+
+.opt-sub {
+  font-size: 0.72rem;
+  color: rgba(250, 248, 245, 0.6);
+  margin-top: 3px;
+  font-family: var(--font-content, sans-serif);
+  line-height: 1.35;
+}
+
+/* Focused practice notice bar */
+.services-focus-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(216, 200, 180, 0.08);
+  border: 1px solid rgba(216, 200, 180, 0.22);
+  border-radius: 6px;
+  padding: 14px 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.services-focus-text {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: #FAF8F5;
+}
+
+.services-focus-highlight {
+  color: var(--sand, #D8C8B4);
+  font-weight: 600;
+}
+
+.services-focus-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.services-focus-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.75);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(250, 248, 245, 0.3);
+  transition: all 0.2s ease;
+}
+
+.services-focus-btn:hover {
+  color: var(--sand, #D8C8B4);
+  border-color: var(--sand, #D8C8B4);
+}
+
+.services-focus-link {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand, #D8C8B4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.services-focus-link:hover {
+  transform: translateX(4px);
+}
+
+.renova-cards-grid.single-card {
+  grid-template-columns: minmax(320px, 600px);
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .services-page-dropdown-wrapper {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .services-custom-dropdown {
+    width: 100%;
+    min-width: 0;
+  }
+  .services-dropdown-menu {
+    width: 100%;
+    right: 0;
+    left: 0;
+  }
 }
 
 .renova-cards-grid {

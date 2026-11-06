@@ -14,6 +14,30 @@ export const ServicesPage: React.FC = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
+  // State for Discipline Filter Dropdown (Corporate, Residential, Commercial, All)
+  const [selectedDiscipline, setSelectedDiscipline] = useState<'all' | 'corporate' | 'residential' | 'commercial'>('all');
+  const [isDisciplineDropdownOpen, setIsDisciplineDropdownOpen] = useState(false);
+  const disciplineDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        disciplineDropdownRef.current &&
+        !disciplineDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsDisciplineDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelectDiscipline = (val: 'all' | 'corporate' | 'residential' | 'commercial') => {
+    setSelectedDiscipline(val);
+    setIsDisciplineDropdownOpen(false);
+  };
+
   // Premium GSAP animations matching the website's luxury editorial style
   useEffect(() => {
     const prefersReducedMotion =
@@ -173,121 +197,252 @@ const TESTIMONIALS = [
       <section className="renova-disciplines" aria-label="Our Interior Disciplines">
         <div className="renova-disciplines-container">
           <div className="renova-section-header">
-            <span className="renova-kicker" style={{ color: 'var(--olive)' }}>
-              DISCIPLINES · CORE SERVICES
-            </span>
-            <span style={{ fontFamily: 'var(--font-content)', fontSize: '0.86rem', color: '#666' }}>
-              Select a practice to explore full case studies & specifications
-            </span>
+            <div>
+              <span className="renova-kicker" style={{ color: 'var(--sand, #D8C8B4)' }}>
+                DISCIPLINES · CORE SERVICES
+              </span>
+              <p className="renova-section-subtitle" style={{ fontFamily: 'var(--font-content)', fontSize: '0.86rem', color: 'rgba(250, 248, 245, 0.7)', margin: '4px 0 0' }}>
+                Select a practice to explore full case studies & specifications
+              </p>
+            </div>
+
+            {/* Architectural Practice Dropdown Selector */}
+            <div className="services-page-dropdown-wrapper">
+              <span className="services-dropdown-label">SELECT PRACTICE:</span>
+              <div className="services-custom-dropdown" ref={disciplineDropdownRef}>
+                <button
+                  type="button"
+                  className="services-dropdown-button"
+                  onClick={() => setIsDisciplineDropdownOpen((prev) => !prev)}
+                  aria-haspopup="listbox"
+                  aria-expanded={isDisciplineDropdownOpen}
+                >
+                  <span className="services-dropdown-active-text">
+                    {selectedDiscipline === 'all' && 'All Architectural Works (3)'}
+                    {selectedDiscipline === 'corporate' && '01 · Corporate Works'}
+                    {selectedDiscipline === 'residential' && '02 · Residential Works'}
+                    {selectedDiscipline === 'commercial' && '03 · Commercial Works'}
+                  </span>
+                  <svg
+                    className={`services-dropdown-arrow ${isDisciplineDropdownOpen ? 'rotate' : ''}`}
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M1 1.5L6 6.5L11 1.5" />
+                  </svg>
+                </button>
+
+                {isDisciplineDropdownOpen && (
+                  <ul className="services-dropdown-menu" role="listbox">
+                    <li
+                      className={`services-dropdown-option ${selectedDiscipline === 'all' ? 'selected' : ''}`}
+                      onClick={() => handleSelectDiscipline('all')}
+                      role="option"
+                      aria-selected={selectedDiscipline === 'all'}
+                    >
+                      <div className="opt-head">
+                        <span className="opt-num">ALL</span>
+                        <span className="opt-title">All Spatial Works</span>
+                      </div>
+                      <span className="opt-sub">Explore all 3 core disciplines together</span>
+                    </li>
+                    <li
+                      className={`services-dropdown-option ${selectedDiscipline === 'corporate' ? 'selected' : ''}`}
+                      onClick={() => handleSelectDiscipline('corporate')}
+                      role="option"
+                      aria-selected={selectedDiscipline === 'corporate'}
+                    >
+                      <div className="opt-head">
+                        <span className="opt-num">01</span>
+                        <span className="opt-title">Corporate Works</span>
+                      </div>
+                      <span className="opt-sub">Offices, executive headquarters & collaborative studios</span>
+                    </li>
+                    <li
+                      className={`services-dropdown-option ${selectedDiscipline === 'residential' ? 'selected' : ''}`}
+                      onClick={() => handleSelectDiscipline('residential')}
+                      role="option"
+                      aria-selected={selectedDiscipline === 'residential'}
+                    >
+                      <div className="opt-head">
+                        <span className="opt-num">02</span>
+                        <span className="opt-title">Residential Works</span>
+                      </div>
+                      <span className="opt-sub">Bespoke villas, luxury apartments & private sanctuaries</span>
+                    </li>
+                    <li
+                      className={`services-dropdown-option ${selectedDiscipline === 'commercial' ? 'selected' : ''}`}
+                      onClick={() => handleSelectDiscipline('commercial')}
+                      role="option"
+                      aria-selected={selectedDiscipline === 'commercial'}
+                    >
+                      <div className="opt-head">
+                        <span className="opt-num">03</span>
+                        <span className="opt-title">Commercial Works</span>
+                      </div>
+                      <span className="opt-sub">Flagship showrooms, hospitality & experiential venues</span>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </div>
           </div>
 
-          <div className="renova-cards-grid">
-            {/* Card 1: Residential */}
-            <Link
-              to="/services/residential-interior-design"
-              className="renova-card"
-              aria-label="Residential Interiors Practice"
-            >
-              <div className="renova-card-top">
-                <span className="renova-card-num">01</span>
-              </div>
-
-              {/* Bauhaus Designer Lounge Chair CAD Wireframe SVG */}
-              <div className="renova-card-art" aria-hidden="true">
-                <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M35 110L50 45C52 38 58 35 65 35H105C112 35 118 38 120 45L135 110" />
-                  <path d="M45 75C45 70 50 65 58 65H112C120 65 125 70 125 75L120 105C120 108 116 110 110 110H60C54 110 50 108 50 105L45 75Z" />
-                  <path d="M60 40H110V65H60V40Z" strokeDasharray="3 3" opacity="0.6" />
-                  <path d="M25 115H145" />
-                  <path d="M35 115V125H65" />
-                  <path d="M135 115V125H105" />
-                  <ellipse cx="85" cy="125" rx="45" ry="5" strokeDasharray="2 4" opacity="0.4" />
-                </svg>
-              </div>
-
-              <div className="renova-card-bottom">
-                <h3 className="renova-card-title renova-serif-sub">Residential Interiors</h3>
-                <p className="renova-card-desc">
-                  Crafting bespoke personal sanctuaries, private villas, duplexes, and penthouses designed for warmth, quiet luxury, and effortless daily living.
-                </p>
-                <span className="renova-card-action">
-                  <span>Explore Residential Practice</span>
+          {/* Focused Practice Notice Bar if filtered */}
+          {selectedDiscipline !== 'all' && (
+            <div className="services-focus-bar">
+              <span className="services-focus-text">
+                SHOWING PRACTICE: <strong className="services-focus-highlight">
+                  {selectedDiscipline === 'corporate' && 'Corporate Works — Workplace & Executive Architecture'}
+                  {selectedDiscipline === 'residential' && 'Residential Works — Private Living & Villa Sanctuaries'}
+                  {selectedDiscipline === 'commercial' && 'Commercial Works — Flagship Venues & Hospitality'}
+                </strong>
+              </span>
+              <div className="services-focus-actions">
+                <Link
+                  to={
+                    selectedDiscipline === 'corporate'
+                      ? '/services/corporate-interior-design'
+                      : selectedDiscipline === 'residential'
+                      ? '/services/residential-interior-design'
+                      : '/services/commercial-interior-design'
+                  }
+                  className="services-focus-link"
+                >
+                  <span>Open Dedicated Page</span>
                   <span aria-hidden="true">→</span>
-                </span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setSelectedDiscipline('all')}
+                  className="services-focus-btn"
+                >
+                  View All Practices
+                </button>
               </div>
-            </Link>
+            </div>
+          )}
 
-            {/* Card 2: Commercial */}
-            <Link
-              to="/services/commercial-interior-design"
-              className="renova-card"
-              aria-label="Commercial Venues Practice"
-            >
-              <div className="renova-card-top">
-                <span className="renova-card-num">02</span>
-              </div>
+          <div className={`renova-cards-grid ${selectedDiscipline !== 'all' ? 'single-card' : ''}`}>
+            {/* Card 1: Corporate (Rendered when 'all' or 'corporate') */}
+            {(selectedDiscipline === 'all' || selectedDiscipline === 'corporate') && (
+              <Link
+                to="/services/corporate-interior-design"
+                className="renova-card"
+                aria-label="Corporate Workplaces Practice"
+              >
+                <div className="renova-card-top">
+                  <span className="renova-card-num">01 · CORPORATE</span>
+                </div>
 
-              {/* Architectural Pavilion / Spatial Geometry CAD Wireframe SVG */}
-              <div className="renova-card-art" aria-hidden="true">
-                <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M80 20L135 48V102L80 130L25 102V48L80 20Z" />
-                  <path d="M80 20V130" opacity="0.7" />
-                  <path d="M80 75L135 48" opacity="0.6" />
-                  <path d="M80 75L25 48" opacity="0.6" />
-                  <path d="M52 34V88" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M108 34V88" strokeDasharray="3 3" opacity="0.5" />
-                  <path d="M38 60L93 88" strokeDasharray="2 3" opacity="0.4" />
-                  <path d="M68 45L123 73" strokeDasharray="2 3" opacity="0.4" />
-                </svg>
-              </div>
+                {/* Executive Suite & Sculptural Chandelier CAD Wireframe SVG */}
+                <div className="renova-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                    <ellipse cx="80" cy="30" rx="42" ry="10" />
+                    <ellipse cx="80" cy="38" rx="30" ry="7" opacity="0.6" />
+                    <path d="M45 30V15M115 30V15" strokeDasharray="2 3" />
+                    <path d="M30 90L75 70H125L85 90H30Z" />
+                    <path d="M30 90V98L85 98V90" />
+                    <path d="M125 70V78L85 98" />
+                    <path d="M45 98V120M75 98V120M115 78V105" opacity="0.6" />
+                    <line x1="20" y1="120" x2="140" y2="120" opacity="0.3" strokeDasharray="3 3" />
+                  </svg>
+                </div>
 
-              <div className="renova-card-bottom">
-                <h3 className="renova-card-title renova-serif-sub">Commercial Venues</h3>
-                <p className="renova-card-desc">
-                  High-impact experiential retail, flagship showrooms, boutique hospitality, and culinary venues engineered to immerse visitors and amplify brand prestige.
-                </p>
-                <span className="renova-card-action">
-                  <span>Explore Commercial Practice</span>
-                  <span aria-hidden="true">→</span>
-                </span>
-              </div>
-            </Link>
+                <div className="renova-card-bottom">
+                  <h3 className="renova-card-title renova-serif-sub">Corporate Works</h3>
+                  <p className="renova-card-desc">
+                    Modern office headquarters, executive boardrooms, and creative studios balanced for collaborative energy, acoustics, and focused leadership.
+                  </p>
+                  <span className="renova-card-action">
+                    <span>Explore Corporate Practice</span>
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </Link>
+            )}
 
-            {/* Card 3: Corporate */}
-            <Link
-              to="/services/corporate-interior-design"
-              className="renova-card"
-              aria-label="Corporate Workplaces Practice"
-            >
-              <div className="renova-card-top">
-                <span className="renova-card-num">03</span>
-              </div>
+            {/* Card 2: Residential (Rendered when 'all' or 'residential') */}
+            {(selectedDiscipline === 'all' || selectedDiscipline === 'residential') && (
+              <Link
+                to="/services/residential-interior-design"
+                className="renova-card"
+                aria-label="Residential Interiors Practice"
+              >
+                <div className="renova-card-top">
+                  <span className="renova-card-num">02 · RESIDENTIAL</span>
+                </div>
 
-              {/* Executive Suite & Sculptural Chandelier CAD Wireframe SVG */}
-              <div className="renova-card-art" aria-hidden="true">
-                <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <ellipse cx="80" cy="30" rx="42" ry="10" />
-                  <ellipse cx="80" cy="38" rx="30" ry="7" opacity="0.6" />
-                  <path d="M45 30V15M115 30V15" strokeDasharray="2 3" />
-                  <path d="M30 90L75 70H125L85 90H30Z" />
-                  <path d="M30 90V98L85 98V90" />
-                  <path d="M125 70V78L85 98" />
-                  <path d="M45 98V120M75 98V120M115 78V105" opacity="0.6" />
-                  <line x1="20" y1="120" x2="140" y2="120" opacity="0.3" strokeDasharray="3 3" />
-                </svg>
-              </div>
+                {/* Bauhaus Designer Lounge Chair CAD Wireframe SVG */}
+                <div className="renova-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M35 110L50 45C52 38 58 35 65 35H105C112 35 118 38 120 45L135 110" />
+                    <path d="M45 75C45 70 50 65 58 65H112C120 65 125 70 125 75L120 105C120 108 116 110 110 110H60C54 110 50 108 50 105L45 75Z" />
+                    <path d="M60 40H110V65H60V40Z" strokeDasharray="3 3" opacity="0.6" />
+                    <path d="M25 115H145" />
+                    <path d="M35 115V125H65" />
+                    <path d="M135 115V125H105" />
+                    <ellipse cx="85" cy="125" rx="45" ry="5" strokeDasharray="2 4" opacity="0.4" />
+                  </svg>
+                </div>
 
-              <div className="renova-card-bottom">
-                <h3 className="renova-card-title renova-serif-sub">Corporate Workplaces</h3>
-                <p className="renova-card-desc">
-                  Modern office headquarters, executive boardrooms, and creative studios balanced for collaborative energy, acoustics, and focused leadership.
-                </p>
-                <span className="renova-card-action">
-                  <span>Explore Corporate Practice</span>
-                  <span aria-hidden="true">→</span>
-                </span>
-              </div>
-            </Link>
+                <div className="renova-card-bottom">
+                  <h3 className="renova-card-title renova-serif-sub">Residential Works</h3>
+                  <p className="renova-card-desc">
+                    Crafting bespoke personal sanctuaries, private villas, duplexes, and penthouses designed for warmth, quiet luxury, and effortless daily living.
+                  </p>
+                  <span className="renova-card-action">
+                    <span>Explore Residential Practice</span>
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </Link>
+            )}
+
+            {/* Card 3: Commercial (Rendered when 'all' or 'commercial') */}
+            {(selectedDiscipline === 'all' || selectedDiscipline === 'commercial') && (
+              <Link
+                to="/services/commercial-interior-design"
+                className="renova-card"
+                aria-label="Commercial Venues Practice"
+              >
+                <div className="renova-card-top">
+                  <span className="renova-card-num">03 · COMMERCIAL</span>
+                </div>
+
+                {/* Architectural Pavilion / Spatial Geometry CAD Wireframe SVG */}
+                <div className="renova-card-art" aria-hidden="true">
+                  <svg viewBox="0 0 160 140" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M80 20L135 48V102L80 130L25 102V48L80 20Z" />
+                    <path d="M80 20V130" opacity="0.7" />
+                    <path d="M80 75L135 48" opacity="0.6" />
+                    <path d="M80 75L25 48" opacity="0.6" />
+                    <path d="M52 34V88" strokeDasharray="3 3" opacity="0.5" />
+                    <path d="M108 34V88" strokeDasharray="3 3" opacity="0.5" />
+                    <path d="M38 60L93 88" strokeDasharray="2 3" opacity="0.4" />
+                    <path d="M68 45L123 73" strokeDasharray="2 3" opacity="0.4" />
+                  </svg>
+                </div>
+
+                <div className="renova-card-bottom">
+                  <h3 className="renova-card-title renova-serif-sub">Commercial Works</h3>
+                  <p className="renova-card-desc">
+                    High-impact experiential retail, flagship showrooms, boutique hospitality, and culinary venues engineered to immerse visitors and amplify brand prestige.
+                  </p>
+                  <span className="renova-card-action">
+                    <span>Explore Commercial Practice</span>
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       </section>
