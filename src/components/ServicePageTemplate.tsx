@@ -9,6 +9,7 @@ import '../styles/FaqSection.css';
 
 interface ServicePageTemplateProps {
   data: ServicePageData;
+  children?: React.ReactNode;
 }
 
 interface ServiceFaqMeta {
@@ -76,7 +77,7 @@ function parseFaqAnswer(answer: string): { summary: string; desc: string } {
   };
 }
 
-export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }) => {
+export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, children }) => {
   const { openInquiry } = useInquiry();
   const location = useLocation();
 
@@ -490,6 +491,9 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data }
 
         </div>
       </div>
+
+      {/* Injected Section Slot (e.g. How It Works) */}
+      {children}
 
       {/* ====================================================================
           3. FULL-WIDTH LUXURY FAQ SECTION (MATCHING HOMEPAGE DESIGN)
