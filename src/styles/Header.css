@@ -81,8 +81,8 @@ header#hd.menu-open {
   display: none;
   align-items: center;
   gap: 6px;
-  background-color: var(--ink);
-  color: var(--ivory);
+  background-color: #7B3036;
+  color: #ffffff;
   font-family: var(--font-architectural);
   font-size: 0.68rem;
   font-weight: 600;
@@ -90,15 +90,15 @@ header#hd.menu-open {
   text-transform: uppercase;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid var(--ink);
+  border: 1px solid #7B3036;
   cursor: pointer;
   transition: all 0.25s ease;
   white-space: nowrap;
 }
 
 header#hd.solid .header-mobile-cta {
-  background-color: var(--ink);
-  color: var(--ivory);
+  background-color: #7B3036;
+  color: #ffffff;
 }
 
 header#hd.menu-open .header-mobile-cta {
@@ -323,30 +323,33 @@ nav#nav .nav-desktop-link.on::after {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--ink);
-  color: var(--ivory);
+  background-color: #7B3036;
+  color: #ffffff;
   font-family: var(--font-architectural);
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 999px;
-  border: 1px solid var(--ink);
+  border: 1px solid #7B3036;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(123, 48, 54, 0.25);
 }
 
 header#hd.solid .header-desktop-cta {
-  background-color: var(--ink);
-  color: var(--ivory);
+  background-color: #7B3036;
+  color: #ffffff;
+  border-color: #7B3036;
 }
 
 .header-desktop-cta:hover {
-  background-color: var(--olive);
-  border-color: var(--olive);
+  background-color: #632328;
+  border-color: #632328;
   color: #ffffff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(123, 48, 54, 0.35);
 }
 
 /* Hamburger Menu Button */

@@ -1,2523 +1,1173 @@
 /* ==========================================================================
-   MITJEN INTERIORS — LUXURY ARCHITECTURAL SERVICE PAGE
-   Bespoke Editorial Architecture & Interior Design Studio
+   MITJEN INTERIORS — LUXURY ARCHITECTURAL EDITORIAL SERVICE PAGE
+   Full-Page Art-Directed Redesign Matching the Visual Reference
    ========================================================================== */
 
-.arch-service-page {
-  background-color: var(--ivory, #faf8f5);
-  color: var(--ink, #181c20);
+:root {
+  --ed-bg: #F5F2EC;
+  --ed-bg-secondary: #EBE5DB;
+  --ed-white: #FFFFFF;
+  --ed-text-primary: #25231F;
+  --ed-text-secondary: #777168;
+  --ed-muted-gold: #A48A65;
+  --ed-burgundy: #7B3036;
+  --ed-burgundy-hover: #632328;
+  --ed-dark: #242321;
+  --ed-dark-footer: #1C1B19;
+  --ed-border-hairline: rgba(37, 35, 31, 0.08);
+  --ed-border-gold: rgba(164, 138, 101, 0.28);
+}
+
+.editorial-service-page {
+  background-color: var(--ed-bg);
+  color: var(--ed-text-primary);
   font-family: var(--font-content, 'Manrope', -apple-system, sans-serif);
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: calc(88px + env(safe-area-inset-top, 0px));
 }
 
-/* ==========================================================================
-   1. ARCHITECTURAL HERO BANNER
-   ========================================================================== */
-
-.arch-serv-hero {
-  position: relative;
-  min-height: clamp(540px, 64vh, 720px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: calc(128px + env(safe-area-inset-top, 0px));
-  padding-bottom: clamp(64px, 8vh, 96px);
-  padding-left: clamp(24px, 5vw, 64px);
-  padding-right: clamp(24px, 5vw, 64px);
-  color: #f5f2ec;
-  background-color: #0e1216;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.arch-serv-hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.arch-serv-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-  filter: brightness(0.66) contrast(1.06);
-  transform: scale(1.02);
-}
-
-.arch-serv-hero-scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(14, 18, 22, 0.78) 0%, rgba(14, 18, 22, 0.38) 42%, rgba(14, 18, 22, 0.65) 75%, rgba(14, 18, 22, 0.96) 100%),
-    radial-gradient(ellipse 90% 80% at 50% 50%, transparent 35%, rgba(14, 18, 22, 0.6) 100%);
-  pointer-events: none;
-}
-
-.arch-serv-hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 1120px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(22px, 3.4vh, 36px);
-}
-
-.arch-serv-hero-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(12px, 1.8vh, 18px);
-}
-
-.arch-serv-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  background: rgba(216, 200, 180, 0.12);
-  border: 1px solid rgba(216, 200, 180, 0.3);
-  border-radius: 9999px;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(0.68rem, 0.85vw, 0.76rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--sand, #d8c8b4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.arch-serv-pill-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--sand, #d8c8b4);
-  box-shadow: 0 0 8px rgba(216, 200, 180, 0.9);
-}
-
-/* Breadcrumbs in Hero */
-.arch-serv-hero-inner .breadcrumbs-nav {
-  margin: 0;
-}
-
-.arch-serv-hero-inner .breadcrumbs-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: clamp(0.72rem, 0.85vw, 0.8rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.5;
-}
-
-.arch-serv-hero-inner .breadcrumbs-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(245, 242, 236, 0.65);
-}
-
-.arch-serv-hero-inner .breadcrumbs-link {
-  color: rgba(245, 242, 236, 0.85);
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-
-.arch-serv-hero-inner .breadcrumbs-link:hover {
-  color: var(--sand, #d8c8b4);
-}
-
-.arch-serv-hero-inner .breadcrumbs-separator {
-  opacity: 0.4;
-}
-
-.arch-serv-hero-inner .breadcrumbs-current {
-  color: var(--sand, #d8c8b4);
-  font-weight: 600;
-}
-
-.arch-serv-hero-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.1rem, 4.2vw, 3.8rem);
-  font-weight: 500;
-  color: #f5f2ec;
-  line-height: 1.18;
-  letter-spacing: -0.018em;
-  margin: 0;
-  max-width: 1040px;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.55);
-  text-wrap: balance;
-}
-
-.arch-serv-hero-sub {
-  font-size: clamp(1.0rem, 2vw, 1.18rem);
-  line-height: 1.65;
-  color: rgba(245, 242, 236, 0.88);
-  max-width: 760px;
-  margin: 0;
-}
-
-.arch-serv-hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.arch-serv-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 28px;
-  background: var(--ivory, #f5f2ec);
-  color: #14171a;
-  border: 1px solid var(--ivory, #f5f2ec);
-  border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-
-.arch-serv-btn-primary:hover {
-  background: transparent;
-  color: #f5f2ec;
-  border-color: rgba(245, 242, 236, 0.8);
-  transform: translateY(-2px);
-}
-
-.arch-serv-btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  padding: 13px 26px;
-  background: rgba(245, 242, 236, 0.08);
-  color: #f5f2ec;
-  border: 1px solid rgba(245, 242, 236, 0.25);
-  border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all 0.35s ease;
-}
-
-.arch-serv-btn-ghost:hover {
-  background: rgba(245, 242, 236, 0.16);
-  border-color: rgba(245, 242, 236, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Hero Meta Ribbon */
-.arch-serv-meta-ribbon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(16px, 3.5vw, 36px);
-  margin-top: 18px;
-  padding: 14px 28px;
-  background: rgba(14, 18, 22, 0.65);
-  border: 1px solid rgba(245, 242, 236, 0.12);
-  border-radius: 16px;
-  backdrop-filter: blur(14px);
-  flex-wrap: wrap;
-}
-
-.arch-meta-col {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  text-align: center;
-}
-
-.arch-meta-val {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-  font-weight: 700;
-  color: var(--sand, #d8c8b4);
-  letter-spacing: -0.01em;
-}
-
-.arch-meta-lbl {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(245, 242, 236, 0.7);
-}
-
-.arch-meta-divider {
-  width: 1px;
-  height: 28px;
-  background: rgba(245, 242, 236, 0.15);
-}
-
-/* ==========================================================================
-   2. HORIZONTAL DISCIPLINES STRIP
-   ========================================================================== */
-
-.arch-discipline-strip {
-  width: 100%;
-  background: #14181c;
-  border-top: 1px solid rgba(245, 242, 236, 0.08);
-  border-bottom: 1px solid rgba(245, 242, 236, 0.12);
-  padding: 12px 24px;
-  box-sizing: border-box;
-}
-
-.arch-discipline-inner {
+.ed-section-container {
   max-width: 1240px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.arch-discipline-inner::-webkit-scrollbar {
-  display: none;
-}
-
-.arch-discipline-label {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  color: var(--sand, #d8c8b4);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.arch-discipline-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.arch-disc-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 16px;
-  background: rgba(245, 242, 236, 0.05);
-  border: 1px solid rgba(245, 242, 236, 0.12);
-  border-radius: 9999px;
-  text-decoration: none;
-  color: rgba(245, 242, 236, 0.8);
-  transition: all 0.25s ease;
-  white-space: nowrap;
-}
-
-.arch-disc-tab:hover,
-.arch-disc-tab.is-active {
-  background: rgba(216, 200, 180, 0.18);
-  border-color: var(--sand, #d8c8b4);
-  color: #f5f2ec;
-}
-
-.arch-disc-name {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.arch-disc-badge {
-  font-size: 0.68rem;
-  padding: 2px 7px;
-  border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.35);
-  color: var(--sand, #d8c8b4);
-}
-
-/* ==========================================================================
-   3. MAIN TWO-COLUMN ARCHITECTURAL GRID
-   ========================================================================== */
-
-.arch-page-container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: clamp(48px, 6vw, 80px) 24px;
+  padding-left: clamp(20px, 4vw, 40px);
+  padding-right: clamp(20px, 4vw, 40px);
   box-sizing: border-box;
+  width: 100%;
 }
 
-.arch-page-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: clamp(36px, 4.5vw, 64px);
-  align-items: start;
-}
-
-.arch-page-main {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(48px, 6vw, 72px);
-  min-width: 0;
-}
-
-/* Common Section Headers */
-.arch-block-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #92754e;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.arch-tag-line {
-  width: 22px;
-  height: 1.5px;
-  background: #92754e;
-}
-
-.arch-block-headline {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  font-weight: 500;
-  color: #14171a;
-  line-height: 1.22;
-  letter-spacing: -0.015em;
-  margin: 0 0 14px 0;
-}
-
-.arch-section-desc {
-  font-size: 1.02rem;
-  line-height: 1.7;
-  color: #555b64;
-  margin: 0 0 28px 0;
-  max-width: 780px;
-}
-
-/* Lead Paragraph & Manifesto */
-.arch-lead-paragraph {
-  font-size: clamp(1.08rem, 2vw, 1.2rem);
-  line-height: 1.8;
-  color: #24282e;
-  font-weight: 400;
-  margin: 0 0 18px 0;
-}
-
-.arch-body-paragraphs {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.arch-body-paragraphs p {
-  font-size: 0.98rem;
-  line-height: 1.8;
-  color: #4f5661;
-  margin: 0;
-}
-
-.arch-studio-manifesto {
-  margin-top: 28px;
-  padding: 24px 28px;
-  background: #f3efe9;
-  border-left: 3px solid #92754e;
-  border-radius: 0 14px 14px 0;
-}
-
-.arch-manifesto-quote {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.6;
-  color: #1e2227;
-  margin-bottom: 8px;
-}
-
-.arch-manifesto-author {
-  font-size: 0.82rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #7b6241;
-  font-weight: 600;
-}
-
-/* ==========================================================================
-   3B. COMMON CHALLENGES WE SOLVE (Clear Reassuring Problem-Solving)
-   ========================================================================== */
-
-.arch-challenges-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.arch-challenges-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  margin-top: 10px;
-}
-
-.arch-challenge-card {
-  background: #ffffff;
-  border: 1px solid rgba(146, 117, 78, 0.18);
-  border-radius: 14px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
-}
-
-.arch-challenge-card:hover {
-  transform: translateY(-3px);
-  border-color: #92754e;
-  box-shadow: 0 8px 24px rgba(146, 117, 78, 0.1);
-}
-
-.arch-challenge-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.arch-challenge-icon {
-  font-size: 1.6rem;
-  line-height: 1;
-  padding: 10px;
-  background: #f7f3ec;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-.arch-challenge-situation {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #1a1e24;
-  line-height: 1.35;
-  margin: 0;
-}
-
-.arch-challenge-solution-box {
-  background: #fbf9f6;
-  border-left: 3px solid #92754e;
-  padding: 14px 16px;
-  border-radius: 0 8px 8px 0;
-}
-
-.arch-solution-badge {
+/* Common Typography & Buttons */
+.ed-eyebrow {
   display: inline-block;
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  color: #92754e;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.arch-challenge-solution-text {
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: #3b424d;
-  margin: 0;
-}
-
-.arch-challenge-footer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #2b7a4b;
-  margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.08);
-}
-
-/* ==========================================================================
-   4. CURATED SPATIAL SCOPE CARDS (Portfolio Imagery)
-   ========================================================================== */
-
-.arch-scope-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-}
-
-.arch-scope-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: all 0.35s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.arch-scope-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-color: rgba(146, 117, 78, 0.3);
-}
-
-.arch-scope-media {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  background-color: #e5e0d8;
-}
-
-.arch-scope-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.arch-scope-card:hover .arch-scope-media img {
-  transform: scale(1.05);
-}
-
-.arch-scope-tag {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  background: rgba(14, 18, 22, 0.75);
-  backdrop-filter: blur(8px);
-  color: var(--sand, #d8c8b4);
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.70rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.arch-scope-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.arch-scope-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: #14171a;
-  margin: 0 0 10px 0;
-  line-height: 1.3;
-}
-
-.arch-scope-text {
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: #555b64;
-  margin: 0 0 18px 0;
-}
-
-.arch-scope-features {
-  list-style: none;
-  padding: 0;
-  margin: auto 0 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding-top: 16px;
-}
-
-.arch-scope-features li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: #3b4048;
-}
-
-.arch-feat-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #92754e;
-  flex-shrink: 0;
-}
-
-/* ==========================================================================
-   5. EXECUTION BLUEPRINT (Numbered Timeline)
-   ========================================================================== */
-
-.arch-process-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.arch-timeline-node {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.arch-timeline-num {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #92754e;
-  background: #f1ebd8;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: -0.02em;
-  flex-shrink: 0;
-}
-
-.arch-timeline-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.03);
-}
-
-.arch-timeline-step-tag {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #92754e;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.arch-timeline-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.28rem;
-  font-weight: 500;
-  color: #14171a;
-  margin: 0 0 10px 0;
-}
-
-.arch-timeline-desc {
-  font-size: 0.94rem;
-  line-height: 1.65;
-  color: #4f5661;
-  margin: 0 0 16px 0;
-}
-
-.arch-timeline-deliverable {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: #faf7f2;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  flex-wrap: wrap;
-}
-
-.arch-deliv-lbl {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: #92754e;
-}
-
-.arch-deliv-val {
-  color: #2b3036;
-  font-weight: 500;
-}
-
-/* ==========================================================================
-   6. TACTILE MATERIALITY SWATCHES
-   ========================================================================== */
-
-.arch-materials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.arch-material-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 14px;
-  padding: 22px;
-  transition: all 0.3s ease;
-}
-
-.arch-material-card:hover {
-  border-color: #92754e;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-}
-
-.arch-mat-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.arch-mat-tag {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #92754e;
-  font-weight: 600;
-}
-
-.arch-mat-origin {
   font-size: 0.72rem;
-  color: #8c929a;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ed-muted-gold);
+  margin-bottom: 14px;
 }
 
-.arch-mat-name {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.15rem;
-  color: #14171a;
-  margin: 0 0 8px 0;
-  font-weight: 500;
-}
-
-.arch-mat-desc {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: #555b64;
-  margin: 0;
-}
-
-/* ==========================================================================
-   7. ARCHITECTURAL FAQS
-   ========================================================================== */
-
-.arch-faq-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.arch-faq-row {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.25s ease;
-}
-
-.arch-faq-row.is-open {
-  border-color: rgba(146, 117, 78, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-}
-
-.arch-faq-header {
-  width: 100%;
-  padding: 18px 22px;
-  background: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  cursor: pointer;
-  text-align: left;
-}
-
-.arch-faq-q {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.08rem;
-  font-weight: 500;
-  color: #14171a;
-  line-height: 1.35;
-}
-
-.arch-faq-toggle {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 1.3rem;
-  color: #92754e;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.arch-faq-body {
-  padding: 0 22px 20px;
-}
-
-.arch-faq-body p {
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: #4f5661;
-  margin: 0;
-}
-
-/* ==========================================================================
-   8. STICKY STUDIO SIDEBAR (Right Column)
-   ========================================================================== */
-
-.arch-sticky-sidebar {
-  position: sticky;
-  top: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.arch-studio-inquiry-box {
-  background: #14181c;
-  border: 1px solid rgba(216, 200, 180, 0.2);
-  border-radius: 20px;
-  padding: 28px 24px;
-  color: #f5f2ec;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-.arch-inquiry-badge {
+.ed-btn-burgundy {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--sand, #d8c8b4);
-  margin-bottom: 12px;
-}
-
-.arch-inquiry-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--sand, #d8c8b4);
-  box-shadow: 0 0 6px rgba(216, 200, 180, 0.9);
-}
-
-.arch-inquiry-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.32rem;
-  font-weight: 500;
-  color: #f5f2ec;
-  line-height: 1.28;
-  margin: 0 0 12px 0;
-}
-
-.arch-inquiry-text {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: rgba(245, 242, 236, 0.8);
-  margin: 0 0 20px 0;
-}
-
-.arch-inquiry-phone-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 18px;
-}
-
-.arch-phone-label {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  color: rgba(245, 242, 236, 0.6);
-  text-transform: uppercase;
-}
-
-.arch-phone-link {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--sand, #d8c8b4);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: color 0.2s ease;
-}
-
-.arch-phone-link:hover {
-  color: #ffffff;
-}
-
-.arch-inquiry-submit-btn {
-  width: 100%;
-  padding: 13px 20px;
-  background: var(--sand, #d8c8b4);
-  color: #14171a;
-  border: 1px solid var(--sand, #d8c8b4);
-  border-radius: 9999px;
-  font-family: var(--font-content, sans-serif);
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(216, 200, 180, 0.3);
-}
-
-.arch-inquiry-submit-btn:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(216, 200, 180, 0.4);
-}
-
-.arch-inquiry-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: rgba(245, 242, 236, 0.55);
-  margin-top: 14px;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-/* Guarantees Box */
-.arch-guarantees-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  padding: 24px;
-}
-
-.arch-guar-heading {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  color: #92754e;
-  font-weight: 700;
-  margin: 0 0 16px 0;
-  text-transform: uppercase;
-}
-
-.arch-guar-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.arch-guar-item {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 12px;
-  align-items: start;
-}
-
-.arch-guar-num {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #92754e;
-  background: #f5f0e4;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arch-guar-title {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #14171a;
-  margin: 0 0 3px 0;
-}
-
-.arch-guar-desc {
-  font-size: 0.80rem;
-  line-height: 1.5;
-  color: #5d636e;
-  margin: 0;
-}
-
-/* ==========================================================================
-   9. GRAND FINAL STUDIO CALL TO ACTION
-   ========================================================================== */
-
-.arch-grand-cta {
-  background: #0e1216;
-  color: #f5f2ec;
-  padding: clamp(60px, 9vh, 96px) 24px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid rgba(245, 242, 236, 0.1);
-}
-
-.arch-grand-cta-inner {
-  max-width: 820px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-
-.arch-grand-cta-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
-  font-weight: 500;
-  color: #f5f2ec;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.arch-grand-cta-desc {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(245, 242, 236, 0.85);
-  margin: 0 0 8px 0;
-}
-
-.arch-grand-cta-buttons {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* ==========================================================================
-   10. RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-  .arch-serv-hero {
-    min-height: clamp(480px, 58vh, 620px);
-    padding-top: calc(115px + env(safe-area-inset-top, 0px));
-    padding-bottom: clamp(54px, 7vh, 80px);
-    padding-left: clamp(20px, 4vw, 40px);
-    padding-right: clamp(20px, 4vw, 40px);
-  }
-
-  .arch-serv-hero-title {
-    font-size: clamp(2.0rem, 4.4vw, 3.2rem);
-    line-height: 1.2;
-  }
-
-  .arch-page-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .arch-sticky-sidebar {
-    position: static;
-    margin-top: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .arch-serv-hero {
-    min-height: clamp(440px, 56svh, 540px);
-    padding-top: calc(100px + env(safe-area-inset-top, 0px));
-    padding-bottom: clamp(46px, 6vh, 68px);
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .arch-serv-hero-inner {
-    gap: 20px;
-  }
-
-  .arch-serv-hero-top {
-    gap: 12px;
-  }
-
-  .arch-serv-hero-title {
-    font-size: clamp(1.75rem, 5.8vw, 2.35rem);
-    line-height: 1.22;
-  }
-
-  .arch-serv-meta-ribbon {
-    gap: 16px;
-    padding: 12px 18px;
-  }
-
-  .arch-meta-divider {
-    display: none;
-  }
-
-  .arch-meta-col {
-    min-width: 45%;
-  }
-
-  .arch-scope-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .arch-timeline-node {
-    grid-template-columns: 44px 1fr;
-    gap: 14px;
-  }
-
-  .arch-timeline-num {
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
-  }
-
-  .arch-timeline-card {
-    padding: 18px;
-  }
-
-  .arch-materials-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .arch-serv-hero {
-    min-height: clamp(400px, 52svh, 480px);
-    padding-top: calc(88px + env(safe-area-inset-top, 0px));
-    padding-bottom: 36px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .arch-serv-pill {
-    padding: 5px 12px;
-    font-size: 0.64rem;
-    letter-spacing: 0.16em;
-  }
-
-  .arch-serv-hero-inner .breadcrumbs-list {
-    font-size: 0.68rem;
-    gap: 4px 8px;
-    letter-spacing: 0.1em;
-  }
-
-  .arch-serv-hero-title {
-    font-size: clamp(1.55rem, 5.4vw, 1.95rem);
-    line-height: 1.24;
-  }
-}
-
-/* ==========================================================================
-   5. CHILDREN'S CLINIC DITTO LAYOUT STYLES
-   ========================================================================== */
-
-.clinic-layout-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 48px 24px 80px 24px;
-  box-sizing: border-box;
-}
-
-.clinic-grid {
-  display: grid;
-  grid-template-columns: 310px 1fr;
-  gap: clamp(32px, 4vw, 52px);
-  align-items: start;
-}
-
-/* Quick Mobile Discipline Switcher (Hidden on Desktop) */
-.clinic-mobile-nav-bar {
-  display: none;
-}
-
-/* Left Sidebar */
-.clinic-sidebar {
-  width: 100%;
-}
-
-.clinic-sticky-sidebar {
-  position: sticky;
-  top: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-/* Left Services Navigation Stack */
-.clinic-services-nav {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  width: 100%;
-}
-
-.clinic-nav-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  background: #ffffff;
-  border: 1px solid #e7e2d8;
-  border-radius: 12px;
-  text-decoration: none;
-  color: #22262d;
-  font-size: 0.94rem;
-  font-weight: 500;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
-
-.clinic-nav-card:hover {
-  background: #fbf9f6;
-  border-color: #92754e;
-  transform: translateX(3px);
-  color: #1a1e24;
-}
-
-.clinic-nav-card.is-active {
-  background: #1b1e23;
-  border-color: #1b1e23;
+  background-color: var(--ed-burgundy);
   color: #ffffff;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  border: 1px solid var(--ed-burgundy);
+  font-family: var(--font-content, sans-serif);
+  font-size: 0.88rem;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(27, 30, 35, 0.25);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 18px rgba(123, 48, 54, 0.22);
 }
 
-.clinic-nav-arrow {
-  font-size: 1.35rem;
+.ed-btn-burgundy:hover {
+  background-color: var(--ed-burgundy-hover);
+  border-color: var(--ed-burgundy-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(123, 48, 54, 0.3);
+}
+
+.ed-btn-arrow {
+  font-size: 1.1rem;
   line-height: 1;
-  color: #8c7659;
   transition: transform 0.25s ease;
 }
 
-.clinic-nav-card.is-active .clinic-nav-arrow {
-  color: #d8c8b4;
-  transform: translateX(2px);
+.ed-btn-burgundy:hover .ed-btn-arrow,
+.ed-btn-white:hover .ed-btn-arrow {
+  transform: translateX(3px);
 }
 
-/* Sidebar Inquiry Box */
-.clinic-inquiry-box {
-  background: #181c20;
-  color: #f7f5f0;
-  border-radius: 16px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.clinic-inquiry-badge {
+.ed-btn-white {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  background-color: #ffffff;
+  color: var(--ed-dark);
+  padding: 13px 28px;
+  border-radius: 9999px;
+  border: 1px solid #ffffff;
+  font-family: var(--font-content, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ed-btn-white:hover {
+  background-color: var(--ed-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   FLOATING DISCIPLINE SWITCHER STRIP
+   ========================================================================== */
+.ed-discipline-pill-bar {
+  max-width: 1240px;
+  margin: 0 auto 20px auto;
+  padding: 8px clamp(20px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.ed-discipline-label {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
   font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #d8c8b4;
   font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--ed-muted-gold);
 }
 
-.clinic-inquiry-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #d8c8b4;
-  box-shadow: 0 0 8px #d8c8b4;
-}
-
-.clinic-inquiry-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #f7f5f0;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.clinic-inquiry-text {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: rgba(247, 245, 240, 0.8);
-  margin: 0;
-}
-
-.clinic-inquiry-phone-wrap {
+.ed-discipline-links {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.clinic-phone-label {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
-  letter-spacing: 0.16em;
-  color: #d8c8b4;
+.ed-discipline-links::-webkit-scrollbar {
+  display: none;
 }
 
-.clinic-phone-link {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-
-.clinic-inquiry-submit-btn {
-  width: 100%;
-  padding: 13px 20px;
-  background: #f7f5f0;
-  color: #181c20;
-  border: none;
+.ed-discipline-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 18px;
   border-radius: 9999px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(37, 35, 31, 0.1);
+  color: var(--ed-text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
 }
 
-.clinic-inquiry-submit-btn:hover {
-  background: #d8c8b4;
-  transform: translateY(-2px);
+.ed-discipline-pill:hover {
+  background: var(--ed-white);
+  border-color: var(--ed-muted-gold);
+  color: var(--ed-text-primary);
 }
 
-.clinic-inquiry-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 0.74rem;
-  color: rgba(247, 245, 240, 0.6);
-  line-height: 1.4;
+.ed-discipline-pill.is-active {
+  background: var(--ed-text-primary);
+  border-color: var(--ed-text-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 35, 31, 0.15);
 }
 
-/* Right Main Content */
-.clinic-main-content {
+/* ==========================================================================
+   SECTION 02 — SERVICE HERO
+   ========================================================================== */
+.ed-hero-section {
+  padding: 24px 0 64px 0;
+}
+
+.ed-hero-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(36px, 5vw, 68px);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.ed-hero-content {
   display: flex;
   flex-direction: column;
-  gap: 42px;
-  min-width: 0;
+  align-items: flex-start;
 }
 
-.clinic-lead-media {
+.ed-hero-headline {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.35rem, 4.4vw, 3.85rem);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ed-text-primary);
+  margin: 0 0 20px 0;
+  text-wrap: balance;
+}
+
+.ed-hero-subtitle {
+  font-size: clamp(1.0rem, 1.4vw, 1.12rem);
+  line-height: 1.68;
+  color: var(--ed-text-secondary);
+  margin: 0 0 32px 0;
+  max-width: 480px;
+}
+
+.ed-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.ed-scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ed-muted-gold);
+}
+
+.ed-scroll-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--ed-muted-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.ed-scroll-text {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ed-hero-media {
+  position: relative;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
 }
 
-.clinic-lead-media img {
+.ed-hero-media img {
   width: 100%;
   height: auto;
-  max-height: 460px;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ed-hero-media:hover img {
+  transform: scale(1.02);
+}
+
+/* ==========================================================================
+   SECTION 03 — ABOUT OUR SERVICE (ARCHED FRAME & STATS)
+   ========================================================================== */
+.ed-about-section {
+  padding: clamp(54px, 7vw, 90px) 0;
+}
+
+.ed-about-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(40px, 6vw, 84px);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Concentric Arched Photo Frame */
+.ed-about-arch-wrap {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ed-arch-concentric-rings {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  right: -18px;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.ed-ring {
+  position: absolute;
+  border: 1px solid var(--ed-border-gold);
+  border-radius: 220px 220px 0 0;
+  border-bottom: none;
+}
+
+.ed-ring-1 {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+}
+
+.ed-ring-2 {
+  top: 9px;
+  left: 9px;
+  right: 9px;
+  height: 270px;
+  opacity: 0.6;
+}
+
+.ed-arch-photo-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 200px 200px 16px 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.ed-arch-photo-frame img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.clinic-content-section {
+/* Right Content & 3-Column Stats */
+.ed-about-content {
   display: flex;
   flex-direction: column;
 }
 
-.clinic-section-title {
+.ed-about-heading {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.65rem, 3.2vw, 2.3rem);
-  font-weight: 600;
-  color: #181c20;
-  line-height: 1.3;
-  margin: 0 0 16px 0;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.clinic-dash {
-  color: #92754e;
-  font-weight: 700;
-  display: inline-block;
-}
-
-.clinic-lead-text {
-  font-size: clamp(1.05rem, 2vw, 1.18rem);
-  line-height: 1.8;
-  color: #242932;
+  font-size: clamp(2.0rem, 3.8vw, 3.1rem);
   font-weight: 500;
-  margin: 0 0 16px 0;
-}
-
-.clinic-body-text {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.clinic-body-text p {
-  font-size: 0.98rem;
-  line-height: 1.8;
-  color: #4c5360;
-  margin: 0;
-}
-
-.clinic-body-intro {
-  font-size: 0.98rem;
-  line-height: 1.75;
-  color: #4c5360;
-  margin: 0 0 18px 0;
-}
-
-/* Callout Box with Left Accent Border */
-.clinic-callout-box {
-  background: #fbf9f6;
-  border-left: 4px solid #92754e;
-  border-radius: 0 14px 14px 0;
-  padding: 26px 28px;
-  margin-top: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.clinic-callout-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.22rem;
-  font-weight: 600;
-  color: #1a1e24;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.clinic-callout-desc {
-  font-size: 0.94rem;
-  line-height: 1.65;
-  color: #515863;
-  margin: 0 0 8px 0;
-}
-
-.clinic-callout-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.clinic-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 26px;
-  background: #92754e;
-  color: #ffffff;
-  border: 1px solid #92754e;
-  border-radius: 9999px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(146, 117, 78, 0.25);
-}
-
-.clinic-btn-primary:hover {
-  background: #7a5e38;
-  border-color: #7a5e38;
-  transform: translateY(-2px);
-}
-
-.clinic-btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 26px;
-  background: transparent;
-  color: #181c20;
-  border: 1px solid #181c20;
-  border-radius: 9999px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.clinic-btn-outline:hover {
-  background: #181c20;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* Enclosed Guidance Box */
-.clinic-guidance-box {
-  background: #fbf9f6;
-  border: 1px solid #ede8e0;
-  border-radius: 18px;
-  padding: clamp(22px, 3.5vw, 32px);
-}
-
-.clinic-guidance-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.12rem;
-  font-weight: 600;
-  color: #1e2329;
+  line-height: 1.18;
+  color: var(--ed-text-primary);
   margin: 0 0 20px 0;
-  line-height: 1.4;
 }
 
-.clinic-pill-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px;
+.ed-about-paragraph {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ed-text-secondary);
+  margin: 0 0 36px 0;
+  max-width: 580px;
 }
 
-.clinic-pill-card {
-  background: #ffffff;
-  border: 1px solid #e7e2d8;
-  border-radius: 12px;
-  padding: 14px 18px;
+.ed-stats-row {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  transition: all 0.25s ease;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 48px);
+  padding-top: 24px;
+  border-top: 1px solid var(--ed-border-hairline);
 }
 
-.clinic-pill-card:hover {
-  border-color: #92754e;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(146, 117, 78, 0.08);
-}
-
-.clinic-pill-icon {
-  font-size: 1.35rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.clinic-pill-text {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: #262a32;
-  line-height: 1.45;
-}
-
-/* Scope List */
-.clinic-scope-list {
+.ed-stat-col {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  position: relative;
 }
 
-.clinic-scope-item {
-  background: #ffffff;
-  border: 1px solid #e7e2d8;
-  border-radius: 14px;
-  padding: 24px 28px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.02);
+.ed-stat-divider {
+  position: absolute;
+  left: calc(clamp(-24px, -4vw, -48px) / 2);
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background-color: var(--ed-border-hairline);
 }
 
-.clinic-scope-heading {
+.ed-stat-number {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.2rem, 3.6vw, 3.0rem);
+  font-weight: 600;
+  color: var(--ed-text-primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.ed-stat-label {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ed-text-secondary);
+}
+
+/* ==========================================================================
+   SECTION 05 — WHAT WE CAN HELP WITH (SOLUTIONS GRID)
+   ========================================================================== */
+.ed-solutions-section {
+  padding: clamp(54px, 7vw, 90px) 0;
+}
+
+.ed-solutions-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 60px);
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.ed-solutions-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ed-text-primary);
+  margin: 0;
+}
+
+.ed-solutions-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: var(--ed-text-secondary);
+  margin: 0;
+}
+
+.ed-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ed-solution-card {
+  background: var(--ed-white);
+  border: 1px solid var(--ed-border-hairline);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.ed-solution-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+}
+
+.ed-solution-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background-color: var(--ed-bg-secondary);
+}
+
+.ed-solution-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ed-solution-card:hover .ed-solution-img-wrap img {
+  transform: scale(1.05);
+}
+
+.ed-solution-badge {
+  position: absolute;
+  bottom: -18px;
+  left: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--ed-bg-secondary);
+  border: 2px solid var(--ed-white);
+  color: var(--ed-burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.ed-solution-body {
+  padding: 28px 18px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.ed-solution-title {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1a1e24;
-  margin: 0 0 8px 0;
-}
-
-.clinic-scope-text {
-  font-size: 0.94rem;
-  line-height: 1.65;
-  color: #4e5562;
-  margin: 0 0 14px 0;
-}
-
-.clinic-feature-bullets {
-  list-style: none;
-  padding: 0;
+  color: var(--ed-text-primary);
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
-.clinic-feature-bullets li {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: #30353e;
+.ed-solution-desc {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ed-text-secondary);
+  margin: 0;
 }
 
-.clinic-bullet-check {
-  color: #2b7a4b;
-  font-weight: 700;
+/* ==========================================================================
+   SECTION 06 — CORPORATE INTERIOR CHALLENGES
+   ========================================================================== */
+.ed-challenges-section {
+  padding: clamp(54px, 7vw, 90px) 0;
 }
 
-/* Process Grid */
-.clinic-process-grid {
+.ed-challenges-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(36px, 5vw, 68px);
+  align-items: center;
 }
 
-.clinic-process-card {
-  background: #ffffff;
-  border: 1px solid #e7e2d8;
-  border-radius: 14px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.02);
-}
-
-.clinic-process-badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  padding: 3px 10px;
-  background: #fbf9f6;
-  border: 1px solid #ede8e0;
-  border-radius: 9999px;
-  color: #92754e;
-  text-transform: uppercase;
-}
-
-.clinic-process-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #1a1e24;
-  margin: 0;
-  line-height: 1.35;
-}
-
-.clinic-process-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #515863;
-  margin: 0;
-}
-
-.clinic-process-deliv {
-  font-size: 0.82rem;
-  color: #2b7a4b;
-  margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px dashed #ede8e0;
-}
-
-/* FAQ Accordion */
-.clinic-faq-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.clinic-faq-row {
-  border: 1px solid #e7e2d8;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #ffffff;
-  transition: all 0.25s ease;
-}
-
-.clinic-faq-row.is-open {
-  border-color: #92754e;
-  box-shadow: 0 4px 16px rgba(146, 117, 78, 0.08);
-}
-
-.clinic-faq-btn {
+.ed-challenge-img-wrap {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 22px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.08rem;
-  font-weight: 600;
-  color: #1a1e24;
-  gap: 16px;
+  border-radius: 180px 0 0 0;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 4/3;
 }
 
-.clinic-faq-icon {
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: #92754e;
+.ed-challenge-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.clinic-faq-answer {
-  padding: 0 22px 20px 22px;
-}
-
-.clinic-faq-answer p {
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: #4d5460;
-  margin: 0;
-}
-
-/* Bottom CTA Banner */
-.clinic-bottom-cta {
-  background: #fbf9f6;
-  border: 1px solid #ede8e0;
-  border-radius: 16px;
-  padding: 36px 32px;
-  text-align: center;
+.ed-challenge-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 14px;
 }
 
-.clinic-bottom-title {
+.ed-challenge-heading {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
-  font-weight: 600;
-  color: #1a1e24;
-  margin: 0;
+  font-size: clamp(2.0rem, 3.6vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ed-text-primary);
+  margin: 0 0 16px 0;
 }
 
-.clinic-bottom-desc {
+.ed-challenge-subtitle {
   font-size: 0.98rem;
-  line-height: 1.65;
-  color: #515863;
-  max-width: 620px;
-  margin: 0 0 10px 0;
+  line-height: 1.7;
+  color: var(--ed-text-secondary);
+  margin: 0 0 28px 0;
 }
 
-
-
-/* Service Page Bottom Banner Section */
-.service-bottom-banner-section {
-  padding: clamp(40px, 6vh, 72px) clamp(24px, 5vw, 64px) clamp(64px, 10vh, 100px);
-  background-color: var(--ivory, #FAF8F5);
-  border-top: 1px solid rgba(24, 28, 32, 0.06);
-}
-
-.service-bottom-banner-section .clinic-bottom-cta {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-/* ==========================================================================
-   10. MOBILE & TABLET RESPONSIVE REFINEMENTS FOR SERVICE PAGES
-   Ensures compact, intuitive layout without prolonged vertical scroll fatigue
-   ========================================================================== */
-
-@media (max-width: 991px) {
-  .clinic-layout-container {
-    padding: 24px 18px 52px 18px;
-  }
-
-  /* Switch grid to vertical column with Main Content FIRST */
-  .clinic-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  /* Show primary service content FIRST */
-  .clinic-main-content {
-    order: 1;
-    gap: 28px;
-    width: 100%;
-  }
-
-  /* Place sidebar below main content */
-  .clinic-sidebar {
-    order: 2;
-    width: 100%;
-    margin-top: 12px;
-  }
-
-  .clinic-sticky-sidebar {
-    position: static;
-    top: auto;
-    gap: 20px;
-  }
-
-  /* Mobile Practice Quick Switcher */
-  .clinic-mobile-nav-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    background: #ffffff;
-    border: 1px solid #e7e2d8;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    margin-bottom: 4px;
-    box-sizing: border-box;
-  }
-
-  .clinic-mobile-nav-label {
-    font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: #92754e;
-    flex-shrink: 0;
-  }
-
-  .clinic-mobile-nav-scroll {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    flex: 1;
-  }
-
-  .clinic-mobile-nav-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  .clinic-mobile-nav-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    background: #fbf9f6;
-    border: 1px solid #ede8e0;
-    color: #262a32;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-  }
-
-  .clinic-mobile-nav-chip.is-active {
-    background: #181c20;
-    border-color: #181c20;
-    color: #f7f5f0;
-    box-shadow: 0 2px 8px rgba(24, 28, 32, 0.2);
-  }
-
-  /* Format sidebar services navigation into a compact multi-column grid */
-  .clinic-services-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 8px;
-  }
-
-  .clinic-nav-card {
-    padding: 12px 16px;
-    font-size: 0.88rem;
-  }
-
-  /* Studio Guarantees into a 2-column grid */
-  .arch-guar-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-  }
-
-  .arch-guarantees-card {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Architectural Hero compactness */
-  .arch-serv-hero {
-    min-height: clamp(380px, 46vh, 480px);
-    padding-top: calc(90px + env(safe-area-inset-top, 0px));
-    padding-bottom: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .arch-serv-hero-inner {
-    gap: 16px;
-  }
-
-  .arch-serv-hero-title {
-    font-size: clamp(1.4rem, 5.2vw, 1.95rem);
-    line-height: 1.22;
-  }
-
-  .arch-serv-pill {
-    font-size: 0.65rem;
-    padding: 5px 12px;
-  }
-
-  .clinic-layout-container {
-    padding: 16px 14px 36px 14px;
-  }
-
-  .clinic-main-content {
-    gap: 20px;
-  }
-
-  /* Compact Lead Image */
-  .clinic-lead-media {
-    border-radius: 12px;
-  }
-
-  .clinic-lead-media img {
-    max-height: 220px;
-  }
-
-  /* Section Title & Intro */
-  .clinic-section-title {
-    font-size: clamp(1.3rem, 4.6vw, 1.65rem);
-    margin: 0 0 10px 0;
-    line-height: 1.25;
-  }
-
-  .clinic-lead-text {
-    font-size: 0.94rem;
-    line-height: 1.58;
-    margin-bottom: 10px;
-  }
-
-  .clinic-body-intro {
-    font-size: 0.88rem;
-    line-height: 1.55;
-    margin-bottom: 10px;
-  }
-
-  .clinic-body-text {
-    gap: 8px;
-  }
-
-  .clinic-body-text p {
-    font-size: 0.88rem;
-    line-height: 1.58;
-  }
-
-  /* Compact Callout Box */
-  .clinic-callout-box {
-    padding: 16px 14px;
-    margin-top: 12px;
-    gap: 8px;
-    border-left-width: 3px;
-    border-radius: 0 10px 10px 0;
-  }
-
-  .clinic-callout-title {
-    font-size: 1.05rem;
-    line-height: 1.35;
-  }
-
-  .clinic-callout-desc {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 4px;
-  }
-
-  .clinic-callout-actions {
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .clinic-btn-primary,
-  .clinic-btn-outline {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 16px;
-    font-size: 0.82rem;
-    box-sizing: border-box;
-  }
-
-  /* Compact Guidance Box */
-  .clinic-guidance-box {
-    padding: 16px 14px;
-    border-radius: 12px;
-  }
-
-  .clinic-guidance-heading {
-    font-size: 0.96rem;
-    margin-bottom: 10px;
-  }
-
-  .clinic-pill-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .clinic-pill-card {
-    padding: 10px 12px;
-    gap: 10px;
-    border-radius: 10px;
-  }
-
-  .clinic-pill-icon {
-    font-size: 1.15rem;
-  }
-
-  .clinic-pill-text {
-    font-size: 0.84rem;
-    line-height: 1.35;
-  }
-
-  /* Compact Scope List Items */
-  .clinic-scope-list {
-    gap: 10px;
-  }
-
-  .clinic-scope-item {
-    padding: 16px 14px;
-    border-radius: 12px;
-  }
-
-  .clinic-scope-heading {
-    font-size: 1.08rem;
-    margin-bottom: 4px;
-  }
-
-  .clinic-scope-text {
-    font-size: 0.86rem;
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-
-  .clinic-feature-bullets {
-    gap: 5px;
-  }
-
-  .clinic-feature-bullets li {
-    font-size: 0.82rem;
-    gap: 8px;
-  }
-
-  /* Compact Process Step Cards */
-  .clinic-process-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .clinic-process-card {
-    padding: 14px 14px;
-    gap: 6px;
-    border-radius: 12px;
-  }
-
-  .clinic-process-badge {
-    font-size: 0.62rem;
-    padding: 2px 8px;
-  }
-
-  .clinic-process-title {
-    font-size: 1.02rem;
-    line-height: 1.3;
-  }
-
-  .clinic-process-desc {
-    font-size: 0.82rem;
-    line-height: 1.48;
-  }
-
-  .clinic-process-deliv {
-    font-size: 0.76rem;
-    padding-top: 6px;
-  }
-
-  /* Inquiry Box in Mobile */
-  .clinic-inquiry-box {
-    padding: 18px 16px;
-    border-radius: 14px;
-    gap: 12px;
-  }
-
-  .clinic-inquiry-title {
-    font-size: 1.18rem;
-  }
-
-  .clinic-inquiry-text {
-    font-size: 0.84rem;
-    line-height: 1.5;
-  }
-
-  .clinic-inquiry-phone-wrap {
-    padding: 10px 12px;
-  }
-
-  .clinic-phone-link {
-    font-size: 1.05rem;
-  }
-
-  .clinic-inquiry-submit-btn {
-    padding: 11px 16px;
-    font-size: 0.8rem;
-  }
-
-  .arch-guar-list {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .arch-guar-item {
-    gap: 10px;
-  }
-
-  .arch-guar-title {
-    font-size: 0.84rem;
-  }
-
-  .arch-guar-desc {
-    font-size: 0.76rem;
-  }
-
-  /* Bottom Banner Section */
-  .service-bottom-banner-section {
-    padding: 28px 14px 44px 14px;
-  }
-
-  .clinic-bottom-cta {
-    padding: 22px 16px;
-    gap: 8px;
-    border-radius: 14px;
-  }
-
-  .clinic-bottom-title {
-    font-size: clamp(1.2rem, 4.4vw, 1.5rem);
-  }
-
-  .clinic-bottom-desc {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 4px;
-  }
-}
-
-
-/* ==========================================================================
-   11. EDITORIAL ARCHITECTURAL PHILOSOPHY SECTION
-   Card-free, publication-grade typography with kinetic text animations
-   ========================================================================== */
-
-.arch-editorial-section {
-  position: relative;
+.ed-challenges-list {
   display: flex;
   flex-direction: column;
-  padding: 36px 0 20px 0;
-  border-top: 1px solid rgba(146, 117, 78, 0.2);
-  margin-top: 12px;
 }
 
-.arch-editorial-kicker-wrap {
+.ed-challenge-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ed-border-hairline);
+  transition: transform 0.25s ease;
 }
 
-.arch-editorial-kicker-line {
-  width: 48px;
-  height: 1.5px;
-  background: #92754e;
-  display: inline-block;
+.ed-challenge-item:first-child {
+  border-top: 1px solid var(--ed-border-hairline);
+}
+
+.ed-challenge-item:hover {
+  transform: translateX(4px);
+}
+
+.ed-challenge-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ed-bg-secondary);
+  color: var(--ed-burgundy);
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.arch-editorial-kicker {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  color: #92754e;
-  text-transform: uppercase;
-}
-
-.arch-editorial-heading {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+.ed-challenge-text {
+  font-size: 0.98rem;
   font-weight: 500;
-  font-style: italic;
-  line-height: 1.25;
-  color: #181c20;
-  margin: 0 0 22px 0;
-  max-width: 900px;
-  letter-spacing: -0.015em;
+  color: var(--ed-text-primary);
 }
 
-.arch-editorial-gold-rule {
+/* ==========================================================================
+   SECTION 07 — WHAT THE DESIGN INCLUDES (2x3 CATALOG GRID)
+   ========================================================================== */
+.ed-deliverables-section {
+  padding: clamp(54px, 7vw, 90px) 0;
+}
+
+.ed-deliverables-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(36px, 5vw, 68px);
+  align-items: flex-start;
+}
+
+.ed-deliverables-intro {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 120px;
+}
+
+.ed-deliverables-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ed-text-primary);
+  margin: 0 0 16px 0;
+}
+
+.ed-deliverables-subtitle {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ed-text-secondary);
+  margin: 0 0 28px 0;
+}
+
+.ed-deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.ed-deliverable-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.3s ease;
+}
+
+.ed-deliverable-card:hover {
+  transform: translateY(-3px);
+}
+
+.ed-deliverable-thumb-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  background-color: var(--ed-bg-secondary);
+}
+
+.ed-deliverable-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.ed-deliverable-card:hover .ed-deliverable-thumb-wrap img {
+  transform: scale(1.06);
+}
+
+.ed-deliverable-title {
+  font-family: var(--font-content, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ed-text-primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 08 — DESIGN PHILOSOPHY & WORKPLACE STANDARDS
+   ========================================================================== */
+.ed-philosophy-section {
+  padding: clamp(54px, 7vw, 90px) 0;
+  border-top: 1px solid var(--ed-border-hairline);
+}
+
+.ed-philosophy-header {
+  margin-bottom: 36px;
+}
+
+.ed-philosophy-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.28;
+  color: var(--ed-text-primary);
+  margin: 0 0 22px 0;
+  max-width: 960px;
+}
+
+.ed-philosophy-line {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, #92754e 0%, rgba(146, 117, 78, 0.25) 50%, transparent 100%);
-  margin-bottom: 28px;
+  background: linear-gradient(90deg, var(--ed-muted-gold) 0%, rgba(164, 138, 101, 0.2) 60%, transparent 100%);
 }
 
-.arch-editorial-prose-grid {
+.ed-philosophy-prose-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 44px);
-  margin-bottom: 34px;
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: 40px;
 }
 
-.arch-editorial-col {
+.ed-philosophy-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.arch-editorial-col-title {
+.ed-philosophy-col-title {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #1a1e24;
+  color: var(--ed-text-primary);
   margin: 0;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.arch-editorial-col-title::before {
+.ed-philosophy-col-title::before {
   content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #92754e;
-  display: inline-block;
+  background-color: var(--ed-muted-gold);
 }
 
-.arch-editorial-col-text {
+.ed-philosophy-col-text {
   font-size: 0.94rem;
   line-height: 1.75;
-  color: #4a515e;
+  color: var(--ed-text-secondary);
   margin: 0;
 }
 
-/* Criteria Flow: pure typography with elegant dividing rules — zero cards */
-.arch-editorial-criteria-flow {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid #ede8e0;
-  margin-bottom: 36px;
-}
-
-.arch-criteria-entry {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid #ede8e0;
-  transition: all 0.3s ease;
-}
-
-.arch-criteria-entry:hover {
-  padding-left: 8px;
-  border-bottom-color: #92754e;
-}
-
-.arch-criteria-roman {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.65rem;
-  font-weight: 600;
-  color: #92754e;
-  line-height: 1.1;
-  font-feature-settings: 'tnum';
-}
-
-.arch-criteria-body {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.arch-criteria-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.arch-criteria-title {
-  font-family: var(--font-heading, 'Cormorant Garamond', serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #181c20;
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-
-.arch-criteria-sub {
-  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #92754e;
-}
-
-.arch-criteria-desc {
-  font-size: 0.9rem;
-  line-height: 1.68;
-  color: #515863;
-  margin: 0;
-}
-
-/* Borderless Metrics Strip — Zero cards, clean editorial typography */
-.arch-editorial-metrics-strip {
+/* Minimalist Metrics Strip */
+.ed-metrics-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding: 28px 24px;
-  background: rgba(245, 240, 230, 0.45);
+  padding: 26px 24px;
+  background: rgba(235, 229, 219, 0.4);
   border-radius: 16px;
-  border: 1px solid rgba(146, 117, 78, 0.15);
+  border: 1px solid var(--ed-border-gold);
 }
 
-.arch-metric-item {
+.ed-metric-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.arch-metric-number {
+.ed-metric-value {
   font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
   font-weight: 700;
-  color: #181c20;
+  color: var(--ed-text-primary);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
-.arch-metric-unit {
+.ed-metric-unit {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #92754e;
+  color: var(--ed-burgundy);
   margin-left: 2px;
 }
 
-.arch-metric-label {
+.ed-metric-label {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: 1.05rem;
   font-weight: 600;
-  color: #181c20;
+  color: var(--ed-text-primary);
   line-height: 1.25;
 }
 
-.arch-metric-sub {
-  font-size: 0.75rem;
-  color: #656d78;
-  line-height: 1.4;
+.ed-metric-sub {
+  font-size: 0.74rem;
+  color: var(--ed-text-secondary);
 }
 
-/* Responsive adjustments for Section 11 */
-@media (max-width: 991px) {
-  .arch-editorial-prose-grid {
+/* ==========================================================================
+   SECTION 09 — FREQUENTLY ASKED QUESTIONS
+   ========================================================================== */
+.ed-faq-section {
+  padding: clamp(54px, 7vw, 90px) 0;
+}
+
+.ed-faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  gap: clamp(36px, 5vw, 68px);
+  align-items: flex-start;
+}
+
+.ed-faq-left {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  position: sticky;
+  top: 120px;
+}
+
+.editorial-botanical-svg {
+  width: 50px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.ed-faq-header-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.ed-faq-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ed-text-primary);
+  margin: 0 0 14px 0;
+}
+
+.ed-faq-desc {
+  font-size: 0.96rem;
+  line-height: 1.68;
+  color: var(--ed-text-secondary);
+  margin: 0;
+  max-width: 380px;
+}
+
+.ed-faq-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.ed-accordion-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ed-accordion-item {
+  border-bottom: 1px solid rgba(37, 35, 31, 0.12);
+  transition: all 0.25s ease;
+}
+
+.ed-accordion-item:first-child {
+  border-top: 1px solid rgba(37, 35, 31, 0.12);
+}
+
+.ed-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.ed-accordion-question {
+  font-family: var(--font-content, sans-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ed-text-primary);
+  transition: color 0.2s ease;
+}
+
+.ed-accordion-btn:hover .ed-accordion-question,
+.ed-accordion-item.is-open .ed-accordion-question {
+  color: var(--ed-burgundy);
+}
+
+.ed-accordion-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--ed-muted-gold);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.ed-accordion-panel {
+  padding: 0 0 22px 0;
+}
+
+.ed-accordion-answer {
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: var(--ed-text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 10 — FINAL CONSULTATION CTA BANNER
+   ========================================================================== */
+.ed-final-cta-section {
+  padding: clamp(30px, 5vw, 60px) 0 clamp(60px, 8vw, 100px) 0;
+}
+
+.ed-final-cta-banner {
+  background-color: var(--ed-dark);
+  color: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.ed-final-cta-content {
+  padding: clamp(36px, 5vw, 64px) clamp(28px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ed-final-cta-eyebrow {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ed-muted-gold);
+  margin-bottom: 14px;
+}
+
+.ed-final-cta-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(2.0rem, 3.8vw, 3.1rem);
+  font-weight: 500;
+  line-height: 1.18;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.ed-final-cta-desc {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 32px 0;
+  max-width: 480px;
+}
+
+.ed-final-cta-media {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+}
+
+.ed-final-cta-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DESKTOP, TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .ed-hero-container {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 36px;
   }
 
-  .arch-editorial-metrics-strip {
+  .ed-hero-media img {
+    max-height: 380px;
+  }
+
+  .ed-about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ed-solutions-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px 16px;
-    padding: 22px 18px;
+    gap: 16px;
+  }
+
+  .ed-challenges-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .ed-deliverables-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .ed-deliverables-intro {
+    position: static;
+  }
+
+  .ed-deliverables-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ed-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .ed-faq-left {
+    position: static;
+  }
+
+  .ed-final-cta-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .ed-final-cta-media {
+    min-height: 280px;
   }
 }
 
 @media (max-width: 768px) {
-  .arch-editorial-section {
-    padding: 24px 0 16px 0;
+  .editorial-service-page {
+    padding-top: calc(72px + env(safe-area-inset-top, 0px));
   }
 
-  .arch-editorial-kicker-wrap {
+  .ed-discipline-pill-bar {
+    padding: 6px 16px;
     margin-bottom: 12px;
-    gap: 10px;
   }
 
-  .arch-editorial-kicker-line {
-    width: 32px;
+  .ed-hero-section {
+    padding: 16px 0 44px 0;
   }
 
-  .arch-editorial-kicker {
-    font-size: 0.65rem;
+  .ed-hero-headline {
+    font-size: clamp(2.0rem, 7.5vw, 2.75rem);
+    margin-bottom: 14px;
   }
 
-  .arch-editorial-heading {
-    font-size: clamp(1.4rem, 5.2vw, 1.85rem);
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  .arch-editorial-gold-rule {
-    margin-bottom: 20px;
-  }
-
-  .arch-editorial-col-title {
-    font-size: 0.76rem;
-  }
-
-  .arch-editorial-col-text {
-    font-size: 0.86rem;
+  .ed-hero-subtitle {
+    font-size: 0.94rem;
     line-height: 1.6;
+    margin-bottom: 24px;
   }
 
-  .arch-criteria-entry {
-    grid-template-columns: 36px 1fr;
-    gap: 14px;
-    padding: 16px 0;
+  .ed-hero-actions {
+    margin-bottom: 24px;
   }
 
-  .arch-criteria-roman {
-    font-size: 1.3rem;
+  .ed-hero-media img {
+    max-height: 260px;
+    border-radius: 14px;
   }
 
-  .arch-criteria-title {
-    font-size: 1.08rem;
+  .ed-about-section,
+  .ed-solutions-section,
+  .ed-challenges-section,
+  .ed-deliverables-section,
+  .ed-philosophy-section,
+  .ed-faq-section {
+    padding: 44px 0;
   }
 
-  .arch-criteria-sub {
-    font-size: 0.64rem;
+  .ed-about-heading,
+  .ed-solutions-heading,
+  .ed-challenge-heading,
+  .ed-deliverables-heading,
+  .ed-faq-heading {
+    font-size: clamp(1.8rem, 6.2vw, 2.3rem);
   }
 
-  .arch-criteria-desc {
-    font-size: 0.84rem;
-    line-height: 1.55;
-  }
-
-  .arch-editorial-metrics-strip {
+  .ed-solutions-header {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 18px 16px;
-    border-radius: 12px;
+    gap: 12px;
+    margin-bottom: 24px;
   }
 
-  .arch-metric-number {
-    font-size: 1.6rem;
+  .ed-solutions-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .arch-metric-label {
-    font-size: 0.95rem;
+  .ed-solutions-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ed-solution-card {
+    flex: 0 0 78%;
+    min-width: 240px;
+    scroll-snap-align: center;
+  }
+
+  .ed-challenge-img-wrap {
+    border-radius: 80px 0 0 0;
+    aspect-ratio: 16/10;
+  }
+
+  .ed-deliverables-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .ed-philosophy-prose-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .ed-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+    padding: 20px 16px;
+  }
+
+  .editorial-botanical-svg {
+    display: none;
+  }
+
+  .ed-final-cta-content {
+    padding: 32px 20px;
+  }
+
+  .ed-final-cta-heading {
+    font-size: clamp(1.75rem, 6vw, 2.2rem);
+  }
+
+  .ed-final-cta-media {
+    min-height: 220px;
   }
 }

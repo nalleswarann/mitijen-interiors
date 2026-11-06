@@ -484,7 +484,7 @@ export const Header: React.FC = () => {
             openInquiry();
           }}
         >
-          <span>Start a Project</span>
+          <span>Book a Consult</span>
           <svg width="14" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor">
             <path d="M0 5h15M11 1l4 4-4 4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
