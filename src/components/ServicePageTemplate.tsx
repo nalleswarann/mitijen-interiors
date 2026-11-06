@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { ServicePageData } from '../data/servicesData';
 import { SEO } from './common/SEO';
 import { useInquiry } from '../context/useInquiry';
+import { HowItWorksSection } from './HowItWorksSection';
 import '../styles/ServicePage.css';
 
 if (typeof window !== 'undefined') {
@@ -47,18 +48,6 @@ interface DisciplineEditorialConfig {
     title: string;
     image: string;
   }>;
-  philosophyEyebrow: string;
-  philosophyHeading: string;
-  philosophyCol1Title: string;
-  philosophyCol1Text: string;
-  philosophyCol2Title: string;
-  philosophyCol2Text: string;
-  metrics: Array<{
-    value: string;
-    unit?: string;
-    label: string;
-    sub: string;
-  }>;
   ctaEyebrow: string;
   ctaHeading: string;
   ctaSubtitle: string;
@@ -100,13 +89,13 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
       },
       {
         title: 'Reception Areas',
-        description: 'Make a lasting first impression on visiting clients.',
+        description: 'Make a lasting first impression.',
         image: '/assets/craft_stone_vanity.jpg',
         iconType: 'reception',
       },
       {
         title: 'Executive Spaces',
-        description: 'Sophisticated private sanctuaries for leadership.',
+        description: 'Sophisticated spaces for leadership.',
         image: '/assets/transformations/bedroom_after.jpg',
         iconType: 'executive',
       },
@@ -133,21 +122,6 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
       { title: 'Custom Furniture & Furnishings', image: '/assets/mitijen/deco3.jpeg' },
       { title: 'Brand Integration', image: '/assets/mitijen/deco2.jpeg' },
       { title: 'Turnkey Execution', image: '/assets/craft_joinery.jpg' },
-    ],
-    philosophyEyebrow: 'DESIGN PHILOSOPHY & WORKPLACE STANDARDS',
-    philosophyHeading:
-      'A high-performance workplace must support diverse cognitive working modes throughout the business day.',
-    philosophyCol1Title: 'Acoustic Engineering & Privacy',
-    philosophyCol1Text:
-      'High-performing offices balance vibrant open collaboration with deep acoustic focus. We engineer sound-absorbing baffle ceilings, STC-rated glass partitions, and quiet focus booths to minimize cognitive fatigue.',
-    philosophyCol2Title: 'Daylight & Ergonomic Well-Being',
-    philosophyCol2Text:
-      'Every workstation layout is oriented around natural daylight penetration. We pair glare-free 4000K architectural cove lighting with BIFMA-certified ergonomic seating and sit-stand desks for sustained daily focus.',
-    metrics: [
-      { value: '0.02', unit: 'mm', label: 'CNC Millwork Precision', sub: 'Factory-calibrated joinery' },
-      { value: '100', unit: '%', label: 'BWP 710 Marine Ply', sub: 'Zero-cavity Gurjan core' },
-      { value: '10', unit: 'Yr', label: 'Structural Hardware', sub: 'German motion warranty' },
-      { value: '0.0', unit: '%', label: 'Mid-Project Escalation', sub: 'Fixed transparent BOQ' },
     ],
     ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
     ctaHeading: 'Ready to Create an Exceptional Workspace?',
@@ -188,20 +162,20 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
         iconType: 'meeting',
       },
       {
-        title: 'Public Foyers',
+        title: 'Reception & Foyers',
         description: 'Engaging arrival zones with intuitive customer circulation.',
         image: '/assets/mitijen/deco1.jpeg',
         iconType: 'reception',
       },
       {
-        title: 'Commercial Fit-Outs',
+        title: 'Executive Venues',
         description: 'High-specification turnkey buildouts for ambitious venues.',
         image: '/assets/PHOTO.jpg',
         iconType: 'executive',
       },
     ],
     challengesEyebrow: 'COMMERCIAL INTERIOR CHALLENGES',
-    challengesHeading: 'Turning Commercial Challenges into Growth',
+    challengesHeading: 'Turning Commercial Challenges into Opportunities',
     challengesSubtitle:
       'We understand commercial lease pressures — and engineer spaces that balance visual allure with durable, code-compliant operations.',
     challengesImage: '/assets/forma_facade.jpg',
@@ -217,26 +191,11 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
       'From concept to completion, we handle every detail with precision and care.',
     deliverablesCards: [
       { title: 'Circulation & Dwell Time Planning', image: '/assets/craft_credenza.jpg' },
-      { title: 'Commercial Material Specification', image: '/assets/craft_stone_vanity.jpg' },
+      { title: 'Commercial Material Selection', image: '/assets/craft_stone_vanity.jpg' },
       { title: 'Dramatic Architectural Lighting', image: '/assets/panorama_bath.jpg' },
-      { title: 'Bespoke Display Joinery', image: '/assets/craft_shelving.jpg' },
+      { title: 'Bespoke Display Joinery & Counters', image: '/assets/craft_shelving.jpg' },
       { title: 'Environmental Brand Touchpoints', image: '/assets/mitijen/deco2.jpeg' },
       { title: 'Turnkey MEP & Build Coordination', image: '/assets/craft_joinery.jpg' },
-    ],
-    philosophyEyebrow: 'DESIGN PHILOSOPHY & COMMERCIAL IMPACT',
-    philosophyHeading:
-      "Commercial architecture is the physical embodiment of a brand's promise to its audience.",
-    philosophyCol1Title: 'Circulation & Customer Psychology',
-    philosophyCol1Text:
-      'Every commercial layout is choreographed to guide natural movement, eliminate visual clutter, and draw customer gaze toward hero product showcases and hospitality touchpoints.',
-    philosophyCol2Title: 'Commercial-Grade Material Endurance',
-    philosophyCol2Text:
-      'We specify high-traffic stone surfaces, anti-scratch finishes, and solid timber detailing built to maintain pristine aesthetic appeal despite thousands of daily visitors.',
-    metrics: [
-      { value: '0.02', unit: 'mm', label: 'CNC Millwork Precision', sub: 'Factory-calibrated joinery' },
-      { value: '100', unit: '%', label: 'BWP 710 Marine Ply', sub: 'Zero-cavity Gurjan core' },
-      { value: '10', unit: 'Yr', label: 'Structural Hardware', sub: 'German motion warranty' },
-      { value: '0.0', unit: '%', label: 'Mid-Project Escalation', sub: 'Fixed transparent BOQ' },
     ],
     ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
     ctaHeading: 'Ready to Elevate Your Commercial Presence?',
@@ -283,14 +242,14 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
         iconType: 'reception',
       },
       {
-        title: 'Turnkey Civil Execution',
+        title: 'Executive Joinery',
         description: 'Single-point architectural execution from masonry to final handover.',
         image: '/assets/craft_joinery.jpg',
         iconType: 'executive',
       },
     ],
     challengesEyebrow: 'RESIDENTIAL INTERIOR CHALLENGES',
-    challengesHeading: 'Turning Living Challenges into Serenity',
+    challengesHeading: 'Turning Living Challenges into Opportunities',
     challengesSubtitle:
       'We address homeowner concerns early — from carpentry guesswork to material moisture resistance — with transparent architectural rigor.',
     challengesImage: '/assets/forma_facade.jpg',
@@ -311,21 +270,6 @@ const EDITORIAL_CONFIG: Record<'Corporate' | 'Commercial' | 'Residential', Disci
       { title: 'Custom Walk-In Wardrobes & Millwork', image: '/assets/craft_wardrobe.jpg' },
       { title: 'Tactile Natural Stone & Veneers', image: '/assets/mitijen/warm3.jpeg' },
       { title: 'Turnkey Civil Execution & Handover', image: '/assets/craft_joinery.jpg' },
-    ],
-    philosophyEyebrow: 'DESIGN PHILOSOPHY & LIVING STANDARDS',
-    philosophyHeading:
-      'We do not decorate rooms. We sculpt volumes of light, proportion, and natural permanence.',
-    philosophyCol1Title: 'Spatial Flow & Daylight Paths',
-    philosophyCol1Text:
-      "Every plan begins with Krishnagiri's solar path. We position active morning zones to capture gentle dawn light, while screening afternoon glare and creating peaceful evening alcoves.",
-    philosophyCol2Title: 'Zero-Tolerance Joinery & Materials',
-    philosophyCol2Text:
-      'We exclusively specify boiling-water-proof (BWP 710) Gurjan-core marine plywood, soft-close German concealed hardware, and natural stone slabs cut to 0.5mm joint tolerances.',
-    metrics: [
-      { value: '0.02', unit: 'mm', label: 'CNC Millwork Precision', sub: 'Factory-calibrated joinery' },
-      { value: '100', unit: '%', label: 'BWP 710 Marine Ply', sub: 'Zero-cavity Gurjan core' },
-      { value: '10', unit: 'Yr', label: 'Structural Hardware', sub: 'German motion warranty' },
-      { value: '0.0', unit: '%', label: 'Mid-Project Escalation', sub: 'Fixed transparent BOQ' },
     ],
     ctaEyebrow: "LET'S BRING YOUR VISION TO LIFE",
     ctaHeading: 'Ready to Craft Your Private Living Sanctuary?',
@@ -634,24 +578,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
         );
       }
 
-      // 6. Philosophy reveal
-      gsap.fromTo(
-        '.ed-philosophy-heading',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.ed-philosophy-section',
-            start: 'top 82%',
-            once: true,
-          },
-        }
-      );
-
-      // 7. Final CTA banner reveal
+      // 6. Final CTA banner reveal
       gsap.fromTo(
         '.ed-final-cta-banner',
         { opacity: 0, y: 35 },
@@ -787,7 +714,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 05 — WHAT WE CAN HELP WITH (SOLUTIONS GRID)
+          SECTION 04 — WHAT WE CAN HELP WITH (SOLUTIONS GRID)
           ==================================================================== */}
       <section className="ed-solutions-section" aria-label="Comprehensive Interior Solutions">
         <div className="ed-section-container">
@@ -822,7 +749,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 06 — CORPORATE INTERIOR CHALLENGES
+          SECTION 05 — CORPORATE INTERIOR CHALLENGES
           ==================================================================== */}
       <section className="ed-challenges-section" aria-label="Overcoming Interior Challenges">
         <div className="ed-section-container">
@@ -856,7 +783,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 07 — WHAT THE DESIGN INCLUDES (A COMPLETE DESIGN EXPERIENCE)
+          SECTION 06 — WHAT THE DESIGN INCLUDES (2x3 CATALOG GRID)
           ==================================================================== */}
       <section className="ed-deliverables-section" id="deliverables" aria-label="A Complete Design Experience">
         <div className="ed-section-container">
@@ -893,48 +820,12 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 08 — DESIGN PHILOSOPHY & WORKPLACE STANDARDS
+          SECTION 07 — HOW IT WORKS (3 Easy Steps to Get Interior Design)
           ==================================================================== */}
-      <section className="ed-philosophy-section" id="philosophy" aria-label="Design Philosophy">
-        <div className="ed-section-container">
-          <div className="ed-philosophy-header">
-            <span className="ed-eyebrow">{config.philosophyEyebrow}</span>
-            <h2 className="ed-philosophy-heading">“{config.philosophyHeading}”</h2>
-            <div className="ed-philosophy-line" />
-          </div>
-
-          <div className="ed-philosophy-prose-grid">
-            <div className="ed-philosophy-col">
-              <h3 className="ed-philosophy-col-title">{config.philosophyCol1Title}</h3>
-              <p className="ed-philosophy-col-text">{config.philosophyCol1Text}</p>
-            </div>
-            <div className="ed-philosophy-col">
-              <h3 className="ed-philosophy-col-title">{config.philosophyCol2Title}</h3>
-              <p className="ed-philosophy-col-text">{config.philosophyCol2Text}</p>
-            </div>
-          </div>
-
-          {/* Minimalist Borderless Metrics Strip */}
-          <div className="ed-metrics-strip">
-            {config.metrics.map((m) => (
-              <div key={m.label} className="ed-metric-item">
-                <span className="ed-metric-value">
-                  {m.value}
-                  {m.unit && <span className="ed-metric-unit">{m.unit}</span>}
-                </span>
-                <span className="ed-metric-label">{m.label}</span>
-                <span className="ed-metric-sub">{m.sub}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Optional Children Injection (e.g. How It Works Section) */}
-      {children}
+      {children ? children : <HowItWorksSection />}
 
       {/* ====================================================================
-          SECTION 09 — FREQUENTLY ASKED QUESTIONS
+          SECTION 08 — FREQUENTLY ASKED QUESTIONS
           ==================================================================== */}
       <section className="ed-faq-section" id="faq" aria-label="Frequently Asked Questions">
         <div className="ed-section-container">
@@ -983,7 +874,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
       </section>
 
       {/* ====================================================================
-          SECTION 10 — FINAL CONSULTATION CTA BANNER
+          SECTION 09 — FINAL CONSULTATION CTA BANNER
           ==================================================================== */}
       <section className="ed-final-cta-section" aria-label="Start Your Consultation">
         <div className="ed-section-container">
