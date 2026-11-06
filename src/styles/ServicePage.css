@@ -2214,3 +2214,310 @@
     margin-bottom: 4px;
   }
 }
+
+
+/* ==========================================================================
+   11. EDITORIAL ARCHITECTURAL PHILOSOPHY SECTION
+   Card-free, publication-grade typography with kinetic text animations
+   ========================================================================== */
+
+.arch-editorial-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 0 20px 0;
+  border-top: 1px solid rgba(146, 117, 78, 0.2);
+  margin-top: 12px;
+}
+
+.arch-editorial-kicker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.arch-editorial-kicker-line {
+  width: 48px;
+  height: 1.5px;
+  background: #92754e;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.arch-editorial-kicker {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: #92754e;
+  text-transform: uppercase;
+}
+
+.arch-editorial-heading {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.25;
+  color: #181c20;
+  margin: 0 0 22px 0;
+  max-width: 900px;
+  letter-spacing: -0.015em;
+}
+
+.arch-editorial-gold-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #92754e 0%, rgba(146, 117, 78, 0.25) 50%, transparent 100%);
+  margin-bottom: 28px;
+}
+
+.arch-editorial-prose-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 44px);
+  margin-bottom: 34px;
+}
+
+.arch-editorial-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arch-editorial-col-title {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1e24;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arch-editorial-col-title::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #92754e;
+  display: inline-block;
+}
+
+.arch-editorial-col-text {
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: #4a515e;
+  margin: 0;
+}
+
+/* Criteria Flow: pure typography with elegant dividing rules — zero cards */
+.arch-editorial-criteria-flow {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #ede8e0;
+  margin-bottom: 36px;
+}
+
+.arch-criteria-entry {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid #ede8e0;
+  transition: all 0.3s ease;
+}
+
+.arch-criteria-entry:hover {
+  padding-left: 8px;
+  border-bottom-color: #92754e;
+}
+
+.arch-criteria-roman {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #92754e;
+  line-height: 1.1;
+  font-feature-settings: 'tnum';
+}
+
+.arch-criteria-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.arch-criteria-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.arch-criteria-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #181c20;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.arch-criteria-sub {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #92754e;
+}
+
+.arch-criteria-desc {
+  font-size: 0.9rem;
+  line-height: 1.68;
+  color: #515863;
+  margin: 0;
+}
+
+/* Borderless Metrics Strip — Zero cards, clean editorial typography */
+.arch-editorial-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 28px 24px;
+  background: rgba(245, 240, 230, 0.45);
+  border-radius: 16px;
+  border: 1px solid rgba(146, 117, 78, 0.15);
+}
+
+.arch-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.arch-metric-number {
+  font-family: var(--font-architectural, 'Space Grotesk', sans-serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  color: #181c20;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.arch-metric-unit {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #92754e;
+  margin-left: 2px;
+}
+
+.arch-metric-label {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #181c20;
+  line-height: 1.25;
+}
+
+.arch-metric-sub {
+  font-size: 0.75rem;
+  color: #656d78;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for Section 11 */
+@media (max-width: 991px) {
+  .arch-editorial-prose-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .arch-editorial-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .arch-editorial-section {
+    padding: 24px 0 16px 0;
+  }
+
+  .arch-editorial-kicker-wrap {
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .arch-editorial-kicker-line {
+    width: 32px;
+  }
+
+  .arch-editorial-kicker {
+    font-size: 0.65rem;
+  }
+
+  .arch-editorial-heading {
+    font-size: clamp(1.4rem, 5.2vw, 1.85rem);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .arch-editorial-gold-rule {
+    margin-bottom: 20px;
+  }
+
+  .arch-editorial-col-title {
+    font-size: 0.76rem;
+  }
+
+  .arch-editorial-col-text {
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  .arch-criteria-entry {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    padding: 16px 0;
+  }
+
+  .arch-criteria-roman {
+    font-size: 1.3rem;
+  }
+
+  .arch-criteria-title {
+    font-size: 1.08rem;
+  }
+
+  .arch-criteria-sub {
+    font-size: 0.64rem;
+  }
+
+  .arch-criteria-desc {
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .arch-editorial-metrics-strip {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px 16px;
+    border-radius: 12px;
+  }
+
+  .arch-metric-number {
+    font-size: 1.6rem;
+  }
+
+  .arch-metric-label {
+    font-size: 0.95rem;
+  }
+}

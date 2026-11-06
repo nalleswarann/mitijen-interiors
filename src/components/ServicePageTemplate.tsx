@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { ServicePageData } from '../data/servicesData';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 import { SEO } from './common/SEO';
 import { Breadcrumbs } from './common/Breadcrumbs';
 import { useInquiry } from '../context/useInquiry';
@@ -83,10 +89,136 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
 
   // Accordion state for FAQs (first item open by default, single-selection with smooth image cross-fade like homepage)
   const [activeFaqIndex, setActiveFaqIndex] = useState<number>(0);
+  const philosophyRef = useRef<HTMLElement>(null);
 
   const toggleFaq = (idx: number) => {
     setActiveFaqIndex((prev) => (prev === idx ? -1 : idx));
   };
+
+  // Editorial section text animations via GSAP
+  useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion || !philosophyRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate Kicker & Accent Line
+      gsap.fromTo(
+        '.arch-editorial-kicker-wrap',
+        { opacity: 0, x: -24 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: philosophyRef.current,
+            start: 'top 82%',
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.arch-editorial-gold-rule',
+        { scaleX: 0, transformOrigin: 'left center' },
+        {
+          scaleX: 1,
+          duration: 1.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.arch-editorial-gold-rule',
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
+
+      // Animate Serif Heading
+      gsap.fromTo(
+        '.arch-editorial-heading',
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.arch-editorial-heading',
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
+
+      // Animate Prose Columns
+      const cols = gsap.utils.toArray('.arch-editorial-col');
+      if (cols.length > 0) {
+        gsap.fromTo(
+          cols,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.18,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '.arch-editorial-prose-grid',
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Animate Criteria Entries
+      const entries = gsap.utils.toArray('.arch-criteria-entry');
+      if (entries.length > 0) {
+        gsap.fromTo(
+          entries,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.14,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '.arch-editorial-criteria-flow',
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Animate Metric Items
+      const metrics = gsap.utils.toArray('.arch-metric-item');
+      if (metrics.length > 0) {
+        gsap.fromTo(
+          metrics,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '.arch-editorial-metrics-strip',
+              start: 'top 88%',
+              once: true,
+            },
+          }
+        );
+      }
+    }, philosophyRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const faqMetaList = getCategoryFaqMeta(data.category);
   const currentMeta =
@@ -404,7 +536,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
             {/* Section 2: What Can It Help With? */}
             <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
-                <span className="clinic-dash">—</span> Residential Interior Design in Krishnagiri: What Can It Help With?
+                <span className="clinic-dash">—</span> {data.category} Interior Design: What Can It Help With?
               </h2>
 
               <p className="clinic-body-intro">
@@ -429,7 +561,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
             {/* Section 3: When Should You Seek Support? */}
             <section className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
-                <span className="clinic-dash">—</span> Home Interior Challenges That Need Professional Guidance
+                <span className="clinic-dash">—</span> {data.category} Interior Challenges That Need Professional Guidance
               </h2>
 
               <p className="clinic-body-intro">
@@ -454,7 +586,7 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
             {/* Section 4: What Does Support Include? */}
             <section id="deliverables" className="clinic-content-section reveal-fade-up">
               <h2 className="clinic-section-title">
-                <span className="clinic-dash">—</span> What Does Our Residential Interior Design Include?
+                <span className="clinic-dash">—</span> What Does Our {data.category} Interior Design Include?
               </h2>
 
               <p className="clinic-body-intro">
@@ -482,27 +614,83 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
               </div>
             </section>
 
-            {/* Section 5: Step-by-Step 4-Stage Process */}
-            <section id="turnkey" className="clinic-content-section reveal-fade-up">
-              <h2 className="clinic-section-title">
-                <span className="clinic-dash">—</span> Our Step-by-Step 4-Stage Process
+            {/* Section 5: Editorial Architectural Philosophy & Spatial Standards
+                (Replaced 4-stage process cards with pure editorial typography and kinetic text animations) */}
+            <section id="philosophy" className="arch-editorial-section" ref={philosophyRef}>
+              <div className="arch-editorial-kicker-wrap">
+                <span className="arch-editorial-kicker-line" />
+                <span className="arch-editorial-kicker">
+                  MITJEN ARCHITECTURAL ETHOS · {data.category.toUpperCase()} PRACTICE
+                </span>
+              </div>
+
+              <h2 className="arch-editorial-heading">
+                {data.considerationsSection?.subtitle ||
+                  'We do not decorate rooms. We sculpt volumes of light, proportion, and enduring materiality.'}
               </h2>
 
-              <p className="clinic-body-intro">
-                A structured, predictable journey that turns your initial ideas into an impeccably completed home:
-              </p>
+              <div className="arch-editorial-gold-rule" />
 
-              <div className="clinic-process-grid">
-                {data.processSection.steps.map((st) => (
-                  <div key={st.step} className="clinic-process-card hover-lift">
-                    <span className="clinic-process-badge">{st.step}</span>
-                    <h3 className="clinic-process-title">{st.title}</h3>
-                    <p className="clinic-process-desc">{st.description}</p>
-                    <div className="clinic-process-deliv">
-                      <strong>Deliverable:</strong> {st.deliverables}
+              <div className="arch-editorial-prose-grid">
+                <div className="arch-editorial-col">
+                  <h3 className="arch-editorial-col-title">
+                    Spatial Circulation & Solar Alignment
+                  </h3>
+                  <p className="arch-editorial-col-text">
+                    Architecture begins where visual noise ends. Every interior plan is orchestrated around Krishnagiri's natural solar path—aligning active daylight with daily living while shielding delicate spaces from harsh thermal gain. We calculate generous sightlines across adjacent zones to eliminate awkward pinch points and ensure seamless flow.
+                  </p>
+                </div>
+
+                <div className="arch-editorial-col">
+                  <h3 className="arch-editorial-col-title">
+                    Zero-Tolerance Materiality & Joinery
+                  </h3>
+                  <p className="arch-editorial-col-text">
+                    We categorically reject hollow particle boards and paper laminates. Our studio specifies exclusively calibrated boiling-water-proof (BWP 710) Gurjan-core marine plywood, soft-close German concealed hardware (Blum & Häfele), and hand-finished natural stone slabs. Every cabinet edge is finished with waterproof PUR polymer bonding engineered for decades of daily touch.
+                  </p>
+                </div>
+              </div>
+
+              {/* Typographic Criteria Flow — NO CARDS, pure editorial typography */}
+              <div className="arch-editorial-criteria-flow">
+                {(data.considerationsSection?.items || []).slice(0, 4).map((item, idx) => (
+                  <div key={item.title} className="arch-criteria-entry">
+                    <span className="arch-criteria-roman">
+                      {['01', '02', '03', '04'][idx] || `0${idx + 1}`}
+                    </span>
+                    <div className="arch-criteria-body">
+                      <div className="arch-criteria-header">
+                        <h4 className="arch-criteria-title">{item.title}</h4>
+                        <span className="arch-criteria-sub">{item.subtitle}</span>
+                      </div>
+                      <p className="arch-criteria-desc">{item.description}</p>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Minimalist Borderless Metrics Strip — Zero cards, clean editorial typography */}
+              <div className="arch-editorial-metrics-strip">
+                <div className="arch-metric-item">
+                  <span className="arch-metric-number">0.02<span className="arch-metric-unit">mm</span></span>
+                  <span className="arch-metric-label">CNC Millwork Precision</span>
+                  <span className="arch-metric-sub">Factory-calibrated joinery</span>
+                </div>
+                <div className="arch-metric-item">
+                  <span className="arch-metric-number">100<span className="arch-metric-unit">%</span></span>
+                  <span className="arch-metric-label">BWP 710 Marine Ply</span>
+                  <span className="arch-metric-sub">Zero-cavity Gurjan core</span>
+                </div>
+                <div className="arch-metric-item">
+                  <span className="arch-metric-number">10<span className="arch-metric-unit">Yr</span></span>
+                  <span className="arch-metric-label">Structural Hardware</span>
+                  <span className="arch-metric-sub">German motion warranty</span>
+                </div>
+                <div className="arch-metric-item">
+                  <span className="arch-metric-number">0.0<span className="arch-metric-unit">%</span></span>
+                  <span className="arch-metric-label">Mid-Project Escalation</span>
+                  <span className="arch-metric-sub">Fixed transparent BOQ</span>
+                </div>
               </div>
             </section>
 
