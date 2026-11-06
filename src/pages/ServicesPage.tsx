@@ -49,42 +49,21 @@ export const ServicesPage: React.FC = () => {
     const ctx = gsap.context(() => {
 
 
-      // 4. Reveal 3 Black Cards on scroll
+      // Reveal Practice Cards on scroll
       const cards = gsap.utils.toArray('.renova-card');
       if (cards.length > 0) {
         gsap.fromTo(
           cards,
-          { y: 44, opacity: 0 },
+          { y: 32, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1.1,
-            stagger: 0.16,
+            duration: 0.9,
+            stagger: 0.14,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: '.renova-cards-grid',
               start: 'top 85%',
-              once: true
-            }
-          }
-        );
-      }
-
-      // 5. Reveal Transformations Project Rows on scroll
-      const projectRows = gsap.utils.toArray('.renova-trans-item');
-      if (projectRows.length > 0) {
-        gsap.fromTo(
-          projectRows,
-          { y: 36, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.0,
-            stagger: 0.2,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: '.renova-trans-list',
-              start: 'top 82%',
               once: true
             }
           }
@@ -447,20 +426,10 @@ const TESTIMONIALS = [
         </div>
       </section>
 
-      
-
       {/* ====================================================================
-          6. ATMOSPHERIC TESTIMONIAL
+          4. ATMOSPHERIC TESTIMONIAL
           ==================================================================== */}
       <section className="renova-testimonial" aria-label="Client Experience">
-        <div className="renova-test-bg">
-          <img
-            src="/assets/mitijen/Banner2.jpg"
-            alt="Warm Wood Interior Testimonial Backdrop"
-            loading="lazy"
-          />
-        </div>
-
         <div className="renova-test-container">
           <span className="renova-kicker" style={{ color: 'var(--sand)' }}>
             CLIENT PERSPECTIVE
