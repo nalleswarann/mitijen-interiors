@@ -338,6 +338,25 @@ export const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ data, 
               RIGHT COLUMN: Exact Content Rhythm
               ================================================================== */}
           <main className="clinic-main-content">
+            {/* Mobile Practice Quick Switcher */}
+            <div className="clinic-mobile-nav-bar" aria-label="Quick Practice Selector">
+              <span className="clinic-mobile-nav-label">DISCIPLINE:</span>
+              <div className="clinic-mobile-nav-scroll">
+                {serviceNavItems.slice(0, 3).map((item) => {
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`clinic-mobile-nav-chip ${isActive ? 'is-active' : ''}`}
+                    >
+                      {item.name.replace(' Interior Design', '')}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Top Large Feature Image */}
             <div className="clinic-lead-media reveal-scale img-zoom-hover">
               <img

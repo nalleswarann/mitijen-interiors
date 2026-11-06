@@ -304,45 +304,79 @@
       }
     }
 
-    /* Mobile: Stack 1 card per column with intro on top */
-    @media (max-width: 680px) {
+    /* Mobile: Compact horizontal swipe cards with intro on top */
+    @media (max-width: 768px) {
       .hiw-section {
-        padding: 48px 20px;
+        padding: 36px 16px;
       }
 
       .hiw-container {
-        gap: 28px;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .hiw-intro-col {
+        max-width: 100%;
       }
 
       .hiw-eyebrow-row {
-        margin-bottom: 14px;
+        margin-bottom: 10px;
       }
 
       .hiw-gold-line {
-        width: 60px;
+        width: 50px;
       }
 
       .hiw-heading {
-        font-size: 28px;
-        margin-bottom: 12px;
+        font-size: clamp(24px, 5.8vw, 30px);
+        margin-bottom: 8px;
       }
 
+      .hiw-paragraph {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      /* Compact Horizontal Swipeable Cards for Mobile — eliminates massive vertical scroll */
       .hiw-cards-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding: 4px 4px 14px 4px;
+        margin: 0 -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        scrollbar-width: none;
+      }
+
+      .hiw-cards-grid::-webkit-scrollbar {
+        display: none;
       }
 
       .hiw-card {
-        min-height: 420px;
-        padding: 22px 20px;
+        flex: 0 0 84%;
+        min-width: 250px;
+        max-width: 310px;
+        scroll-snap-align: center;
+        min-height: 330px;
+        padding: 20px 18px;
       }
 
       .hiw-card-number {
-        font-size: 48px;
+        font-size: 42px;
       }
 
       .hiw-card-title {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+
+      .hiw-card-desc {
+        font-size: 13px;
+        line-height: 1.48;
       }
     }
 

@@ -112,7 +112,7 @@ button {
 }
 
 section {
-  padding: clamp(44px, 5.5vw, 76px) var(--pad);
+  padding: clamp(10px, .5vw, 76px) var(--pad);
 }
 
 /* Button */
