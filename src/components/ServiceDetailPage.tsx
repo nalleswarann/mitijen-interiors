@@ -110,11 +110,6 @@ export const DEFAULT_SIDEBAR_SERVICES: ServiceLinkItem[] = [
     slug: 'commercial-interior-design',
     href: '/services/commercial-interior-design',
   },
-  {
-    name: 'Turnkey Interior Execution',
-    slug: 'turnkey-interior-design',
-    href: '/services/turnkey-interior-design',
-  },
 ];
 
 export const DEFAULT_RESIDENTIAL_DATA: ServiceDetailData = {
@@ -413,7 +408,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                       className={`msd-services-link ${isActive ? 'is-active' : ''}`}
                       aria-current={isActive ? 'page' : undefined}
                     >
-                      <span>{svc.name}</span>
+                      <span className="msd-services-title">{svc.name}</span>
                       <span className="msd-services-arrow" aria-hidden="true">
                         ↗
                       </span>
@@ -720,3 +715,4 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 };
 
 export default ServiceDetailPage;
+

@@ -31,7 +31,7 @@
   font-size: 16px;
   line-height: 1.65;
   width: 100%;
-  max-width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -53,7 +53,7 @@
   outline-offset: 3px;
 }
 
-/* Master container clamped to 1380px */
+/* Master container clamped to 1380px — full width responsive */
 .msd-container {
   max-width: 1380px;
   margin: 0 auto;
@@ -175,18 +175,21 @@
 
 /* ==========================================================================
    02 TWO-COLUMN LAYOUT
-   Sticky left sidebar (280 to 360px, top: 100px) and main column
+   Sticky left sidebar (360px on desktop) and main column.
+   Under 1000px: single column, content first, sidebar spans full container width.
    ========================================================================== */
 .msd-layout {
   display: grid;
-  grid-template-columns: minmax(280px, 340px) 1fr;
-  gap: clamp(32px, 4vw, 56px);
+  grid-template-columns: 360px 1fr;
+  gap: clamp(36px, 4vw, 56px);
   align-items: start;
   margin-top: clamp(40px, 5vw, 64px);
+  width: 100%;
 }
 
 /* ==========================================================================
    03 SIDEBAR CARDS
+   Full width of column, responsive and unconstrained
    ========================================================================== */
 .msd-sidebar {
   position: sticky;
@@ -194,6 +197,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  width: 100%;
 }
 
 /* Sidebar Card 1: Discover Our Services */
@@ -201,6 +205,8 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  background-color: var(--white);
 }
 
 .msd-services-card-header {
@@ -215,34 +221,39 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .msd-services-list {
   list-style: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
   background-color: var(--white);
   border: 1px solid var(--line);
   border-top: none;
   border-radius: 0 0 20px 20px;
+  width: 100%;
 }
 
 .msd-services-item {
   margin: 0;
+  width: 100%;
 }
 
 .msd-services-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  gap: 14px;
+  padding: 17px 24px;
   font-family: var(--sans);
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid rgba(37, 35, 31, 0.08);
   transition: transform 0.25s var(--ease), color 0.25s var(--ease), background-color 0.25s var(--ease);
+  width: 100%;
 }
 
 .msd-services-item:last-child .msd-services-link {
@@ -263,10 +274,19 @@
   background-color: rgba(123, 48, 54, 0.06);
 }
 
+.msd-services-title {
+  flex-grow: 1;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
 .msd-services-arrow {
   font-size: 1.05rem;
   line-height: 1;
   color: var(--muted);
+  flex-shrink: 0;
   transition: transform 0.25s var(--ease), color 0.25s var(--ease);
 }
 
@@ -284,6 +304,7 @@
   padding: 28px 24px;
   box-shadow: var(--shadow-md);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
 }
 
 .msd-hours-header {
@@ -324,6 +345,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 13px 0;
   border-bottom: 1px solid var(--line-light);
   font-size: 0.90rem;
@@ -332,12 +354,14 @@
 .msd-hours-day {
   color: rgba(255, 255, 255, 0.72);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .msd-hours-time {
   color: #ffffff;
   font-weight: 600;
   text-align: right;
+  white-space: nowrap;
 }
 
 .msd-book-btn {
@@ -347,7 +371,7 @@
   gap: 8px;
   width: 100%;
   margin-top: 24px;
-  padding: 14px 22px;
+  padding: 15px 22px;
   background-color: var(--burg);
   color: var(--white);
   border: none;
@@ -373,6 +397,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .msd-section-title {
@@ -399,18 +424,20 @@
   flex-direction: column;
   gap: 20px;
   margin-bottom: 44px;
+  width: 100%;
 }
 
 .msd-feature-row {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 18px 24px;
+  padding: 20px 24px;
   background-color: var(--white);
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
 }
 
 .msd-feature-row:hover {
@@ -470,6 +497,7 @@
 /* 5c. Steps: "How We Design Your Home" */
 .msd-steps-section {
   margin-bottom: 36px;
+  width: 100%;
 }
 
 .msd-steps-intro {
@@ -487,6 +515,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  width: 100%;
 }
 
 .msd-step-card {
@@ -498,6 +527,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  width: 100%;
 }
 
 /* Step cards lift 5px on hover */
@@ -551,6 +581,7 @@
   margin-top: 24px;
   margin-bottom: 56px;
   text-align: center;
+  width: 100%;
 }
 
 .msd-stat-item {
@@ -559,6 +590,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .msd-stat-item:not(:last-child)::after {
@@ -592,6 +624,7 @@
 /* 5e. Who We Design For */
 .msd-target-section {
   margin-bottom: 56px;
+  width: 100%;
 }
 
 .msd-target-media {
@@ -698,6 +731,7 @@
    ========================================================================== */
 .msd-faq-section {
   margin-top: 12px;
+  width: 100%;
 }
 
 .msd-faq-title {
@@ -722,6 +756,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  width: 100%;
 }
 
 .msd-faq-item {
@@ -731,6 +766,7 @@
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  width: 100%;
 }
 
 /* The open item turns solid burgundy with white text */
@@ -832,55 +868,120 @@
 
 /* ==========================================================================
    06 RESPONSIVE BREAKPOINTS
-   - Under 1000px: single column, content first, sidebar after (not sticky)
-   - Under 700px: steps stack in 1 column, feature rows stack vertically,
-     large images switch to 4/3
+   - Under 1000px: single column, content first, sidebar spans 100% full width
+     of container (never constrained)
+   - Under 700px: steps stack, feature rows adapt, target image & pills adapt
    - Verified clean display at 1440px, 1100px, 900px, 390px
    ========================================================================== */
 @media (max-width: 1000px) {
   .msd-layout {
     grid-template-columns: 1fr;
     gap: 48px;
+    margin-top: 36px;
   }
 
   /* Content first, sidebar after */
   .msd-main {
     order: 1;
+    width: 100%;
   }
 
+  /* Sidebar spans 100% full width of the container */
   .msd-sidebar {
     order: 2;
     position: static;
     top: auto;
-    max-width: 580px;
-    margin: 0 auto;
     width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 24px;
+  }
+
+  .msd-services-card,
+  .msd-hours-card {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 700px) {
-  /* Feature rows stack vertically */
+  .msd-container {
+    padding: 0 16px;
+  }
+
+  .msd-layout {
+    gap: 36px;
+    margin-top: 28px;
+  }
+
+  .msd-sidebar {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .msd-services-link {
+    padding: 16px 18px;
+  }
+
+  .msd-services-title {
+    font-size: 0.92rem;
+    white-space: normal;
+  }
+
+  /* Feature rows with compact circular image on left */
   .msd-feature-row {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 16px;
-    padding: 20px;
+    padding: 18px 16px;
   }
 
   .msd-feature-circle-img {
-    width: 88px;
-    height: 88px;
+    width: 76px;
+    height: 76px;
+  }
+
+  .msd-feature-title {
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+  }
+
+  .msd-feature-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 
   /* Large images switch to aspect ratio 4/3 */
   .msd-mid-media {
     aspect-ratio: 4 / 3;
     border-radius: 20px;
+    margin-bottom: 36px;
   }
 
   .msd-target-media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: auto;
+    min-height: 360px;
     border-radius: 20px;
+  }
+
+  /* Target check-pills stack cleanly across full width on mobile */
+  .msd-target-pills {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .msd-check-pill {
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 8px 14px;
+    justify-content: flex-start;
   }
 
   /* Steps stack in 1 column */
@@ -889,11 +990,24 @@
     gap: 16px;
   }
 
+  .msd-step-card {
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .msd-step-badge {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 14px;
+    font-size: 0.90rem;
+  }
+
   /* Proof stats stack on mobile */
   .msd-proof-row {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
     padding: 24px 0;
+    margin: 24px 0 40px;
   }
 
   .msd-stat-item:not(:last-child)::after {
@@ -902,43 +1016,74 @@
 
   .msd-stat-item:not(:last-child) {
     border-bottom: 1px solid var(--line);
-    padding-bottom: 20px;
+    padding-bottom: 18px;
   }
 
-  /* FAQ panel left indent adapts */
-  .msd-faq-panel-inner p {
-    padding: 0 18px 20px 18px;
+  .msd-stat-value {
+    font-size: 2.4rem;
   }
 
+  /* FAQ panel padding adapts */
   .msd-faq-trigger {
-    padding: 18px 18px;
+    padding: 18px 16px;
     gap: 12px;
   }
 
-  .msd-faq-question {
-    font-size: 1.1rem;
+  .msd-faq-num {
+    width: 24px;
+    font-size: 0.82rem;
   }
 
-  .msd-target-pills {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .msd-faq-question {
+    font-size: 1.08rem;
+  }
+
+  .msd-faq-panel-inner p {
+    padding: 0 16px 18px 16px;
+    font-size: 0.90rem;
   }
 }
 
 @media (max-width: 480px) {
   .msd-hero {
-    height: 320px;
-    border-radius: 20px;
-    padding: 20px;
+    height: auto;
+    min-height: 290px;
+    border-radius: 18px;
+    padding: 24px 16px;
   }
 
   .msd-hero-title {
-    font-size: 1.95rem;
+    font-size: clamp(1.85rem, 6.8vw, 2.4rem);
+    margin-bottom: 12px;
   }
 
-  .msd-check-pill {
-    font-size: 0.82rem;
-    padding: 8px 14px;
+  .msd-breadcrumb-list {
+    font-size: 0.80rem;
+    gap: 4px 6px;
+  }
+
+  .msd-feature-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .msd-feature-circle-img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .msd-hours-card {
+    padding: 22px 18px;
+  }
+
+  .msd-services-card-header {
+    padding: 18px 20px;
+    font-size: 1.2rem;
+  }
+
+  .msd-services-link {
+    padding: 15px 18px;
   }
 }
