@@ -508,6 +508,34 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </nav>
           </div>
         </header>
+
+        {/* ==================================================================
+            MOBILE QUICK-SWITCHER
+            Visible only on mobile/tablet (<= 1000px) right below the hero.
+            Allows instant 1-tap switching between Corporate, Residential, Commercial
+            without scrolling through 3000px of content.
+            ================================================================== */}
+        <nav
+          className="msd-mobile-switcher"
+          aria-label="Quick Switch Interior Services"
+        >
+          <div className="msd-mobile-switcher-track">
+            {resolvedServices.map((svc) => {
+              const isActive = svc.slug === resolvedData.slug;
+              const shortName = svc.name.replace(/\s+Interior\s+Design/i, '');
+              return (
+                <Link
+                  key={svc.slug}
+                  to={svc.href}
+                  className={`msd-mobile-tab ${isActive ? 'is-active' : ''}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  <span className="msd-mobile-tab-text">{shortName}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
       </div>
 
       {/* ====================================================================
