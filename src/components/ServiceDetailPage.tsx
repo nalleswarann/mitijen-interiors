@@ -350,6 +350,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <div className="msd-hero-overlay" aria-hidden="true" />
 
           <div className="msd-hero-content">
+            <div className="msd-hero-badge">
+              <span className="msd-hero-badge-dot" aria-hidden="true" />
+              <span>Mitijen Architectural Practice · {resolvedData.slug ? resolvedData.slug.replace('-interior-design', '').toUpperCase() : 'INTERIORS'}</span>
+            </div>
+
             <h1 className="msd-hero-title">{resolvedData.title}</h1>
 
             <nav aria-label="Breadcrumb" className="msd-breadcrumb">
