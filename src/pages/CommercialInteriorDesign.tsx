@@ -74,6 +74,92 @@ const COMMERCIAL_SERVICE_DATA: ServiceDetailData = {
   ],
   videoUrl: undefined,
 
+  materialsHeading: 'Commercial-Grade Materiality & Experiential Craft',
+  materialsIntro:
+    'Commercial interiors must captivate footfall while withstanding rigorous daily public use. We curate materials combining high-traffic durability with luxury brand storytelling.',
+  materials: [
+    {
+      tag: 'HEAVY FOOTFALL',
+      title: 'High-Traffic Porcelain & Honed Quartzite',
+      description:
+        'Commercial PEI-5 rated large-format porcelain slabs and natural quartzite fabricated to withstand thousands of daily customer footsteps without scratching or fading.',
+      spec: 'PEI-5 Heavy Traffic Spec · Zero-Stain Penetrating Seal',
+      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'RETAIL FIXTURES',
+      title: 'Custom Modular CNC Shopfitting Millwork',
+      description:
+        'Computer-calibrated display gondolas, powder-coated steel perimeter display racking, and concealed magnetic shelf lighting for rapid seasonal merchandising updates.',
+      spec: 'Modular CNC Calibration · Concealed Shelf Track Lighting',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'ATMOSPHERE & SALES',
+      title: 'Narrow-Beam CRI 95+ Theatrical Spotlighting',
+      description:
+        'Magnetic architectural track lighting with high color-rendering index (CRI 95+) spots that render merchandise and textures with true-color vividness and depth.',
+      spec: 'CRI 95+ Color Accuracy · 15°–36° Adjustable Zoom Optics',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'ACOUSTIC COMFORT',
+      title: 'Micro-Perforated Wood & Open-Cell Baffles',
+      description:
+        'Architectural ceiling baffles and wall panels engineered to absorb background reverberation, creating lively yet comfortable acoustic environments for conversation.',
+      spec: 'NRC 0.85 Noise Reduction · Fire-Retardant Class 1 Core',
+      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=800&q=80',
+    },
+  ],
+
+  spacesHeading: 'Commercial Typologies Engineered for Dwell Time',
+  spacesIntro:
+    'From flagship retail stores to atmospheric hospitality venues, explore how our commercial environments balance brand storytelling with peak operational velocity.',
+  spaces: [
+    {
+      tag: 'FLAGSHIP RETAIL',
+      title: 'Luxury Retail Flagship Showrooms',
+      subtitle: 'Intuitive Circulation Loops with Decompression Thresholds',
+      description:
+        'Choreographed retail journeys that draw customers naturally through signature product collections, featuring decompression zones, eye-level focal displays, and spacious VIP fitting rooms.',
+      highlights: [
+        'Decompression entrance threshold establishing immediate brand mood',
+        'Eye-level sightline zoning directing flow to high-margin focal displays',
+        'Spacious VIP fitting lounge with 3000K daylight-accurate flattering lighting',
+      ],
+      spec: 'PEI-5 Heavy Commercial Floor · High-CRI 95+ Accent Optics',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'HOSPITALITY & DINING',
+      title: 'Artisanal Dining Pavilions & Cocktail Lounges',
+      subtitle: 'Immersive Sensory Atmospheres Balancing Energy and Intimacy',
+      description:
+        'Dining venues designed for linger-longer customer experiences. Combines custom fluted banquet seating, acoustic ceiling treatment, and warm, dimmable architectural cove illumination.',
+      highlights: [
+        'Curved acoustic booth banquettes offering private conversation within a vibrant room',
+        'Centrally sculpted cocktail bar with illuminated marble back-bar display',
+        'Zoned architectural scene controls automatically transitioning day-to-night ambiance',
+      ],
+      spec: 'Stain-Resistant Commercial Velvet · Fire-Retardant Foam',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'EXPERIENCE CENTERS',
+      title: 'Interactive Brand Showrooms & Experience Hubs',
+      subtitle: 'Tactile Product Testing Labs for Forward-Thinking Enterprises',
+      description:
+        'Experiential showrooms that educate, inspire, and close sales. Features interactive product demonstration pedestals, tactile material sampling bars, and private contract negotiation lounges.',
+      highlights: [
+        'Tactile material library wall displaying sample finishes and hardware options',
+        'Interactive digital presentation screens embedded seamlessly into veneer walls',
+        'Private VIP consultation suite for high-value contract closures',
+      ],
+      spec: 'Modular Display Walls · Integrated 4K AV Touchscreens',
+      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1200&q=80',
+    },
+  ],
+
   faqHeading: 'Frequently Asked Questions',
   faqs: [
     {

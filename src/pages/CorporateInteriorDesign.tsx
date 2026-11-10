@@ -74,6 +74,92 @@ const CORPORATE_SERVICE_DATA: ServiceDetailData = {
   ],
   videoUrl: undefined,
 
+  materialsHeading: 'Workplace Ergonomics & High-Performance Materials',
+  materialsIntro:
+    'Corporate workplaces demand rigorous acoustic isolation, heavy-duty surface endurance, and clean cable-free technology integration. Every surface in our fit-outs is calibrated for sustained cognitive focus and executive prestige.',
+  materials: [
+    {
+      tag: 'ACOUSTICS & PRIVACY',
+      title: 'STC-45 Double Glazing & Sound Baffles',
+      description:
+        'Sound-transmission-class rated acoustic glass partitions and ceiling-suspended felt baffles preventing sound bleed between confidential boardrooms and active open offices.',
+      spec: 'STC 45 Acoustic Rating · Sound-Dampening Core',
+      image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'SURFACES & DURABILITY',
+      title: 'Commercial-Grade Veneers & Impact HPL',
+      description:
+        'High-pressure anti-fingerprint laminates, 2mm ABS impact edge-banding, and moisture-sealed commercial veneers engineered for heavy daily executive use.',
+      spec: 'Anti-Microbial Coating · Scratch & Stain Resistant',
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'TECH INTEGRATION',
+      title: 'Concealed Cable Raceways & Power Distribution',
+      description:
+        'Modular under-floor power tracks, pop-up AV conferencing boxes, and invisible cable vertebrae ensuring clean, cable-free boardroom and workstation surfaces.',
+      spec: 'Zero Cable Clutter · Modular Sub-Floor Conduit',
+      image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'WELL-BEING & LIGHT',
+      title: 'Circadian 4000K Lighting & Smart Automation',
+      description:
+        'Flicker-free UGR<19 architectural LED luminaires with daylight-harvesting sensors and programmable scene presets to sustain mental focus throughout workdays.',
+      spec: 'UGR < 19 Anti-Glare · Automated Daylighting Presets',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    },
+  ],
+
+  spacesHeading: 'Workplace Typologies Engineered for Growth',
+  spacesIntro:
+    'From confidential leadership chambers to vibrant open-plan team neighborhoods, explore how we architect corporate workspaces that drive collaboration and business value.',
+  spaces: [
+    {
+      tag: 'EXECUTIVE LEADERSHIP',
+      title: 'Executive Boardroom & Leadership Suites',
+      subtitle: 'Hybrid Video-Conferencing Suites with Acoustic Isolation',
+      description:
+        'Designed for high-stakes leadership decisions and client presentations. Integrates a monolithic 16-seat veneer conference table, concealed PTZ camera enclosures, acoustic wall paneling, and tactile motorized blackouts.',
+      highlights: [
+        'Monolithic 16-seat boardroom table with integrated pop-up connectivity',
+        'STC-48 acoustic double-glazed perimeter walls with drop-down door seals',
+        'Dual 4K video conferencing wall with concealed AV soundbars and microphones',
+      ],
+      spec: 'STC 48 Acoustic Perimeter · American Walnut Veneer',
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'COLLABORATIVE TEAMS',
+      title: 'High-Density Agile Workstation Floorplates',
+      subtitle: 'Ergonomic Workstations with Acoustic Neighborhood Zoning',
+      description:
+        'Balanced open-plan design featuring motorized sit-to-stand desks, acoustic felt boundary screens, dedicated personal storage, and biophilic planter dividers that enhance air quality and focus.',
+      highlights: [
+        'Motorized dual-motor sit-to-stand desks with digital memory presets',
+        'Acoustic felt desktop dividers and overhead acoustic sound baffles',
+        'Integrated biophilic planting troughs and personal mobile pedestals',
+      ],
+      spec: 'BIFMA Certified Hardware · 100% Cable Concealment',
+      image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'FIRST IMPRESSIONS',
+      title: 'Client Arrival Lounge & Monolith Reception',
+      subtitle: 'Sculptural Architectural Statements Reflecting Brand Prestige',
+      description:
+        'The front face of your enterprise. Features a monolithic backlit stone reception desk, executive visitor waiting lounge with bespoke architectural joinery, and concealed cloakroom and beverage hospitality staging.',
+      highlights: [
+        'Custom monolithic stone reception desk with concealed receptionist workstation',
+        'Backlit architectural brand identity feature wall with brass metal accents',
+        'Discreet beverage hospitality bar and secure guest registration terminal',
+      ],
+      spec: 'Monolithic Italian Marble · Museum-Grade Accent Lighting',
+      image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=1200&q=80',
+    },
+  ],
+
   faqHeading: 'Frequently Asked Questions',
   faqs: [
     {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { InquiryContext } from '../context/InquiryContextInstance';
+import { HowItWorksSection } from './HowItWorksSection';
 import '../styles/ServiceDetailPage.css';
 
 /* ==========================================================================
@@ -27,6 +28,26 @@ export interface ServiceDetailStat {
   value: string;
   /** Metric label (e.g. 'Private Residences') */
   label: string;
+}
+
+export interface ServiceDetailMaterial {
+  tag: string;
+  title: string;
+  description: string;
+  spec: string;
+  image: string;
+  imageAlt?: string;
+}
+
+export interface ServiceDetailSpace {
+  title: string;
+  tag: string;
+  subtitle: string;
+  description: string;
+  highlights: string[];
+  spec: string;
+  image: string;
+  imageAlt?: string;
 }
 
 export interface ServiceDetailFaq {
@@ -69,6 +90,16 @@ export interface ServiceDetailData {
   targetPills: string[];
   /** Optional video URL — play button only renders if this is provided */
   videoUrl?: string;
+
+  /* Creative Section 1: Craft & Materiality Palette */
+  materialsHeading?: string;
+  materialsIntro?: string;
+  materials?: ServiceDetailMaterial[];
+
+  /* Creative Section 2: Room-by-Room Design Excellence */
+  spacesHeading?: string;
+  spacesIntro?: string;
+  spaces?: ServiceDetailSpace[];
 
   /* 5f. FAQ */
   faqHeading?: string;
@@ -191,6 +222,101 @@ export const DEFAULT_RESIDENTIAL_DATA: ServiceDetailData = {
   ],
   videoUrl: undefined, // Set to a URL string if video play button is desired
 
+  /* Creative Section 1: Craft & Materiality Palette */
+  materialsHeading: 'Tactile Materiality & Factory Craftsmanship',
+  materialsIntro:
+    'Every residential interior we craft is defined by honest, enduring materials. We marry computer-calibrated CNC woodwork with hand-mitred Italian marble, acoustic reeded glass, and museum-grade architectural lighting.',
+  materials: [
+    {
+      tag: 'WOODWORK & MILLWORK',
+      title: 'Smoked Crown-Cut Oak & American Walnut',
+      description:
+        'Hand-curated European white oak and American walnut veneers, moisture-sealed with German low-VOC matte polyurethane coatings for rich architectural warmth.',
+      spec: 'Gurjan BWP 710 Core · 0.02mm CNC Tolerance',
+      image:
+        'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'MASONRY & SURFACES',
+      title: 'Book-Matched Marble & Honed Travertine',
+      description:
+        'Precision-cut Italian Statuario marble, travertine, and engineered quartz fabricated with seamless 45-degree mitred waterfall apron edges.',
+      spec: 'Water-Jet Mitred Edges · Stain-Proof Penetrating Sealant',
+      image:
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'TRANSLUCENCY & PRIVACY',
+      title: 'Acoustic Reeded Glass & Fluted Screens',
+      description:
+        'Architectural fluted, reeded, and acoustic laminated glass screens that softly define living, dining, and study zones while preserving continuous daylight.',
+      spec: 'STC 42 Acoustic Attenuation · Toughened Safety Spec',
+      image:
+        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      tag: 'ATMOSPHERE & MECHANICS',
+      title: 'Museum-Grade 3000K Lighting & Blum Mechanics',
+      description:
+        'Concealed 3000K warm-cove profiling, anti-glare recessed downlights (CRI 95+), and Austrian Blum soft-close motion hardware backed by 10-year warranties.',
+      spec: 'CRI 95+ True-Color · 10-Year Motion Warranty',
+      image:
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
+    },
+  ],
+
+  /* Creative Section 2: Room-by-Room Design Excellence */
+  spacesHeading: 'Room-by-Room Architectural Excellence',
+  spacesIntro:
+    'Explore how we sculpt individual residential environments with bespoke factory millwork, intuitive ergonomics, and natural daylight choreography.',
+  spaces: [
+    {
+      tag: 'RESIDENTIAL CUISINE',
+      title: 'The Gourmet Architectural Kitchen',
+      subtitle: 'Ergonomic Culinary Center with Concealed Prep Scullery',
+      description:
+        'An expansive culinary setting integrating seamless quartz waterfall islands, concealed walk-in butler pantry, and Blum motorized lift-up overhead cabinets engineered for effortless daily cooking rituals.',
+      highlights: [
+        'Continuous quartz waterfall island with integrated undermount composite sink',
+        'Concealed walk-in butler pantry with dedicated spice ventilation exhaust',
+        'Blum motorized Aventos lift-up cabinets & tandem soft-close organizers',
+      ],
+      spec: 'German PU Matte Finish · BWP 710 Marine Core Structure',
+      image:
+        'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'PRIVATE SANCTUARY',
+      title: 'The Master Bedroom Suite',
+      subtitle: 'Acoustic Serenity & Walk-In Wardrobe Integration',
+      description:
+        'Crafted for restorative rest. Features a full-height slatted acoustic timber headboard wall, floor-to-ceiling tinted glass walk-in wardrobes with concealed sensor LED profiles, and floating bedside cantilever drawers.',
+      highlights: [
+        'Full-height acoustic slatted wood feature wall with 2700K ambient backlighting',
+        'Floor-to-ceiling walk-in dressing wardrobe with fluted glass & sensor illumination',
+        'Integrated floating cantilever dressing vanity with touch-dim backlit mirror',
+      ],
+      spec: 'Acoustic STC 44 · 2700K Circadian Dimmable Lighting',
+      image:
+        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      tag: 'FAMILY & GATHERING',
+      title: 'The Double-Height Living Pavilion',
+      subtitle: 'Light-Filled Social Center with Monolithic Stone Feature Wall',
+      description:
+        'The heart of the residence, orchestrating double-height vertical volume, natural daylighting, book-matched Italian marble TV feature wall, and bespoke concealed wire management for immersive family entertainment.',
+      highlights: [
+        'Book-matched Italian marble media wall with concealed equipment credenza',
+        'Bespoke brass and smoked timber display niches with precision LED reveal details',
+        'Motorized architectural acoustic drapery integrated into ceiling recessed pockets',
+      ],
+      spec: 'Natural Statuario Marble · Laser-Aligned CNC Millwork',
+      image:
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    },
+  ],
+
   faqHeading: 'Frequently Asked Questions',
   /* Required FAQ content matching exact prompt specifications */
   faqs: [
@@ -242,6 +368,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
     steps: data?.steps ?? DEFAULT_RESIDENTIAL_DATA.steps,
     stats: data?.stats ?? DEFAULT_RESIDENTIAL_DATA.stats,
     targetPills: data?.targetPills ?? DEFAULT_RESIDENTIAL_DATA.targetPills,
+    materials: data?.materials ?? DEFAULT_RESIDENTIAL_DATA.materials ?? [],
+    spaces: data?.spaces ?? DEFAULT_RESIDENTIAL_DATA.spaces ?? [],
     faqs: data?.faqs ?? DEFAULT_RESIDENTIAL_DATA.faqs,
   };
 
@@ -638,15 +766,176 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </div>
           </section>
 
-          {/* 5f. FAQ with word-by-word scroll reveal and burgundy active accordion */}
-          <section
-            className="msd-faq-section"
-            aria-labelledby="msd-faq-heading"
-          >
+        </main>
+      </div>
+
+      {/* ====================================================================
+          03 CREATIVE SECTION: CRAFT & MATERIALITY PALETTE
+          4-column interactive grid showcasing tactile materials and precision specs
+          ==================================================================== */}
+      {resolvedData.materials && resolvedData.materials.length > 0 && (
+        <section
+          className="msd-materials-section"
+          aria-labelledby="msd-materials-heading"
+        >
+          <div className="msd-container">
+            <div className="msd-section-header-center">
+              <div className="msd-section-eyebrow">
+                <span className="msd-gold-line" aria-hidden="true" />
+                <span>THE ARCHITECTURE OF INTERIORS</span>
+                <span className="msd-gold-line" aria-hidden="true" />
+              </div>
+              <h2
+                id="msd-materials-heading"
+                className="msd-section-title-large"
+              >
+                {resolvedData.materialsHeading || 'Craft & Materiality Palette'}
+              </h2>
+              <p className="msd-section-lead-center">
+                {resolvedData.materialsIntro ||
+                  'Every interior we build is anchored in tactile, enduring materiality. We combine in-house CNC timber craftsmanship with natural stone, acoustic glazing, and museum-grade illumination.'}
+              </p>
+            </div>
+
+            <div className="msd-materials-grid">
+              {resolvedData.materials.map((mat, idx) => (
+                <article key={idx} className="msd-material-card">
+                  <div className="msd-material-media">
+                    <img
+                      src={mat.image}
+                      alt={mat.imageAlt || mat.title}
+                      className="msd-material-img"
+                      loading="lazy"
+                    />
+                    <div className="msd-material-tag-pill">{mat.tag}</div>
+                  </div>
+                  <div className="msd-material-body">
+                    <h3 className="msd-material-title">{mat.title}</h3>
+                    <p className="msd-material-desc">{mat.description}</p>
+                    <div className="msd-material-spec">
+                      <span className="msd-spec-dot" aria-hidden="true" />
+                      <span>{mat.spec}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ====================================================================
+          04 CREATIVE SECTION: ROOM-BY-ROOM DESIGN EXCELLENCE
+          Alternating editorial showcase featuring signature interior spaces
+          ==================================================================== */}
+      {resolvedData.spaces && resolvedData.spaces.length > 0 && (
+        <section
+          className="msd-spaces-section"
+          aria-labelledby="msd-spaces-heading"
+        >
+          <div className="msd-container">
+            <div className="msd-section-header-center">
+              <div className="msd-section-eyebrow">
+                <span className="msd-gold-line" aria-hidden="true" />
+                <span>SPATIAL MASTERY</span>
+                <span className="msd-gold-line" aria-hidden="true" />
+              </div>
+              <h2 id="msd-spaces-heading" className="msd-section-title-large">
+                {resolvedData.spacesHeading || 'Room-by-Room Design Excellence'}
+              </h2>
+              <p className="msd-section-lead-center">
+                {resolvedData.spacesIntro ||
+                  'Explore how we sculpt individual interior environments with bespoke factory millwork, intuitive ergonomics, and natural daylight choreography.'}
+              </p>
+            </div>
+
+            <div className="msd-spaces-list">
+              {resolvedData.spaces.map((space, idx) => {
+                const isEven = idx % 2 === 1;
+                return (
+                  <article
+                    key={idx}
+                    className={`msd-space-card ${isEven ? 'is-reversed' : ''}`}
+                  >
+                    <div className="msd-space-media">
+                      <img
+                        src={space.image}
+                        alt={space.imageAlt || space.title}
+                        className="msd-space-img"
+                        loading="lazy"
+                      />
+                      <div className="msd-space-tag">{space.tag}</div>
+                    </div>
+
+                    <div className="msd-space-content">
+                      <span className="msd-space-kicker">
+                        0{idx + 1} · {space.tag}
+                      </span>
+                      <h3 className="msd-space-title">{space.title}</h3>
+                      <h4 className="msd-space-subtitle">{space.subtitle}</h4>
+                      <p className="msd-space-desc">{space.description}</p>
+
+                      <ul className="msd-space-highlights">
+                        {space.highlights.map((item, hIdx) => (
+                          <li key={hIdx} className="msd-space-highlight-item">
+                            <svg
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              className="msd-highlight-icon"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="msd-space-footer">
+                        <span className="msd-space-spec-badge">
+                          <span className="msd-spec-dot" aria-hidden="true" />
+                          <span>{space.spec}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ====================================================================
+          05 HOW IT WORKS SECTION (Full-Width Interactive 3-Stage Process)
+          ==================================================================== */}
+      <div className="msd-hiw-wrapper">
+        <HowItWorksSection />
+      </div>
+
+      {/* ====================================================================
+          06 FREQUENTLY ASKED QUESTIONS
+          Word-by-word scroll reveal and burgundy active accordion
+          ==================================================================== */}
+      <section
+        className="msd-faq-section-full"
+        aria-labelledby="msd-faq-heading"
+      >
+        <div className="msd-container">
+          <div className="msd-section-header-center">
+            <div className="msd-section-eyebrow">
+              <span className="msd-gold-line" aria-hidden="true" />
+              <span>TRANSPARENCY & ASSURANCE</span>
+              <span className="msd-gold-line" aria-hidden="true" />
+            </div>
             <h2
               id="msd-faq-heading"
               ref={headingRef}
-              className="msd-section-title msd-faq-title"
+              className="msd-section-title-large msd-faq-title-center"
             >
               {faqWords.map((word, index) => (
                 <span
@@ -658,65 +947,128 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 </span>
               ))}
             </h2>
+          </div>
 
-            <div
-              className="msd-faq-accordion"
-              role="region"
-              aria-labelledby="msd-faq-heading"
-            >
-              {resolvedData.faqs.map((faq, index) => {
-                const isOpen = openFaqIndex === index;
-                const panelId = `msd-faq-panel-${index}`;
-                const triggerId = `msd-faq-trigger-${index}`;
-                const formattedNumber = String(index + 1).padStart(2, '0');
+          <div
+            className="msd-faq-accordion-centered"
+            role="region"
+            aria-labelledby="msd-faq-heading"
+          >
+            {resolvedData.faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              const panelId = `msd-faq-panel-${index}`;
+              const triggerId = `msd-faq-trigger-${index}`;
+              const formattedNumber = String(index + 1).padStart(2, '0');
 
-                return (
-                  <div
-                    key={index}
-                    className={`msd-faq-item ${isOpen ? 'is-open' : ''}`}
+              return (
+                <div
+                  key={index}
+                  className={`msd-faq-item ${isOpen ? 'is-open' : ''}`}
+                >
+                  <button
+                    type="button"
+                    id={triggerId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => toggleFaq(index)}
+                    className="msd-faq-trigger"
                   >
-                    <button
-                      type="button"
-                      id={triggerId}
-                      aria-expanded={isOpen}
-                      aria-controls={panelId}
-                      onClick={() => toggleFaq(index)}
-                      className="msd-faq-trigger"
-                    >
-                      <span
-                        className="msd-faq-num"
-                        aria-hidden="true"
-                      >
-                        {formattedNumber}
-                      </span>
-                      <span className="msd-faq-question">
-                        {faq.question}
-                      </span>
-                      <span
-                        className="msd-faq-toggle-icon"
-                        aria-hidden="true"
-                      >
-                        {isOpen ? '−' : '+'}
-                      </span>
-                    </button>
+                    <span className="msd-faq-num" aria-hidden="true">
+                      {formattedNumber}
+                    </span>
+                    <span className="msd-faq-question">{faq.question}</span>
+                    <span className="msd-faq-toggle-icon" aria-hidden="true">
+                      {isOpen ? '−' : '+'}
+                    </span>
+                  </button>
 
-                    <div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={triggerId}
-                      className="msd-faq-panel"
-                    >
-                      <div className="msd-faq-panel-inner">
-                        <p>{faq.answer}</p>
-                      </div>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={triggerId}
+                    className="msd-faq-panel"
+                  >
+                    <div className="msd-faq-panel-inner">
+                      <p>{faq.answer}</p>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          07 ARCHITECTURAL CONSULTATION CLOSING CTA BANNER
+          ==================================================================== */}
+      <section
+        className="msd-cta-banner-section"
+        aria-label="Book a Spatial Consultation"
+      >
+        <div className="msd-container">
+          <div className="msd-cta-banner-card">
+            <div className="msd-cta-overlay" aria-hidden="true" />
+            <div className="msd-cta-content">
+              <div className="msd-cta-badge">
+                <span className="msd-badge-dot" aria-hidden="true" />
+                <span>STUDIO CONSULTATION · COIMBATORE</span>
+              </div>
+
+              <h2 className="msd-cta-heading">
+                Ready to Create an Interior Shaped Around Your Vision?
+              </h2>
+
+              <p className="msd-cta-desc">
+                Schedule a complimentary 45-minute spatial consultation with our
+                principal architects. Review your floor plans, touch tactile
+                material samples, and receive a transparent, locked BOQ roadmap.
+              </p>
+
+              <div className="msd-cta-actions">
+                <button
+                  type="button"
+                  onClick={handleBookConsultation}
+                  className="msd-cta-btn-primary"
+                >
+                  <span>Book Design Consultation</span>
+                  <span aria-hidden="true">↗</span>
+                </button>
+
+                <a href="tel:+918940555526" className="msd-cta-btn-secondary">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                  >
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                  <span>Call: +91 89405 55526</span>
+                </a>
+              </div>
+
+              <div className="msd-cta-trust-bar">
+                <span className="msd-cta-trust-item">
+                  ✓ 10-Year Hardware Warranty
+                </span>
+                <span className="msd-cta-trust-item">
+                  ✓ 100% Locked BOQ Guarantee
+                </span>
+                <span className="msd-cta-trust-item">
+                  ✓ Dedicated Project Site Engineer
+                </span>
+                <span className="msd-cta-trust-item">
+                  ✓ Own CNC Joinery Factory
+                </span>
+              </div>
             </div>
-          </section>
-        </main>
-      </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
