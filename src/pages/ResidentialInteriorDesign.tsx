@@ -1,15 +1,12 @@
 import React from 'react';
-import { SERVICES_DATA } from '../data/servicesData';
-import { ServicePageTemplate } from '../components/ServicePageTemplate';
-import { HowItWorksSection } from '../components/HowItWorksSection';
+import { ServiceDetailPage } from '../components/ServiceDetailPage';
 
+/**
+ * Residential Interior Design Service Page
+ * Powered by ServiceDetailPage (Editorial Layout, Sticky Sidebar, Accordion FAQ)
+ */
 export const ResidentialInteriorDesign: React.FC = () => {
-  const data = SERVICES_DATA['residential-interior-design'];
-  return (
-    <ServicePageTemplate data={data}>
-      <HowItWorksSection />
-    </ServicePageTemplate>
-  );
+  return <ServiceDetailPage />;
 };
 
 export default ResidentialInteriorDesign;
