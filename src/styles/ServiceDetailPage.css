@@ -46,6 +46,12 @@
   box-sizing: border-box;
 }
 
+/* Neutralize global.css section padding leak */
+.msd section {
+  padding: 0;
+  margin: 0;
+}
+
 /* Accessible keyboard focus states */
 .msd button:focus-visible,
 .msd a:focus-visible {
@@ -202,11 +208,14 @@
 
 /* Sidebar Card 1: Discover Our Services */
 .msd-services-card {
+  padding: 0 !important;
+  margin: 0;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   width: 100%;
   background-color: var(--white);
+  border: 1px solid var(--line);
 }
 
 .msd-services-card-header {
@@ -226,12 +235,10 @@
 
 .msd-services-list {
   list-style: none;
-  padding: 6px 0;
+  padding: 4px 0;
   margin: 0;
   background-color: var(--white);
-  border: 1px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 20px 20px;
+  border: none;
   width: 100%;
 }
 

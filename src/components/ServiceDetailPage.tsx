@@ -391,8 +391,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           aria-label="Service Navigation & Studio Hours"
         >
           {/* Sidebar Card 1: Discover Our Services */}
-          <section
+          <div
             className="msd-services-card"
+            role="region"
             aria-labelledby="msd-services-heading"
           >
             <h2 id="msd-services-heading" className="msd-services-card-header">
@@ -417,11 +418,12 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 );
               })}
             </ul>
-          </section>
+          </div>
 
           {/* Sidebar Card 2: Studio Hours */}
-          <section
+          <div
             className="msd-hours-card"
+            role="region"
             aria-labelledby="msd-hours-heading"
           >
             <div className="msd-hours-header">
@@ -468,7 +470,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <span>Book a Consultation</span>
               <span aria-hidden="true">↗</span>
             </button>
-          </section>
+          </div>
         </aside>
 
         {/* ==================================================================
