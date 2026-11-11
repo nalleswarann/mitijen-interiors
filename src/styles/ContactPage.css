@@ -462,116 +462,97 @@
 }
 
 /* ==========================================================================
-   4. STUDIO LOCATION SECTION
+   4. STUDIO LOCATION SECTION (COMPACT ARCHITECTURAL CARD)
    ========================================================================== */
 .contact-location-section {
-  padding: clamp(60px, 8vw, 100px) var(--pad) clamp(80px, 11vw, 140px);
-  max-width: 1400px;
+  padding: clamp(28px, 3.5vw, 48px) var(--pad) clamp(40px, 5vw, 64px);
+  max-width: 1320px;
   margin: 0 auto;
 }
 
 .contact-location-card {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  border-radius: 20px;
+  grid-template-columns: 1.05fr 1fr;
+  border-radius: 18px;
   overflow: hidden;
   background-color: var(--ink);
   color: var(--ivory);
-  box-shadow: 0 32px 70px rgba(36, 37, 34, 0.12);
+  box-shadow: 0 16px 40px rgba(36, 37, 34, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .location-info-block {
-  padding: clamp(48px, 7vw, 84px) clamp(32px, 5vw, 64px);
+  padding: clamp(24px, 3.2vw, 36px) clamp(20px, 2.8vw, 36px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .location-heading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
   font-weight: 350;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: #FAF8F5;
-  margin: 16px 0 18px 0;
+  margin: 8px 0 8px 0;
   text-transform: uppercase;
 }
 
 .location-desc {
   font-family: var(--font-content);
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: rgba(245, 242, 236, 0.8);
-  margin: 0 0 32px 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(245, 242, 236, 0.76);
+  margin: 0 0 16px 0;
   font-weight: 350;
 }
 
-.location-address-box {
-  background: rgba(245, 242, 236, 0.06);
-  border: 1px solid rgba(245, 242, 236, 0.14);
-  border-radius: 4px;
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 24px;
+.location-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: rgba(245, 242, 236, 0.05);
+  border: 1px solid rgba(245, 242, 236, 0.10);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
 }
 
-.loc-badge {
+.location-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-label {
   font-family: var(--font-architectural);
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
+  font-size: 0.60rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--sand);
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
-.loc-name {
+.meta-value {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 450;
+  font-size: 0.98rem;
+  font-weight: 500;
   color: #FAF8F5;
+  line-height: 1.25;
 }
 
-.loc-street {
-  font-size: 0.92rem;
-  color: rgba(245, 242, 236, 0.88);
-}
-
-.loc-footprint {
-  font-size: 0.78rem;
-  color: rgba(245, 242, 236, 0.55);
-  margin-top: 4px;
-}
-
-.location-hours {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(245, 242, 236, 0.12);
-  border-bottom: 1px solid rgba(245, 242, 236, 0.12);
-  margin-bottom: 32px;
-}
-
-.hours-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.86rem;
-  color: rgba(245, 242, 236, 0.7);
-}
-
-.hours-row strong {
-  color: var(--ivory);
+.meta-sub {
+  font-family: var(--font-content);
+  font-size: 0.76rem;
+  color: rgba(245, 242, 236, 0.65);
 }
 
 .location-links {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 
 .location-directions-btn {
@@ -581,14 +562,15 @@
   background-color: var(--sand);
   color: var(--ink);
   font-family: var(--font-architectural);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 14px 24px;
+  padding: 10px 20px;
   border-radius: 999px;
   text-decoration: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  min-height: 40px;
 }
 
 .location-directions-btn:hover {
@@ -598,14 +580,14 @@
 
 .location-call-btn {
   font-family: var(--font-architectural);
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ivory);
   text-decoration: none;
-  padding: 14px 18px;
+  padding: 8px 14px;
   border-bottom: 1px solid rgba(245, 242, 236, 0.3);
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .location-call-btn:hover {
@@ -615,14 +597,15 @@
 
 .location-map-visual {
   position: relative;
-  min-height: 440px;
+  min-height: 270px;
+  height: 100%;
   background-color: #1b1c1a;
 }
 
 .map-frame {
   width: 100%;
   height: 100%;
-  min-height: 440px;
+  min-height: 270px;
 }
 
 /* ==========================================================================
@@ -631,15 +614,17 @@
 @media (max-width: 1024px) {
   .contact-main-grid {
     grid-template-columns: 1fr;
-    gap: 56px;
+    gap: 48px;
   }
 
   .contact-location-card {
     grid-template-columns: 1fr;
   }
 
-  .location-map-visual {
-    min-height: 350px;
+  .location-map-visual,
+  .map-frame {
+    min-height: 230px;
+    height: 230px;
   }
 }
 
@@ -654,20 +639,27 @@
   }
 
   .location-info-block {
-    padding: 36px 24px;
+    padding: 24px 20px;
+  }
+
+  .location-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
   }
 
   .location-links {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    gap: 12px;
+    gap: 10px;
   }
 
   .location-directions-btn {
     width: 100%;
     justify-content: center;
-    min-height: 48px;
+    min-height: 44px;
   }
 
   .location-call-btn {
@@ -675,11 +667,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
+    min-height: 40px;
     border-radius: 999px;
     background: rgba(245, 242, 236, 0.08);
-    border: 1px solid rgba(245, 242, 236, 0.2);
+    border: 1px solid rgba(245, 242, 236, 0.18);
     text-align: center;
+  }
+
+  .location-map-visual,
+  .map-frame {
+    min-height: 200px;
+    height: 200px;
   }
 }
 
@@ -697,13 +695,31 @@
     letter-spacing: 0.1em;
   }
 
+  .contact-location-section {
+    padding: 24px var(--pad) 36px;
+  }
+
   .location-info-block {
-    padding: 28px 18px;
+    padding: 18px 14px;
+  }
+
+  .location-heading {
+    font-size: clamp(1.35rem, 5.2vw, 1.7rem);
+  }
+
+  .location-desc {
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+  }
+
+  .location-map-visual,
+  .map-frame {
+    min-height: 180px;
+    height: 180px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {

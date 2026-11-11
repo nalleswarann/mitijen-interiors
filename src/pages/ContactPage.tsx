@@ -226,33 +226,30 @@ export const ContactPage: React.FC = () => {
       
 
       {/* =====================================================================
-          4. STUDIO LOCATION SECTION
+          4. STUDIO LOCATION SECTION (COMPACT ARCHITECTURAL CARD)
           ===================================================================== */}
       <section className="contact-location-section" aria-label="Studio Location and Directions">
         <div className="contact-location-container">
           <div className="contact-location-card">
             <div className="location-info-block">
-              <SectionLabel style={{ color: 'var(--sand)' }}>Studio Location</SectionLabel>
-              <h2 className="location-heading">VISIT OUR DESIGN STUDIO.</h2>
-              <p className="location-desc">
-                Experience physical material swatches, solid hardwood joinery samples, and 3D architectural walk-throughs in person.
-              </p>
-
-              <div className="location-address-box">
-                <div className="loc-badge">STUDIO & EXPERIENCE CENTER</div>
-                <strong className="loc-name">Mitjen Interiors Studio</strong>
-                <span className="loc-street">Alamelu Nagar, Coimbatore, Tamil Nadu — 641015</span>
-                <span className="loc-footprint">Active Sites across Tamil Nadu & Bangalore</span>
+              <div className="location-header-compact">
+                <SectionLabel style={{ color: 'var(--sand)' }}>Studio Location</SectionLabel>
+                <h2 className="location-heading">VISIT OUR DESIGN STUDIO.</h2>
+                <p className="location-desc">
+                  Experience material swatches, solid joinery mockups, and live 3D walkthroughs with our architects.
+                </p>
               </div>
 
-              <div className="location-hours">
-                <div className="hours-row">
-                  <span>Monday – Saturday:</span>
-                  <strong>9:30 AM – 7:00 PM</strong>
+              <div className="location-meta-grid">
+                <div className="location-meta-item">
+                  <div className="meta-label">ADDRESS</div>
+                  <strong className="meta-value">Alamelu Nagar, Coimbatore</strong>
+                  <span className="meta-sub">Tamil Nadu — 641015</span>
                 </div>
-                <div className="hours-row">
-                  <span>Sunday:</span>
-                  <strong>Private Site Visits Only</strong>
+                <div className="location-meta-item">
+                  <div className="meta-label">HOURS</div>
+                  <strong className="meta-value">Mon – Sat: 9:30 AM – 7:00 PM</strong>
+                  <span className="meta-sub">Sunday: By Prior Appointment</span>
                 </div>
               </div>
 
@@ -263,12 +260,12 @@ export const ContactPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="location-directions-btn"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     <circle cx="12" cy="9" r="2.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   <span>Open in Google Maps</span>
-                  <span>↗</span>
+                  <span aria-hidden="true">↗</span>
                 </a>
 
                 <a
