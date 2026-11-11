@@ -484,6 +484,7 @@
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   .trust-mob-header {
@@ -570,6 +571,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 24px 54px rgba(0, 0, 0, 0.55);
     overflow: hidden;
+    contain: paint;
   }
 
   /* Sliding Track */
@@ -587,6 +589,12 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .trust-slide-item:not(.is-active) {
+    visibility: hidden;
+    pointer-events: none;
   }
 
   /* Image Area */

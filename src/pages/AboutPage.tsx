@@ -600,8 +600,14 @@ export const AboutPage: React.FC = () => {
                 className="trust-slide-track"
                 style={{ transform: `translateX(-${activeTrustSlide * 100}%)` }}
               >
-                {TRUST_PRINCIPLES.map((principle) => (
-                  <div className="trust-slide-item" key={principle.id}>
+                {TRUST_PRINCIPLES.map((principle, index) => {
+                  const isActive = index === activeTrustSlide;
+                  return (
+                  <div
+                    className={`trust-slide-item ${isActive ? 'is-active' : ''}`}
+                    key={principle.id}
+                    aria-hidden={!isActive}
+                  >
                     <div className="trust-slide-image-wrap">
                       <img
                         src={principle.image}
@@ -626,7 +632,8 @@ export const AboutPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                );
+              })}
               </div>
             </div>
           </div>
